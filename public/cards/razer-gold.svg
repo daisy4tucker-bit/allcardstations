@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="razerBg" cx="30%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1F1F24" />
+      <stop offset="60%" stop-color="#111114" />
+      <stop offset="100%" stop-color="#070709" />
+    </radialGradient>
+    <linearGradient id="goldCoin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE57F" />
+      <stop offset="50%" stop-color="#FFC107" />
+      <stop offset="100%" stop-color="#FF8F00" />
+    </linearGradient>
+    <filter id="goldGlow">
+      <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#FFB300" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Card Background -->
+  <rect width="800" height="500" rx="32" fill="url(#razerBg)" />
+
+  <g transform="translate(400, 250)">
+    <!-- Gold Coin Icon -->
+    <g transform="translate(-180, 0)" filter="url(#goldGlow)">
+      <circle cx="0" cy="0" r="84" fill="url(#goldCoin)" stroke="#FFE082" stroke-width="4" />
+      <circle cx="0" cy="0" r="72" fill="none" stroke="#FFA000" stroke-width="2" stroke-dasharray="4 3" />
+      <!-- Triple Snake Symbol -->
+      <path d="M-20,-30 C-35,-15 -25,10 -10,15 C5,20 15,35 0,45" fill="none" stroke="#5D4037" stroke-width="4" stroke-linecap="round" />
+      <path d="M0,-40 C-15,-20 0,5 15,10 C30,15 25,35 15,45" fill="none" stroke="#5D4037" stroke-width="4" stroke-linecap="round" />
+      <path d="M20,-30 C35,-15 25,10 10,15 C-5,20 -15,35 0,45" fill="none" stroke="#5D4037" stroke-width="4" stroke-linecap="round" />
+    </g>
+
+    <!-- Typography -->
+    <g transform="translate(-50, -25)">
+      <text x="0" y="0" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="900" fill="#00FF00" letter-spacing="12">RAZER<tspan font-size="14" dy="-16">™</tspan></text>
+      <text x="0" y="70" font-family="'Segoe UI', Arial, sans-serif" font-size="78" font-weight="800" fill="#FFFFFF" letter-spacing="4">GOLD</text>
+    </g>
+  </g>
+</svg>

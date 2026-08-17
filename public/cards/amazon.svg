@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <!-- Dark Slate/Navy Matte Background matching screenshot -->
+  <rect width="800" height="500" rx="32" fill="#232F3E" />
+  
+  <!-- Amazon Wordmark + Orange Smile + GIFT CARD text centered -->
+  <g transform="translate(400, 220) scale(1.65)">
+    <!-- amazon text -->
+    <text x="0" y="0" font-family="'Amazon Ember', 'Arial Black', -apple-system, BlinkMacSystemFont, Arial, sans-serif" font-size="70" font-weight="bold" fill="#FFFFFF" text-anchor="middle" letter-spacing="-1.5">
+      amazon
+    </text>
+    <!-- Curved Smile Arrow -->
+    <g transform="translate(0, 15)">
+      <path d="M-68,0 C-20,24 25,24 68,0 C54,12 25,18 -15,14 C-42,10 -60,2 -68,0 Z" fill="#FF9900" />
+      <path d="M60,-8 C68,-2 74,5 72,12 C69,15 62,11 58,5 C54,-1 55,-6 60,-8 Z" fill="#FF9900" />
+    </g>
+    <!-- GIFT CARD subtitle in uppercase tracking -->
+    <text x="0" y="65" font-family="'Amazon Ember', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#FF9900" text-anchor="middle" letter-spacing="4">
+      GIFT CARD
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <rect width="800" height="500" rx="32" fill="#FFFFFF" />
+  <rect width="796" height="496" x="2" y="2" rx="30" fill="none" stroke="#F1F5F9" stroke-width="2" />
+
+  <g transform="translate(400, 260) scale(1.15)">
+    <!-- Red Star Left -->
+    <g transform="translate(-230, 0) scale(1.4)">
+      <polygon points="0,-48 14,-15 48,-15 20,6 30,40 0,20 -30,40 -20,6 -48,-15 -14,-15" fill="#E11A2B" />
+    </g>
+
+    <!-- Macy's Typography with star apostrophe -->
+    <text x="-135" y="32" font-family="'Century Gothic', 'Futura', Helvetica, sans-serif" font-size="120" font-weight="900" fill="#000000" letter-spacing="-2">
+      macy
+    </text>
+    <!-- Little star for apostrophe -->
+    <g transform="translate(190, -25) scale(0.4)">
+      <polygon points="0,-48 14,-15 48,-15 20,6 30,40 0,20 -30,40 -20,6 -48,-15 -14,-15" fill="#000000" />
+    </g>
+    <text x="210" y="32" font-family="'Century Gothic', 'Futura', Helvetica, sans-serif" font-size="120" font-weight="900" fill="#000000" letter-spacing="-2">
+      s
+    </text>
+  </g>
+</svg>

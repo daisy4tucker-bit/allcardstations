@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="amexGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E7C979" />
+      <stop offset="35%" stop-color="#D9B75E" />
+      <stop offset="70%" stop-color="#CA9C3D" />
+      <stop offset="100%" stop-color="#B88A2E" />
+    </linearGradient>
+    <filter id="goldShine">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#553805" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- Gold Card Background with subtle metallic sheen -->
+  <rect width="800" height="500" rx="32" fill="url(#amexGold)" />
+  <rect width="796" height="496" x="2" y="2" rx="30" fill="none" stroke="#FDE68A" stroke-width="2" stroke-opacity="0.5" />
+
+  <!-- Top Text: PREPAID CARD / CARTE-PRÉPAYÉE -->
+  <g transform="translate(60, 65)">
+    <text x="0" y="0" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#71510B" letter-spacing="1.5">PREPAID CARD</text>
+    <text x="0" y="22" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#8C6615" letter-spacing="1">CARTE-PRÉPAYÉE</text>
+  </g>
+
+  <!-- Gold Gift Ribbon & Bow Artwork -->
+  <g transform="translate(560, 160)" stroke="#A67C1E" stroke-width="3" fill="none">
+    <!-- Bow Loops -->
+    <path d="M0,0 C-60,-90 -160,-60 -100,0 C-60,30 -20,10 0,0" fill="#E8C772" fill-opacity="0.4" />
+    <path d="M0,0 C60,-90 160,-60 100,0 C60,30 20,10 0,0" fill="#E8C772" fill-opacity="0.4" />
+    <path d="M0,0 C-90,-50 -90,70 0,0" fill="#D9B255" fill-opacity="0.5" />
+    <path d="M0,0 C90,-50 90,70 0,0" fill="#D9B255" fill-opacity="0.5" />
+    <circle cx="0" cy="0" r="18" fill="#F3DC9B" stroke="#8C6615" stroke-width="2" />
+    
+    <!-- Ribbon Tails -->
+    <path d="M-10,10 C-40,60 -60,140 -80,240" stroke="#8C6615" stroke-width="4" stroke-dasharray="1 0" />
+    <path d="M10,10 C40,60 60,140 80,240" stroke="#8C6615" stroke-width="4" stroke-dasharray="1 0" />
+    <!-- Horizontal & Vertical Ribbon Bands across card -->
+  </g>
+
+  <!-- Embossed Card Number 3759 876543 21001 -->
+  <g transform="translate(60, 310)">
+    <text x="0" y="0" font-family="'Courier New', Courier, monospace" font-size="38" font-weight="bold" fill="#29200D" letter-spacing="6" filter="url(#goldShine)">
+      3759 876543 21001
+    </text>
+  </g>
+
+  <!-- Expiration & Security -->
+  <g transform="translate(60, 360)">
+    <text x="0" y="0" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#71510B">EXPIRATION</text>
+    <text x="0" y="10" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#71510B">(MM/YY)</text>
+    <text x="0" y="32" font-family="'Courier New', Courier, monospace" font-size="24" font-weight="bold" fill="#29200D">00/00</text>
+  </g>
+
+  <!-- Member Since / 7997 -->
+  <text x="640" y="310" font-family="'Courier New', Courier, monospace" font-size="24" font-weight="bold" fill="#29200D">7997</text>
+
+  <!-- Blue American Express Box Logo Bottom Right -->
+  <g transform="translate(670, 420)">
+    <rect x="-60" y="-35" width="120" height="70" rx="8" fill="#006FCF" stroke="#FFFFFF" stroke-width="1.5" />
+    <text x="0" y="-8" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">AMERICAN</text>
+    <text x="0" y="12" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">EXPRESS</text>
+  </g>
+</svg>

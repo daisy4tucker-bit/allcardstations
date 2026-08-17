@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="netflixGlow" cx="20%" cy="50%" r="80%">
+      <stop offset="0%" stop-color="#3A0D11" />
+      <stop offset="40%" stop-color="#1E0709" />
+      <stop offset="100%" stop-color="#080808" />
+    </radialGradient>
+    <linearGradient id="nLeftLeg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#B81D24" />
+      <stop offset="100%" stop-color="#E50914" />
+    </linearGradient>
+    <linearGradient id="nDiag" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E50914" />
+      <stop offset="100%" stop-color="#8F0D13" />
+    </linearGradient>
+    <linearGradient id="bowGloss" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF3344" />
+      <stop offset="50%" stop-color="#D8101C" />
+      <stop offset="100%" stop-color="#7A0008" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" rx="32" fill="url(#netflixGlow)" />
+
+  <!-- Netflix 3D 'N' on left -->
+  <g transform="translate(180, 250) scale(1.35)">
+    <!-- Shadow under diagonal -->
+    <polygon points="-50,-130 50,130 10,130 -90,-130" fill="#000000" opacity="0.4" />
+    <!-- Left vertical bar -->
+    <rect x="-60" y="-130" width="42" height="260" fill="url(#nLeftLeg)" />
+    <!-- Right vertical bar -->
+    <rect x="20" y="-130" width="42" height="260" fill="url(#nLeftLeg)" />
+    <!-- Diagonal crossbar in 3D perspective -->
+    <polygon points="-60,-130 -18,-130 62,130 20,130" fill="url(#nDiag)" />
+  </g>
+
+  <!-- Center-Right Wordmark & Subtitle -->
+  <g transform="translate(480, 240)">
+    <!-- Thin vertical divider -->
+    <line x1="-160" y1="-70" x2="-160" y2="70" stroke="#E50914" stroke-width="3" opacity="0.6" />
+    <!-- NETFLIX Typography -->
+    <text x="0" y="-5" font-family="'Bebas Neue', 'Helvetica Neue', Impact, Arial, sans-serif" font-size="78" font-weight="900" fill="#E50914" text-anchor="middle" letter-spacing="4">NETFLIX</text>
+    <!-- Line and GIFT CARD -->
+    <g transform="translate(0, 45)">
+      <line x1="-110" y1="-6" x2="-80" y2="-6" stroke="#E50914" stroke-width="2" />
+      <text x="0" y="0" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="4">GIFT CARD</text>
+      <line x1="80" y1="-6" x2="110" y2="-6" stroke="#E50914" stroke-width="2" />
+    </g>
+  </g>
+
+  <!-- Red Satin Ribbon & Bow on Bottom Right -->
+  <g transform="translate(680, 400)">
+    <!-- Diagonal Ribbon bands -->
+    <path d="M-350,100 L120,-370 L170,-320 L-300,150 Z" fill="url(#bowGloss)" opacity="0.9" />
+    <!-- Bow Loops -->
+    <g transform="translate(0, -20) scale(1.1)">
+      <!-- Left upper loop -->
+      <path d="M0,0 C-70,-80 -140,-40 -100,20 C-70,50 -20,20 0,0" fill="url(#bowGloss)" />
+      <!-- Right lower loop -->
+      <path d="M0,0 C80,40 140,80 100,120 C60,140 20,60 0,0" fill="url(#bowGloss)" />
+      <!-- Knot center -->
+      <ellipse cx="0" cy="0" rx="22" ry="26" fill="#FF4455" stroke="#9E000C" stroke-width="3" />
+      <!-- Ribbon tails -->
+      <path d="M-10,10 C-30,60 -50,110 -60,160 L-30,150 L-10,120 Z" fill="url(#bowGloss)" />
+      <path d="M10,10 C50,50 90,80 120,120 L100,130 L70,80 Z" fill="url(#bowGloss)" />
+    </g>
+  </g>
+</svg>

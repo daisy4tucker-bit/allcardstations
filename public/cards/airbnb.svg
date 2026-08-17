@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <!-- Airbnb Signature Coral / Watermelon Pink -->
+  <rect width="800" height="500" rx="32" fill="#FF385C" />
+
+  <!-- Airbnb Bélo Icon + Typography Centered in Pure White -->
+  <g transform="translate(400, 255)">
+    <!-- Airbnb Bélo Symbol on left -->
+    <g transform="translate(-160, 0) scale(1.15)">
+      <!-- Outer loop -->
+      <path d="M 0,-85 C -25,-85 -45,-55 -45,-15 C -45,35 -20,75 0,90 C 20,75 45,35 45,-15 C 45,-55 25,-85 0,-85 Z M 0,-62 C 12,-62 24,-40 24,-15 C 24,15 12,45 0,65 C -12,45 -24,15 -24,-15 C -24,-40 -12,-62 0,-62 Z" fill="#FFFFFF" />
+      <!-- Inner heart/loop bulb -->
+      <path d="M 0,20 C -15,20 -24,8 -24,-6 C -24,-20 -12,-30 0,-30 C 12,-30 24,-20 24,-6 C 24,8 15,20 0,20 Z" fill="#FFFFFF" />
+      <!-- Cutout inside inner bulb -->
+      <circle cx="0" cy="-6" r="11" fill="#FF385C" />
+    </g>
+
+    <!-- airbnb Typography on right -->
+    <text x="10" y="32" font-family="'Circular', 'Avenir Next', 'Segoe UI', Helvetica, Arial, sans-serif" font-size="115" font-weight="bold" fill="#FFFFFF" letter-spacing="-1">airbnb</text>
+  </g>
+</svg>

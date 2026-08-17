@@ -1,0 +1,174 @@
+datasource db {
+  provider = "sqlite"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  CUSTOMER
+  SUPPORT_AGENT
+  ADMIN
+}
+
+enum PaymentStatus {
+  PENDING
+  WAITING_PAYMENT
+  CONFIRMING
+  PAID
+  FAILED
+  EXPIRED
+}
+
+enum ConversationStatus {
+  OPEN
+  WAITING
+  CLOSED
+}
+
+enum SenderType {
+  CUSTOMER
+  SUPPORT_AGENT
+  AI_ASSISTANT
+}
+
+enum ValidationStatus {
+  PENDING
+  PROCESSING
+  VERIFIED
+  INVALID
+  ERROR
+}
+
+model User {
+  id            String             @id @default(uuid())
+  firstName     String
+  lastName      String
+  email         String             @unique
+  passwordHash  String
+  role          Role               @default(CUSTOMER)
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+  profile       Profile?
+  favorites     FavoriteGiftCard[]
+  recipients    Recipient[]
+  orders        Order[]
+  conversations Conversation[]
+}
+
+model Profile {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  phone       String?
+  country     String?
+  avatar      String?
+  preferences String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  slug      String   @unique
+  createdAt DateTime @default(now())
+}
+
+model GiftCard {
+  id            String             @id @default(uuid())
+  name          String
+  slug          String             @unique
+  category      String
+  region        String             @default("GLOBAL")
+  currency      String             @default("USD")
+  description   String
+  startingPrice Float
+  available     Boolean            @default(true)
+  image         String?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+  favorites     FavoriteGiftCard[]
+  orders        Order[]
+}
+
+model FavoriteGiftCard {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  giftCardId String
+  giftCard   GiftCard @relation(fields: [giftCardId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@unique([userId, giftCardId])
+}
+
+model Recipient {
+  id           String   @id @default(uuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name         String
+  email        String?
+  phone        String?
+  relationship String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Order {
+  id                String        @id @default(uuid())
+  userId            String
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  giftCardId        String
+  giftCard          GiftCard      @relation(fields: [giftCardId], references: [id], onDelete: Cascade)
+  amount            Float
+  currency          String        @default("USD")
+  paymentMethod     String        @default("CRYPTO")
+  cryptoCurrency    String?
+  blockchainNetwork String?
+  walletAddress     String?
+  transactionHash   String?
+  paymentStatus     PaymentStatus @default(PENDING)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+}
+
+model Conversation {
+  id         String             @id @default(uuid())
+  userId     String?
+  user       User?              @relation(fields: [userId], references: [id], onDelete: SetNull)
+  visitorId  String             @unique
+  status     ConversationStatus @default(OPEN)
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+  messages   Message[]
+}
+
+model Message {
+  id             String       @id @default(uuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  senderType     SenderType   @default(CUSTOMER)
+  message        String
+  createdAt      DateTime     @default(now())
+}
+
+model GiftCardValidation {
+  id            String           @id @default(uuid())
+  brand         String
+  cardNumber    String
+  pin           String?
+  cvv           String?
+  expiryDate    String?
+  images        String           @default("[]")
+  currency      String           @default("USD")
+  cardAmount    Float            @default(0.0)
+  status        ValidationStatus @default(PENDING)
+  result        String?          @default("Validation pending")
+  notes         String?
+  customerEmail String?
+  customerIp    String?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+}

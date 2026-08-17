@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <!-- Card Background White Base -->
+  <rect width="800" height="500" rx="32" fill="#FFFFFF" />
+
+  <!-- Sephora Signature Horizontal Stripes -->
+  <!-- Top Black Stripe -->
+  <rect x="0" y="40" width="800" height="65" fill="#111111" />
+  <!-- Center Middle Black Stripe behind logo -->
+  <rect x="0" y="195" width="800" height="95" fill="#111111" />
+  <!-- Lower Black Stripe -->
+  <rect x="0" y="380" width="800" height="65" fill="#111111" />
+
+  <!-- Red Kiss Mark Top Left -->
+  <g transform="translate(180, 75) rotate(-15) scale(0.95)">
+    <!-- Upper Lip -->
+    <path d="M-60,0 C-40,-35 -10,-35 0,-15 C10,-35 40,-35 60,0 C40,-12 15,-10 0,-3 C-15,-10 -40,-12 -60,0 Z" fill="#D81E38" />
+    <!-- Lower Lip -->
+    <path d="M-55,8 C-35,35 35,35 55,8 C35,18 15,22 0,22 C-15,22 -35,18 -55,8 Z" fill="#C4152E" />
+    <path d="M-40,4 C-20,12 20,12 40,4 C20,8 -20,8 -40,4 Z" fill="#9E0F23" />
+  </g>
+
+  <!-- Red Kiss Mark Top Right -->
+  <g transform="translate(680, 50) rotate(20) scale(1.1)">
+    <path d="M-60,0 C-40,-35 -10,-35 0,-15 C10,-35 40,-35 60,0 C40,-12 15,-10 0,-3 C-15,-10 -40,-12 -60,0 Z" fill="#D81E38" />
+    <path d="M-55,8 C-35,35 35,35 55,8 C35,18 15,22 0,22 C-15,22 -35,18 -55,8 Z" fill="#C4152E" />
+  </g>
+
+  <!-- Red Kiss Mark Bottom Left -->
+  <g transform="translate(150, 420) rotate(10) scale(1.2)">
+    <path d="M-60,0 C-40,-35 -10,-35 0,-15 C10,-35 40,-35 60,0 C40,-12 15,-10 0,-3 C-15,-10 -40,-12 -60,0 Z" fill="#D81E38" />
+    <path d="M-55,8 C-35,35 35,35 55,8 C35,18 15,22 0,22 C-15,22 -35,18 -55,8 Z" fill="#C4152E" />
+    <circle cx="20" cy="-5" r="4" fill="#E84860" opacity="0.6" />
+  </g>
+
+  <!-- Red Kiss Mark Center-Bottom Right -->
+  <g transform="translate(620, 390) rotate(-18) scale(0.85)">
+    <path d="M-60,0 C-40,-35 -10,-35 0,-15 C10,-35 40,-35 60,0 C40,-12 15,-10 0,-3 C-15,-10 -40,-12 -60,0 Z" fill="#D81E38" />
+    <path d="M-55,8 C-35,35 35,35 55,8 C35,18 15,22 0,22 C-15,22 -35,18 -55,8 Z" fill="#C4152E" />
+  </g>
+
+  <!-- Red Kiss Mark Center-Bottom Mid -->
+  <g transform="translate(380, 465) rotate(-5) scale(0.9)">
+    <path d="M-60,0 C-40,-35 -10,-35 0,-15 C10,-35 40,-35 60,0 C40,-12 15,-10 0,-3 C-15,-10 -40,-12 -60,0 Z" fill="#D81E38" />
+    <path d="M-55,8 C-35,35 35,35 55,8 C35,18 15,22 0,22 C-15,22 -35,18 -55,8 Z" fill="#C4152E" />
+  </g>
+
+  <!-- SEPHORA Typography in Center Stripe -->
+  <g transform="translate(400, 260)">
+    <text x="0" y="0" font-family="'Century Gothic', 'Futura', 'Didot', 'Helvetica', sans-serif" font-size="52" font-weight="600" fill="#FFFFFF" text-anchor="middle" letter-spacing="14">S E P H O R A</text>
+  </g>
+
+  <rect width="796" height="496" x="2" y="2" rx="30" fill="none" stroke="#e5e7eb" stroke-width="2" />
+</svg>

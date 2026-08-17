@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Solid PlayStation Royal Blue Background -->
+  <rect width="1000" height="600" fill="#00439C" />
+
+  <!-- Center Group -->
+  <g transform="translate(500, 240)">
+    <!-- PlayStation Official Vector Emblem -->
+    <g transform="translate(0, -25) scale(1.15)">
+      <!-- Standing P -->
+      <!-- P Vertical Left Spine with angled top -->
+      <path d="M -46,-120 L -12,-132 L -12,42 L -46,42 Z" fill="#FFFFFF" />
+      
+      <!-- P Curved Right Loop -->
+      <path d="M -12,-132 L 32,-116 C 72,-100 88,-70 88,-28 C 88,14 62,38 24,42 L -12,42 L -12,12 L 20,8 C 42,4 54,-10 54,-28 C 54,-54 42,-76 16,-86 L -12,-96 Z" fill="#FFFFFF" />
+
+      <!-- Horizontal Perspective S -->
+      <!-- Left loop band -->
+      <path d="M -145,-14 C -95,-38 -30,-44 25,-26 C 4,-20 -28,-14 -60,0 C -92,14 -128,26 -145,26 C -156,26 -162,18 -162,8 C -162,-4 -156,-10 -145,-14 Z" fill="#FFFFFF" />
+      <path d="M -60,0 C -25,14 15,22 55,22 C 30,30 -5,32 -45,28 C -85,24 -122,12 -135,2 C -115,2 -85,2 -60,0 Z" fill="#FFFFFF" />
+
+      <!-- Center & Right loop band -->
+      <path d="M -12,12 C 35,4 85,2 125,12 C 145,17 154,26 154,34 C 154,46 135,54 95,54 C 45,54 -15,44 -55,30 C -25,28 10,24 45,18 C 15,20 -12,18 -12,12 Z" fill="#FFFFFF" />
+      <path d="M 45,18 C 78,12 110,12 126,18 C 110,24 75,28 35,28 C 0,28 -30,26 -45,22 C -15,20 15,20 45,18 Z" fill="#FFFFFF" />
+
+      <!-- Official Registered Trademark (R) beside emblem -->
+      <g transform="translate(142, 54) scale(0.85)">
+        <circle cx="0" cy="0" r="10" fill="none" stroke="#FFFFFF" stroke-width="2.2" />
+        <text x="0" y="4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">R</text>
+      </g>
+    </g>
+
+    <!-- PlayStation Wordmark Directly Centered Underneath -->
+    <g transform="translate(0, 175)">
+      <text x="-8" y="0" font-family="'SST', 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif" font-size="82" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="-0.5">
+        PlayStation
+      </text>
+      <!-- Registered Trademark (R) next to PlayStation text -->
+      <g transform="translate(242, -34) scale(0.9)">
+        <circle cx="0" cy="0" r="8" fill="none" stroke="#FFFFFF" stroke-width="1.8" />
+        <text x="0" y="3.5" font-family="-apple-system, BlinkMacSystemFont, Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">R</text>
+      </g>
+    </g>
+  </g>
+</svg>

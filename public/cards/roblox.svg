@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <!-- Card White Base -->
+  <rect width="800" height="500" rx="32" fill="#FFFFFF" />
+  <rect width="796" height="496" x="2" y="2" rx="30" fill="none" stroke="#E2E8F0" stroke-width="2" />
+
+  <g transform="translate(400, 250)">
+    <!-- Tilted Red Square Icon with Square Cutout on Left -->
+    <g transform="translate(-210, 0) rotate(-10)">
+      <rect x="-85" y="-85" width="170" height="170" rx="8" fill="#E2231A" />
+      <rect x="-24" y="-24" width="48" height="48" rx="2" fill="#FFFFFF" />
+    </g>
+
+    <!-- Red Rectangle with ROBLOX text on Right -->
+    <g transform="translate(110, 0)">
+      <rect x="-230" y="-65" width="460" height="130" fill="#E2231A" />
+      <!-- ROBLOX Wordmark -->
+      <g transform="translate(0, 16)">
+        <text x="0" y="0" font-family="'Arial Black', Impact, sans-serif" font-size="64" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="4">
+          ROBLOX
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%">
+  <!-- Clean Off-White Background matching uploaded image (#F4F4F4) -->
+  <rect width="1000" height="600" fill="#F4F4F4" />
+
+  <!-- Centered Faceted Poly Apple Logo in exact proportions matching user upload -->
+  <g transform="translate(515, 305) scale(1.85)">
+    
+    <!-- 1. TILTED MULTI-FACET LEAF -->
+    <g transform="translate(18, -125)">
+      <!-- Leaf Top Left Cyan -->
+      <polygon points="0,0 16,-28 28,-14" fill="#00B4D8" />
+      <!-- Leaf Top Right Blue -->
+      <polygon points="16,-28 32,-32 28,-14" fill="#0077B6" />
+      <!-- Leaf Upper Orange -->
+      <polygon points="32,-32 40,-18 28,-14" fill="#F77F00" />
+      <!-- Leaf Yellow-Orange Center -->
+      <polygon points="28,-14 40,-18 36,0" fill="#FCBF49" />
+      <!-- Leaf Bottom Right Red -->
+      <polygon points="40,-18 42,-8 36,0" fill="#D90429" />
+      <!-- Leaf Lower Left Blue-Green -->
+      <polygon points="0,0 28,-14 18,6" fill="#06D6A0" />
+      <!-- Leaf Bottom Orange Base -->
+      <polygon points="18,6 28,-14 36,0" fill="#F3722C" />
+      <!-- Leaf Bottom Red Tip -->
+      <polygon points="18,6 36,0 24,14" fill="#E63946" />
+    </g>
+
+    <!-- 2. MAIN APPLE BODY (Faceted Polygonal Mesh) -->
+    <!-- Top Notch & Upper Left Shoulder -->
+    <polygon points="-8,-55 -42,-58 -32,-30" fill="#E63946" />
+    <polygon points="-42,-58 -68,-40 -56,-16 -32,-30" fill="#F94144" />
+    <polygon points="-8,-55 -32,-30 0,-18" fill="#F3722C" />
+    <polygon points="0,-18 -32,-30 -22,2" fill="#FB8500" />
+
+    <!-- Top Right Shoulder -->
+    <polygon points="-8,-55 0,-18 24,-52" fill="#FFB703" />
+    <polygon points="24,-52 0,-18 36,-38" fill="#E63946" />
+    <polygon points="24,-52 36,-38 58,-40 44,-55" fill="#52B788" />
+    <polygon points="36,-38 58,-40 68,-22 52,-18" fill="#74C69D" />
+    <polygon points="36,-38 52,-18 28,-10 0,-18" fill="#A7C957" />
+
+    <!-- Left Outer Flank (Cyan, Green, Orange) -->
+    <polygon points="-68,-40 -92,-10 -74,4 -56,-16" fill="#0077B6" />
+    <polygon points="-92,-10 -98,18 -82,24 -74,4" fill="#0096C7" />
+    <polygon points="-98,18 -102,48 -80,54 -82,24" fill="#00B4D8" />
+    <polygon points="-56,-16 -74,4 -48,8 -32,-30" fill="#2D6A4F" />
+    <polygon points="-74,4 -82,24 -54,28 -48,8" fill="#40916C" />
+    <polygon points="-82,24 -80,54 -54,28" fill="#52B788" />
+    
+    <!-- Left Mid-Lower Orange & Deep Cyan -->
+    <polygon points="-102,48 -94,76 -70,82 -80,54" fill="#F3722C" />
+    <polygon points="-80,54 -70,82 -48,60 -54,28" fill="#F77F00" />
+    <polygon points="-94,76 -84,104 -58,98 -70,82" fill="#0077B6" />
+    <polygon points="-70,82 -58,98 -48,60" fill="#0096C7" />
+    <polygon points="-84,104 -64,124 -42,110 -58,98" fill="#023E8A" />
+
+    <!-- Center Core (Magenta, Purple, Red, Blue) -->
+    <polygon points="-48,8 -54,28 -22,2" fill="#1D3557" />
+    <polygon points="-22,2 -54,28 -30,42" fill="#2A6F97" />
+    <polygon points="-22,2 -30,42 0,-2" fill="#7209B7" />
+    <polygon points="0,-18 28,-10 0,-2" fill="#9D4EDD" />
+    <polygon points="0,-2 28,-10 24,14" fill="#E0AAFF" />
+    <polygon points="0,-2 24,14 -4,32" fill="#F72585" />
+    <polygon points="-30,42 0,-2 -4,32" fill="#B5179E" />
+    <polygon points="-30,42 -4,32 -18,62" fill="#D90429" />
+    <polygon points="-54,28 -30,42 -48,60" fill="#457B9D" />
+    <polygon points="-48,60 -30,42 -18,62" fill="#E63946" />
+    <polygon points="-48,60 -18,62 -28,90" fill="#9B2226" />
+    <polygon points="-48,60 -28,90 -58,98" fill="#1D3557" />
+    <polygon points="-58,98 -28,90 -42,110" fill="#03045E" />
+
+    <!-- Center-Right Facets (Bright Yellow, Blue, Orange) -->
+    <polygon points="28,-10 52,-18 48,8" fill="#48CAE4" />
+    <polygon points="28,-10 48,8 24,14" fill="#00B4D8" />
+    <polygon points="24,14 48,8 44,30" fill="#FCBF49" />
+    <polygon points="24,14 44,30 -4,32" fill="#F77F00" />
+    <polygon points="-4,32 44,30 20,54" fill="#F3722C" />
+    <polygon points="-4,32 20,54 -18,62" fill="#0077B6" />
+    <polygon points="-18,62 20,54 6,86" fill="#0096C7" />
+    <polygon points="-18,62 6,86 -28,90" fill="#0077B6" />
+    <polygon points="-28,90 6,86 -12,114" fill="#03045E" />
+    <polygon points="-42,110 -28,90 -12,114 -28,126" fill="#023E8A" />
+    <polygon points="-64,124 -42,110 -28,126 -44,130" fill="#6A040F" />
+
+    <!-- Apple Bite Arch (Right Side Perimeter & Cutout Cavity) -->
+    <polygon points="52,-18 68,-22 76,-8 60,0" fill="#0077B6" />
+    <polygon points="76,-8 60,0 52,14" fill="#03045E" />
+    <polygon points="48,8 60,0 52,14" fill="#0096C7" />
+    <polygon points="48,8 52,14 44,30" fill="#0077B6" />
+
+    <!-- Lower Right Flank & Lobe (Orange, Violet, Lime) -->
+    <polygon points="44,30 54,42 20,54" fill="#F77F00" />
+    <polygon points="54,42 78,54 50,68 20,54" fill="#FB8500" />
+    <polygon points="78,54 94,68 76,82 50,68" fill="#D90429" />
+    <polygon points="76,82 96,94 80,108 50,68" fill="#F72585" />
+    <polygon points="50,68 80,108 52,106 32,82" fill="#52B788" />
+    <polygon points="20,54 50,68 32,82 6,86" fill="#F3722C" />
+    <polygon points="6,86 32,82 24,110" fill="#F77F00" />
+    <polygon points="6,86 24,110 -12,114" fill="#FCBF49" />
+    <polygon points="-12,114 24,110 8,130" fill="#F3722C" />
+    <polygon points="-12,114 8,130 -28,126" fill="#D90429" />
+    <polygon points="80,108 64,124 52,106" fill="#7209B7" />
+    <polygon points="52,106 64,124 32,126 24,110" fill="#9D4EDD" />
+    <polygon points="24,110 32,126 8,130" fill="#F72585" />
+    
+    <!-- Clean Background Cutout Overlay for Apple Bite Arc to ensure perfect optical curve -->
+    <path d="M 44,-4 C 84,6 84,62 44,72 C 68,54 68,14 44,-4 Z" fill="#F4F4F4" />
+  </g>
+</svg>

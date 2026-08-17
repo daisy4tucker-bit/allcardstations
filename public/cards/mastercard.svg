@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <!-- Mastercard Dark Background -->
+  <rect width="800" height="500" rx="32" fill="#1C1817" />
+
+  <!-- Mastercard Interlocking Circles Center -->
+  <g transform="translate(400, 250) scale(1.45)">
+    <!-- Red Circle Left -->
+    <circle cx="-65" cy="0" r="105" fill="#EB001B" />
+    <!-- Yellow/Orange Circle Right -->
+    <circle cx="65" cy="0" r="105" fill="#F79E1B" />
+    <!-- Overlap Lens Center -->
+    <path d="M0,-82 C28,-58 46,-20 46,0 C46,20 28,58 0,82 C-28,58 -46,20 -46,0 C-46,-20 -28,-58 0,-82 Z" fill="#FF5F00" />
+  </g>
+</svg>

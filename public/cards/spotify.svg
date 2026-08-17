@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <!-- Vibrant Spotify Green Background -->
+  <rect width="800" height="500" rx="32" fill="#1ED760" />
+
+  <!-- Center Spotify Logo & Wordmark in Solid Black -->
+  <g transform="translate(400, 240)">
+    <!-- Spotify Circle Soundwaves -->
+    <g transform="translate(-160, 0)">
+      <circle cx="0" cy="0" r="88" fill="#121212" />
+      <!-- Soundwave Arcs in Green -->
+      <path d="M-52,-28 C-10,-44 40,-35 60,-15" fill="none" stroke="#1ED760" stroke-width="15" stroke-linecap="round" />
+      <path d="M-44,2 C-8,-10 32,-4 50,12" fill="none" stroke="#1ED760" stroke-width="13" stroke-linecap="round" />
+      <path d="M-36,30 C-6,20 25,24 38,36" fill="none" stroke="#1ED760" stroke-width="11" stroke-linecap="round" />
+    </g>
+
+    <!-- Spotify Wordmark -->
+    <text x="0" y="32" font-family="'Circular Std', -apple-system, BlinkMacSystemFont, Arial, sans-serif" font-size="110" font-weight="900" fill="#121212" letter-spacing="-1">Spotify<tspan font-size="28" font-weight="bold" dy="-54">®</tspan></text>
+  </g>
+
+  <!-- Bottom Disclaimer Note -->
+  <text x="400" y="445" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#121212" opacity="0.85" text-anchor="middle">
+    Cannot be redeemed for the Spotify Family or Student plans. Terms Apply.
+  </text>
+</svg>
