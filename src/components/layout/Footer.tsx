@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CreditCard, ShieldCheck, Zap, Globe, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { CreditCard, ShieldCheck, Zap, Globe, Send, CheckCircle2, AlertCircle, Headphones } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { openTawkChat } from '../common/TawkToChat';
 
 export const Footer: React.FC = () => {
   const currentYear = 2026;
@@ -141,6 +142,15 @@ export const Footer: React.FC = () => {
                 <Link to="/faq" className="text-slate-400 hover:text-white transition-colors">
                   Frequently Asked
                 </Link>
+              </li>
+              <li>
+                <button
+                  onClick={openTawkChat}
+                  className="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors flex items-center gap-1.5 cursor-pointer text-left"
+                >
+                  <Headphones className="w-3.5 h-3.5 animate-pulse" />
+                  <span>24/7 Live Chat (Tawk.to)</span>
+                </button>
               </li>
               <li>
                 <Link to="/contact" className="text-slate-400 hover:text-white transition-colors">

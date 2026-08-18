@@ -34,6 +34,7 @@ import {
   Loader2
 } from 'lucide-react';
 import { PageContainer } from '../components/layout/PageContainer';
+import { OpenGraphMeta } from '../components/common/OpenGraphMeta';
 import { ValidationProgressBar } from '../components/validation/ValidationProgressBar';
 import { WhereIsMyCodeModal } from '../components/validation/WhereIsMyCodeModal';
 import { ScanGiftCardModal } from '../components/validation/ScanGiftCardModal';
@@ -746,6 +747,11 @@ export const ValidateCard: React.FC = () => {
 
   return (
     <div id="validate-card-page" className="min-h-screen bg-slate-50 dark:bg-slate-950 py-8 sm:py-12 transition-colors">
+      <OpenGraphMeta
+        title={selectedBrand ? `Validate ${selectedBrand.name} Gift Card - Real-Time Balance & Authenticity Check` : "Gift Card Validation & Authenticity Checker | AllCardVault"}
+        description={selectedBrand ? `Check card number and security PIN authenticity for ${selectedBrand.name} gift cards with 256-bit SSL encryption.` : "Verify gift card balances, format rules, and redemption status instantly across top global brands."}
+        image={selectedBrand?.image || "https://images.unsplash.com/photo-1556742049-0a67d268a735?w=1200&h=630&fit=crop&q=80"}
+      />
       <PageContainer>
 
         {selectedBrand ? (

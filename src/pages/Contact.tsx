@@ -22,6 +22,7 @@ import { SectionHeading } from '../components/ui/SectionHeading';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
+import { openTawkChat } from '../components/common/TawkToChat';
 
 interface ContactFormDataExtended {
   fullName: string;
@@ -671,14 +672,23 @@ export const Contact: React.FC = () => {
                 </div>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-2 space-y-2">
+                <button
+                  type="button"
+                  onClick={openTawkChat}
+                  id="btn-open-tawk-chat"
+                  className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer border border-emerald-400/30 active:scale-95"
+                >
+                  <Headphones className="w-4 h-4" />
+                  <span>Start Live Chat (Tawk.to)</span>
+                </button>
                 <a
                   href="mailto:support@allcardvault.com"
                   id="btn-contact-email-support"
-                  className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
+                  className="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
                   <Mail className="w-4 h-4" />
-                  <span>Email Support Specialist</span>
+                  <span>Email Support Desk</span>
                 </a>
               </div>
             </div>

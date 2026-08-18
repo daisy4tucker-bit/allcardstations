@@ -24,6 +24,7 @@ import { useAuth } from '../context/AuthContext';
 import { SUPPORTED_CURRENCIES, getCurrencyByCode, formatCurrencyAmount } from '../data/currencies';
 import { useCurrencyRates } from '../hooks/useCurrencyRates';
 import { LiveCurrencyConverter } from '../components/checkout/LiveCurrencyConverter';
+import { OpenGraphMeta } from '../components/common/OpenGraphMeta';
 
 export const GiftCardDetails: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -147,6 +148,12 @@ export const GiftCardDetails: React.FC = () => {
         { label: name },
       ]}
     >
+      <OpenGraphMeta
+        title={`Buy ${name} Gift Card Online - Instant Email Delivery | AllCardVault`}
+        description={`Purchase digital ${name} gift cards with instant 256-bit encrypted delivery. ${description}`}
+        image={card.image}
+        type="product"
+      />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         
         {/* Left Column: Visual Gift Card & Feature Highlights */}
