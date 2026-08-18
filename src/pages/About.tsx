@@ -45,7 +45,7 @@ export const About: React.FC = () => {
       <SectionHeading
         tag="Our Mission & Values"
         title="Redefining Digital Gifting for Everyone"
-        subtitle="AllCardStation is built with a singular focus: to make finding, selecting, and sending digital gift cards simple, fast, and trustworthy."
+        subtitle="AllCardVault is built with a singular focus: to make finding, selecting, and sending digital gift cards simple, fast, and trustworthy."
         align="center"
       />
 
@@ -54,10 +54,10 @@ export const About: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-8 space-y-4">
             <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white">
-              The AllCardStation Mission
+              The AllCardVault Mission
             </h3>
             <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-              Traditional gift giving often involves physical store trips, postal delays, or confusing terms. AllCardStation was conceived to create a streamlined digital marketplace where modern consumers can browse a rich catalog of digital cards, choose exact denominations, and send memorable gifts instantly.
+              Traditional gift giving often involves physical store trips, postal delays, or confusing terms. AllCardVault was conceived to create a streamlined digital marketplace where modern consumers can browse a rich catalog of digital cards, choose exact denominations, and send memorable gifts instantly.
             </p>
             <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
               Whether celebrating a birthday, rewarding an employee, or leveling up your gaming wallet, our platform provides a dependable, transparent gateway to the digital goods you love.
@@ -68,7 +68,7 @@ export const About: React.FC = () => {
             <div className="w-14 h-14 rounded-2xl bg-indigo-600/80 border border-indigo-400/30 flex items-center justify-center text-white mb-3 shadow-lg">
               <CreditCard className="w-7 h-7" />
             </div>
-            <div className="font-extrabold text-lg">AllCardStation</div>
+            <div className="font-extrabold text-lg">AllCardVault</div>
             <div className="text-xs text-indigo-300 mt-1">Founded on trust & digital speed</div>
           </div>
         </div>

@@ -26,7 +26,7 @@ apiRouter.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     phase: 2,
-    service: 'AllCardStation REST API',
+    service: 'AllCardVault REST API',
     timestamp: new Date().toISOString(),
   });
 });

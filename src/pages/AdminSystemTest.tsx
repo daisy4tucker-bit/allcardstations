@@ -55,9 +55,14 @@ export const AdminSystemTest: React.FC = () => {
     setIsQuickLoggingIn(true);
     setQuickLoginError(null);
     try {
-      await login({ email: 'admin@allcardstation.com', password: 'Electadmin100!' });
+      await login({ email: 'admin@allcardvault.com', password: 'Electadmin100!' });
     } catch (err: any) {
-      setQuickLoginError(err.message || 'Failed to sign in as admin');
+      // Fallback attempt with legacy email if database has not re-seeded yet
+      try {
+        await login({ email: 'admin@allcardstation.com', password: 'Electadmin100!' });
+      } catch {
+        setQuickLoginError(err.message || 'Failed to sign in as admin');
+      }
     } finally {
       setIsQuickLoggingIn(false);
     }
@@ -196,7 +201,7 @@ export const AdminSystemTest: React.FC = () => {
               ) : (
                 <div className="text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-2">
                   <p className="font-semibold text-slate-700 dark:text-slate-300">Admin Demo Credentials:</p>
-                  <p>Email: <code className="text-indigo-600 dark:text-indigo-400 font-mono font-bold">admin@allcardstation.com</code></p>
+                  <p>Email: <code className="text-indigo-600 dark:text-indigo-400 font-mono font-bold">admin@allcardvault.com</code></p>
                   <p>Password: <code className="text-indigo-600 dark:text-indigo-400 font-mono font-bold">Electadmin100!</code></p>
                 </div>
               )}

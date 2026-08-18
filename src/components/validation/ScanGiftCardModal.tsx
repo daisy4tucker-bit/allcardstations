@@ -551,7 +551,7 @@ export const ScanGiftCardModal: React.FC<ScanGiftCardModalProps> = ({
                   <button
                     type="button"
                     onClick={startCamera}
-                    className="flex flex-col items-center justify-center gap-2 py-4 px-3 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-md group cursor-pointer"
+                    className="flex flex-col items-center justify-center gap-2 py-4 px-3 rounded-2xl bg-slate-900 dark:bg-slate-800 text-white dark:text-white hover:bg-slate-800 dark:hover:bg-slate-700 transition-all shadow-md group cursor-pointer"
                   >
                     <div className="w-9 h-9 rounded-full bg-white/10 dark:bg-slate-900/10 flex items-center justify-center">
                       <Camera className="w-5 h-5 text-emerald-400 dark:text-emerald-600" />

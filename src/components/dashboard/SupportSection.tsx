@@ -29,7 +29,7 @@ export const SupportSection: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const quickQuestions = [
-    'What payment methods are supported on AllCardStation?',
+    'What payment methods are supported on AllCardVault?',
     'When will cryptocurrency payments be available?',
     'How do I validate or check the balance of a gift card?',
     'Can I save multiple recipient addresses for gifting?',
@@ -150,7 +150,7 @@ export const SupportSection: React.FC = () => {
       <div className="px-6 py-2.5 bg-amber-50 dark:bg-amber-950/40 border-b border-amber-200/60 dark:border-amber-900/50 flex items-center gap-2.5 text-xs text-amber-900 dark:text-amber-200">
         <ShieldAlert className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
         <span>
-          <strong>Notice:</strong> AllCardStation does not process credit cards or PayPal. Future digital card orders will support <strong>Cryptocurrency (BTC, ETH, LTC, SOL, USDT, USDC)</strong> exclusively.
+          <strong>Notice:</strong> AllCardVault does not process credit cards or PayPal. Future digital card orders will support <strong>Cryptocurrency (BTC, ETH, LTC, SOL, USDT, USDC)</strong> exclusively.
         </span>
       </div>
 
@@ -193,7 +193,7 @@ export const SupportSection: React.FC = () => {
                       <div className="flex items-center gap-1.5 text-[11px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-1">
                         {isAi ? (
                           <>
-                            <Sparkles className="w-3 h-3" /> AllCardStation Assistant
+                            <Sparkles className="w-3 h-3" /> AllCardVault Assistant
                           </>
                         ) : (
                           <>

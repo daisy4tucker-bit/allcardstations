@@ -490,7 +490,7 @@ export const GIFT_CARDS: GiftCard[] = [
     },
     symbol: 'XBX',
     tagline: 'Power your gaming adventures on console & PC',
-    image: '/cards/xbox.svg',
+    image: 'https://www.giftlycard.com/_next/image?url=%2Fimages%2Fxbox.webp&w=640&q=75&dpl=dpl_2yRJNX2mkHQg7ZSv9wTZaivCyjJR',
     redemptionType: 'Online',
     popular: true,
     featured: true,

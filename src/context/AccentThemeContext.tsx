@@ -84,12 +84,12 @@ interface AccentThemeContextType {
 
 const AccentThemeContext = createContext<AccentThemeContextType | undefined>(undefined);
 
-const STORAGE_KEY = 'allcardstation-accent-theme';
+const STORAGE_KEY = 'allcardvault-accent-theme';
 
 export const AccentThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentAccent, setCurrentAccent] = useState<AccentTheme>(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY) as AccentTheme;
+      const saved = (localStorage.getItem(STORAGE_KEY) || localStorage.getItem('allcardstation-accent-theme')) as AccentTheme;
       if (saved && accentThemes[saved]) {
         return saved;
       }

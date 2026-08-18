@@ -14,8 +14,8 @@ export const LegalPlaceholder: React.FC = () => {
   const tag = isSecurity ? 'Cryptographic Protection' : 'Legal Terms';
   const icon = isSecurity ? Lock : FileText;
   const summary = isSecurity
-    ? 'AllCardStation enforces 256-bit TLS 1.3 encryption, OpenSSL verified ciphers, and strict HSTS headers across all transactions.'
-    : 'Review the comprehensive operational terms, code redemption protocols, and buyer protections governing AllCardStation.';
+    ? 'AllCardVault enforces 256-bit TLS 1.3 encryption, OpenSSL verified ciphers, and strict HSTS headers across all transactions.'
+    : 'Review the comprehensive operational terms, code redemption protocols, and buyer protections governing AllCardVault.';
 
   const IconComp = icon;
 
@@ -29,7 +29,7 @@ export const LegalPlaceholder: React.FC = () => {
             <IconComp className="w-6 h-6 text-indigo-600 dark:text-indigo-400 shrink-0" />
             <div className="text-xs">
               <span className="font-bold">Operational Certification: </span>
-              AllCardStation operates under verified 256-bit SSL certificate authority validation, automated threat monitoring, and full compliance with GDPR & CCPA digital asset regulations.
+              AllCardVault operates under verified 256-bit SSL certificate authority validation, automated threat monitoring, and full compliance with GDPR & CCPA digital asset regulations.
             </div>
           </div>
 
@@ -41,7 +41,7 @@ export const LegalPlaceholder: React.FC = () => {
                   <span>1. Enforced HTTPS & HTTP Strict Transport Security (HSTS)</span>
                 </h3>
                 <p>
-                  Every request transmitted to AllCardStation is strictly encrypted over HTTPS. In accordance with modern security best practices, our reverse proxy and server middleware automatically upgrade unencrypted HTTP requests to secure HTTPS and inject the <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-xs font-mono">Strict-Transport-Security: max-age=63072000; includeSubDomains; preload</code> header.
+                  Every request transmitted to AllCardVault is strictly encrypted over HTTPS. In accordance with modern security best practices, our reverse proxy and server middleware automatically upgrade unencrypted HTTP requests to secure HTTPS and inject the <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-xs font-mono">Strict-Transport-Security: max-age=63072000; includeSubDomains; preload</code> header.
                 </p>
               </section>
 
@@ -70,7 +70,7 @@ export const LegalPlaceholder: React.FC = () => {
               <section className="space-y-3">
                 <h3 className="text-base font-bold text-slate-900 dark:text-white">1. Electronic Issuance & Digital Code Delivery</h3>
                 <p>
-                  Upon successful payment authorization, AllCardStation generates authentic digital gift card claim codes. Codes are dispatched electronically to the purchaser's verified delivery email and accessible in the authenticated account dashboard.
+                  Upon successful payment authorization, AllCardVault generates authentic digital gift card claim codes. Codes are dispatched electronically to the purchaser's verified delivery email and accessible in the authenticated account dashboard.
                 </p>
               </section>
 
@@ -84,14 +84,14 @@ export const LegalPlaceholder: React.FC = () => {
               <section className="space-y-3">
                 <h3 className="text-base font-bold text-slate-900 dark:text-white">3. Authorized Merchant Redemption</h3>
                 <p>
-                  Gift cards purchased through AllCardStation are valid for direct balance redemption across the respective merchant's authorized digital and physical retail stores. AllCardStation guarantees 100% authenticity at the time of code issuance.
+                  Gift cards purchased through AllCardVault are valid for direct balance redemption across the respective merchant's authorized digital and physical retail stores. AllCardVault guarantees 100% authenticity at the time of code issuance.
                 </p>
               </section>
 
               <section className="space-y-3">
                 <h3 className="text-base font-bold text-slate-900 dark:text-white">4. User Account Security</h3>
                 <p>
-                  Users are responsible for maintaining the confidentiality of their account credentials and delivery inboxes. AllCardStation will never ask for your account password via email or telephone.
+                  Users are responsible for maintaining the confidentiality of their account credentials and delivery inboxes. AllCardVault will never ask for your account password via email or telephone.
                 </p>
               </section>
             </>

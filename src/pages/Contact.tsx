@@ -338,7 +338,7 @@ export const Contact: React.FC = () => {
       <div className="max-w-5xl mx-auto py-4 sm:py-8 space-y-8">
         <SectionHeading
           tag="Customer Care & Support"
-          title="Contact AllCardStation Operations"
+          title="Contact AllCardVault Operations"
           subtitle="Need assistance with a gift card delivery, balance validation, crypto payment, or corporate bulk order? Our specialized support team is here 24/7."
           align="center"
         />
@@ -397,7 +397,7 @@ export const Contact: React.FC = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                  <a href="mailto:support@allcardstation.com" className="w-full sm:w-auto">
+                  <a href="mailto:support@allcardvault.com" className="w-full sm:w-auto">
                     <Button variant="primary" className="w-full" leftIcon={<Mail className="w-4 h-4" />}>
                       Email Operations Desk
                     </Button>
@@ -646,7 +646,7 @@ export const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-slate-400 text-xs">Official Support Desk</div>
-                    <div className="font-semibold text-white font-mono text-xs sm:text-sm">support@allcardstation.com</div>
+                    <div className="font-semibold text-white font-mono text-xs sm:text-sm">support@allcardvault.com</div>
                   </div>
                 </div>
 
@@ -673,7 +673,7 @@ export const Contact: React.FC = () => {
 
               <div className="pt-2">
                 <a
-                  href="mailto:support@allcardstation.com"
+                  href="mailto:support@allcardvault.com"
                   id="btn-contact-email-support"
                   className="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
                 >

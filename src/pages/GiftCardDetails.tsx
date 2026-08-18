@@ -24,7 +24,6 @@ import { useAuth } from '../context/AuthContext';
 import { SUPPORTED_CURRENCIES, getCurrencyByCode, formatCurrencyAmount } from '../data/currencies';
 import { useCurrencyRates } from '../hooks/useCurrencyRates';
 import { LiveCurrencyConverter } from '../components/checkout/LiveCurrencyConverter';
-import { SocialShare } from '../components/common/SocialShare';
 
 export const GiftCardDetails: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -195,7 +194,7 @@ export const GiftCardDetails: React.FC = () => {
           {/* Key Card Guarantees / Features Box */}
           <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 space-y-3.5 shadow-xs">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
-              AllCardStation Assurance
+              AllCardVault Assurance
             </h4>
 
             <div className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
@@ -225,13 +224,6 @@ export const GiftCardDetails: React.FC = () => {
               </div>
             </div>
           </div>
-
-          {/* Social Share Box */}
-          <SocialShare
-            title={`Buy ${name} Digital Gift Card`}
-            description={`Instant delivery & verified balances for ${name} gift cards on AllCardStation.`}
-            className="mt-6"
-          />
         </div>
 
         {/* Right Column: Details, Currency Picker, Custom/Preset Amount, Checkout Action */}

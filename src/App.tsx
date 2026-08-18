@@ -27,8 +27,7 @@ import { Dashboard } from './pages/Dashboard';
 import { Checkout } from './pages/Checkout';
 import { AdminSystemTest } from './pages/AdminSystemTest';
 import { NotFound } from './pages/NotFound';
-import { LegalPlaceholder } from './pages/LegalPlaceholder';
-import { PrivacyPolicy } from './pages/PrivacyPolicy';
+import { LegalCenter } from './pages/LegalCenter';
 import { Sitemap } from './pages/Sitemap';
 
 export default function App() {
@@ -61,10 +60,12 @@ export default function App() {
                 <Route path="/admin/system-test" element={<AdminSystemTest />} />
                 <Route path="/admin-system-test" element={<AdminSystemTest />} />
                 
-                {/* Legal / Policy routes */}
-                <Route path="/privacy" element={<PrivacyPolicy />} />
-                <Route path="/terms" element={<LegalPlaceholder />} />
-                <Route path="/security" element={<LegalPlaceholder />} />
+                {/* Consolidated Legal & Compliance Center routes */}
+                <Route path="/legal" element={<LegalCenter />} />
+                <Route path="/privacy" element={<LegalCenter />} />
+                <Route path="/terms" element={<LegalCenter />} />
+                <Route path="/security" element={<LegalCenter />} />
+                <Route path="/compliance" element={<LegalCenter />} />
                 <Route path="/sitemap" element={<Sitemap />} />
                 
                 {/* 404 Catch-All */}

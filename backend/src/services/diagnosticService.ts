@@ -315,7 +315,7 @@ export async function runDiagnosticProbes(): Promise<{
     const t0 = Date.now();
     // Verify fast crypto hashing execution
     const crypto = await import('crypto');
-    const hash = crypto.createHash('sha256').update('allcardstation-probe-token').digest('hex');
+    const hash = crypto.createHash('sha256').update('allcardvault-probe-token').digest('hex');
     const dur = Date.now() - t0;
     probes.push({
       id: 'probe-crypto-subsystem',

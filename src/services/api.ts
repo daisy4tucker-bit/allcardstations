@@ -14,7 +14,7 @@ export async function apiRequest<T = any>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
-  const token = localStorage.getItem('allcardstation_token');
+  const token = localStorage.getItem('allcardvault_token') || localStorage.getItem('allcardstation_token');
 
   const headers: HeadersInit = {
     'Content-Type': 'application/json',

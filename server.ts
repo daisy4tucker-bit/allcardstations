@@ -35,7 +35,7 @@ async function startServer() {
   }
 
   const app = express();
-  const PORT = 3000;
+  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
   // Trust proxy for reverse proxy environments (Google Cloud Run / Nginx / Load Balancer)
   app.set('trust proxy', 1);
@@ -45,7 +45,7 @@ async function startServer() {
     // Check proto header from reverse proxy or load balancer
     const proto = req.headers['x-forwarded-proto'];
     if (process.env.NODE_ENV === 'production' && proto && proto !== 'https') {
-      const host = req.headers.host || 'allcardstation.com';
+      const host = req.headers.host || 'allcardvault.com';
       return res.redirect(301, `https://${host}${req.url}`);
     }
     next();
@@ -118,7 +118,7 @@ async function startServer() {
   app.use(errorHandler);
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 AllCardStation Full-Stack Server running at http://localhost:${PORT}`);
+    console.log(`🚀 AllCardVault Full-Stack Server running at http://localhost:${PORT}`);
   });
 }
 

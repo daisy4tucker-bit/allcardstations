@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://allcardstation.com/sitemap.xml
+Sitemap: https://allcardvault.com/sitemap.xml

@@ -4,14 +4,14 @@ export const FAQS: FAQItem[] = [
   {
     id: 'faq-1',
     category: 'General',
-    question: 'What is AllCardStation?',
-    answer: 'AllCardStation is a modern digital gift-card marketplace where customers can browse, select, and manage digital gift cards from top global brands with ease, speed, and trusted security.',
+    question: 'What is AllCardVault?',
+    answer: 'AllCardVault is a modern digital gift-card marketplace where customers can browse, select, and manage digital gift cards from top global brands with ease, speed, and trusted security.',
   },
   {
     id: 'faq-2',
     category: 'General',
     question: 'Are there any hidden service or inactivity fees?',
-    answer: 'No. AllCardStation does not charge hidden platform fees or periodic maintenance fees. You only pay for the face value of the selected gift card denomination at checkout.',
+    answer: 'No. AllCardVault does not charge hidden platform fees or periodic maintenance fees. You only pay for the face value of the selected gift card denomination at checkout.',
   },
   {
     id: 'faq-3',
@@ -41,7 +41,7 @@ export const FAQS: FAQItem[] = [
     id: 'faq-7',
     category: 'Payments',
     question: 'What payment methods are supported?',
-    answer: 'AllCardStation supports leading cryptocurrency payment channels (Bitcoin, Ethereum, USDT, USDC, Solana) with automated invoice generation, live exchange conversion, and direct wallet settlements, alongside major global payment networks.',
+    answer: 'AllCardVault supports leading cryptocurrency payment channels (Bitcoin, Ethereum, USDT, USDC, Solana) with automated invoice generation, live exchange conversion, and direct wallet settlements, alongside major global payment networks.',
   },
   {
     id: 'faq-8',
@@ -52,7 +52,7 @@ export const FAQS: FAQItem[] = [
   {
     id: 'faq-9',
     category: 'Security',
-    question: 'How does AllCardStation protect my transaction data?',
+    question: 'How does AllCardVault protect my transaction data?',
     answer: 'We follow industry-standard encryption protocols (TLS 1.3), PCI-DSS compliant checkout architecture, and automated fraud-prevention filters to keep all customer data and gift codes protected.',
   },
   {

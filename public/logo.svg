@@ -1,66 +1,102 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
   <defs>
-    <linearGradient id="yellowCard" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Background Shield/Vault Gradient -->
+    <linearGradient id="vaultBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Shield Outer Glow/Border Gradient -->
+    <linearGradient id="shieldBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+
+    <!-- Card 1 (Back - Emerald/Teal) -->
+    <linearGradient id="cardEmeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+
+    <!-- Card 2 (Middle - Gold/Amber) -->
+    <linearGradient id="cardGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#fbbf24" />
-      <stop offset="100%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#d97706" />
     </linearGradient>
-    <linearGradient id="tealCard" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2dd4bf" />
-      <stop offset="100%" stop-color="#0ea5e9" />
+
+    <!-- Card 3 (Front - Deep Indigo/Purple) -->
+    <linearGradient id="cardIndigoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#3730a3" />
     </linearGradient>
-    <linearGradient id="blueCard" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#3b82f6" />
-      <stop offset="100%" stop-color="#1e3a8a" />
+
+    <!-- Metallic Chip Gradient -->
+    <linearGradient id="chipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#eab308" />
     </linearGradient>
-    <linearGradient id="swooshGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1e3a8a" />
-      <stop offset="50%" stop-color="#2563eb" />
-      <stop offset="100%" stop-color="#06b6d4" />
+
+    <!-- Vault Lock Ring Gradient -->
+    <linearGradient id="lockRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#818cf8" />
     </linearGradient>
-    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="40%" stop-color="#1d4ed8" />
-      <stop offset="100%" stop-color="#0d9488" />
-    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
   </defs>
 
-  <!-- Shopping Bag Handle Outline -->
-  <path d="M 235 45 C 235 22 255 10 300 10 C 345 10 365 22 365 45 L 375 60 L 225 60 Z" fill="none" stroke="#1e3a8a" stroke-width="8" stroke-linejoin="round" stroke-linecap="round" />
-  <path d="M 215 55 L 385 55 L 395 100 L 205 100 Z" fill="none" stroke="#1e3a8a" stroke-width="6" stroke-linejoin="round" opacity="0.85" />
+  <!-- Base Rounded Shield Container -->
+  <rect x="6" y="6" width="108" height="108" rx="28" fill="url(#vaultBgGrad)" stroke="url(#shieldBorderGrad)" stroke-width="3" />
 
-  <!-- Back Card: Orange/Yellow with Shopping Cart -->
-  <g transform="translate(155, 68) rotate(-12)">
-    <rect x="0" y="0" width="110" height="72" rx="10" fill="url(#yellowCard)" stroke="#ffffff" stroke-width="2.5" />
-    <!-- Cart Icon -->
-    <path d="M 35 28 L 45 28 L 52 45 L 75 45 L 82 32 L 48 32" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="56" cy="52" r="4" fill="#ffffff" />
-    <circle cx="74" cy="52" r="4" fill="#ffffff" />
+  <!-- Subtle Internal Grid Pattern Lines -->
+  <path d="M 6 40 L 114 40 M 6 80 L 114 80 M 40 6 L 40 114 M 80 6 L 80 114" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.05" />
+
+  <!-- Back Card: Emerald (Rotated Left) -->
+  <g transform="translate(22, 28) rotate(-12, 35, 25)">
+    <rect x="0" y="0" width="62" height="40" rx="6" fill="url(#cardEmeraldGrad)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.8" />
+    <rect x="8" y="10" width="12" height="9" rx="2" fill="#ffffff" fill-opacity="0.3" />
+    <line x1="8" y1="28" x2="48" y2="28" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-opacity="0.5" />
   </g>
 
-  <!-- Middle Card: Teal with Gamepads -->
-  <g transform="translate(210, 58) rotate(-2)">
-    <rect x="0" y="0" width="120" height="78" rx="10" fill="url(#tealCard)" stroke="#ffffff" stroke-width="2.5" />
-    <!-- Gamepad icons representation -->
-    <rect x="35" y="26" width="22" height="14" rx="4" fill="#ffffff" opacity="0.9" />
-    <circle cx="72" cy="33" r="5" fill="#ffffff" opacity="0.9" />
-    <circle cx="88" cy="33" r="5" fill="#ffffff" opacity="0.9" />
-    <rect x="65" y="48" width="30" height="12" rx="4" fill="#ffffff" opacity="0.9" />
+  <!-- Middle Card: Gold / Amber (Rotated Right) -->
+  <g transform="translate(36, 26) rotate(10, 35, 25)">
+    <rect x="0" y="0" width="64" height="42" rx="6" fill="url(#cardGoldGrad)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.9" />
+    <circle cx="48" cy="21" r="9" fill="#ffffff" fill-opacity="0.25" />
+    <rect x="8" y="12" width="14" height="10" rx="2" fill="url(#chipGrad)" />
   </g>
 
-  <!-- Front Card: Dark Blue with Gift Box Ribbon -->
-  <g transform="translate(265, 72) rotate(8)">
-    <rect x="0" y="0" width="135" height="85" rx="10" fill="url(#blueCard)" stroke="#ffffff" stroke-width="3" />
-    <!-- Gift Box Ribbon -->
-    <rect x="58" y="15" width="18" height="60" fill="#ffffff" opacity="0.95" />
-    <rect x="15" y="40" width="105" height="16" fill="#ffffff" opacity="0.95" />
-    <!-- Bow -->
-    <path d="M 67 15 C 55 5 45 20 60 25 C 65 26 67 15 67 15 Z" fill="#ffffff" />
-    <path d="M 67 15 C 79 5 89 20 74 25 C 69 26 67 15 67 15 Z" fill="#ffffff" />
-    <!-- Text on card -->
-    <text x="95" y="38" font-family="system-ui, sans-serif" font-weight="900" font-size="13" fill="#ffffff" letter-spacing="1">GIFT</text>
-    <text x="95" y="55" font-family="system-ui, sans-serif" font-weight="900" font-size="13" fill="#ffffff" letter-spacing="1">CARD</text>
+  <!-- Front Hero Card: Indigo / Vault Core (Centered) -->
+  <g transform="translate(26, 44)">
+    <rect x="0" y="0" width="68" height="44" rx="7" fill="url(#cardIndigoGrad)" stroke="#ffffff" stroke-width="1.5" />
+    
+    <!-- Magnetic Stripe / Accent Ribbon -->
+    <rect x="0" y="8" width="68" height="8" fill="#1e1b4b" fill-opacity="0.7" />
+    
+    <!-- Smart EMV Chip -->
+    <rect x="8" y="22" width="13" height="10" rx="2.5" fill="url(#chipGrad)" stroke="#b45309" stroke-width="0.5" />
+    <line x1="14.5" y1="22" x2="14.5" y2="32" stroke="#92400e" stroke-width="0.5" />
+    <line x1="8" y1="27" x2="21" y2="27" stroke="#92400e" stroke-width="0.5" />
+
+    <!-- Security Vault Lock / Shield Badge on Card -->
+    <g transform="translate(42, 20)">
+      <circle cx="10" cy="10" r="10" fill="#0f172a" stroke="url(#lockRingGrad)" stroke-width="1.5" />
+      <!-- Lock Keyhole Icon -->
+      <path d="M 10 5.5 C 8 5.5 6.5 7 6.5 9 L 6.5 11 L 13.5 11 L 13.5 9 C 13.5 7 12 5.5 10 5.5 Z" fill="none" stroke="#38bdf8" stroke-width="1.2" />
+      <rect x="6" y="10.5" width="8" height="6" rx="1" fill="#38bdf8" />
+      <circle cx="10" cy="13.5" r="1" fill="#0f172a" />
+    </g>
   </g>
 
-  <!-- Bottom Curved Swoosh -->
-  <path d="M 155 155 C 220 185 380 185 445 155" fill="none" stroke="url(#swooshGrad)" stroke-width="9" stroke-linecap="round" />
+  <!-- Top-Right Sparkle / Verification Star -->
+  <g transform="translate(90, 18)" filter="url(#glow)">
+    <path d="M 12 0 Q 12 12 24 12 Q 12 12 12 24 Q 12 12 0 12 Q 12 12 12 0 Z" fill="#fbbf24" />
+  </g>
+
+  <!-- Bottom Vault Lock Arc / Shield Base -->
+  <path d="M 38 100 Q 60 110 82 100" fill="none" stroke="url(#shieldBorderGrad)" stroke-width="3.5" stroke-linecap="round" />
 </svg>

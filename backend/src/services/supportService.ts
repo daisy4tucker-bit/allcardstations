@@ -37,7 +37,7 @@ export async function sendSupportMessage(data: {
       let reply = "Thank you for reaching out! A support representative has received your message and will respond shortly.";
       
       if (lower.includes('crypto') || lower.includes('payment') || lower.includes('bitcoin') || lower.includes('usdt')) {
-        reply = "Notice: AllCardStation will support direct crypto payments (BTC, ETH, LTC, SOL, USDT, USDC) in Phase 3. Traditional payment cards are strictly not used.";
+        reply = "Notice: AllCardVault will support direct crypto payments (BTC, ETH, LTC, SOL, USDT, USDC) in Phase 3. Traditional payment cards are strictly not used.";
       } else if (lower.includes('validation') || lower.includes('verify') || lower.includes('balance')) {
         reply = "For card validation assistance, please check our Validate Card portal or ensure your code does not contain scratched-off characters.";
       } else if (lower.includes('order') || lower.includes('buy') || lower.includes('purchase')) {

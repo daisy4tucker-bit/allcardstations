@@ -54,7 +54,7 @@ async function fetchLiveExchangeRates(): Promise<{ rates: Record<string, number>
     const timeoutId = setTimeout(() => controller.abort(), 4000);
     const fiatRes = await fetch('https://open.er-api.com/v6/latest/USD', {
       signal: controller.signal,
-      headers: { 'User-Agent': 'AllCardStation-CurrencyEngine/1.0' },
+      headers: { 'User-Agent': 'AllCardVault-CurrencyEngine/1.0' },
     });
     clearTimeout(timeoutId);
 
@@ -92,7 +92,7 @@ async function fetchLiveExchangeRates(): Promise<{ rates: Record<string, number>
       'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether,usd-coin,litecoin,solana,tron&vs_currencies=usd',
       {
         signal: cryptoController.signal,
-        headers: { 'User-Agent': 'AllCardStation/1.0' },
+        headers: { 'User-Agent': 'AllCardVault/1.0' },
       }
     );
     clearTimeout(cryptoTimeoutId);

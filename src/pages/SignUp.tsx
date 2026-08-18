@@ -98,7 +98,7 @@ export const SignUp: React.FC = () => {
               Create Your Account
             </h1>
             <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-1">
-              Join AllCardStation to organize, redeem, and manage gift cards
+              Join AllCardVault to organize, redeem, and manage gift cards
             </p>
           </div>
 
@@ -198,7 +198,7 @@ export const SignUp: React.FC = () => {
                   className="mt-0.5 rounded text-indigo-600 focus:ring-indigo-500 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800"
                 />
                 <span>
-                  I agree to AllCardStation{' '}
+                  I agree to AllCardVault{' '}
                   <Link to="/terms" className="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">
                     Terms of Service
                   </Link>{' '}

@@ -17,7 +17,7 @@ async function request(endpoint: string, options: RequestInit = {}) {
 
 async function runAdminDiagnosticTest() {
   console.log('================================================================');
-  console.log('🔒 ALLCARDSTATION ADMIN SYSTEM DIAGNOSTIC SECURITY & HEALTH TEST');
+  console.log('🔒 ALLCARDVAULT ADMIN SYSTEM DIAGNOSTIC SECURITY & HEALTH TEST');
   console.log('================================================================');
 
   let customerToken = '';
@@ -36,13 +36,22 @@ async function runAdminDiagnosticTest() {
   console.log('✅ 1. Customer logged in successfully (Role: CUSTOMER).');
 
   // 2. Log in as Admin
-  const adminLogin = await request('/auth/login', {
+  let adminLogin = await request('/auth/login', {
     method: 'POST',
     body: JSON.stringify({
-      email: 'admin@allcardstation.com',
+      email: 'admin@allcardvault.com',
       password: 'AdminSecure123!',
     }),
   });
+  if (!adminLogin.ok) {
+    adminLogin = await request('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: 'admin@allcardstation.com',
+        password: 'AdminSecure123!',
+      }),
+    });
+  }
   if (!adminLogin.ok) throw new Error(`Admin login failed: ${JSON.stringify(adminLogin.data)}`);
   adminToken = adminLogin.data.data.token;
   console.log('✅ 2. Admin logged in successfully (Role: ADMIN).');

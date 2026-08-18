@@ -14,7 +14,8 @@ import {
   ArrowLeft,
   RefreshCw,
   TrendingUp,
-  Upload
+  Upload,
+  Gift
 } from 'lucide-react';
 import { PageContainer } from '../components/layout/PageContainer';
 import { Button } from '../components/ui/Button';
@@ -69,6 +70,13 @@ export const Checkout: React.FC = () => {
   const [amountError, setAmountError] = useState<string>('');
 
   const [email, setEmail] = useState<string>('');
+  
+  // Streamlined optional recipient state ("Buying as a gift?")
+  const [isGift, setIsGift] = useState<boolean>(false);
+  const [recipientName, setRecipientName] = useState<string>('');
+  const [recipientEmail, setRecipientEmail] = useState<string>('');
+  const [giftMessage, setGiftMessage] = useState<string>('');
+
   const [cryptoCurrency, setCryptoCurrency] = useState<string>('USDT');
   const [cryptoNetwork, setCryptoNetwork] = useState<string>('Bitcoin Network');
   
@@ -323,11 +331,78 @@ export const Checkout: React.FC = () => {
                         placeholder="youremail@example.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm font-medium"
                       />
                       <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-                        Your digital gift card PIN code and instructions will be sent here immediately after confirmation.
+                        Your digital gift card PIN code and claim instructions will be sent here immediately upon confirmation.
                       </p>
+                    </div>
+
+                    {/* Streamlined Optional Gift Toggle Card */}
+                    <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                            <Gift className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">Buying as a gift for someone else?</h4>
+                            <p className="text-[11px] text-slate-500 dark:text-slate-400">Optionally dispatch this card and a custom note to a recipient.</p>
+                          </div>
+                        </div>
+                        <label className="relative inline-flex items-center cursor-pointer shrink-0">
+                          <input
+                            type="checkbox"
+                            checked={isGift}
+                            onChange={(e) => setIsGift(e.target.checked)}
+                            className="sr-only peer"
+                          />
+                          <div className="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-600 peer-checked:bg-indigo-600"></div>
+                        </label>
+                      </div>
+
+                      {isGift && (
+                        <div className="pt-3 border-t border-slate-200 dark:border-slate-700/80 space-y-3 animate-fadeIn">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                                Recipient's Name
+                              </label>
+                              <input
+                                type="text"
+                                placeholder="e.g. Alex Johnson"
+                                value={recipientName}
+                                onChange={(e) => setRecipientName(e.target.value)}
+                                className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                                Recipient's Email Address
+                              </label>
+                              <input
+                                type="email"
+                                placeholder="recipient@example.com"
+                                value={recipientEmail}
+                                onChange={(e) => setRecipientEmail(e.target.value)}
+                                className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                              />
+                            </div>
+                          </div>
+                          <div>
+                            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                              Personal Gift Note (Optional)
+                            </label>
+                            <textarea
+                              rows={2}
+                              placeholder="e.g. Happy Birthday! Hope you enjoy this gift card."
+                              value={giftMessage}
+                              onChange={(e) => setGiftMessage(e.target.value)}
+                              className="w-full px-3.5 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-medium resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     <Button

@@ -18,7 +18,6 @@ import {
 import { PageContainer } from '../components/layout/PageContainer';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { Button } from '../components/ui/Button';
-import { SocialShare } from '../components/common/SocialShare';
 import { Link } from 'react-router-dom';
 
 export const PrivacyPolicy: React.FC = () => {
@@ -55,7 +54,7 @@ export const PrivacyPolicy: React.FC = () => {
           <div>
             <SectionHeading
               tag="Data Protection & Privacy"
-              title="AllCardStation Privacy Policy"
+              title="AllCardVault Privacy Policy"
               subtitle="Last Updated: August 17, 2026 | Effective for all global users & cardholders."
               align="left"
             />
@@ -69,11 +68,6 @@ export const PrivacyPolicy: React.FC = () => {
             >
               Print Policy
             </Button>
-            <SocialShare
-              variant="modal-trigger"
-              title="AllCardStation Privacy Policy"
-              description="Read how AllCardStation protects user privacy and complies with GDPR/CCPA standards."
-            />
           </div>
         </div>
 
@@ -164,10 +158,10 @@ export const PrivacyPolicy: React.FC = () => {
                 <span>Introduction & Scope</span>
               </h2>
               <p>
-                Welcome to AllCardStation ("AllCardStation", "we", "our", or "us"). This Privacy Policy explains our practices regarding the collection, storage, processing, transfer, and safeguarding of information gathered from individuals who access our marketplace website (allcardstation.com), mobile interfaces, gift card validation utilities, or customer support communication channels.
+                Welcome to AllCardVault ("AllCardVault", "we", "our", or "us"). This Privacy Policy explains our practices regarding the collection, storage, processing, transfer, and safeguarding of information gathered from individuals who access our marketplace website (allcardvault.com), mobile interfaces, gift card validation utilities, or customer support communication channels.
               </p>
               <p>
-                By accessing or purchasing digital gift card products through AllCardStation, you acknowledge that you have read, understood, and agree to the data handling terms outlined in this statement.
+                By accessing or purchasing digital gift card products through AllCardVault, you acknowledge that you have read, understood, and agree to the data handling terms outlined in this statement.
               </p>
             </section>
 
@@ -241,7 +235,7 @@ export const PrivacyPolicy: React.FC = () => {
                   <span>Unconditional Non-Disclosure Commitment</span>
                 </div>
                 <p>
-                  AllCardStation has never sold, traded, rented, or leased customer identities or contact records to third-party brokers, and will never do so under any circumstances.
+                  AllCardVault has never sold, traded, rented, or leased customer identities or contact records to third-party brokers, and will never do so under any circumstances.
                 </p>
               </div>
             </section>
@@ -325,8 +319,8 @@ export const PrivacyPolicy: React.FC = () => {
               </p>
               
               <div className="p-4 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 space-y-2 text-xs">
-                <div className="font-bold text-indigo-950 dark:text-indigo-200 text-sm">AllCardStation Privacy Operations</div>
-                <div><strong>Email:</strong> privacy@allcardstation.com / support@allcardstation.com</div>
+                <div className="font-bold text-indigo-950 dark:text-indigo-200 text-sm">AllCardVault Privacy Operations</div>
+                <div><strong>Email:</strong> privacy@allcardvault.com / support@allcardvault.com</div>
                 <div><strong>Response Guarantee:</strong> Written response within 14 business days</div>
                 <div><strong>Physical Jurisdiction:</strong> Digital Asset Compliance Division</div>
               </div>

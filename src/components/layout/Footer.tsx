@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CreditCard, ShieldCheck, Zap, Globe, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Button } from '../ui/Button';
-import { SocialShare } from '../common/SocialShare';
 
 export const Footer: React.FC = () => {
   const currentYear = 2026;
@@ -33,11 +32,11 @@ export const Footer: React.FC = () => {
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
             <Link to="/" className="flex items-center gap-2.5 inline-block">
-              <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md">
-                <CreditCard className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-700/80 shadow-sm flex items-center justify-center p-0.5">
+                <img src="/logo.svg" alt="AllCardVault Logo" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
               </div>
               <span className="text-xl font-extrabold tracking-tight text-white">
-                All<span className="text-indigo-400">Card</span>Station
+                All<span className="text-indigo-400">Card</span>Vault
               </span>
             </Link>
 
@@ -85,14 +84,6 @@ export const Footer: React.FC = () => {
                   <span>{message}</span>
                 </div>
               )}
-            </div>
-
-            {/* Social Share Bar */}
-            <div className="pt-2">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
-                Share AllCardStation
-              </div>
-              <SocialShare variant="compact" />
             </div>
           </div>
 
@@ -164,30 +155,35 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Legal & Security */}
+          {/* Legal & Trust */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">
               Legal & Trust
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link to="/privacy" className="text-slate-400 hover:text-white transition-colors">
-                  Privacy Policy
+                <Link to="/legal" className="text-white font-semibold hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                  <span>Legal & Compliance Hub</span>
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-slate-400 hover:text-white transition-colors">
+                <Link to="/legal?tab=privacy" className="text-slate-400 hover:text-white transition-colors">
+                  Privacy Policy (GDPR)
+                </Link>
+              </li>
+              <li>
+                <Link to="/legal?tab=terms" className="text-slate-400 hover:text-white transition-colors">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link to="/security" className="text-slate-400 hover:text-white transition-colors">
-                  Security Overview
+                <Link to="/legal?tab=security" className="text-slate-400 hover:text-white transition-colors">
+                  Security & Encryption
                 </Link>
               </li>
               <li>
-                <Link to="/signin" className="text-slate-400 hover:text-white transition-colors">
-                  Customer Portal
+                <Link to="/legal?tab=compliance" className="text-slate-400 hover:text-white transition-colors">
+                  AML & Anti-Fraud
                 </Link>
               </li>
             </ul>
@@ -196,7 +192,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom copyright & disclaimer */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
-          <p>© {currentYear} AllCardStation. All rights reserved.</p>
+          <p>© {currentYear} AllCardVault. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <span className="text-slate-400 font-medium">Enterprise Digital Gift-Card Marketplace</span>
             <div className="flex items-center gap-1">

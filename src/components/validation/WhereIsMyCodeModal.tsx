@@ -340,7 +340,7 @@ export const WhereIsMyCodeModal: React.FC<WhereIsMyCodeModalProps> = ({
         <button
           type="button"
           onClick={onClose}
-          className="px-8 py-2.5 rounded-full bg-white hover:bg-slate-100 active:scale-95 text-slate-900 font-bold text-sm shadow-lg transition-all duration-150 cursor-pointer"
+          className="px-8 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white font-bold text-sm shadow-lg transition-all duration-150 cursor-pointer"
         >
           Got it
         </button>

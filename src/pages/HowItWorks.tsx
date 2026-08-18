@@ -81,7 +81,7 @@ export const HowItWorks: React.FC = () => {
     >
       <SectionHeading
         tag="Simple & Transparent"
-        title="How AllCardStation Works"
+        title="How AllCardVault Works"
         subtitle="Sending and receiving digital gift cards has never been easier. Follow our four simple steps from discovery to instant redemption."
         align="center"
       />
@@ -158,7 +158,7 @@ export const HowItWorks: React.FC = () => {
               </Button>
             </Link>
             <Link to="/faq" className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 text-white border-white/20 hover:bg-white/20">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-slate-900/90 text-white border-indigo-400/50 hover:bg-slate-800 font-bold">
                 View Common Questions
               </Button>
             </Link>

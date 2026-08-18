@@ -75,7 +75,7 @@ export const Sitemap: React.FC = () => {
       icon: Info,
     },
     {
-      title: 'About AllCardStation',
+      title: 'About AllCardVault',
       path: '/about',
       description: 'Our mission, marketplace infrastructure, security standards, and team.',
       category: 'Core',
@@ -261,7 +261,7 @@ export const Sitemap: React.FC = () => {
               <span>Complete Directory & Index</span>
             </div>
             <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
-              AllCardStation Sitemap
+              AllCardVault Sitemap
             </h1>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
               Browse the complete architectural map of our marketplace. Find gift card brand pages, category collections, balance validation tools, account services, and search engine indices.

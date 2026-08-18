@@ -37,6 +37,8 @@ export const Navbar: React.FC = () => {
     };
   }, [isMobileMenuOpen]);
 
+  const isAdmin = user?.role === 'ADMIN' || user?.email?.toLowerCase() === 'daisy4tucker@gmail.com';
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Gift Cards', path: '/gift-cards' },
@@ -46,6 +48,7 @@ export const Navbar: React.FC = () => {
     { name: 'FAQ', path: '/faq' },
     { name: 'Contact', path: '/contact' },
     ...(isAuthenticated ? [{ name: 'Dashboard', path: '/dashboard' }] : []),
+    ...(isAdmin ? [{ name: 'Admin Console', path: '/admin' }] : []),
   ];
 
   return (
@@ -66,11 +69,11 @@ export const Navbar: React.FC = () => {
               className="flex items-center gap-2.5 group focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-1"
             >
               <div className="w-11 h-11 rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-center p-1 group-hover:scale-105 transition-transform duration-200">
-                <img src="/logo.svg" alt="AllCardStation Logo" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                <img src="/logo.svg" alt="AllCardVault Logo" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
               </div>
               <div className="flex flex-col">
                 <span className="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white leading-none">
-                  All<span className="text-indigo-600 dark:text-indigo-400">Card</span>Station
+                  All<span className="text-indigo-600 dark:text-indigo-400">Card</span>Vault
                 </span>
                 <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-400 uppercase tracking-wider">
                   Digital Marketplace
@@ -106,6 +109,13 @@ export const Navbar: React.FC = () => {
               
               {isAuthenticated && user ? (
                 <div className="flex items-center gap-2">
+                  {isAdmin && (
+                    <Link to="/admin" id="nav-admin-console-btn">
+                      <Button variant="secondary" size="sm" leftIcon={<ShieldCheck className="w-3.5 h-3.5 text-amber-300" />} className="bg-slate-900 dark:bg-indigo-600 text-white font-bold">
+                        Admin Suite
+                      </Button>
+                    </Link>
+                  )}
                   <Link to="/dashboard" id="nav-user-dashboard-link">
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 border border-slate-200 dark:border-slate-700 transition-colors">
                       <div className="w-6 h-6 rounded-lg bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">
@@ -195,7 +205,7 @@ export const Navbar: React.FC = () => {
                     <CreditCard className="w-4 h-4" />
                   </div>
                   <span className="font-extrabold text-slate-900 dark:text-white text-base">
-                    AllCardStation
+                    AllCardVault
                   </span>
                 </div>
                 <button

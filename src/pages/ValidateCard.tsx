@@ -210,7 +210,7 @@ export const VALIDATE_BRANDS: ValidationBrand[] = [
     id: 'xbox',
     name: 'Xbox',
     category: 'Gaming',
-    image: findHomeCardImage('xbox', '/cards/xbox.webp'),
+    image: findHomeCardImage('xbox', 'https://www.giftlycard.com/_next/image?url=%2Fimages%2Fxbox.webp&w=640&q=75&dpl=dpl_2yRJNX2mkHQg7ZSv9wTZaivCyjJR'),
     sampleCode: 'XBX74-92940-29481-KL849-01948',
     samplePin: '',
     defaultDenomination: 60,

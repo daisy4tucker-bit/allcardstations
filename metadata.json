@@ -1,5 +1,5 @@
 {
-  "name": "AllCardStation",
+  "name": "AllCardVault",
   "description": "A modern digital gift-card marketplace with gift card validation, user authentication, customer profile management, favorites, recipient directory, and live customer support.",
   "requestFramePermissions": ["camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

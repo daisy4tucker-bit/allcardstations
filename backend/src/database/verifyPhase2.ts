@@ -15,14 +15,14 @@ import { listGiftCards } from '../services/giftCardService.js';
 
 async function runVerification() {
   console.log('====================================================');
-  console.log('🧪 ALLCARDSTATION PHASE 2 COMPREHENSIVE VERIFICATION');
+  console.log('🧪 ALLCARDVAULT PHASE 2 COMPREHENSIVE VERIFICATION');
   console.log('====================================================\n');
 
   const results: { test: string; status: 'PASSED' | 'FAILED'; details?: string }[] = [];
 
   // 1. VERIFY USER REGISTRATION
   let testUserId = '';
-  const uniqueEmail = `test.user.${Date.now()}@allcardstation.test`;
+  const uniqueEmail = `test.user.${Date.now()}@allcardvault.test`;
   try {
     const regResult = await registerUser({
       firstName: 'Jordan',
@@ -185,7 +185,7 @@ async function runVerification() {
       const agentReply = await sendSupportMessage({
         conversationId: testConvId,
         senderType: 'SUPPORT_AGENT' as any,
-        message: 'Hi Jordan! There are no arbitrary deposit limits for verified cryptocurrency orders on AllCardStation.',
+        message: 'Hi Jordan! There are no arbitrary deposit limits for verified cryptocurrency orders on AllCardVault.',
       });
 
       const updatedStatusConv = await updateConversationStatus(testConvId, 'WAITING');

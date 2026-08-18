@@ -16,6 +16,11 @@ import {
   Lock,
   Terminal,
   ShoppingBag,
+  Database,
+  SlidersHorizontal,
+  Activity,
+  Shield,
+  ArrowRight,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { PageContainer } from '../components/layout/PageContainer';
@@ -24,10 +29,23 @@ import { FavoritesSection } from '../components/dashboard/FavoritesSection';
 import { RecipientsSection } from '../components/dashboard/RecipientsSection';
 import { SupportSection } from '../components/dashboard/SupportSection';
 import { OrdersSection } from '../components/dashboard/OrdersSection';
+import { AdminSupportSection } from '../components/dashboard/AdminSupportSection';
+import { AdminDataBrowser } from '../components/admin/AdminDataBrowser';
+import { GiftCardValidationTableEditor } from '../components/admin/GiftCardValidationTableEditor';
+import * as adminService from '../services/adminService';
 import { Button } from '../components/ui/Button';
 
-type DashboardTab = 'profile' | 'orders' | 'favorites' | 'recipients' | 'support' | 'security';
-
+type DashboardTab =
+  | 'profile'
+  | 'orders'
+  | 'favorites'
+  | 'recipients'
+  | 'support'
+  | 'security'
+  | 'admin-data'
+  | 'admin-validation'
+  | 'admin-support'
+  | 'admin-telemetry';
 
 export const Dashboard: React.FC = () => {
   const { user, profile, isAuthenticated, isLoading, logout, favorites } = useAuth();
@@ -35,6 +53,29 @@ export const Dashboard: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const tabParam = (searchParams.get('tab') as DashboardTab) || 'profile';
   const [activeTab, setActiveTab] = useState<DashboardTab>(tabParam);
+
+  const isAdmin = user?.role === 'ADMIN' || user?.email?.toLowerCase() === 'daisy4tucker@gmail.com';
+  const [adminData, setAdminData] = useState<adminService.AdminDataBrowserPayload | null>(null);
+  const [isAdminDataLoading, setIsAdminDataLoading] = useState<boolean>(false);
+
+  const loadAdminData = async () => {
+    if (!isAdmin) return;
+    setIsAdminDataLoading(true);
+    try {
+      const res = await adminService.getAdminDataBrowser();
+      setAdminData(res);
+    } catch (e) {
+      console.error('Failed to load admin data browser:', e);
+    } finally {
+      setIsAdminDataLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isAdmin && (activeTab === 'admin-data' || activeTab === 'admin-validation')) {
+      loadAdminData();
+    }
+  }, [isAdmin, activeTab]);
 
   useEffect(() => {
     if (tabParam) {
@@ -102,6 +143,13 @@ export const Dashboard: React.FC = () => {
     { id: 'recipients', label: 'Gift Recipients', icon: Users, count: null },
     { id: 'support', label: 'Customer Support', icon: Headphones, count: null },
     { id: 'security', label: 'Payments & Security', icon: ShieldCheck, count: null },
+    ...(isAdmin
+      ? [
+          { id: 'admin-data', label: 'Admin Data Browser', icon: Database, count: null },
+          { id: 'admin-validation', label: 'Validation Rules Editor', icon: SlidersHorizontal, count: null },
+          { id: 'admin-support', label: 'Support Desk Console', icon: Terminal, count: null },
+        ]
+      : []),
   ];
 
   return (
@@ -124,9 +172,16 @@ export const Dashboard: React.FC = () => {
                   <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                     {user.firstName} {user.lastName}
                   </h1>
-                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">
-                    Active Account
-                  </span>
+                  {isAdmin ? (
+                    <span className="px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/80 border border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-200 text-xs font-bold flex items-center gap-1">
+                      <Shield className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                      Full Administrator
+                    </span>
+                  ) : (
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">
+                      Active Account
+                    </span>
+                  )}
                 </div>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
                   {user.email} • {profile?.country || 'Global Account'}
@@ -135,6 +190,18 @@ export const Dashboard: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-3">
+              {isAdmin && (
+                <Link to="/admin">
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    leftIcon={<Activity className="w-4 h-4 text-amber-300" />}
+                    rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
+                  >
+                    System Test & Diagnostics
+                  </Button>
+                </Link>
+              )}
               <Button
                 variant="outline"
                 size="sm"
@@ -156,6 +223,7 @@ export const Dashboard: React.FC = () => {
               {tabs.map((tab) => {
                 const IconComponent = tab.icon;
                 const isActive = activeTab === tab.id;
+                const isAdminTab = tab.id.startsWith('admin-');
                 return (
                   <button
                     key={tab.id}
@@ -163,12 +231,16 @@ export const Dashboard: React.FC = () => {
                     onClick={() => handleTabChange(tab.id as DashboardTab)}
                     className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-all cursor-pointer ${
                       isActive
-                        ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                        ? isAdminTab
+                          ? 'bg-amber-600 text-white shadow-md shadow-amber-600/20'
+                          : 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                        : isAdminTab
+                        ? 'text-amber-800 dark:text-amber-300 bg-amber-50/50 dark:bg-amber-950/20 hover:bg-amber-100 dark:hover:bg-amber-900/40'
                         : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-white'
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <IconComponent className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400'}`} />
+                      <IconComponent className={`w-4 h-4 ${isActive ? 'text-white' : isAdminTab ? 'text-amber-600 dark:text-amber-400' : 'text-slate-400'}`} />
                       <span>{tab.label}</span>
                     </div>
                     {tab.count !== null && (
@@ -194,7 +266,7 @@ export const Dashboard: React.FC = () => {
                 <span>Crypto Gateway Rule</span>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed">
-                AllCardStation uses direct cryptocurrency settlement for privacy and global delivery.
+                AllCardVault uses direct cryptocurrency settlement for privacy and global delivery.
               </p>
               <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-indigo-200">
                 <span>BTC • ETH • LTC • SOL</span>
@@ -210,6 +282,20 @@ export const Dashboard: React.FC = () => {
             {activeTab === 'favorites' && <FavoritesSection />}
             {activeTab === 'recipients' && <RecipientsSection />}
             {activeTab === 'support' && <SupportSection />}
+            {activeTab === 'admin-data' && (
+              <AdminDataBrowser
+                data={adminData}
+                isLoading={isAdminDataLoading}
+                onRefresh={loadAdminData}
+              />
+            )}
+            {activeTab === 'admin-validation' && (
+              <GiftCardValidationTableEditor
+                validations={adminData?.validations || []}
+                onRefresh={loadAdminData}
+              />
+            )}
+            {activeTab === 'admin-support' && <AdminSupportSection />}
             {activeTab === 'security' && (
               <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-8">
                 <div>
@@ -229,7 +315,7 @@ export const Dashboard: React.FC = () => {
                       <span>Zero Traditional Gateways</span>
                     </div>
                     <p className="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
-                      AllCardStation does NOT integrate Stripe, PayPal, bank payment gateways, credit cards, Apple Pay, or Google Pay. We never store credit card numbers.
+                      AllCardVault does NOT integrate Stripe, PayPal, bank payment gateways, credit cards, Apple Pay, or Google Pay. We never store credit card numbers.
                     </p>
                   </div>
 

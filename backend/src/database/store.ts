@@ -435,7 +435,7 @@ class DatabaseStore {
           messages: {
             create: {
               senderType: 'SUPPORT_AGENT',
-              message: 'Hello! 👋 Welcome to AllCardStation Live Support. How can we help you today?',
+              message: 'Hello! 👋 Welcome to AllCardVault Live Support. How can we help you today?',
             },
           },
         },

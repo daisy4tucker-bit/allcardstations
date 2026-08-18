@@ -24,6 +24,7 @@ import { FeatureCard } from '../components/cards/FeatureCard';
 import { CustomerReviews } from '../components/home/CustomerReviews';
 import { LiveActivityTicker } from '../components/ui/LiveActivityTicker';
 import { HeroLiveCardShowcase } from '../components/cards/HeroLiveCardShowcase';
+import { PromotionalBanner } from '../components/common/PromotionalBanner';
 import { GIFT_CARDS } from '../data/brands';
 import { FEATURES } from '../data/features';
 import { CategoryType } from '../types/giftCard';
@@ -123,6 +124,17 @@ export const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      {/* TOP ANNOUNCEMENT PROMOTIONAL BANNER STRIP */}
+      <PromotionalBanner
+        variant="strip"
+        badgeText="⚡ LIMITED TIME DEALS"
+        title="Exclusive Offer: Save Up To 15% On Selected Digital Gift Cards"
+        discountCode="VAULT15"
+        ctaText="Shop Deals"
+        ctaLink="/gift-cards"
+        expiresInHours={12}
+      />
+
       {/* HERO SECTION */}
       <section className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 dark:from-slate-950 dark:via-indigo-950/60 dark:to-slate-950 text-white pt-8 pb-16 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24">
         {/* Ambient Radial Glows */}
@@ -307,8 +319,8 @@ export const Home: React.FC = () => {
                 onClick={() => setStatsView('comparison')}
                 className={`flex-1 sm:flex-none text-center px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   statsView === 'comparison'
-                    ? 'bg-white dark:bg-slate-900 text-accent shadow-xs'
-                    : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-indigo-600 text-white font-extrabold shadow-sm'
+                    : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
                 }`}
               >
                 Overall vs Today
@@ -318,8 +330,8 @@ export const Home: React.FC = () => {
                 onClick={() => setStatsView('overall')}
                 className={`flex-1 sm:flex-none text-center px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   statsView === 'overall'
-                    ? 'bg-white dark:bg-slate-900 text-accent shadow-xs'
-                    : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-indigo-600 text-white font-extrabold shadow-sm'
+                    : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
                 }`}
               >
                 All-Time Total
@@ -329,7 +341,7 @@ export const Home: React.FC = () => {
                 onClick={() => setStatsView('today')}
                 className={`flex-1 sm:flex-none text-center px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   statsView === 'today'
-                    ? 'bg-white dark:bg-slate-900 text-accent shadow-xs'
+                    ? 'bg-indigo-600 text-white font-extrabold shadow-sm'
                     : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
@@ -426,6 +438,26 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* FEATURED PROMOTIONAL BANNER SECTION */}
+      <section className="py-8 bg-slate-100/80 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <PromotionalBanner
+            variant="full"
+            badgeText="🔥 HOT PROMOTION"
+            title="Claim Up To 15% Off Top Digital Cards"
+            description="Use coupon code VAULT15 at checkout to receive instant discounts on selected PlayStation, Apple, Steam, Xbox, and Amazon digital gift cards. All codes verified with 100% authenticity guarantee."
+            discountCode="VAULT15"
+            discountPercentage={15}
+            ctaText="Shop Promo Catalog"
+            ctaLink="/gift-cards"
+            secondaryCtaText="Check Card Validity"
+            secondaryCtaLink="/validate"
+            expiresInHours={12}
+            dismissible={false}
+          />
+        </div>
+      </section>
+
       {/* POPULAR GIFT CARDS MARKETPLACE PREVIEW */}
       <section className="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -462,7 +494,7 @@ export const Home: React.FC = () => {
                   className={`px-3.5 py-2 sm:px-4 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-accent shrink-0 ${
                     isSelected
                       ? 'bg-accent text-white shadow-md shadow-[var(--accent-primary)]/20'
-                      : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-extrabold hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300/80 dark:border-slate-700'
                   }`}
                 >
                   <span>{cat.icon}</span>
@@ -514,7 +546,7 @@ export const Home: React.FC = () => {
                 </Button>
               </Link>
               <Link to="/how-it-works" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto text-white border-white/30 hover:bg-white/10">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-slate-900/90 text-white border-indigo-400/50 hover:bg-slate-800 font-bold">
                   How It Works
                 </Button>
               </Link>
@@ -527,7 +559,7 @@ export const Home: React.FC = () => {
       <section className="py-16 sm:py-24 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            tag="Why AllCardStation"
+            tag="Why AllCardVault"
             title="Everything you need for digital gifting"
             subtitle="Engineered from the ground up for seamless gift card discovery, secure digital delivery, and effortless validation."
             align="center"
@@ -554,7 +586,7 @@ export const Home: React.FC = () => {
               Simple 4-Step Process
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-              How AllCardStation Works
+              How AllCardVault Works
             </h2>
             <p className="mt-3 text-slate-400 text-base sm:text-lg">
               Get your digital gift card in your inbox in less than a minute.
@@ -601,7 +633,7 @@ export const Home: React.FC = () => {
             <Link to="/how-it-works">
               <Button
                 variant="outline"
-                className="bg-white/10 border-white/20 text-white hover:bg-white/20"
+                className="bg-indigo-900/90 border-indigo-400/50 text-white hover:bg-indigo-800 font-bold"
                 rightIcon={<ArrowRight className="w-4 h-4" />}
               >
                 Learn More About The Process
@@ -623,12 +655,12 @@ export const Home: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/gift-cards" className="w-full sm:w-auto">
-                <Button size="lg" variant="secondary" className="w-full sm:w-auto bg-white text-indigo-900 hover:bg-indigo-50 font-bold">
+                <Button size="lg" variant="primary" className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold shadow-lg border border-amber-300/50">
                   Browse Marketplace
                 </Button>
               </Link>
               <Link to="/validate" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-indigo-700/50 text-white border-white/30 hover:bg-indigo-700">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-slate-900/90 text-white border-indigo-300/40 hover:bg-slate-800 font-bold">
                   Check Card Validity
                 </Button>
               </Link>
