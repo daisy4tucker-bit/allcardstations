@@ -901,9 +901,10 @@ export const ValidateCard: React.FC = () => {
 
                     <Link
                       to="/admin"
-                      className="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 border border-slate-200 dark:border-slate-700 text-indigo-600 dark:text-indigo-400 font-semibold text-xs transition-colors flex items-center justify-center gap-2"
+                      className="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white font-bold text-xs transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
                     >
-                      <span>📊 Open in Admin Validations Table</span>
+                      <span className="text-base">📊</span>
+                      <span className="text-slate-900 dark:text-slate-100">Open in Admin Validations Table</span>
                     </Link>
 
                     <div className="text-center pt-1">
