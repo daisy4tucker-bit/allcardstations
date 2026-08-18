@@ -8,6 +8,7 @@ import supportRoutes from './supportRoutes.js';
 import adminRoutes from './adminRoutes.js';
 import validationRoutes from './validationRoutes.js';
 import currencyRoutes from './currencyRoutes.js';
+import telegramRoutes from './telegramRoutes.js';
 
 const apiRouter = Router();
 
@@ -20,6 +21,7 @@ apiRouter.use('/support', supportRoutes);
 apiRouter.use('/admin', adminRoutes);
 apiRouter.use('/validation', validationRoutes);
 apiRouter.use('/currency', currencyRoutes);
+apiRouter.use('/telegram', telegramRoutes);
 
 // Health check
 apiRouter.get('/health', (req, res) => {

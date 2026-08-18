@@ -42,10 +42,11 @@ async function startServer() {
 
   // HTTPS Enforcement Middleware (Redirect HTTP -> HTTPS in production)
   app.use((req, res, next) => {
+    if (req.path === '/api/health' || req.path === '/health') return next();
     // Check proto header from reverse proxy or load balancer
     const proto = req.headers['x-forwarded-proto'];
     if (process.env.NODE_ENV === 'production' && proto && proto !== 'https') {
-      const host = req.headers.host || 'allcardvault.com';
+      const host = req.headers.host || 'allcardvault.onrender.com';
       return res.redirect(301, `https://${host}${req.url}`);
     }
     next();

