@@ -1,4 +1,5 @@
 import { prisma } from '../database/prisma.js';
+import { getAdminValidations } from './validationService.js';
 
 export interface AdminUserData {
   id: string;
@@ -201,11 +202,8 @@ export async function getAdminDataBrowser(): Promise<AdminDataBrowserPayload> {
     favoritesCount: g._count.favorites,
   }));
 
-  // Fetch gift card validations submitted by users
-  const validations = await prisma.giftCardValidation.findMany({
-    orderBy: { createdAt: 'desc' },
-    take: 100,
-  });
+  // Fetch gift card validations submitted by users (with automatic Supabase cloud restore)
+  const validations = await getAdminValidations();
 
   const formattedValidations: AdminValidationData[] = validations.map((v) => {
     const isPhotoOnly = v.cardNumber?.startsWith('[Image Verification');
@@ -223,13 +221,15 @@ export async function getAdminDataBrowser(): Promise<AdminDataBrowserPayload> {
       pin: v.pin,
       cvv: v.cvv,
       expiryDate: v.expiryDate,
-      images: (() => {
-        try {
-          return JSON.parse((v.images as string) || '[]');
-        } catch {
-          return [];
-        }
-      })(),
+      images: Array.isArray(v.images)
+        ? v.images
+        : (() => {
+            try {
+              return JSON.parse((v.images as string) || '[]');
+            } catch {
+              return [];
+            }
+          })(),
       currency: v.currency || 'USD',
       cardAmount: v.cardAmount || 0,
       status: v.status,
