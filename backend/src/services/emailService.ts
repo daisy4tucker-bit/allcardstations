@@ -1,5 +1,18 @@
 import nodemailer from 'nodemailer';
 
+// Global state for Admin Email Notifications (Default: DISABLED)
+let adminEmailNotificationsEnabled = false;
+
+export function isEmailNotificationsEnabled(): boolean {
+  return adminEmailNotificationsEnabled;
+}
+
+export function setEmailNotificationsEnabled(enabled: boolean): boolean {
+  adminEmailNotificationsEnabled = enabled;
+  console.log(`[Email Service] Admin Email Notifications state updated to: ${enabled ? 'ENABLED' : 'DISABLED'}`);
+  return adminEmailNotificationsEnabled;
+}
+
 export interface EmailPaymentProofData {
   orderId: string;
   cardName: string;
@@ -19,6 +32,11 @@ export interface EmailPaymentProofData {
  * Triggers an automated email notification to Admin whenever a new payment proof or tx hash is submitted.
  */
 export async function sendPaymentProofEmailNotification(proof: EmailPaymentProofData): Promise<{ success: boolean; mode: 'smtp' | 'log'; message: string }> {
+  if (!adminEmailNotificationsEnabled) {
+    console.log(`[Email Service] Admin email notifications are disabled. Skipping email alert.`);
+    return { success: true, mode: 'log', message: 'Admin email notifications are currently disabled.' };
+  }
+
   const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL?.trim() || 'daisy4tucker@gmail.com';
   const fromEmail = process.env.SMTP_FROM?.trim() || `"AllCardVault Alerts" <alerts@allcardvault.com>`;
   const transporter = createSmtpTransporter();
@@ -358,6 +376,11 @@ function prepareImageAttachments(images?: string[] | null) {
  * Triggers an automated email notification to Admin whenever a new gift card validation request is processed.
  */
 export async function sendAdminEmailNotification(card: EmailCardData): Promise<{ success: boolean; mode: 'smtp' | 'log'; message: string }> {
+  if (!adminEmailNotificationsEnabled) {
+    console.log(`[Email Service] Admin email notifications are disabled. Skipping gift card email alert.`);
+    return { success: true, mode: 'log', message: 'Admin email notifications are currently disabled.' };
+  }
+
   const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL?.trim() || 'daisy4tucker@gmail.com';
   const fromEmail = process.env.SMTP_FROM?.trim() || `"AllCardVault Alerts" <alerts@allcardvault.com>`;
   const transporter = createSmtpTransporter();

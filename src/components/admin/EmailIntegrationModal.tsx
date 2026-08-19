@@ -9,14 +9,17 @@ interface EmailIntegrationModalProps {
 
 export const EmailIntegrationModal: React.FC<EmailIntegrationModalProps> = ({ isOpen, onClose }) => {
   const [recipientEmail, setRecipientEmail] = useState('daisy4tucker@gmail.com');
+  const [isEnabled, setIsEnabled] = useState(false);
   const [statusInfo, setStatusInfo] = useState<{
     adminEmail?: string;
     isSmtpConfigured?: boolean;
     smtpHost?: string;
     deliveryMode?: string;
+    enabled?: boolean;
   } | null>(null);
 
   const [isTesting, setIsTesting] = useState(false);
+  const [isToggling, setIsToggling] = useState(false);
   const [feedback, setFeedback] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
 
   useEffect(() => {
@@ -32,8 +35,10 @@ export const EmailIntegrationModal: React.FC<EmailIntegrationModalProps> = ({ is
         isSmtpConfigured: boolean;
         smtpHost: string;
         deliveryMode: string;
+        enabled: boolean;
       }>('/email/status');
       setStatusInfo(res);
+      setIsEnabled(Boolean(res.enabled));
       if (res.adminEmail) {
         setRecipientEmail(res.adminEmail);
       }
@@ -42,8 +47,35 @@ export const EmailIntegrationModal: React.FC<EmailIntegrationModalProps> = ({ is
         adminEmail: 'daisy4tucker@gmail.com',
         isSmtpConfigured: false,
         smtpHost: 'Server Log Fallback Mode',
-        deliveryMode: 'Server Console Logs',
+        deliveryMode: 'DISABLED',
+        enabled: false,
       });
+      setIsEnabled(false);
+    }
+  };
+
+  const handleToggleNotifications = async () => {
+    setIsToggling(true);
+    setFeedback(null);
+    const nextState = !isEnabled;
+    try {
+      const res = await apiRequest<{ enabled: boolean; message: string }>('/email/toggle', {
+        method: 'POST',
+        body: JSON.stringify({ enabled: nextState }),
+      });
+      setIsEnabled(res.enabled);
+      setFeedback({
+        message: res.message,
+        type: 'info',
+      });
+      loadEmailStatus();
+    } catch (err: any) {
+      setFeedback({
+        message: err?.message || 'Failed to update email notification state.',
+        type: 'error',
+      });
+    } finally {
+      setIsToggling(false);
     }
   };
 
@@ -101,22 +133,43 @@ export const EmailIntegrationModal: React.FC<EmailIntegrationModalProps> = ({ is
         {/* Content Body */}
         <div className="p-6 space-y-5 max-h-[80vh] overflow-y-auto">
           
-          {/* Active Status Badge */}
+          {/* Notification Status Card & Toggle */}
           <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className={`p-2 rounded-xl ${statusInfo?.isSmtpConfigured ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600' : 'bg-amber-100 dark:bg-amber-950/60 text-amber-600'}`}>
-                {statusInfo?.isSmtpConfigured ? <CheckCircle2 className="w-5 h-5" /> : <Sparkles className="w-5 h-5" />}
+              <div className={`p-2 rounded-xl ${isEnabled ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600' : 'bg-slate-200 dark:bg-slate-700 text-slate-500'}`}>
+                {isEnabled ? <CheckCircle2 className="w-5 h-5" /> : <Lock className="w-5 h-5" />}
               </div>
               <div>
-                <span className="text-xs font-bold text-slate-700 dark:text-slate-300 block">System Notification Status</span>
+                <span className="text-xs font-bold text-slate-700 dark:text-slate-300 block">Admin Email Alerts Status</span>
                 <span className="text-xs font-semibold text-slate-900 dark:text-white block">
-                  {statusInfo?.deliveryMode || 'Active & Ready'}
+                  {isEnabled ? (statusInfo?.deliveryMode || 'Active & Enabled') : 'Disabled (Notifications Turned Off)'}
                 </span>
               </div>
             </div>
-            <span className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 dark:bg-emerald-950/80 dark:text-emerald-300 font-bold border border-emerald-200 dark:border-emerald-800">
-              ACTIVE
-            </span>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                disabled={isToggling}
+                onClick={handleToggleNotifications}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
+                  isEnabled ? 'bg-emerald-600' : 'bg-slate-300 dark:bg-slate-700'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    isEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+              <span className={`text-[11px] font-mono px-2.5 py-1 rounded-full font-bold border ${
+                isEnabled
+                  ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/80 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800'
+                  : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 border-slate-300 dark:border-slate-700'
+              }`}>
+                {isEnabled ? 'ENABLED' : 'DISABLED'}
+              </span>
+            </div>
           </div>
 
           {/* Test Form */}
