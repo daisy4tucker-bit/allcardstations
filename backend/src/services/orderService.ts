@@ -239,10 +239,21 @@ export async function getAllOrders(): Promise<OrderRecord[]> {
       updatedAt: o.updatedAt.toISOString(),
     }));
 
-    // Merge without duplicates
+    // Merge without duplicates, preserving rich receiptImage base64 screenshot proof
     const mergedMap = new Map<string, OrderRecord>();
     formattedDbOrders.forEach((o) => mergedMap.set(o.id, o));
-    fileOrders.forEach((o) => mergedMap.set(o.id, o));
+    fileOrders.forEach((o) => {
+      const dbOrder = mergedMap.get(o.id);
+      if (dbOrder) {
+        mergedMap.set(o.id, {
+          ...dbOrder,
+          ...o,
+          receiptImage: o.receiptImage || dbOrder.receiptImage || null,
+        });
+      } else {
+        mergedMap.set(o.id, o);
+      }
+    });
 
     return Array.from(mergedMap.values()).sort(
       (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
