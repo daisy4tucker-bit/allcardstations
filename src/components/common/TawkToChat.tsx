@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { MessageSquare, Headphones } from 'lucide-react';
+import { Headphones } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 declare global {
@@ -13,21 +13,36 @@ declare global {
       hideWidget?: () => void;
       setAttributes?: (attributes: Record<string, string>, callback?: (error?: string) => void) => void;
       onLoad?: () => void;
+      onChatMinimized?: () => void;
+      onChatHidden?: () => void;
+      onChatEnded?: () => void;
       [key: string]: any;
     };
     Tawk_LoadStart?: Date;
   }
 }
 
+let pendingOpenRequest = false;
+
+/**
+ * Global function to pop open Tawk.to live chatbox strictly on user click.
+ */
 export const openTawkChat = () => {
-  if (typeof window !== 'undefined' && window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
-    window.Tawk_API.maximize();
-  } else if (typeof window !== 'undefined' && window.Tawk_API && typeof window.Tawk_API.toggle === 'function') {
-    window.Tawk_API.toggle();
+  if (typeof window !== 'undefined' && window.Tawk_API) {
+    if (typeof window.Tawk_API.showWidget === 'function') {
+      window.Tawk_API.showWidget();
+    }
+    if (typeof window.Tawk_API.maximize === 'function') {
+      window.Tawk_API.maximize();
+    } else if (typeof window.Tawk_API.popup === 'function') {
+      window.Tawk_API.popup();
+    } else if (typeof window.Tawk_API.toggle === 'function') {
+      window.Tawk_API.toggle();
+    } else {
+      pendingOpenRequest = true;
+    }
   } else {
-    // Scroll or trigger contact support
-    const chatBtn = document.getElementById('tawk-fallback-launcher');
-    if (chatBtn) chatBtn.click();
+    pendingOpenRequest = true;
   }
 };
 
@@ -36,40 +51,78 @@ export const TawkToChat: React.FC = () => {
 
   useEffect(() => {
     // Default property ID & widget ID (can be overridden via VITE_TAWKTO_PROPERTY_ID & VITE_TAWKTO_WIDGET_ID)
-    const propertyId = import.meta.env.VITE_TAWKTO_PROPERTY_ID || '6a83d266cf169a34428ce96b'; // User's Tawk.to Property ID
-    const widgetId = import.meta.env.VITE_TAWKTO_WIDGET_ID || 'default'; // User's Tawk.to Widget ID
+    const propertyId = import.meta.env.VITE_TAWKTO_PROPERTY_ID || '6a83d266cf169a34428ce96b';
+    const widgetId = import.meta.env.VITE_TAWKTO_WIDGET_ID || 'default';
 
     if (!propertyId || !widgetId) {
       console.warn('Tawk.to IDs not configured.');
       return;
     }
 
-    // Avoid duplicate script insertion
-    const scriptId = 'tawk-embed-script';
-    if (document.getElementById(scriptId)) {
-      if (user && window.Tawk_API && window.Tawk_API.setAttributes) {
+    const setupTawkHandlers = () => {
+      if (!window.Tawk_API) return;
+
+      // 1. Hide the default Tawk.to floating bubble launcher so it only pops out on icon click!
+      if (typeof window.Tawk_API.hideWidget === 'function') {
+        window.Tawk_API.hideWidget();
+      }
+
+      // 2. Set user attributes if logged in
+      if (user && window.Tawk_API.setAttributes) {
         const userName = `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.email.split('@')[0];
         window.Tawk_API.setAttributes({
           name: userName,
           email: user.email,
         });
+      }
+
+      // 3. Register hide listeners when chatbox is minimized or closed
+      window.Tawk_API.onChatMinimized = () => {
+        if (typeof window.Tawk_API?.hideWidget === 'function') {
+          window.Tawk_API.hideWidget();
+        }
+      };
+
+      window.Tawk_API.onChatHidden = () => {
+        if (typeof window.Tawk_API?.hideWidget === 'function') {
+          window.Tawk_API.hideWidget();
+        }
+      };
+
+      window.Tawk_API.onChatEnded = () => {
+        if (typeof window.Tawk_API?.hideWidget === 'function') {
+          window.Tawk_API.hideWidget();
+        }
+      };
+
+      // 4. Handle pending click request if user clicked before Tawk loaded
+      if (pendingOpenRequest) {
+        pendingOpenRequest = false;
+        if (typeof window.Tawk_API.showWidget === 'function') {
+          window.Tawk_API.showWidget();
+        }
+        if (typeof window.Tawk_API.maximize === 'function') {
+          window.Tawk_API.maximize();
+        }
+      }
+    };
+
+    const scriptId = 'tawk-embed-script';
+    const existingScript = document.getElementById(scriptId);
+
+    if (existingScript) {
+      if (window.Tawk_API) {
+        setupTawkHandlers();
+      } else {
+        window.Tawk_API = window.Tawk_API || {};
+        window.Tawk_API.onLoad = setupTawkHandlers;
       }
       return;
     }
 
     window.Tawk_API = window.Tawk_API || {};
     window.Tawk_LoadStart = new Date();
-
-    // Set visitor info when Tawk.to loads
-    window.Tawk_API.onLoad = () => {
-      if (user && window.Tawk_API?.setAttributes) {
-        const userName = `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.email.split('@')[0];
-        window.Tawk_API.setAttributes({
-          name: userName,
-          email: user.email,
-        });
-      }
-    };
+    window.Tawk_API.onLoad = setupTawkHandlers;
 
     const s1 = document.createElement('script');
     const s0 = document.getElementsByTagName('script')[0];
@@ -85,9 +138,6 @@ export const TawkToChat: React.FC = () => {
       document.head.appendChild(s1);
     }
 
-    return () => {
-      // Optional cleanup on unmount
-    };
   }, [user]);
 
   return (

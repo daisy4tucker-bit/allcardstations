@@ -50,6 +50,26 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
   const [roleFilter, setRoleFilter] = useState<string>('ALL');
   const [statusFilter, setStatusFilter] = useState<string>('ALL');
   const [categoryFilter, setCategoryFilter] = useState<string>('ALL');
+  const [previewImageModalUrl, setPreviewImageModalUrl] = useState<string | null>(null);
+  const [updatingOrderId, setUpdatingOrderId] = useState<string | null>(null);
+
+  const handleUpdateOrderStatus = async (orderId: string, newStatus: string) => {
+    setUpdatingOrderId(orderId);
+    try {
+      const res = await fetch(`/api/orders/${orderId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+      if (res.ok) {
+        onRefresh();
+      }
+    } catch (e) {
+      console.warn('Failed to update order status:', e);
+    } finally {
+      setUpdatingOrderId(null);
+    }
+  };
 
   // Filtered Users
   const filteredUsers = useMemo(() => {
@@ -608,14 +628,15 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                   <th className="py-3.5 px-4">Gift Card</th>
                   <th className="py-3.5 px-4">Amount</th>
                   <th className="py-3.5 px-4">Payment Method / Network</th>
-                  <th className="py-3.5 px-4">Status</th>
+                  <th className="py-3.5 px-4">TX ID & Proof Image</th>
+                  <th className="py-3.5 px-4">Status & Action</th>
                   <th className="py-3.5 px-4">Timestamp</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {filteredOrders.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="py-12 text-center text-slate-400">
+                    <td colSpan={8} className="py-12 text-center text-slate-400">
                       No transaction records match your search or filter criteria.
                     </td>
                   </tr>
@@ -623,7 +644,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                   filteredOrders.map((o) => (
                     <tr key={o.id} className="hover:bg-slate-50/60 dark:hover:bg-slate-800/30 transition-colors">
                       <td className="py-3.5 px-4 font-mono font-bold text-indigo-600 dark:text-indigo-400">
-                        #{o.id.slice(0, 8)}
+                        #{o.id.slice(0, 10)}
                       </td>
 
                       <td className="py-3.5 px-4">
@@ -651,30 +672,73 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                             Net: {o.blockchainNetwork}
                           </div>
                         )}
-                        {o.transactionHash && (
-                          <div className="text-[10px] text-indigo-500 dark:text-indigo-400 font-mono truncate max-w-[140px]" title={o.transactionHash}>
-                            tx: {o.transactionHash.slice(0, 10)}...
-                          </div>
-                        )}
                       </td>
 
                       <td className="py-3.5 px-4">
-                        <span
-                          className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-mono font-bold text-[10.5px] border ${
-                            o.paymentStatus === 'PAID'
-                              ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800'
-                              : o.paymentStatus === 'CONFIRMING'
-                              ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800'
-                              : o.paymentStatus === 'WAITING_PAYMENT' || o.paymentStatus === 'PENDING'
-                              ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800'
-                              : 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800'
-                          }`}
-                        >
-                          {o.paymentStatus === 'PAID' && <CheckCircle2 className="w-3 h-3 text-emerald-500" />}
-                          {o.paymentStatus === 'PENDING' && <Clock className="w-3 h-3 text-amber-500" />}
-                          {o.paymentStatus === 'FAILED' && <XCircle className="w-3 h-3 text-rose-500" />}
-                          <span>{o.paymentStatus}</span>
-                        </span>
+                        <div className="space-y-1">
+                          {o.transactionHash ? (
+                            <div className="flex items-center gap-1 font-mono text-[10.5px] text-indigo-600 dark:text-indigo-400 font-bold bg-indigo-50 dark:bg-indigo-950/50 px-2 py-0.5 rounded border border-indigo-200 dark:border-indigo-800 max-w-[180px] truncate" title={o.transactionHash}>
+                              <span>tx:</span>
+                              <span className="truncate">{o.transactionHash}</span>
+                            </div>
+                          ) : (
+                            <span className="text-[11px] text-slate-400 italic">No TX Hash</span>
+                          )}
+
+                          {o.receiptImage && (
+                            <button
+                              type="button"
+                              onClick={() => setPreviewImageModalUrl(o.receiptImage || null)}
+                              className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10.5px] font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 hover:bg-emerald-200 transition-colors"
+                            >
+                              📸 View Payment Proof
+                            </button>
+                          )}
+                        </div>
+                      </td>
+
+                      <td className="py-3.5 px-4">
+                        <div className="flex flex-col gap-1.5 items-start">
+                          <span
+                            className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-mono font-bold text-[10.5px] border ${
+                              o.paymentStatus === 'PAID'
+                                ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800'
+                                : o.paymentStatus === 'CONFIRMING'
+                                ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800'
+                                : o.paymentStatus === 'WAITING_PAYMENT' || o.paymentStatus === 'PENDING'
+                                ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800'
+                                : 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800'
+                            }`}
+                          >
+                            {o.paymentStatus === 'PAID' && <CheckCircle2 className="w-3 h-3 text-emerald-500" />}
+                            {o.paymentStatus === 'PENDING' && <Clock className="w-3 h-3 text-amber-500" />}
+                            {o.paymentStatus === 'FAILED' && <XCircle className="w-3 h-3 text-rose-500" />}
+                            <span>{o.paymentStatus}</span>
+                          </span>
+
+                          <div className="flex items-center gap-1">
+                            {o.paymentStatus !== 'PAID' && (
+                              <button
+                                type="button"
+                                disabled={updatingOrderId === o.id}
+                                onClick={() => handleUpdateOrderStatus(o.id, 'PAID')}
+                                className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50"
+                              >
+                                Approve
+                              </button>
+                            )}
+                            {o.paymentStatus !== 'FAILED' && (
+                              <button
+                                type="button"
+                                disabled={updatingOrderId === o.id}
+                                onClick={() => handleUpdateOrderStatus(o.id, 'FAILED')}
+                                className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-600 text-white hover:bg-rose-700 disabled:opacity-50"
+                              >
+                                Reject
+                              </button>
+                            )}
+                          </div>
+                        </div>
                       </td>
 
                       <td className="py-3.5 px-4 text-slate-500 dark:text-slate-400 whitespace-nowrap text-[11px]">
@@ -803,6 +867,42 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Payment Proof Lightbox Modal */}
+      {previewImageModalUrl && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xs animate-in fade-in duration-200">
+          <div className="relative max-w-3xl w-full bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl p-4">
+            <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
+              <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                <span>📸</span> Payment Receipt Screenshot / Proof
+              </h3>
+              <button
+                type="button"
+                onClick={() => setPreviewImageModalUrl(null)}
+                className="p-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="max-h-[75vh] overflow-auto flex items-center justify-center bg-black/50 rounded-xl p-2">
+              <img
+                src={previewImageModalUrl}
+                alt="Payment Proof Receipt"
+                className="max-h-[70vh] object-contain rounded-lg shadow-lg"
+              />
+            </div>
+            <div className="mt-3 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setPreviewImageModalUrl(null)}
+                className="px-4 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors"
+              >
+                Close Preview
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

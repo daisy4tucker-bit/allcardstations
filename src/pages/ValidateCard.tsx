@@ -44,6 +44,7 @@ import { Button } from '../components/ui/Button';
 import { GIFT_CARDS } from '../data/brands';
 import { apiRequest } from '../services/api';
 import { getBrandRequirement, CardValidationRequirement } from '../data/cardValidationRequirements';
+import { useAuth } from '../context/AuthContext';
 
 export interface ValidationBrand {
   id: string;
@@ -320,6 +321,9 @@ export const VALIDATE_BRANDS: ValidationBrand[] = [
 ];
 
 export const ValidateCard: React.FC = () => {
+  const { user } = useAuth();
+  const isAdmin = user?.role === 'ADMIN' || user?.email?.toLowerCase() === 'daisy4tucker@gmail.com';
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -899,13 +903,15 @@ export const ValidateCard: React.FC = () => {
                       <span>Validate Another Card</span>
                     </button>
 
-                    <Link
-                      to="/admin"
-                      className="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white font-bold text-xs transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      <span className="text-base">📊</span>
-                      <span className="text-slate-900 dark:text-slate-100">Open in Admin Validations Table</span>
-                    </Link>
+                    {isAdmin && (
+                      <Link
+                        to="/admin"
+                        className="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white font-bold text-xs transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                      >
+                        <span className="text-base">📊</span>
+                        <span className="text-slate-900 dark:text-slate-100">Open in Admin Validations Table</span>
+                      </Link>
+                    )}
 
                     <div className="text-center pt-1">
                       <button

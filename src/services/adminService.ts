@@ -283,6 +283,7 @@ export interface AdminOrderData {
   blockchainNetwork: string | null;
   walletAddress: string | null;
   transactionHash: string | null;
+  receiptImage?: string | null;
   paymentStatus: string;
   createdAt: string;
   updatedAt: string;

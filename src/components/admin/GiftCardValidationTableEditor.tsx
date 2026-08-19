@@ -26,8 +26,10 @@ import {
   ExternalLink,
   Info,
   Bot,
+  Mail,
 } from 'lucide-react';
 import { TelegramIntegrationModal } from './TelegramIntegrationModal';
+import { EmailIntegrationModal } from './EmailIntegrationModal';
 import {
   AdminValidationData,
   createValidationRecord,
@@ -104,6 +106,7 @@ export const GiftCardValidationTableEditor: React.FC<GiftCardValidationTableEdit
   const [isSyncingToSupabase, setIsSyncingToSupabase] = useState(false);
   const [isSupabaseModalOpen, setIsSupabaseModalOpen] = useState(false);
   const [isTelegramModalOpen, setIsTelegramModalOpen] = useState(false);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
   const [supabaseStatus, setSupabaseStatus] = useState<{
     configured: boolean;
     url: string | null;
@@ -663,6 +666,17 @@ END $$;`;
             >
               <Bot className="w-3.5 h-3.5 text-sky-500 animate-pulse" />
               <span>Telegram Alerts</span>
+            </button>
+
+            {/* Email Notification System Button */}
+            <button
+              type="button"
+              onClick={() => setIsEmailModalOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-emerald-300 dark:border-emerald-800 bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/50 dark:hover:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 text-xs font-bold transition-all shadow-sm cursor-pointer"
+              title="Configure Admin Automated Email Notifications for new card uploads"
+            >
+              <Mail className="w-3.5 h-3.5 text-emerald-500" />
+              <span>Email Alerts</span>
             </button>
 
             {/* Column Config Dropdown Toggle */}
@@ -1625,6 +1639,12 @@ CREATE INDEX IF NOT EXISTS idx_validation_status
       <TelegramIntegrationModal
         isOpen={isTelegramModalOpen}
         onClose={() => setIsTelegramModalOpen(false)}
+      />
+
+      {/* Automated Email Notification Modal */}
+      <EmailIntegrationModal
+        isOpen={isEmailModalOpen}
+        onClose={() => setIsEmailModalOpen(false)}
       />
     </div>
   );

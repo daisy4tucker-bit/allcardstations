@@ -9,6 +9,8 @@ import adminRoutes from './adminRoutes.js';
 import validationRoutes from './validationRoutes.js';
 import currencyRoutes from './currencyRoutes.js';
 import telegramRoutes from './telegramRoutes.js';
+import emailRoutes from './emailRoutes.js';
+import orderRoutes from './orderRoutes.js';
 
 const apiRouter = Router();
 
@@ -22,6 +24,8 @@ apiRouter.use('/admin', adminRoutes);
 apiRouter.use('/validation', validationRoutes);
 apiRouter.use('/currency', currencyRoutes);
 apiRouter.use('/telegram', telegramRoutes);
+apiRouter.use('/email', emailRoutes);
+apiRouter.use('/orders', orderRoutes);
 
 // Health check
 apiRouter.get('/health', (req, res) => {

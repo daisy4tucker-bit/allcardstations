@@ -1,5 +1,6 @@
 import { prisma } from '../database/prisma.js';
 import { getAdminValidations } from './validationService.js';
+import { getAllOrders } from './orderService.js';
 
 export interface AdminUserData {
   id: string;
@@ -23,12 +24,12 @@ export interface AdminUserData {
 
 export interface AdminOrderData {
   id: string;
-  userId: string;
+  userId?: string;
   userEmail: string;
   userName: string;
-  giftCardId: string;
+  giftCardId?: string;
   giftCardName: string;
-  giftCardSlug: string;
+  giftCardSlug?: string;
   amount: number;
   currency: string;
   paymentMethod: string;
@@ -36,9 +37,10 @@ export interface AdminOrderData {
   blockchainNetwork: string | null;
   walletAddress: string | null;
   transactionHash: string | null;
+  receiptImage?: string | null;
   paymentStatus: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: Date | string;
+  updatedAt: Date | string;
 }
 
 export interface AdminGiftCardData {
@@ -165,14 +167,17 @@ export async function getAdminDataBrowser(): Promise<AdminDataBrowserPayload> {
     favoritesCount: u._count.favorites,
   }));
 
-  const formattedOrders: AdminOrderData[] = orders.map((o) => ({
+  // Fetch all orders (combines Prisma DB + Persistent Payment Proof Order records)
+  const allOrderRecords = await getAllOrders();
+
+  const formattedOrders: AdminOrderData[] = allOrderRecords.map((o) => ({
     id: o.id,
     userId: o.userId,
-    userEmail: o.user.email,
-    userName: `${o.user.firstName} ${o.user.lastName}`.trim(),
+    userEmail: o.userEmail,
+    userName: o.userName,
     giftCardId: o.giftCardId,
-    giftCardName: o.giftCard.name,
-    giftCardSlug: o.giftCard.slug,
+    giftCardName: o.giftCardName,
+    giftCardSlug: o.giftCardSlug,
     amount: o.amount,
     currency: o.currency,
     paymentMethod: o.paymentMethod,
@@ -180,6 +185,7 @@ export async function getAdminDataBrowser(): Promise<AdminDataBrowserPayload> {
     blockchainNetwork: o.blockchainNetwork,
     walletAddress: o.walletAddress,
     transactionHash: o.transactionHash,
+    receiptImage: o.receiptImage,
     paymentStatus: o.paymentStatus,
     createdAt: o.createdAt,
     updatedAt: o.updatedAt,

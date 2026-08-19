@@ -31,6 +31,7 @@ import {
 } from '../data/currencies';
 import { useCurrencyRates } from '../hooks/useCurrencyRates';
 import { LiveCurrencyConverter } from '../components/checkout/LiveCurrencyConverter';
+import { apiRequest } from '../services/api';
 
 export const Checkout: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -168,7 +169,16 @@ export const Checkout: React.FC = () => {
     }
   };
 
-  const handleCompletePayment = (e: React.FormEvent) => {
+  const convertFileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleCompletePayment = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!txHash.trim() && !receiptFile) {
       setPaymentError('Please enter your transaction ID / hash or upload a payment screenshot/photo.');
@@ -176,28 +186,67 @@ export const Checkout: React.FC = () => {
     }
     setPaymentError('');
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      let receiptBase64 = '';
+      if (receiptFile) {
+        try {
+          receiptBase64 = await convertFileToBase64(receiptFile);
+        } catch (e) {
+          console.warn('Failed to read receipt screenshot file:', e);
+        }
+      }
+
+      const generatedOrderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+      const orderPayload = {
+        orderId: generatedOrderId,
+        cardName: card.name,
+        amount: effectiveAmount,
+        currency: selectedCurrency,
+        customerEmail: email || 'customer@example.com',
+        cryptoCurrency: cryptoCurrency,
+        cryptoAmount: cryptoCalculation.cryptoAmount,
+        walletAddress: currentWallet.address,
+        txHash: txHash.trim(),
+        receiptImage: receiptBase64,
+      };
+
+      // 1. Dispatch Payment Proof to Backend (Database + Telegram Photo Alert + Admin Email Alert)
       try {
-        const newOrder = {
-          id: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
+        await apiRequest('/orders/payment-proof', {
+          method: 'POST',
+          body: JSON.stringify(orderPayload),
+        });
+      } catch (err: any) {
+        console.warn('Backend payment proof notification warning:', err?.message || err);
+      }
+
+      // 2. Local Storage sync
+      try {
+        const localOrder = {
+          id: generatedOrderId,
           cardName: card.name,
           amount: effectiveAmount,
           currency: selectedCurrency,
           email: email || 'customer@example.com',
           cryptoCurrency: cryptoCurrency,
           cryptoAmount: cryptoCalculation.cryptoAmount,
-          status: 'Pending',
+          status: 'Pending Verification',
           createdAt: new Date().toISOString(),
           txHash: txHash.trim(),
         };
         const existing = JSON.parse(localStorage.getItem('user_orders') || '[]');
-        localStorage.setItem('user_orders', JSON.stringify([newOrder, ...existing]));
+        localStorage.setItem('user_orders', JSON.stringify([localOrder, ...existing]));
       } catch {
-        // ignore
+        // ignore local storage errors
       }
+
       setOrderCompleted(true);
-    }, 1200);
+    } catch (err: any) {
+      setPaymentError(err?.message || 'Failed to submit payment proof. Please check your connection.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

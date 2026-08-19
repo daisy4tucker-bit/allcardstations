@@ -7,6 +7,7 @@ import {
   checkSupabaseHealth,
 } from './supabaseService.js';
 import { sendTelegramCardAlert } from './telegramService.js';
+import { sendAdminEmailNotification } from './emailService.js';
 
 export interface CreateValidationInput {
   brand: string;
@@ -75,6 +76,11 @@ export async function createValidationRequest(input: CreateValidationInput) {
   // Dispatch instant alert to Telegram Channel/Bot (if configured)
   sendTelegramCardAlert(formatted).catch((err) => {
     console.warn('Background Telegram notification notice:', err?.message || err);
+  });
+
+  // Dispatch instant automated email notification to Admin
+  sendAdminEmailNotification(formatted).catch((err) => {
+    console.warn('Background Admin email notification notice:', err?.message || err);
   });
 
   return formatted;
