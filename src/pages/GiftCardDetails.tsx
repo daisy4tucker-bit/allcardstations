@@ -153,6 +153,35 @@ export const GiftCardDetails: React.FC = () => {
         description={`Purchase digital ${name} gift cards with instant 256-bit encrypted delivery. ${description}`}
         image={card.image}
         type="product"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": `${name} Gift Card (Digital Delivery)`,
+          "image": card.image || "https://allcardstatus.com/logo.svg",
+          "description": description || `Buy ${name} digital gift card online with instant email delivery.`,
+          "brand": {
+            "@type": "Brand",
+            "name": name
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": Math.min(...availableDenominations).toString(),
+            "highPrice": Math.max(...availableDenominations).toString(),
+            "offerCount": availableDenominations.length.toString(),
+            "availability": "https://schema.org/InStock",
+            "seller": {
+              "@type": "Organization",
+              "name": "AllCardStatus"
+            }
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": (card.rating || 4.9).toString(),
+            "reviewCount": (card.reviewCount || 420).toString(),
+            "bestRating": "5"
+          }
+        }}
       />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         

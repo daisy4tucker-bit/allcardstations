@@ -11,6 +11,7 @@ import {
 import { PageContainer } from '../components/layout/PageContainer';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { Button } from '../components/ui/Button';
+import { OpenGraphMeta } from '../components/common/OpenGraphMeta';
 
 export const About: React.FC = () => {
   const values = [
@@ -42,6 +43,19 @@ export const About: React.FC = () => {
         { label: 'About Us' }
       ]}
     >
+      <OpenGraphMeta
+        title="About AllCardStatus - Our Mission, Security & Global Marketplace"
+        description="Learn about AllCardStatus, our mission to redefine digital gifting, our 256-bit encryption standards, and instant digital delivery worldwide."
+        keywords="about allcardstatus, digital gift card company, secure gift card marketplace, gift card verification company"
+        url="https://allcardstatus.com/about"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "name": "About AllCardStatus",
+          "url": "https://allcardstatus.com/about",
+          "description": "AllCardStatus is an instant digital gift card marketplace and card validation platform."
+        }}
+      />
       <SectionHeading
         tag="Our Mission & Values"
         title="Redefining Digital Gifting for Everyone"

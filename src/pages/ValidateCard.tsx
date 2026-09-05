@@ -755,6 +755,20 @@ export const ValidateCard: React.FC = () => {
         title={selectedBrand ? `Validate ${selectedBrand.name} Gift Card - Real-Time Balance & Authenticity Check` : "Gift Card Validation & Authenticity Checker | AllCardStatus"}
         description={selectedBrand ? `Check card number and security PIN authenticity for ${selectedBrand.name} gift cards with 256-bit SSL encryption.` : "Verify gift card balances, format rules, and redemption status instantly across top global brands."}
         image={selectedBrand?.image || "https://images.unsplash.com/photo-1556742049-0a67d268a735?w=1200&h=630&fit=crop&q=80"}
+        keywords="gift card validation, check gift card balance, verify gift card pin, gift card authenticity checker, test apple gift card, check amazon gift card balance"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "AllCardStatus Gift Card Validator",
+          "url": "https://allcardstatus.com/validate",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        }}
       />
       <PageContainer>
 

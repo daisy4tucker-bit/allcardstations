@@ -7,6 +7,7 @@ import { SearchBar } from '../components/ui/SearchBar';
 import { Accordion } from '../components/ui/Accordion';
 import { Button } from '../components/ui/Button';
 import { EmptyState } from '../components/ui/EmptyState';
+import { OpenGraphMeta } from '../components/common/OpenGraphMeta';
 import { FAQS } from '../data/faq';
 
 export const FAQ: React.FC = () => {
@@ -41,6 +42,24 @@ export const FAQ: React.FC = () => {
         { label: 'FAQ' }
       ]}
     >
+      <OpenGraphMeta
+        title="Frequently Asked Questions - Digital Gift Cards & Validation | AllCardStatus"
+        description="Get answers about buying digital gift cards, crypto payments, instant email delivery, gift card validation, and refunds on AllCardStatus."
+        keywords="gift card faq, buy gift cards help, digital gift card questions, gift card validation guide, allcardstatus support"
+        url="https://allcardstatus.com/faq"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": FAQS.slice(0, 10).map((f) => ({
+            "@type": "Question",
+            "name": f.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": f.answer
+            }
+          }))
+        }}
+      />
       <div className="max-w-4xl mx-auto">
         <SectionHeading
           tag="Support & Answers"

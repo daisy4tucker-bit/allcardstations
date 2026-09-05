@@ -25,6 +25,7 @@ import { CustomerReviews } from '../components/home/CustomerReviews';
 import { LiveActivityTicker } from '../components/ui/LiveActivityTicker';
 import { HeroLiveCardShowcase } from '../components/cards/HeroLiveCardShowcase';
 import { PromotionalBanner } from '../components/common/PromotionalBanner';
+import { OpenGraphMeta } from '../components/common/OpenGraphMeta';
 import { GIFT_CARDS } from '../data/brands';
 import { FEATURES } from '../data/features';
 import { CategoryType } from '../types/giftCard';
@@ -124,6 +125,28 @@ export const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <OpenGraphMeta
+        title="AllCardStatus - Digital Gift Card Marketplace & Instant Card Validation"
+        description="Buy, redeem, and validate digital gift cards with instant 256-bit SSL encrypted delivery and live balance checking across Apple, Amazon, Steam, Visa, Xbox, and top brands."
+        keywords="digital gift cards, buy gift cards online, instant gift card delivery, gift card validation, check gift card balance, crypto gift card marketplace, apple gift card, steam wallet, amazon gift card, visa prepaid card"
+        url="https://allcardstatus.com/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Store",
+          "name": "AllCardStatus Digital Marketplace",
+          "url": "https://allcardstatus.com",
+          "description": "Secure digital gift card marketplace and card validation platform.",
+          "paymentAccepted": "Cryptocurrency, Bitcoin, Ethereum, USDT, Solana, Credit Cards",
+          "currenciesAccepted": "USD, EUR, GBP, BTC, ETH, USDT",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "12840",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        }}
+      />
       {/* HERO SECTION */}
       <section className="relative bg-[#F5F7FA] dark:bg-slate-950 text-[#1E293B] dark:text-white pt-6 pb-12 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-18 border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">

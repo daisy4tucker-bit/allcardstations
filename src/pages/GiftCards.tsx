@@ -11,6 +11,7 @@ import { Select } from '../components/ui/Select';
 import { Button } from '../components/ui/Button';
 import { LoadingState } from '../components/ui/LoadingState';
 import { TopProgressBar } from '../components/ui/TopProgressBar';
+import { OpenGraphMeta } from '../components/common/OpenGraphMeta';
 import { GIFT_CARDS } from '../data/brands';
 import { CategoryType, SortOption } from '../types/giftCard';
 
@@ -183,6 +184,24 @@ export const GiftCards: React.FC = () => {
 
   return (
     <PageContainer breadcrumbs={breadcrumbs}>
+      <OpenGraphMeta
+        title="Buy Digital Gift Cards Online - Instant Email Delivery | AllCardStatus"
+        description="Browse hundreds of digital gift cards including Apple, Amazon, Steam, Visa, Xbox, PlayStation, and Razer Gold with cryptocurrency and secure checkout."
+        keywords="buy gift cards, digital gift cards online, instant gift cards, apple gift cards, steam gift cards, crypto gift cards"
+        url="https://allcardstatus.com/gift-cards"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Digital Gift Card Marketplace Catalog",
+          "url": "https://allcardstatus.com/gift-cards",
+          "description": "Browse and buy verified digital gift cards online with instant email delivery.",
+          "hasPart": GIFT_CARDS.slice(0, 12).map((c) => ({
+            "@type": "Product",
+            "name": `${c.name} Gift Card`,
+            "url": `https://allcardstatus.com/gift-cards/${c.id}`
+          }))
+        }}
+      />
       {/* Top Real-time Progress Bar */}
       <TopProgressBar isLoading={isFetching} />
 
