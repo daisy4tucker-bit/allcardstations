@@ -45,7 +45,7 @@ export const HeroLiveCardShowcase: React.FC = () => {
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Sliding Card Frame */}
-      <div className="relative w-full aspect-16/10 rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-900 group">
+      <div className="relative w-full aspect-16/10 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/80 bg-slate-100 dark:bg-slate-900 shadow-lg shadow-slate-200/50 dark:shadow-2xl group">
         
         {/* Animated Card Slides */}
         {cards.map((card, idx) => {
@@ -163,8 +163,8 @@ export const HeroLiveCardShowcase: React.FC = () => {
             aria-label={`Go to slide ${idx + 1}: ${card.name}`}
             className={`transition-all duration-300 rounded-full cursor-pointer ${
               idx === currentIndex
-                ? 'w-5 h-1.5 bg-amber-500'
-                : 'w-1.5 h-1.5 bg-slate-700 hover:bg-slate-500'
+                ? 'w-5 h-1.5 bg-indigo-600 dark:bg-amber-500'
+                : 'w-1.5 h-1.5 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-500'
             }`}
           />
         ))}

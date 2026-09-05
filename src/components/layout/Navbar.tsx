@@ -3,7 +3,6 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { CreditCard, Menu, X, ShieldCheck, ArrowRight, User, LogOut, LayoutDashboard, Database } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { ThemeToggle } from '../ui/ThemeToggle';
-import { ThemeSelectorModal } from '../ui/ThemeSelectorModal';
 import { useAuth } from '../../context/AuthContext';
 
 export const Navbar: React.FC = () => {
@@ -103,7 +102,6 @@ export const Navbar: React.FC = () => {
 
             {/* Desktop Right Action Buttons + Theme Toggle */}
             <div className="hidden lg:flex items-center gap-2.5">
-              <ThemeSelectorModal />
               <ThemeToggle id="desktop-theme-toggle" />
               <div className="h-5 w-px bg-slate-200 dark:bg-slate-800 mx-0.5" aria-hidden="true" />
               
@@ -244,10 +242,7 @@ export const Navbar: React.FC = () => {
             <div className="p-5 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 space-y-3">
               <div className="flex items-center justify-between px-2 py-1">
                 <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Appearance</span>
-                <div className="flex items-center gap-2">
-                  <ThemeSelectorModal />
-                  <ThemeToggle id="mobile-drawer-theme-toggle" />
-                </div>
+                <ThemeToggle id="mobile-drawer-theme-toggle" />
               </div>
 
               {isAuthenticated && user ? (

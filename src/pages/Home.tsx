@@ -124,23 +124,12 @@ export const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* TOP ANNOUNCEMENT PROMOTIONAL BANNER STRIP */}
-      <PromotionalBanner
-        variant="strip"
-        badgeText="⚡ LIMITED TIME DEALS"
-        title="Exclusive Offer: Save Up To 15% On Selected Digital Gift Cards"
-        discountCode="VAULT15"
-        ctaText="Shop Deals"
-        ctaLink="/gift-cards"
-        expiresInHours={12}
-      />
-
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 dark:from-slate-950 dark:via-indigo-950/60 dark:to-slate-950 text-white pt-8 pb-16 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24">
+      <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50/70 via-slate-50/60 to-white dark:from-slate-950 dark:via-indigo-950/60 dark:to-slate-950 text-slate-900 dark:text-white pt-8 pb-16 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24 transition-colors">
         {/* Ambient Radial Glows */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.25),rgba(255,255,255,0))]" />
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.10),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.25),rgba(255,255,255,0))]" />
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-indigo-400/10 dark:bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -176,12 +165,12 @@ export const Home: React.FC = () => {
                       }}
                       onFocus={() => setShowHeroSuggestions(true)}
                       placeholder="Search card by brand name (e.g. PlayStation, Apple, Target)..."
-                      className="w-full pl-10 pr-24 py-3.5 rounded-2xl bg-slate-800/80 dark:bg-slate-900/80 border border-slate-700/80 focus:border-amber-400 text-sm text-white placeholder-slate-400 shadow-xl focus:outline-none focus:ring-2 focus:ring-amber-400/40 transition-all"
+                      className="w-full pl-10 pr-24 py-3.5 rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700/80 focus:border-indigo-500 dark:focus:border-amber-400 text-sm text-slate-900 dark:text-white placeholder-slate-400 shadow-md shadow-slate-200/50 dark:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/30 dark:focus:ring-amber-400/40 transition-all"
                     />
                     <button
                       type="submit"
                       id="hero-search-submit-btn"
-                      className="absolute right-1.5 top-1.5 bottom-1.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+                      className="absolute right-1.5 top-1.5 bottom-1.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 dark:bg-amber-500 dark:hover:bg-amber-400 text-white dark:text-slate-950 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
                     >
                       <span>Search</span>
                     </button>
@@ -191,10 +180,10 @@ export const Home: React.FC = () => {
                 {/* Instant Suggestions Dropdown */}
                 {showHeroSuggestions && filteredSuggestions.length > 0 && (
                   <div 
-                    className="absolute left-0 right-0 top-full mt-2 bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden z-30 p-2 text-left"
+                    className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden z-30 p-2 text-left"
                     onMouseLeave={() => setShowHeroSuggestions(false)}
                   >
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 py-1.5 border-b border-slate-800">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 py-1.5 border-b border-slate-100 dark:border-slate-800">
                       Matching Gift Cards
                     </div>
                     <div className="py-1">
@@ -203,15 +192,15 @@ export const Home: React.FC = () => {
                           key={item.id}
                           to={`/gift-cards/${item.slug}`}
                           onClick={() => setShowHeroSuggestions(false)}
-                          className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-slate-800 transition-colors"
+                          className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                         >
                           <div className="flex items-center gap-2.5">
-                            <span className="text-xs font-bold text-white">{item.name}</span>
-                            <span className="text-[10px] bg-slate-800 text-indigo-300 px-2 py-0.5 rounded-md font-mono">
+                            <span className="text-xs font-bold text-slate-900 dark:text-white">{item.name}</span>
+                            <span className="text-[10px] bg-slate-100 dark:bg-slate-800 text-indigo-600 dark:text-indigo-300 px-2 py-0.5 rounded-md font-mono">
                               {item.category}
                             </span>
                           </div>
-                          <span className="text-xs font-bold text-emerald-400 font-mono">
+                          <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 font-mono">
                             From ${item.startingPrice}
                           </span>
                         </Link>
@@ -222,14 +211,14 @@ export const Home: React.FC = () => {
               </div>
 
               {/* Main Typography */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-white">
                 Digital Gift Cards. <br className="hidden sm:inline" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-indigo-200 to-amber-200">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-indigo-500 to-amber-600 dark:from-indigo-300 dark:via-indigo-200 dark:to-amber-200">
                   Simple, Fast, Secure.
                 </span>
               </h1>
 
-              <p className="text-sm sm:text-base md:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 Discover authentic digital gift cards from 50+ world-class brands. Choose your card, select an exact amount, and get instant electronic delivery.
               </p>
 
@@ -239,7 +228,7 @@ export const Home: React.FC = () => {
                   <Link
                     to="/gift-cards"
                     id="hero-buy-gift-card-btn"
-                    className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:via-orange-400 hover:to-amber-500 text-white font-extrabold text-sm shadow-lg shadow-orange-500/20 border border-amber-400/40 transition-all duration-200 hover:scale-[1.02] active:scale-[0.99] cursor-pointer"
+                    className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-indigo-800 hover:from-indigo-500 hover:via-indigo-600 hover:to-indigo-700 text-white font-extrabold text-sm shadow-lg shadow-indigo-600/20 border border-indigo-500/30 transition-all duration-200 hover:scale-[1.02] active:scale-[0.99] cursor-pointer"
                   >
                     <ShoppingBag className="w-4 h-4" />
                     <span>Buy Gift Card</span>
@@ -249,26 +238,26 @@ export const Home: React.FC = () => {
                   <Link
                     to="/validate"
                     id="hero-validate-card-btn"
-                    className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-emerald-400/60 text-slate-200 hover:text-white font-semibold text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.99] cursor-pointer"
+                    className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:via-teal-500 hover:to-emerald-600 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/20 border border-emerald-500/40 transition-all duration-200 hover:scale-[1.02] active:scale-[0.99] cursor-pointer"
                   >
-                    <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                    <ShieldCheck className="w-4 h-4 text-emerald-100" />
                     <span>Validate Card</span>
                   </Link>
                 </div>
               </div>
 
               {/* Micro Trust Indicators */}
-              <div className="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-5 text-xs text-slate-400 font-medium">
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-5 text-xs text-slate-500 dark:text-slate-400 font-medium">
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>Instant eDelivery</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Lock className="w-4 h-4 text-indigo-400 shrink-0" />
+                  <Lock className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
                   <span>256-bit Encrypted</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Zap className="w-4 h-4 text-amber-400 shrink-0" />
+                  <Zap className="w-4 h-4 text-amber-500 dark:text-amber-400 shrink-0" />
                   <span>Zero Inactivity Fees</span>
                 </div>
                 <button
@@ -276,9 +265,9 @@ export const Home: React.FC = () => {
                   onClick={() => {
                     document.getElementById('customer-reviews-section')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 transition-all cursor-pointer font-bold text-xs shadow-xs hover:scale-105 active:scale-95"
+                  className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-50 dark:bg-amber-500/15 hover:bg-amber-100 dark:hover:bg-amber-500/25 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-500/30 transition-all cursor-pointer font-bold text-xs shadow-xs hover:scale-105 active:scale-95"
                 >
-                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400 shrink-0" />
+                  <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500 shrink-0" />
                   <span>Client Reviews (4.9/5)</span>
                 </button>
               </div>

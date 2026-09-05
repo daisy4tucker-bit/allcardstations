@@ -18,27 +18,24 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [theme, setThemeState] = useState<Theme>(() => {
     try {
       const savedTheme = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('allcardstation-theme');
-      if (savedTheme === 'light' || savedTheme === 'dark' || savedTheme === 'system') {
+      if (savedTheme === 'light' || savedTheme === 'dark') {
         return savedTheme;
       }
     } catch {
       // Ignore localStorage errors (e.g. sandboxed iframe restrictions)
     }
-    return 'system';
-  });
-
-  const [systemTheme, setSystemTheme] = useState<ResolvedTheme>(() => {
-    if (typeof window !== 'undefined' && window.matchMedia) {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
     return 'light';
   });
 
-  // Track system OS color scheme changes
+  const [systemTheme, setSystemTheme] = useState<ResolvedTheme>('light');
+
+  // Track system OS color scheme changes if theme is explicitly set to system
   useEffect(() => {
     if (typeof window === 'undefined' || !window.matchMedia) return;
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setSystemTheme(mediaQuery.matches ? 'dark' : 'light');
+
     const handleChange = (e: MediaQueryListEvent) => {
       setSystemTheme(e.matches ? 'dark' : 'light');
     };

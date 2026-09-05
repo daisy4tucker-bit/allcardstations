@@ -38,6 +38,8 @@ import { Button } from '../components/ui/Button';
 type DashboardTab =
   | 'profile'
   | 'orders'
+  | 'purchase-history'
+  | 'history'
   | 'favorites'
   | 'recipients'
   | 'support'
@@ -51,8 +53,13 @@ export const Dashboard: React.FC = () => {
   const { user, profile, isAuthenticated, isLoading, logout, favorites } = useAuth();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const tabParam = (searchParams.get('tab') as DashboardTab) || 'profile';
-  const [activeTab, setActiveTab] = useState<DashboardTab>(tabParam);
+  const rawTabParam = searchParams.get('tab');
+  const normalizedTab: DashboardTab = 
+    rawTabParam === 'purchase-history' || rawTabParam === 'history' || rawTabParam === 'orders'
+      ? 'orders'
+      : (rawTabParam as DashboardTab) || 'profile';
+  const [activeTab, setActiveTab] = useState<DashboardTab>(normalizedTab);
+
 
   const isAdmin = user?.role === 'ADMIN' || user?.email?.toLowerCase() === 'daisy4tucker@gmail.com';
   const [adminData, setAdminData] = useState<adminService.AdminDataBrowserPayload | null>(null);
@@ -78,10 +85,14 @@ export const Dashboard: React.FC = () => {
   }, [isAdmin, activeTab]);
 
   useEffect(() => {
-    if (tabParam) {
-      setActiveTab(tabParam);
+    if (rawTabParam) {
+      const normalized: DashboardTab = 
+        rawTabParam === 'purchase-history' || rawTabParam === 'history' || rawTabParam === 'orders'
+          ? 'orders'
+          : (rawTabParam as DashboardTab) || 'profile';
+      setActiveTab(normalized);
     }
-  }, [tabParam]);
+  }, [rawTabParam]);
 
   const handleTabChange = (tab: DashboardTab) => {
     setActiveTab(tab);
@@ -138,7 +149,7 @@ export const Dashboard: React.FC = () => {
 
   const tabs = [
     { id: 'profile', label: 'My Profile', icon: User, count: null },
-    { id: 'orders', label: 'My Orders', icon: ShoppingBag, count: null },
+    { id: 'orders', label: 'Purchase History', icon: ShoppingBag, count: null },
     { id: 'favorites', label: 'Saved Cards', icon: Heart, count: favorites.length },
     { id: 'recipients', label: 'Gift Recipients', icon: Users, count: null },
     { id: 'support', label: 'Customer Support', icon: Headphones, count: null },
