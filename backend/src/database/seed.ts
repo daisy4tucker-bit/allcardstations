@@ -159,7 +159,7 @@ export async function seedDatabase() {
         description: 'Give the gift of unforgettable trips, unique stays, and one-of-a-kind local experiences worldwide.',
         startingPrice: 25.0,
         available: true,
-        image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&auto=format&fit=crop&q=80',
+        image: 'https://i.pcmag.com/imagery/articles/03VDBodH56HmiGaAHSlH6FH-1.fit_lim.size_1200x630.v1640087360.jpg',
       },
       {
         id: 'gc-uber',

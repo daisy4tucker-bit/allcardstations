@@ -28,20 +28,31 @@ export async function runMigrations() {
     console.error('❌ Migration push failed:', error.message);
     
     // Check for SQLite corruption and attempt recovery
-    const dbPath = path.resolve(process.cwd(), 'dev.db');
-    if (fs.existsSync(dbPath)) {
-      console.log('⚠️ Attempting recovery: resetting corrupt SQLite database file...');
-      try {
-        fs.unlinkSync(dbPath);
-        execSync('npx prisma db push --accept-data-loss', { stdio: 'inherit' });
-        console.log('✅ Database schema recreated and pushed successfully after recovery!');
-        return true;
-      } catch (retryError: any) {
-        console.error('❌ Recovery migration failed:', retryError.message);
-        throw retryError;
+    const candidatePaths = [
+      path.resolve(process.cwd(), 'dev.db'),
+      path.resolve(process.cwd(), 'dev.db-journal'),
+      path.resolve(process.cwd(), 'dev.db-wal'),
+      path.resolve(process.cwd(), 'dev.db-shm'),
+      path.resolve(process.cwd(), 'prisma', 'dev.db'),
+      path.resolve(process.cwd(), 'prisma', 'dev.db-journal'),
+      path.resolve(process.cwd(), 'prisma', 'dev.db-wal'),
+      path.resolve(process.cwd(), 'prisma', 'dev.db-shm'),
+    ];
+
+    console.log('⚠️ Attempting automatic recovery: resetting SQLite database files...');
+    try {
+      for (const p of candidatePaths) {
+        if (fs.existsSync(p)) {
+          fs.unlinkSync(p);
+        }
       }
+      execSync('npx prisma db push --accept-data-loss', { stdio: 'inherit' });
+      console.log('✅ Database schema recreated and pushed successfully after recovery!');
+      return true;
+    } catch (retryError: any) {
+      console.error('❌ Recovery migration failed:', retryError.message);
+      throw retryError;
     }
-    throw error;
   }
 }
 

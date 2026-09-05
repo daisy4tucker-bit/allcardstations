@@ -1,17 +1,34 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
   <defs>
-    <linearGradient id="doordashBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FF3008"/>
-      <stop offset="50%" stop-color="#FA2402"/>
-      <stop offset="100%" stop-color="#C51B00"/>
+    <!-- Subtle vibrant DoorDash red gradient -->
+    <linearGradient id="doordashRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF3600"/>
+      <stop offset="100%" stop-color="#EB1700"/>
     </linearGradient>
   </defs>
-  <rect width="800" height="500" rx="24" fill="url(#doordashBg)"/>
-  
-  <g transform="translate(400, 240)">
-    <!-- DoorDash Dash Icon -->
-    <path d="M-60 -40 C-20 -40 20 -20 50 -10 C35 5 10 20 -20 20 C-50 20 -70 5 -70 -10 C-70 -25 -50 -40 -60 -40 Z" fill="#FFFFFF" transform="translate(10, -30) scale(1.2)"/>
-    <text x="0" y="110" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="4">DOORDASH</text>
-    <text x="0" y="145" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#FED7AA" text-anchor="middle" letter-spacing="2">DELIVERY GIFT CARD</text>
+
+  <!-- Card Background with rounded corners -->
+  <rect width="800" height="500" rx="32" fill="url(#doordashRed)"/>
+
+  <!-- Centered DoorDash Logo & Mark -->
+  <g transform="translate(400, 185)">
+    <!-- DoorDash Dash Wing Emblem -->
+    <path 
+      d="M23.076 9.408a6.52 6.52 0 0 0-4.088-2.616C16.892 6.44 14.8 7.2 13.568 8.072L3.256 15.376A7.056 7.056 0 0 0 .5 21.08c0 3.928 3.192 7.12 7.12 7.12h17.512c3.808 0 7.056-2.8 7.616-6.576.64-4.368-1.968-8.264-7.008-14.144a6.58 6.58 0 0 0-2.664-2.072zm-15.456 15.72c-2.144 0-3.88-1.736-3.88-3.88a4.12 4.12 0 0 1 1.6-3.128l10.312-7.304c1.24-.872 3.328-1.632 5.424-1.28 1.488.248 2.808 1.08 3.736 2.336 2.744 3.2 4.208 5.336 3.768 8.336-.376 2.584-2.6 4.92-5.224 4.92H7.62z" 
+      fill="#FFFFFF"
+      transform="scale(6.4) translate(-16.6, -17.3)"
+    />
   </g>
+
+  <!-- DOORDASH Wordmark in pure white bold sans -->
+  <text 
+    x="400" 
+    y="360" 
+    text-anchor="middle" 
+    fill="#FFFFFF" 
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" 
+    font-weight="900" 
+    font-size="62" 
+    letter-spacing="5"
+  >DOORDASH</text>
 </svg>

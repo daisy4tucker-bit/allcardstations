@@ -12,7 +12,7 @@ export const OpenGraphMeta: React.FC<OpenGraphMetaProps> = ({
   title = 'AllCardVault - Digital Gift Card Marketplace & Instant Card Validation',
   description = 'Buy, redeem, and validate digital gift cards with instant email delivery and live balance checking across Apple, Amazon, Steam, Visa, Xbox, and top global brands.',
   image = 'https://images.unsplash.com/photo-1556742049-0a67d268a735?w=1200&h=630&fit=crop&q=80',
-  url = typeof window !== 'undefined' ? window.location.href : 'https://allcardvault.onrender.com/',
+  url = typeof window !== 'undefined' ? window.location.href : 'https://allcardstatus.com/',
   type = 'website',
 }) => {
   useEffect(() => {

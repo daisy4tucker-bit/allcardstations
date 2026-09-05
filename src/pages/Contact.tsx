@@ -398,7 +398,7 @@ export const Contact: React.FC = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                  <a href="mailto:support@allcardvault.com" className="w-full sm:w-auto">
+                  <a href="mailto:support@allcardstatus.com" className="w-full sm:w-auto">
                     <Button variant="primary" className="w-full" leftIcon={<Mail className="w-4 h-4" />}>
                       Email Operations Desk
                     </Button>
@@ -647,7 +647,7 @@ export const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-slate-400 text-xs">Official Support Desk</div>
-                    <div className="font-semibold text-white font-mono text-xs sm:text-sm">support@allcardvault.com</div>
+                    <div className="font-semibold text-white font-mono text-xs sm:text-sm">support@allcardstatus.com</div>
                   </div>
                 </div>
 
@@ -683,7 +683,7 @@ export const Contact: React.FC = () => {
                   <span>Start Live Chat (Tawk.to)</span>
                 </button>
                 <a
-                  href="mailto:support@allcardvault.com"
+                  href="mailto:support@allcardstatus.com"
                   id="btn-contact-email-support"
                   className="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >

@@ -147,7 +147,7 @@ export const buildVoucherHtml = (tx: PurchaseTransaction): string => {
     </div>
     <div class="footer">
       <p>This is a verified digital gift card token issued by AllCardVault Enterprise Marketplace.</p>
-      <p>Redeemable directly on official merchant storefronts or apps. For 24/7 support, contact support@allcardvault.com.</p>
+      <p>Redeemable directly on official merchant storefronts or apps. For 24/7 support, contact support@allcardstatus.com.</p>
     </div>
   </div>
 </body>

@@ -40,7 +40,7 @@ export const Checkout: React.FC = () => {
   const initialCurrencyParam = searchParams.get('currency');
   const navigate = useNavigate();
 
-  const card = GIFT_CARDS.find((c) => c.slug === slug) || GIFT_CARDS[1]; // default to Apple if not found
+  const card = GIFT_CARDS.find((c) => c.slug === slug) || GIFT_CARDS.find((c) => c.slug === 'apple') || GIFT_CARDS[0];
   const cardBaseCurrency = (card?.currency && SUPPORTED_CURRENCIES.some(c => c.code === card.currency)) ? card.currency : 'USD';
 
   // Live Currency Rates Engine

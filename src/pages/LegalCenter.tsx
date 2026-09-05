@@ -187,7 +187,7 @@ export const LegalCenter: React.FC = () => {
               <section className="space-y-3">
                 <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">3. Data Retention & Privacy Choices</h3>
                 <p>
-                  Account credentials and transaction records remain securely stored while your account is active. Users may request full account deletion or a copy of stored personal records at any time by contacting <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-xs font-mono">privacy@allcardvault.com</code>.
+                  Account credentials and transaction records remain securely stored while your account is active. Users may request full account deletion or a copy of stored personal records at any time by contacting <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-xs font-mono">privacy@allcardstatus.com</code>.
                 </p>
               </section>
             </div>

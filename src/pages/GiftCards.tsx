@@ -21,7 +21,7 @@ export const GiftCards: React.FC = () => {
   const initialCategory = (searchParams.get('category') as CategoryType) || 'All';
   const initialSearch = searchParams.get('search') || '';
   const initialRegion = searchParams.get('region') || 'All';
-  const initialSort = (searchParams.get('sort') as SortOption) || 'popular';
+  const initialSort = (searchParams.get('sort') as SortOption) || 'name-asc';
 
   const [searchQuery, setSearchQuery] = useState<string>(initialSearch);
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>(initialCategory);
@@ -68,7 +68,7 @@ export const GiftCards: React.FC = () => {
     if (selectedCategory !== 'All') params.category = selectedCategory;
     if (searchQuery.trim()) params.search = searchQuery.trim();
     if (selectedRegion !== 'All') params.region = selectedRegion;
-    if (sortBy !== 'popular') params.sort = sortBy;
+    if (sortBy !== 'name-asc') params.sort = sortBy;
 
     setSearchParams(params, { replace: true });
   }, [selectedCategory, searchQuery, selectedRegion, sortBy, setSearchParams]);
@@ -229,9 +229,9 @@ export const GiftCards: React.FC = () => {
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
                 options={[
-                  { value: 'popular', label: 'Sort by: Popular' },
                   { value: 'name-asc', label: 'Name (A to Z)' },
                   { value: 'name-desc', label: 'Name (Z to A)' },
+                  { value: 'popular', label: 'Sort by: Popular' },
                   { value: 'price-asc', label: 'Price (Low to High)' },
                   { value: 'price-desc', label: 'Price (High to Low)' },
                 ]}
