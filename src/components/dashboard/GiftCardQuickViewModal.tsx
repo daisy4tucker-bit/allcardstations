@@ -72,7 +72,7 @@ export const GiftCardQuickViewModal: React.FC<GiftCardQuickViewModalProps> = ({
         {/* Top Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-[#86A98D] animate-pulse"></span>
             <h3 className="font-bold text-sm tracking-tight text-slate-900 dark:text-white">
               Quick View eGift Certificate
             </h3>
@@ -88,7 +88,7 @@ export const GiftCardQuickViewModal: React.FC<GiftCardQuickViewModalProps> = ({
 
         <div className="p-6 space-y-6 max-h-[80vh] overflow-y-auto">
           {/* Card Visual Mock */}
-          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800 bg-gradient-to-tr from-slate-900 to-indigo-950 p-6 flex flex-col justify-between text-white">
+          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800 bg-gradient-to-tr from-slate-900 to-slate-800 p-6 flex flex-col justify-between text-white">
             {transaction.cardImage && (
               <img
                 src={transaction.cardImage}
@@ -118,7 +118,7 @@ export const GiftCardQuickViewModal: React.FC<GiftCardQuickViewModalProps> = ({
                 <p className="text-[10px] text-slate-400 uppercase font-mono">Order Reference</p>
                 <p className="font-mono font-bold text-white">{transaction.id}</p>
               </div>
-              <div className="flex items-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-2.5 py-1 rounded-lg text-[11px] font-bold">
+              <div className="flex items-center gap-1.5 bg-[#86A98D]/20 text-[#86A98D] border border-[#86A98D]/30 px-2.5 py-1 rounded-lg text-[11px] font-bold">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>Verified Active</span>
               </div>
@@ -127,7 +127,7 @@ export const GiftCardQuickViewModal: React.FC<GiftCardQuickViewModalProps> = ({
 
           {/* eCode & PIN Access Box */}
           {isDelivered ? (
-            <div className="p-5 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/80 dark:border-indigo-900/60 space-y-4">
+            <div className="p-5 rounded-2xl bg-blue-50/70 dark:bg-blue-950/40 border border-blue-200/80 dark:border-blue-900/60 space-y-4">
               <div>
                 <div className="flex items-center justify-between mb-1.5">
                   <span className="text-xs font-bold uppercase tracking-wider text-indigo-900 dark:text-indigo-300 flex items-center gap-1.5">
@@ -206,10 +206,10 @@ export const GiftCardQuickViewModal: React.FC<GiftCardQuickViewModalProps> = ({
                 <span>{transaction.id}</span>
                 <button 
                   onClick={() => handleCopy(transaction.id, 'order')}
-                  className="text-slate-400 hover:text-indigo-600 cursor-pointer"
+                  className="text-slate-400 hover:text-[#2563EB] cursor-pointer"
                   title="Copy Order ID"
                 >
-                  {copiedOrderId ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
+                  {copiedOrderId ? <Check className="w-3 h-3 text-[#86A98D]" /> : <Copy className="w-3 h-3" />}
                 </button>
               </div>
             </div>

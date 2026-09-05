@@ -27,7 +27,7 @@ async function request(endpoint: string, options: RequestInit = {}) {
 
 async function runLiveIntegrationTest() {
   console.log('================================================================');
-  console.log('🚀 ALLCARDVAULT PHASE 2: LIVE HTTP & DATABASE INTEGRATION TEST');
+  console.log('🚀 ALLCARDSTATUS PHASE 2: LIVE HTTP & DATABASE INTEGRATION TEST');
   console.log('================================================================');
   console.log(`Backend Server Target: ${BASE_URL}`);
   console.log(`Supabase PostgreSQL: Connected via Prisma\n`);

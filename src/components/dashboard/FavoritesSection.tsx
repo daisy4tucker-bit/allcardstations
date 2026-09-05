@@ -93,12 +93,12 @@ export const FavoritesSection: React.FC = () => {
                   <div className="pt-3 border-t border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between">
                     <div>
                       <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">From</span>
-                      <p className="text-sm font-bold text-indigo-600 dark:text-indigo-400 font-mono">
+                      <p className="text-sm font-bold text-[#2563EB] dark:text-blue-400 font-mono">
                         ${card.startingPrice} {card.currency}
                       </p>
                     </div>
                     <Link to={`/gift-cards/${card.slug}`}>
-                      <span className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1">
+                      <span className="text-xs font-bold text-[#2563EB] dark:text-blue-400 hover:underline flex items-center gap-1">
                         View Card <ArrowRight className="w-3 h-3" />
                       </span>
                     </Link>

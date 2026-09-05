@@ -386,10 +386,10 @@ export const PurchaseHistoryTimeline: React.FC = () => {
             <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
               Active & Delivered
             </span>
-            <div className="text-2xl font-black text-emerald-600 dark:text-emerald-400">
+            <div className="text-2xl font-black text-[#86A98D]">
               {metrics.deliveredCount}
             </div>
-            <p className="text-[11px] text-emerald-600/80 dark:text-emerald-400/80 font-medium">Ready to redeem</p>
+            <p className="text-[11px] text-[#86A98D] font-medium">Ready to redeem</p>
           </div>
 
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-800/80 space-y-1">
@@ -414,7 +414,7 @@ export const PurchaseHistoryTimeline: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by brand name, Order ID, email..."
-            className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
           />
         </div>
 
@@ -425,7 +425,7 @@ export const PurchaseHistoryTimeline: React.FC = () => {
             onClick={() => setStatusFilter('ALL')}
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
               statusFilter === 'ALL'
-                ? 'bg-indigo-600 text-white shadow-xs'
+                ? 'bg-[#2563EB] text-white shadow-xs'
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
             }`}
           >
@@ -436,7 +436,7 @@ export const PurchaseHistoryTimeline: React.FC = () => {
             onClick={() => setStatusFilter('DELIVERED')}
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
               statusFilter === 'DELIVERED'
-                ? 'bg-emerald-600 text-white shadow-xs'
+                ? 'bg-[#86A98D] text-white shadow-xs'
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200'
             }`}
           >
@@ -543,13 +543,13 @@ export const PurchaseHistoryTimeline: React.FC = () => {
 
                     <div className="flex items-center gap-2">
                       {isDelivered ? (
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-bold shadow-2xs">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#86A98D]/15 border border-[#86A98D]/30 text-[#86A98D] text-xs font-bold shadow-2xs">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#86A98D]" />
                           <span>{tx.statusLabel}</span>
                         </span>
                       ) : isProcessing ? (
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-800 text-cyan-700 dark:text-cyan-300 text-xs font-bold shadow-2xs">
-                          <Clock className="w-3.5 h-3.5 text-cyan-500 animate-spin" />
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-[#2563EB] dark:text-blue-300 text-xs font-bold shadow-2xs">
+                          <Clock className="w-3.5 h-3.5 text-blue-500 animate-spin" />
                           <span>{tx.statusLabel}</span>
                         </span>
                       ) : (
@@ -565,7 +565,7 @@ export const PurchaseHistoryTimeline: React.FC = () => {
                 {/* Visual Milestone Stepper Timeline */}
                 <div className="py-2">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-indigo-500" />
+                    <Clock className="w-3.5 h-3.5 text-[#2563EB]" />
                     Transaction Milestone Progression
                   </h4>
 
@@ -579,7 +579,7 @@ export const PurchaseHistoryTimeline: React.FC = () => {
                           key={index}
                           className={`p-3.5 rounded-2xl border transition-all ${
                             isComplete
-                              ? 'bg-emerald-50/40 dark:bg-emerald-950/20 border-emerald-200/70 dark:border-emerald-900/50 text-emerald-950 dark:text-emerald-200'
+                              ? 'bg-[#86A98D]/10 dark:bg-[#86A98D]/15 border-[#86A98D]/30 text-slate-800 dark:text-slate-200'
                               : isActive
                               ? 'bg-amber-50/60 dark:bg-amber-950/30 border-amber-300 dark:border-amber-800 text-amber-950 dark:text-amber-200 ring-2 ring-amber-400/20'
                               : 'bg-slate-50/50 dark:bg-slate-800/40 border-slate-200/60 dark:border-slate-800 text-slate-400'
@@ -590,7 +590,7 @@ export const PurchaseHistoryTimeline: React.FC = () => {
                               Step 0{event.step}
                             </span>
                             {isComplete ? (
-                              <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                              <CheckCircle2 className="w-4 h-4 text-[#86A98D] shrink-0" />
                             ) : isActive ? (
                               <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400 animate-spin shrink-0" />
                             ) : (
@@ -614,11 +614,11 @@ export const PurchaseHistoryTimeline: React.FC = () => {
 
                 {/* E-Code Credential Quick Access Banner */}
                 {isDelivered && (
-                  <div className="p-4 rounded-2xl bg-indigo-50/60 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div className="p-4 rounded-2xl bg-blue-50/60 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
-                        <span className="text-xs font-bold uppercase tracking-wider text-indigo-900 dark:text-indigo-300">
+                        <Sparkles className="w-3.5 h-3.5 text-[#2563EB] dark:text-blue-400" />
+                        <span className="text-xs font-bold uppercase tracking-wider text-blue-900 dark:text-blue-300">
                           Digital Redemption eCode & PIN
                         </span>
                       </div>
@@ -638,7 +638,7 @@ export const PurchaseHistoryTimeline: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => toggleRevealCode(tx.id)}
-                        className="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-indigo-200 dark:border-indigo-800 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 transition-colors cursor-pointer flex items-center gap-1.5"
+                        className="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-blue-200 dark:border-blue-800 text-xs font-bold text-[#2563EB] dark:text-blue-400 hover:bg-blue-50 transition-colors cursor-pointer flex items-center gap-1.5"
                       >
                         {isRevealed ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                         <span>{isRevealed ? 'Hide' : 'Reveal'}</span>
@@ -647,7 +647,7 @@ export const PurchaseHistoryTimeline: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => handleCopyCode(tx.id, tx.eCode || 'ACV-9948-2018-8421')}
-                        className="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-colors cursor-pointer flex items-center gap-1.5 shadow-2xs"
+                        className="px-3 py-1.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-bold transition-colors cursor-pointer flex items-center gap-1.5 shadow-2xs"
                       >
                         {isCopied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                         <span>{isCopied ? 'Copied!' : 'Copy Code'}</span>
@@ -659,7 +659,7 @@ export const PurchaseHistoryTimeline: React.FC = () => {
                 {/* Bottom Quick-View & Download Action Toolbar */}
                 <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
                   <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                    <ShieldCheck className="w-4 h-4 text-[#86A98D]" />
                     <span>256-bit SSL Cryptographic Escrow</span>
                   </div>
 

@@ -130,8 +130,8 @@ export const RecipientsSection: React.FC = () => {
       </div>
 
       {successMsg && (
-        <div className="mt-6 p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-2xl flex items-center gap-3 text-emerald-800 dark:text-emerald-300 text-sm font-medium animate-in fade-in">
-          <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+        <div className="mt-6 p-4 bg-[#86A98D]/15 border border-[#86A98D]/30 rounded-2xl flex items-center gap-3 text-slate-800 dark:text-slate-200 text-sm font-medium animate-in fade-in">
+          <CheckCircle2 className="w-5 h-5 text-[#86A98D] shrink-0" />
           <span>{successMsg}</span>
         </div>
       )}

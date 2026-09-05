@@ -7,6 +7,7 @@ const TABLE_CANDIDATES = [
   'GiftCardValidation',
   'giftcardvalidations',
   'giftcardvalidation',
+  'allcardstatus',
   'allcardvault',
   'allcardstation',
 ].filter(Boolean) as string[];

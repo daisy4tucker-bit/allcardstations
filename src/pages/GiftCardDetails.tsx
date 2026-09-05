@@ -149,7 +149,7 @@ export const GiftCardDetails: React.FC = () => {
       ]}
     >
       <OpenGraphMeta
-        title={`Buy ${name} Gift Card Online - Instant Email Delivery | AllCardVault`}
+        title={`Buy ${name} Gift Card Online - Instant Email Delivery | AllCardStatus`}
         description={`Purchase digital ${name} gift cards with instant 256-bit encrypted delivery. ${description}`}
         image={card.image}
         type="product"
@@ -201,7 +201,7 @@ export const GiftCardDetails: React.FC = () => {
           {/* Key Card Guarantees / Features Box */}
           <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 space-y-3.5 shadow-xs">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
-              AllCardVault Assurance
+              AllCardStatus Assurance
             </h4>
 
             <div className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">

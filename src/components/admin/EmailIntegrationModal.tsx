@@ -111,14 +111,14 @@ export const EmailIntegrationModal: React.FC<EmailIntegrationModalProps> = ({ is
       <div className="relative w-full max-w-xl bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
         
         {/* Header */}
-        <div className="px-6 py-4 bg-gradient-to-r from-emerald-600 to-teal-700 text-white flex items-center justify-between">
+        <div className="px-6 py-4 bg-[#2563EB] text-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-xl bg-white/10 backdrop-blur-md">
-              <Mail className="w-5 h-5 text-emerald-100" />
+              <Mail className="w-5 h-5 text-white" />
             </div>
             <div>
               <h3 className="font-bold text-base leading-snug">Automated Admin Email Alerts</h3>
-              <p className="text-emerald-100 text-xs">Instant email notification system for gift card submissions</p>
+              <p className="text-blue-100 text-xs">Instant email notification system for gift card submissions</p>
             </div>
           </div>
           <button
@@ -134,9 +134,9 @@ export const EmailIntegrationModal: React.FC<EmailIntegrationModalProps> = ({ is
         <div className="p-6 space-y-5 max-h-[80vh] overflow-y-auto">
           
           {/* Notification Status Card & Toggle */}
-          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+          <div className="p-4 rounded-xl bg-[#F5F7FA] dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className={`p-2 rounded-xl ${isEnabled ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600' : 'bg-slate-200 dark:bg-slate-700 text-slate-500'}`}>
+              <div className={`p-2 rounded-xl ${isEnabled ? 'bg-[#86A98D]/20 text-[#86A98D]' : 'bg-slate-200 dark:bg-slate-700 text-slate-500'}`}>
                 {isEnabled ? <CheckCircle2 className="w-5 h-5" /> : <Lock className="w-5 h-5" />}
               </div>
               <div>
@@ -153,7 +153,7 @@ export const EmailIntegrationModal: React.FC<EmailIntegrationModalProps> = ({ is
                 disabled={isToggling}
                 onClick={handleToggleNotifications}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer ${
-                  isEnabled ? 'bg-emerald-600' : 'bg-slate-300 dark:bg-slate-700'
+                  isEnabled ? 'bg-[#2563EB]' : 'bg-slate-300 dark:bg-slate-700'
                 }`}
               >
                 <span
@@ -164,7 +164,7 @@ export const EmailIntegrationModal: React.FC<EmailIntegrationModalProps> = ({ is
               </button>
               <span className={`text-[11px] font-mono px-2.5 py-1 rounded-full font-bold border ${
                 isEnabled
-                  ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/80 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800'
+                  ? 'bg-[#86A98D]/15 text-[#86A98D] border-[#86A98D]/30'
                   : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 border-slate-300 dark:border-slate-700'
               }`}>
                 {isEnabled ? 'ENABLED' : 'DISABLED'}
@@ -185,7 +185,7 @@ export const EmailIntegrationModal: React.FC<EmailIntegrationModalProps> = ({ is
                   onChange={(e) => setRecipientEmail(e.target.value)}
                   placeholder="daisy4tucker@gmail.com"
                   required
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-medium text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-medium text-xs focus:ring-2 focus:ring-[#2563EB] focus:outline-none"
                 />
               </div>
               <p className="text-[11px] text-slate-500 mt-1">
@@ -197,12 +197,12 @@ export const EmailIntegrationModal: React.FC<EmailIntegrationModalProps> = ({ is
               <div
                 className={`p-3 rounded-xl border text-xs font-medium flex items-start gap-2.5 ${
                   feedback.type === 'success'
-                    ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200'
+                    ? 'bg-[#86A98D]/15 border-[#86A98D]/30 text-[#86A98D]'
                     : 'bg-red-50 dark:bg-red-950/60 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200'
                 }`}
               >
                 {feedback.type === 'success' ? (
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#86A98D] shrink-0 mt-0.5" />
                 ) : (
                   <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
                 )}
@@ -213,7 +213,7 @@ export const EmailIntegrationModal: React.FC<EmailIntegrationModalProps> = ({ is
             <button
               type="submit"
               disabled={isTesting}
-              className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-bold text-xs shadow-md shadow-emerald-600/20 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              className="w-full py-2.5 px-4 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] active:scale-98 text-white font-bold text-xs shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
               {isTesting ? (
                 <>
@@ -230,15 +230,15 @@ export const EmailIntegrationModal: React.FC<EmailIntegrationModalProps> = ({ is
           </form>
 
           {/* Setup Guide */}
-          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-2">
+          <div className="p-4 rounded-xl bg-[#F5F7FA] dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-2">
             <div className="flex items-center gap-1.5 font-bold text-xs text-slate-700 dark:text-slate-300">
-              <Info className="w-4 h-4 text-emerald-600" />
+              <Info className="w-4 h-4 text-[#2563EB]" />
               <span>Optional SMTP Setup for Direct Inbox Delivery</span>
             </div>
             <p className="text-[11.5px] text-slate-500 leading-relaxed">
               By default, all card validations automatically write structured email logs into your server console. To receive direct inbox delivery via Gmail or custom SMTP, add these environment variables in Render:
             </p>
-            <div className="p-3 bg-slate-900 text-emerald-400 font-mono text-[11px] rounded-lg overflow-x-auto space-y-1 border border-slate-800">
+            <div className="p-3 bg-slate-900 text-[#86A98D] font-mono text-[11px] rounded-lg overflow-x-auto space-y-1 border border-slate-800">
               <div>ADMIN_NOTIFICATION_EMAIL=daisy4tucker@gmail.com</div>
               <div>SMTP_HOST=smtp.gmail.com</div>
               <div>SMTP_PORT=587</div>
@@ -250,15 +250,15 @@ export const EmailIntegrationModal: React.FC<EmailIntegrationModalProps> = ({ is
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-3 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <div className="px-6 py-3 bg-[#F5F7FA] dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <span className="text-[11px] text-slate-400 font-medium flex items-center gap-1">
-            <Lock className="w-3 h-3 text-emerald-500" />
+            <Lock className="w-3 h-3 text-[#2563EB]" />
             Confidential Admin Notification System
           </span>
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs cursor-pointer"
+            className="px-4 py-1.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs cursor-pointer shadow-xs transition-colors"
           >
             Close
           </button>

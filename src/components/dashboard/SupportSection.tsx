@@ -29,7 +29,7 @@ export const SupportSection: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const quickQuestions = [
-    'What payment methods are supported on AllCardVault?',
+    'What payment methods are supported on AllCardStatus?',
     'When will cryptocurrency payments be available?',
     'How do I validate or check the balance of a gift card?',
     'Can I save multiple recipient addresses for gifting?',
@@ -117,14 +117,14 @@ export const SupportSection: React.FC = () => {
       {/* Header */}
       <div className="p-6 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50 dark:bg-slate-900/50">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-600/20">
+          <div className="w-10 h-10 rounded-2xl bg-[#2563EB] flex items-center justify-center text-white shadow-md shadow-blue-600/20">
             <Headphones className="w-5 h-5" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">Customer Support Live Chat</h2>
-              <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-[11px] font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#86A98D]/15 border border-[#86A98D]/30 text-[#86A98D] text-[11px] font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#86A98D] animate-pulse" />
                 Online
               </span>
             </div>
@@ -150,7 +150,7 @@ export const SupportSection: React.FC = () => {
       <div className="px-6 py-2.5 bg-amber-50 dark:bg-amber-950/40 border-b border-amber-200/60 dark:border-amber-900/50 flex items-center gap-2.5 text-xs text-amber-900 dark:text-amber-200">
         <ShieldAlert className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
         <span>
-          <strong>Notice:</strong> AllCardVault does not process credit cards or PayPal. Future digital card orders will support <strong>Cryptocurrency (BTC, ETH, LTC, SOL, USDT, USDC)</strong> exclusively.
+          <strong>Notice:</strong> AllCardStatus does not process credit cards or PayPal. Future digital card orders will support <strong>Cryptocurrency (BTC, ETH, LTC, SOL, USDT, USDC)</strong> exclusively.
         </span>
       </div>
 
@@ -158,7 +158,7 @@ export const SupportSection: React.FC = () => {
       <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50/30 dark:bg-slate-950/20">
         {isLoading ? (
           <div className="h-full flex flex-col items-center justify-center text-slate-400 space-y-2">
-            <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+            <Loader2 className="w-8 h-8 animate-spin text-[#2563EB]" />
             <p className="text-sm">Connecting to support channel...</p>
           </div>
         ) : (
@@ -175,7 +175,7 @@ export const SupportSection: React.FC = () => {
                   {!isCustomer && (
                     <div
                       className={`w-8 h-8 rounded-full flex items-center justify-center text-white shrink-0 shadow-xs ${
-                        isAi ? 'bg-indigo-600' : 'bg-emerald-600'
+                        isAi ? 'bg-[#2563EB]' : 'bg-[#86A98D]'
                       }`}
                     >
                       {isAi ? <Bot className="w-4 h-4" /> : <Headphones className="w-4 h-4" />}
@@ -193,7 +193,7 @@ export const SupportSection: React.FC = () => {
                       <div className="flex items-center gap-1.5 text-[11px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-1">
                         {isAi ? (
                           <>
-                            <Sparkles className="w-3 h-3" /> AllCardVault Assistant
+                            <Sparkles className="w-3 h-3" /> AllCardStatus Assistant
                           </>
                         ) : (
                           <>

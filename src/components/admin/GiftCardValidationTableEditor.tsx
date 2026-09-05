@@ -537,9 +537,9 @@ END $$;`;
       {/* Toast Feedback */}
       {feedbackMessage && (
         <div
-          className={`px-4 py-3 rounded-xl border flex items-center justify-between text-xs font-semibold shadow-sm transition-all ${
+          className={`px-4 py-3 rounded-xl border flex items-center justify-between text-xs font-semibold shadow-xs transition-all ${
             feedbackMessage.type === 'success'
-              ? 'bg-emerald-50 dark:bg-emerald-950/80 border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200'
+              ? 'bg-[#86A98D]/15 border-[#86A98D]/30 text-[#86A98D]'
               : 'bg-rose-50 dark:bg-rose-950/80 border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-200'
           }`}
         >
@@ -555,32 +555,32 @@ END $$;`;
 
       {/* Top Metrics / Quick Stats Banner */}
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-        <div className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+        <div className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
           <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Total Records</div>
-          <div className="text-xl font-black text-slate-900 dark:text-white mt-1">{stats.total}</div>
+          <div className="text-xl font-black text-[#1E293B] dark:text-white mt-1">{stats.total}</div>
         </div>
-        <div className="p-3.5 rounded-xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/40 dark:bg-emerald-950/20 shadow-sm">
-          <div className="text-[11px] font-bold text-emerald-700 dark:text-emerald-300 uppercase tracking-wider">Verified Cards</div>
-          <div className="text-xl font-black text-emerald-700 dark:text-emerald-300 mt-1">{stats.verified}</div>
+        <div className="p-3.5 rounded-xl border border-[#86A98D]/30 bg-[#86A98D]/10 dark:bg-[#86A98D]/20 shadow-xs">
+          <div className="text-[11px] font-bold text-[#86A98D] uppercase tracking-wider">Verified Cards</div>
+          <div className="text-xl font-black text-[#86A98D] mt-1">{stats.verified}</div>
         </div>
-        <div className="p-3.5 rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50/40 dark:bg-amber-950/20 shadow-sm">
+        <div className="p-3.5 rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50/40 dark:bg-amber-950/20 shadow-xs">
           <div className="text-[11px] font-bold text-amber-700 dark:text-amber-300 uppercase tracking-wider">Pending Review</div>
           <div className="text-xl font-black text-amber-700 dark:text-amber-300 mt-1">{stats.pending}</div>
         </div>
-        <div className="p-3.5 rounded-xl border border-rose-200 dark:border-rose-900/50 bg-rose-50/40 dark:bg-rose-950/20 shadow-sm">
+        <div className="p-3.5 rounded-xl border border-rose-200 dark:border-rose-900/50 bg-rose-50/40 dark:bg-rose-950/20 shadow-xs">
           <div className="text-[11px] font-bold text-rose-700 dark:text-rose-300 uppercase tracking-wider">Invalid / Failed</div>
           <div className="text-xl font-black text-rose-700 dark:text-rose-300 mt-1">{stats.invalid}</div>
         </div>
-        <div className="col-span-2 sm:col-span-1 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+        <div className="col-span-2 sm:col-span-1 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
           <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Claimed Volume</div>
-          <div className="text-xl font-black text-indigo-600 dark:text-indigo-400 mt-1">
+          <div className="text-xl font-black text-[#2563EB] dark:text-blue-400 mt-1">
             ${stats.totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
           </div>
         </div>
       </div>
 
       {/* Control Bar: Search, Filters, Column Editor, Add, Restart Table */}
-      <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm space-y-3">
+      <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex-1 min-w-[240px] relative">
             <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -589,7 +589,7 @@ END $$;`;
               placeholder="Search table by brand, card code, PIN, CVV, notes..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
+              className="w-full pl-9 pr-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-[#F5F7FA] dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB]"
             />
             {searchQuery && (
               <button
@@ -609,21 +609,14 @@ END $$;`;
               disabled={isSyncingToSupabase || filteredValidations.length === 0}
               className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border text-xs font-bold transition-all ${
                 supabaseStatus.configured && supabaseStatus.tableReady
-                  ? 'border-emerald-300 dark:border-emerald-800/80 bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/40 dark:hover:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200'
+                  ? 'border-[#86A98D]/40 bg-[#86A98D]/10 hover:bg-[#86A98D]/20 text-[#86A98D]'
                   : supabaseStatus.configured
-                  ? 'border-amber-300 dark:border-amber-800/80 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/40 dark:hover:bg-amber-900/60 text-amber-800 dark:text-amber-200'
-                  : 'border-indigo-200 dark:border-indigo-800 bg-indigo-50/70 hover:bg-indigo-100 dark:bg-indigo-950/40 dark:hover:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300'
+                  ? 'border-amber-300 dark:border-amber-800/80 bg-amber-50 hover:bg-amber-100 text-amber-800 dark:text-amber-200'
+                  : 'border-blue-200 dark:border-blue-800 bg-blue-50/70 hover:bg-blue-100 text-[#2563EB] dark:text-blue-300'
               } disabled:opacity-50`}
-              title={
-                supabaseStatus.configured && supabaseStatus.tableReady
-                  ? 'Supabase database table is connected & ready - click to sync all records'
-                  : supabaseStatus.configured
-                  ? "Supabase connected, but table 'gift_card_validations' needs to be created in SQL Editor."
-                  : 'Click to sync or configure Supabase database credentials'
-              }
             >
               {isSyncingToSupabase ? (
-                <RefreshCw className="w-3.5 h-3.5 animate-spin text-indigo-600" />
+                <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#2563EB]" />
               ) : (
                 <UploadCloud className="w-3.5 h-3.5" />
               )}
@@ -631,18 +624,11 @@ END $$;`;
               <span
                 className={`w-2 h-2 rounded-full ${
                   supabaseStatus.configured && supabaseStatus.tableReady
-                    ? 'bg-emerald-500 animate-pulse'
+                    ? 'bg-[#86A98D] animate-pulse'
                     : supabaseStatus.configured
                     ? 'bg-amber-500 animate-ping'
                     : 'bg-slate-400'
                 }`}
-                title={
-                  supabaseStatus.configured && supabaseStatus.tableReady
-                    ? 'Supabase Table Ready'
-                    : supabaseStatus.configured
-                    ? 'Supabase Connected (Table setup required)'
-                    : 'Supabase Not Configured'
-                }
               />
             </button>
 
@@ -650,7 +636,7 @@ END $$;`;
             <button
               type="button"
               onClick={() => setIsSupabaseModalOpen(true)}
-              className="inline-flex items-center gap-1.5 px-2.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold transition-colors"
+              className="inline-flex items-center gap-1.5 px-2.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-[#F5F7FA] dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold transition-colors"
               title="View Supabase Table SQL Schema & Setup Guide"
             >
               <Database className="w-3.5 h-3.5 text-slate-500" />
@@ -661,10 +647,10 @@ END $$;`;
             <button
               type="button"
               onClick={() => setIsTelegramModalOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-sky-300 dark:border-sky-800 bg-sky-50 hover:bg-sky-100 dark:bg-sky-950/50 dark:hover:bg-sky-900/60 text-sky-700 dark:text-sky-300 text-xs font-bold transition-all shadow-sm cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-blue-300 dark:border-blue-800 bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/50 dark:hover:bg-blue-900/60 text-[#2563EB] dark:text-blue-300 text-xs font-bold transition-all shadow-xs cursor-pointer"
               title="Configure Telegram Bot instant alerts for new card uploads"
             >
-              <Bot className="w-3.5 h-3.5 text-sky-500 animate-pulse" />
+              <Bot className="w-3.5 h-3.5 text-[#2563EB] animate-pulse" />
               <span>Telegram Alerts</span>
             </button>
 
@@ -672,10 +658,10 @@ END $$;`;
             <button
               type="button"
               onClick={() => setIsEmailModalOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-emerald-300 dark:border-emerald-800 bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/50 dark:hover:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 text-xs font-bold transition-all shadow-sm cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[#86A98D]/40 bg-[#86A98D]/10 hover:bg-[#86A98D]/20 text-[#86A98D] text-xs font-bold transition-all shadow-xs cursor-pointer"
               title="Configure Admin Automated Email Notifications for new card uploads"
             >
-              <Mail className="w-3.5 h-3.5 text-emerald-500" />
+              <Mail className="w-3.5 h-3.5 text-[#86A98D]" />
               <span>Email Alerts</span>
             </button>
 
@@ -686,8 +672,8 @@ END $$;`;
                 onClick={() => setShowColumnConfig(!showColumnConfig)}
                 className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border text-xs font-bold transition-colors ${
                   showColumnConfig
-                    ? 'bg-rose-50 border-rose-300 text-rose-700 dark:bg-rose-950 dark:border-rose-800 dark:text-rose-300'
-                    : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
+                    ? 'bg-blue-50 border-blue-300 text-[#2563EB] dark:bg-blue-950 dark:border-blue-800 dark:text-blue-300'
+                    : 'border-slate-200 dark:border-slate-700 bg-[#F5F7FA] dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
                 }`}
               >
                 <SlidersHorizontal className="w-3.5 h-3.5 text-slate-500" />
@@ -723,7 +709,7 @@ END $$;`;
                         onChange={(e) =>
                           setVisibleColumns((prev) => ({ ...prev, [colKey]: e.target.checked }))
                         }
-                        className="rounded border-slate-300 text-rose-600 focus:ring-rose-500"
+                        className="rounded border-slate-300 text-[#2563EB] focus:ring-[#2563EB]"
                       />
                       <span>{colLabel}</span>
                     </label>
@@ -737,7 +723,7 @@ END $$;`;
               type="button"
               onClick={handleExportCsv}
               disabled={filteredValidations.length === 0}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-bold transition-colors disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-[#F5F7FA] dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-bold transition-colors disabled:opacity-50"
             >
               <Download className="w-3.5 h-3.5 text-slate-500" />
               <span>Export CSV</span>
@@ -747,7 +733,7 @@ END $$;`;
             <button
               type="button"
               onClick={handleOpenAddModal}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-extrabold shadow-sm transition-colors"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-extrabold shadow-xs transition-colors"
             >
               <Plus className="w-4 h-4" />
               <span>Add Record</span>
@@ -757,7 +743,7 @@ END $$;`;
             <button
               type="button"
               onClick={() => setIsClearAllModalOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-rose-300 dark:border-rose-800/80 bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/40 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 text-xs font-extrabold transition-colors"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-[#F5F7FA] hover:bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold transition-colors"
               title="Restart table and erase all validation records"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -840,7 +826,7 @@ END $$;`;
             <span className="text-slate-500 font-semibold">Bulk Set Status:</span>
             <button
               onClick={() => handleBulkStatusChange('VERIFIED')}
-              className="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px]"
+              className="px-2.5 py-1 rounded-lg bg-[#86A98D] hover:bg-[#729479] text-white font-bold text-[11px]"
             >
               Mark Verified
             </button>
@@ -981,7 +967,7 @@ END $$;`;
                       {visibleColumns.cardNumber && (
                         <td className="py-3 px-3.5 font-mono">
                           {isPhotoOnly ? (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold text-[11px]">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#86A98D]/20 text-[#86A98D] font-bold text-[11px]">
                               <Camera className="w-3 h-3" />
                               <span>Photo Submission</span>
                             </span>
@@ -1095,7 +1081,7 @@ END $$;`;
                             onChange={(e) => handleInlineStatusChange(v.id, e.target.value)}
                             className={`px-2 py-0.5 rounded-full font-mono font-bold text-[10.5px] border cursor-pointer ${
                               v.status === 'VALID' || v.status === 'VERIFIED'
-                                ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-800'
+                                ? 'bg-[#86A98D]/15 text-[#86A98D] border-[#86A98D]/30'
                                 : v.status === 'PENDING' || v.status === 'PROCESSING'
                                 ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-800'
                                 : 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-800'
@@ -1477,7 +1463,7 @@ END $$;`;
           <div className="w-full max-w-2xl bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden max-h-[90vh] flex flex-col">
             <div className="px-5 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-800/50">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#86A98D]/20 text-[#86A98D] flex items-center justify-center">
                   <Database className="w-4 h-4" />
                 </div>
                 <div>
@@ -1502,14 +1488,14 @@ END $$;`;
               <div
                 className={`p-3.5 rounded-xl border flex items-center justify-between ${
                   supabaseStatus.configured
-                    ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200'
+                    ? 'bg-[#86A98D]/15 border-[#86A98D]/30 text-[#86A98D]'
                     : 'bg-amber-50 dark:bg-amber-950/40 border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-200'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
                   <div
                     className={`w-3 h-3 rounded-full ${
-                      supabaseStatus.configured ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'
+                      supabaseStatus.configured ? 'bg-[#86A98D] animate-pulse' : 'bg-amber-500'
                     }`}
                   />
                   <div>
@@ -1529,7 +1515,7 @@ END $$;`;
                   <button
                     onClick={handleSyncToSupabase}
                     disabled={isSyncingToSupabase}
-                    className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5"
+                    className="px-3 py-1.5 rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs flex items-center gap-1.5"
                   >
                     <UploadCloud className="w-3.5 h-3.5" />
                     <span>{isSyncingToSupabase ? 'Syncing...' : 'Sync All Now'}</span>
@@ -1551,7 +1537,7 @@ END $$;`;
                     onClick={copySupabaseSql}
                     className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-[11px] transition-colors"
                   >
-                    {copiedSql ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
+                    {copiedSql ? <Check className="w-3 h-3 text-[#86A98D]" /> : <Copy className="w-3 h-3" />}
                     <span>{copiedSql ? 'Copied SQL!' : 'Copy SQL'}</span>
                   </button>
                 </div>
@@ -1601,11 +1587,11 @@ CREATE INDEX IF NOT EXISTS idx_validation_status
                 <div className="bg-slate-50 dark:bg-slate-800/80 p-3 rounded-xl border border-slate-200 dark:border-slate-700 space-y-1.5 font-mono text-[11px]">
                   <div>
                     <span className="text-slate-400">SUPABASE_URL=</span>
-                    <span className="text-indigo-600 dark:text-indigo-400 font-bold">https://your-project-id.supabase.co</span>
+                    <span className="text-[#2563EB] font-bold">https://your-project-id.supabase.co</span>
                   </div>
                   <div>
                     <span className="text-slate-400">SUPABASE_SERVICE_ROLE_KEY=</span>
-                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">your_supabase_service_role_secret_key</span>
+                    <span className="text-[#86A98D] font-bold">your_supabase_service_role_secret_key</span>
                   </div>
                 </div>
               </div>

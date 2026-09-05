@@ -145,12 +145,12 @@ export const TawkToChat: React.FC = () => {
       <button
         id="tawk-fallback-launcher"
         onClick={openTawkChat}
-        className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold text-xs shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/50 transition-all transform hover:-translate-y-0.5 cursor-pointer active:scale-95 border border-indigo-400/30"
+        className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs shadow-md transition-all transform hover:-translate-y-0.5 cursor-pointer active:scale-95 border border-blue-400/30"
         title="Open Tawk.to 24/7 Live Support Chat"
       >
         <div className="relative">
           <Headphones className="w-4 h-4 text-white animate-bounce" />
-          <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-indigo-700"></span>
+          <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#86A98D] ring-2 ring-blue-700"></span>
         </div>
         <span className="hidden sm:inline">24/7 Live Support</span>
         <span className="sm:hidden">Support</span>

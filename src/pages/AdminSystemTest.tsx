@@ -55,13 +55,17 @@ export const AdminSystemTest: React.FC = () => {
     setIsQuickLoggingIn(true);
     setQuickLoginError(null);
     try {
-      await login({ email: 'admin@allcardvault.com', password: 'Electadmin100!' });
+      await login({ email: 'admin@allcardstatus.com', password: 'Electadmin100!' });
     } catch (err: any) {
-      // Fallback attempt with legacy email if database has not re-seeded yet
+      // Fallback attempt with legacy emails if database has not re-seeded yet
       try {
-        await login({ email: 'admin@allcardstation.com', password: 'Electadmin100!' });
+        await login({ email: 'admin@allcardvault.com', password: 'Electadmin100!' });
       } catch {
-        setQuickLoginError(err.message || 'Failed to sign in as admin');
+        try {
+          await login({ email: 'admin@allcardstation.com', password: 'Electadmin100!' });
+        } catch {
+          setQuickLoginError(err.message || 'Failed to sign in as admin');
+        }
       }
     } finally {
       setIsQuickLoggingIn(false);
@@ -201,7 +205,7 @@ export const AdminSystemTest: React.FC = () => {
               ) : (
                 <div className="text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-2">
                   <p className="font-semibold text-slate-700 dark:text-slate-300">Admin Demo Credentials:</p>
-                  <p>Email: <code className="text-indigo-600 dark:text-indigo-400 font-mono font-bold">admin@allcardvault.com</code></p>
+                  <p>Email: <code className="text-indigo-600 dark:text-indigo-400 font-mono font-bold">admin@allcardstatus.com</code></p>
                   <p>Password: <code className="text-indigo-600 dark:text-indigo-400 font-mono font-bold">Electadmin100!</code></p>
                 </div>
               )}
@@ -359,9 +363,9 @@ export const AdminSystemTest: React.FC = () => {
           <div className="space-y-8">
 
         {/* Security & Credentials Masking Banner */}
-        <div className="bg-gradient-to-r from-emerald-500/10 via-indigo-500/10 to-transparent dark:from-emerald-950/30 dark:via-indigo-950/20 rounded-2xl border border-emerald-200/80 dark:border-emerald-900/50 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="bg-gradient-to-r from-[#86A98D]/15 via-blue-500/10 to-transparent rounded-2xl border border-[#86A98D]/30 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-200 dark:border-emerald-800">
+            <div className="w-10 h-10 rounded-xl bg-[#86A98D]/15 text-[#86A98D] flex items-center justify-center shrink-0 border border-[#86A98D]/30">
               <EyeOff className="w-5 h-5" />
             </div>
             <div>
@@ -374,7 +378,7 @@ export const AdminSystemTest: React.FC = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 self-end sm:self-center">
-            <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80 flex items-center gap-1.5">
+            <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-[#86A98D]/15 text-[#86A98D] border border-[#86A98D]/30 flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5" />
               Credentials Protected
             </span>
@@ -391,7 +395,7 @@ export const AdminSystemTest: React.FC = () => {
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Supabase Database
                 </span>
-                <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#86A98D]/15 text-[#86A98D] flex items-center justify-center">
                   <Database className="w-4 h-4" />
                 </div>
               </div>
@@ -400,7 +404,7 @@ export const AdminSystemTest: React.FC = () => {
                   <span className="text-2xl font-black text-slate-900 dark:text-white">
                     {diagnostics.database.connected ? 'ONLINE' : 'OFFLINE'}
                   </span>
-                  <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                  <span className="text-xs font-bold text-[#86A98D]">
                     {diagnostics.database.latencyMs >= 0 ? `${diagnostics.database.latencyMs}ms ping` : 'Error'}
                   </span>
                 </div>
@@ -481,7 +485,7 @@ export const AdminSystemTest: React.FC = () => {
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Payment Policy
                 </span>
-                <div className="w-8 h-8 rounded-lg bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
               </div>
@@ -497,7 +501,7 @@ export const AdminSystemTest: React.FC = () => {
               </div>
               <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500">
                 <span>Crypto Phase: Ready</span>
-                <span className="text-emerald-600 font-bold">Compliant</span>
+                <span className="text-[#86A98D] font-bold">Compliant</span>
               </div>
             </div>
 
@@ -511,7 +515,7 @@ export const AdminSystemTest: React.FC = () => {
               <div className="flex items-center gap-3">
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
                   probeResults.overallPassed
-                    ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400'
+                    ? 'bg-[#86A98D]/15 text-[#86A98D]'
                     : 'bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-400'
                 }`}>
                   {probeResults.overallPassed ? <CheckCircle2 className="w-6 h-6" /> : <AlertTriangle className="w-6 h-6" />}
@@ -543,7 +547,7 @@ export const AdminSystemTest: React.FC = () => {
                   <div className="flex items-start gap-3">
                     <div className="mt-0.5">
                       {probe.passed ? (
-                        <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-[#86A98D] shrink-0" />
                       ) : (
                         <XCircle className="w-5 h-5 text-rose-600 dark:text-rose-400 shrink-0" />
                       )}
@@ -565,7 +569,7 @@ export const AdminSystemTest: React.FC = () => {
                     <span
                       className={`px-2.5 py-1 rounded-lg text-xs font-extrabold ${
                         probe.passed
-                          ? 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300'
+                          ? 'bg-[#86A98D]/15 text-[#86A98D]'
                           : 'bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300'
                       }`}
                     >
@@ -663,8 +667,8 @@ export const AdminSystemTest: React.FC = () => {
                       </td>
                       <td className="py-3 px-3 font-mono text-xs">
                         {req.cardNumberMasked?.startsWith('[Image Verification') ? (
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold text-[11px]">
-                            <Camera className="w-3 h-3 text-emerald-600" />
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#86A98D]/15 text-[#86A98D] font-bold text-[11px]">
+                            <Camera className="w-3 h-3 text-[#86A98D]" />
                             <span>Photo Verification</span>
                           </span>
                         ) : (
@@ -701,7 +705,7 @@ export const AdminSystemTest: React.FC = () => {
                           <span className="text-slate-400 font-mono text-[11px]">No images</span>
                         )}
                       </td>
-                      <td className="py-3 px-3 font-mono text-emerald-600 dark:text-emerald-400 font-bold">
+                      <td className="py-3 px-3 font-mono text-[#2563EB] dark:text-blue-400 font-bold">
                         {req.currency} {req.cardAmount.toFixed(2)}
                       </td>
                       <td className="py-3 px-3 font-mono text-slate-500 whitespace-nowrap">
@@ -730,7 +734,7 @@ export const AdminSystemTest: React.FC = () => {
         <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
             <div className="flex items-center gap-2.5">
-              <FileText className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+              <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               <div>
                 <h2 className="text-lg font-bold text-slate-900 dark:text-white">
                   Admin Access Audit & Security Log
@@ -771,7 +775,7 @@ export const AdminSystemTest: React.FC = () => {
                         <span
                           className={`px-2 py-0.5 rounded text-[10px] font-bold font-mono ${
                             log.role === 'ADMIN'
-                              ? 'bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300'
+                              ? 'bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300'
                               : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
                           }`}
                         >
@@ -785,7 +789,7 @@ export const AdminSystemTest: React.FC = () => {
                         <span
                           className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold ${
                             log.status === 'SUCCESS'
-                              ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300'
+                              ? 'bg-[#86A98D]/15 text-[#86A98D]'
                               : log.status === 'FORBIDDEN'
                               ? 'bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300'
                               : 'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300'

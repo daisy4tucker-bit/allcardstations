@@ -9,9 +9,9 @@
 
     <!-- Shield Outer Glow/Border Gradient -->
     <linearGradient id="shieldBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#818cf8" />
-      <stop offset="50%" stop-color="#6366f1" />
-      <stop offset="100%" stop-color="#f59e0b" />
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#fbbf24" />
     </linearGradient>
 
     <!-- Card 1 (Back - Emerald/Teal) -->
@@ -22,14 +22,14 @@
 
     <!-- Card 2 (Middle - Gold/Amber) -->
     <linearGradient id="cardGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="0%" stop-color="#fde047" />
       <stop offset="100%" stop-color="#d97706" />
     </linearGradient>
 
-    <!-- Card 3 (Front - Deep Indigo/Purple) -->
+    <!-- Card 3 (Front - Deep Royal Blue) -->
     <linearGradient id="cardIndigoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6366f1" />
-      <stop offset="100%" stop-color="#3730a3" />
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
     </linearGradient>
 
     <!-- Metallic Chip Gradient -->

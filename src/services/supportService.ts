@@ -18,10 +18,10 @@ export interface SupportConversation {
   messages?: SupportMessage[];
 }
 
-const VISITOR_ID_KEY = 'allcardvault_visitor_id';
+const VISITOR_ID_KEY = 'allcardstatus_visitor_id';
 
 export function getVisitorId(): string {
-  let vid = localStorage.getItem(VISITOR_ID_KEY) || localStorage.getItem('allcardstation_visitor_id');
+  let vid = localStorage.getItem(VISITOR_ID_KEY) || localStorage.getItem('allcardvault_visitor_id') || localStorage.getItem('allcardstation_visitor_id');
   if (!vid) {
     vid = `vis_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
     localStorage.setItem(VISITOR_ID_KEY, vid);

@@ -60,7 +60,7 @@ export const buildVoucherHtml = (tx: PurchaseTransaction): string => {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AllCardVault - eGift Card Voucher & Receipt (${tx.id})</title>
+  <title>AllCardStatus - eGift Card Voucher & Receipt (${tx.id})</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f8fafc; color: #0f172a; padding: 32px; }
@@ -96,7 +96,7 @@ export const buildVoucherHtml = (tx: PurchaseTransaction): string => {
 <body>
   <div class="voucher-card">
     <div class="header">
-      <div class="logo">All<span>Card</span>Vault</div>
+      <div class="logo">All<span>Card</span>Status</div>
       <div class="badge">Official eGift Voucher</div>
     </div>
     <div class="body">
@@ -113,7 +113,7 @@ export const buildVoucherHtml = (tx: PurchaseTransaction): string => {
 
       <div class="credentials">
         <div class="cred-label">Your Digital Redemption Code</div>
-        <div class="ecode">${tx.eCode || 'ACV-9842-7719-5501'}</div>
+        <div class="ecode">${tx.eCode || 'ACS-9842-7719-5501'}</div>
         ${tx.pin ? `<div class="pin-row">Security PIN: <span class="pin-val">${tx.pin}</span></div>` : ''}
       </div>
 
@@ -146,7 +146,7 @@ export const buildVoucherHtml = (tx: PurchaseTransaction): string => {
       </div>
     </div>
     <div class="footer">
-      <p>This is a verified digital gift card token issued by AllCardVault Enterprise Marketplace.</p>
+      <p>This is a verified digital gift card token issued by AllCardStatus Enterprise Marketplace.</p>
       <p>Redeemable directly on official merchant storefronts or apps. For 24/7 support, contact support@allcardstatus.com.</p>
     </div>
   </div>
@@ -179,7 +179,7 @@ export const downloadVoucherFile = (tx: PurchaseTransaction): void => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `AllCardVault-Voucher-${tx.cardName.replace(/\s+/g, '-')}-${tx.id}.html`;
+  a.download = `AllCardStatus-Voucher-${tx.cardName.replace(/\s+/g, '-')}-${tx.id}.html`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);

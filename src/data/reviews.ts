@@ -21,7 +21,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2026-2',
     author: 'Elena Rostova',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: '1 hour ago (2026)',
     period: 'recent',
@@ -53,7 +53,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2026-4',
     author: 'Dr. Sophia Chen',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: '5 hours ago (2026)',
     period: 'recent',
@@ -117,7 +117,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2026-8',
     author: 'Beatrice Fontaine',
-    avatarBg: 'bg-emerald-700',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 18, 2026',
     period: 'recent',
@@ -229,7 +229,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2026-15',
     author: 'Dmitri Sokolov',
-    avatarBg: 'bg-purple-700',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 11, 2026',
     period: 'recent',
@@ -245,7 +245,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2026-16',
     author: 'Chloe Grace',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 18, 2026',
     period: 'recent',
@@ -407,7 +407,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-2',
     author: 'Andrew Adams',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Feb 22, 2025 (Last Year)',
     period: 'last_year',
@@ -439,7 +439,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-4',
     author: 'Robert Williams',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 1, 2025 (Last Year)',
     period: 'last_year',
@@ -471,7 +471,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-6',
     author: 'Joseph Miller',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jul 16, 2025 (Last Year)',
     period: 'last_year',
@@ -743,7 +743,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-23',
     author: 'Timothy Martin',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Sep 18, 2025 (Last Year)',
     period: 'last_year',
@@ -887,7 +887,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-32',
     author: 'Barbara Thompson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 25, 2025 (Last Year)',
     period: 'last_year',
@@ -951,7 +951,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-36',
     author: 'Kenneth Green',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 13, 2025 (Last Year)',
     period: 'last_year',
@@ -983,7 +983,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-38',
     author: 'James Hill',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 12, 2025 (Last Year)',
     period: 'last_year',
@@ -1015,7 +1015,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-40',
     author: 'Richard Harris',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 12, 2025 (Last Year)',
     period: 'last_year',
@@ -1047,7 +1047,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-42',
     author: 'Margaret Clark',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 4,
     date: 'Apr 12, 2025 (Last Year)',
     period: 'last_year',
@@ -1063,7 +1063,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-43',
     author: 'Sarah Nelson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'May 14, 2025 (Last Year)',
     period: 'last_year',
@@ -1095,7 +1095,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-45',
     author: 'Joshua Roberts',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 18, 2025 (Last Year)',
     period: 'last_year',
@@ -1111,7 +1111,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-46',
     author: 'Joshua Perez',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Oct 22, 2025 (Last Year)',
     period: 'last_year',
@@ -1127,7 +1127,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-47',
     author: 'Donald Green',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 28, 2025 (Last Year)',
     period: 'last_year',
@@ -1159,7 +1159,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-49',
     author: 'Brian Anderson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Apr 20, 2025 (Last Year)',
     period: 'last_year',
@@ -1191,7 +1191,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-51',
     author: 'John Moore',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Apr 15, 2025 (Last Year)',
     period: 'last_year',
@@ -1271,7 +1271,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-56',
     author: 'Barbara Harris',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Sep 11, 2025 (Last Year)',
     period: 'last_year',
@@ -1303,7 +1303,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-58',
     author: 'Kevin Thompson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'May 21, 2025 (Last Year)',
     period: 'last_year',
@@ -1447,7 +1447,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-67',
     author: 'Matthew Young',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 10, 2025 (Last Year)',
     period: 'last_year',
@@ -1463,7 +1463,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-68',
     author: 'Jessica Jones',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 10, 2025 (Last Year)',
     period: 'last_year',
@@ -1495,7 +1495,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-70',
     author: 'Linda Sanchez',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Feb 27, 2025 (Last Year)',
     period: 'last_year',
@@ -1543,7 +1543,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-73',
     author: 'Joshua Smith',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 22, 2025 (Last Year)',
     period: 'last_year',
@@ -1607,7 +1607,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-77',
     author: 'Melissa Campbell',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 28, 2025 (Last Year)',
     period: 'last_year',
@@ -1655,7 +1655,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-80',
     author: 'Brian Scott',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 2, 2025 (Last Year)',
     period: 'last_year',
@@ -1767,7 +1767,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-87',
     author: 'Kenneth King',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jul 22, 2025 (Last Year)',
     period: 'last_year',
@@ -1799,7 +1799,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-89',
     author: 'Susan Martin',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Apr 9, 2025 (Last Year)',
     period: 'last_year',
@@ -1959,7 +1959,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-99',
     author: 'Joseph White',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 14, 2025 (Last Year)',
     period: 'last_year',
@@ -2023,7 +2023,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-103',
     author: 'Richard Davis',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Nov 15, 2025 (Last Year)',
     period: 'last_year',
@@ -2071,7 +2071,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-106',
     author: 'George King',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Sep 14, 2025 (Last Year)',
     period: 'last_year',
@@ -2135,7 +2135,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-110',
     author: 'Elizabeth Torres',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 13, 2025 (Last Year)',
     period: 'last_year',
@@ -2183,7 +2183,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-113',
     author: 'Lisa Brown',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jul 4, 2025 (Last Year)',
     period: 'last_year',
@@ -2263,7 +2263,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-118',
     author: 'Sandra Roberts',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Nov 26, 2025 (Last Year)',
     period: 'last_year',
@@ -2279,7 +2279,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-119',
     author: 'George Torres',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 19, 2025 (Last Year)',
     period: 'last_year',
@@ -2327,7 +2327,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-122',
     author: 'Joseph Taylor',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 22, 2025 (Last Year)',
     period: 'last_year',
@@ -2391,7 +2391,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-126',
     author: 'William Campbell',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 3, 2025 (Last Year)',
     period: 'last_year',
@@ -2471,7 +2471,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-131',
     author: 'Andrew Roberts',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Feb 28, 2025 (Last Year)',
     period: 'last_year',
@@ -2487,7 +2487,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-132',
     author: 'Michael White',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 2, 2025 (Last Year)',
     period: 'last_year',
@@ -2503,7 +2503,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-133',
     author: 'Robert Mitchell',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 20, 2025 (Last Year)',
     period: 'last_year',
@@ -2519,7 +2519,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-134',
     author: 'James Hall',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 10, 2025 (Last Year)',
     period: 'last_year',
@@ -2695,7 +2695,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-145',
     author: 'Kevin Roberts',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 25, 2025 (Last Year)',
     period: 'last_year',
@@ -2711,7 +2711,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-146',
     author: 'Mark Robinson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Nov 25, 2025 (Last Year)',
     period: 'last_year',
@@ -2727,7 +2727,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-147',
     author: 'Nancy Hall',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 3, 2025 (Last Year)',
     period: 'last_year',
@@ -2759,7 +2759,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-149',
     author: 'James Smith',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Aug 15, 2025 (Last Year)',
     period: 'last_year',
@@ -2791,7 +2791,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-151',
     author: 'Paul Walker',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jun 23, 2025 (Last Year)',
     period: 'last_year',
@@ -2855,7 +2855,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-155',
     author: 'Robert Thomas',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Nov 11, 2025 (Last Year)',
     period: 'last_year',
@@ -2871,7 +2871,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-156',
     author: 'Andrew Green',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'May 22, 2025 (Last Year)',
     period: 'last_year',
@@ -2887,7 +2887,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-157',
     author: 'Thomas Smith',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 5, 2025 (Last Year)',
     period: 'last_year',
@@ -2919,7 +2919,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-159',
     author: 'Kevin Rivera',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 11, 2025 (Last Year)',
     period: 'last_year',
@@ -2935,7 +2935,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-160',
     author: 'Sarah King',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 22, 2025 (Last Year)',
     period: 'last_year',
@@ -3063,7 +3063,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-168',
     author: 'Linda Jones',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 17, 2025 (Last Year)',
     period: 'last_year',
@@ -3223,7 +3223,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-178',
     author: 'Robert Hall',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 19, 2025 (Last Year)',
     period: 'last_year',
@@ -3255,7 +3255,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-180',
     author: 'Christopher Baker',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Dec 27, 2025 (Last Year)',
     period: 'last_year',
@@ -3287,7 +3287,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-182',
     author: 'Lisa Wright',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jul 18, 2025 (Last Year)',
     period: 'last_year',
@@ -3399,7 +3399,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-189',
     author: 'Donna King',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 7, 2025 (Last Year)',
     period: 'last_year',
@@ -3543,7 +3543,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-198',
     author: 'Linda Martin',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 24, 2025 (Last Year)',
     period: 'last_year',
@@ -3607,7 +3607,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-202',
     author: 'Carol Williams',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 10, 2025 (Last Year)',
     period: 'last_year',
@@ -3639,7 +3639,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-204',
     author: 'Richard Martin',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 5, 2025 (Last Year)',
     period: 'last_year',
@@ -3799,7 +3799,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-214',
     author: 'Paul Martin',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 4, 2025 (Last Year)',
     period: 'last_year',
@@ -3863,7 +3863,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-218',
     author: 'William Moore',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 5, 2025 (Last Year)',
     period: 'last_year',
@@ -3911,7 +3911,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-221',
     author: 'Paul Harris',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'May 2, 2025 (Last Year)',
     period: 'last_year',
@@ -4023,7 +4023,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-228',
     author: 'Betty Miller',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 5, 2025 (Last Year)',
     period: 'last_year',
@@ -4151,7 +4151,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-236',
     author: 'Deborah Nelson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Nov 28, 2025 (Last Year)',
     period: 'last_year',
@@ -4199,7 +4199,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-239',
     author: 'Jessica Anderson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Aug 9, 2025 (Last Year)',
     period: 'last_year',
@@ -4247,7 +4247,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-242',
     author: 'Richard Lee',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Nov 18, 2025 (Last Year)',
     period: 'last_year',
@@ -4263,7 +4263,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-243',
     author: 'William Roberts',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Oct 8, 2025 (Last Year)',
     period: 'last_year',
@@ -4295,7 +4295,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-245',
     author: 'Brian Moore',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jun 24, 2025 (Last Year)',
     period: 'last_year',
@@ -4423,7 +4423,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-253',
     author: 'Robert Rivera',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 18, 2025 (Last Year)',
     period: 'last_year',
@@ -4439,7 +4439,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-254',
     author: 'Andrew Robinson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 20, 2025 (Last Year)',
     period: 'last_year',
@@ -4551,7 +4551,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-261',
     author: 'Sandra Miller',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 6, 2025 (Last Year)',
     period: 'last_year',
@@ -4567,7 +4567,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-262',
     author: 'Carol Moore',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Apr 27, 2025 (Last Year)',
     period: 'last_year',
@@ -4695,7 +4695,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-270',
     author: 'Patricia Sanchez',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 9, 2025 (Last Year)',
     period: 'last_year',
@@ -4743,7 +4743,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-273',
     author: 'Daniel Hall',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 20, 2025 (Last Year)',
     period: 'last_year',
@@ -4759,7 +4759,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-274',
     author: 'David Brown',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 23, 2025 (Last Year)',
     period: 'last_year',
@@ -4807,7 +4807,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-277',
     author: 'Patricia Campbell',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'May 4, 2025 (Last Year)',
     period: 'last_year',
@@ -4903,7 +4903,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-283',
     author: 'Joshua Perez',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Sep 19, 2025 (Last Year)',
     period: 'last_year',
@@ -5047,7 +5047,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-292',
     author: 'Timothy Martin',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 13, 2025 (Last Year)',
     period: 'last_year',
@@ -5095,7 +5095,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-295',
     author: 'Dorothy Sanchez',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 22, 2025 (Last Year)',
     period: 'last_year',
@@ -5127,7 +5127,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-297',
     author: 'Sandra Johnson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 27, 2025 (Last Year)',
     period: 'last_year',
@@ -5143,7 +5143,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-298',
     author: 'Mary Sanchez',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Dec 26, 2025 (Last Year)',
     period: 'last_year',
@@ -5255,7 +5255,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-305',
     author: 'John Adams',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Oct 17, 2025 (Last Year)',
     period: 'last_year',
@@ -5303,7 +5303,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-extra-308',
     author: 'Kenneth Scott',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Sep 16, 2025 (Last Year)',
     period: 'last_year',
@@ -5336,7 +5336,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-2',
     author: 'Richard Young',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jan 07, 2025 (Last Year)',
     period: 'last_year',
@@ -5464,7 +5464,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-10',
     author: 'Joseph Young',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 21, 2025 (Last Year)',
     period: 'last_year',
@@ -5560,7 +5560,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-16',
     author: 'Betty White',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Aug 13, 2025 (Last Year)',
     period: 'last_year',
@@ -5576,7 +5576,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-17',
     author: 'Robert Lee',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'May 19, 2025 (Last Year)',
     period: 'last_year',
@@ -5608,7 +5608,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-19',
     author: 'Timothy Perez',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 11, 2025 (Last Year)',
     period: 'last_year',
@@ -5656,7 +5656,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-22',
     author: 'Andrew Rivera',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Feb 20, 2025 (Last Year)',
     period: 'last_year',
@@ -5688,7 +5688,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-24',
     author: 'Susan Wright',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 17, 2025 (Last Year)',
     period: 'last_year',
@@ -5736,7 +5736,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-27',
     author: 'Karen Jones',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 24, 2025 (Last Year)',
     period: 'last_year',
@@ -5864,7 +5864,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-35',
     author: 'Joshua Allen',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 25, 2025 (Last Year)',
     period: 'last_year',
@@ -5944,7 +5944,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-40',
     author: 'Richard Roberts',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Nov 12, 2025 (Last Year)',
     period: 'last_year',
@@ -5976,7 +5976,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-42',
     author: 'Ashley Clark',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 07, 2025 (Last Year)',
     period: 'last_year',
@@ -6120,7 +6120,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-51',
     author: 'Patricia Moore',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Aug 02, 2025 (Last Year)',
     period: 'last_year',
@@ -6152,7 +6152,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-53',
     author: 'Emily Moore',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 19, 2025 (Last Year)',
     period: 'last_year',
@@ -6200,7 +6200,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-56',
     author: 'Richard Baker',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 17, 2025 (Last Year)',
     period: 'last_year',
@@ -6232,7 +6232,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-58',
     author: 'Timothy Baker',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'May 02, 2025 (Last Year)',
     period: 'last_year',
@@ -6248,7 +6248,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-59',
     author: 'Melissa Johnson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 20, 2025 (Last Year)',
     period: 'last_year',
@@ -6312,7 +6312,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-63',
     author: 'Anthony Anderson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 16, 2025 (Last Year)',
     period: 'last_year',
@@ -6328,7 +6328,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-64',
     author: 'Linda Sanchez',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Dec 11, 2025 (Last Year)',
     period: 'last_year',
@@ -6424,7 +6424,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-70',
     author: 'John Mitchell',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 23, 2025 (Last Year)',
     period: 'last_year',
@@ -6456,7 +6456,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-72',
     author: 'Brian Jackson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jun 24, 2025 (Last Year)',
     period: 'last_year',
@@ -6600,7 +6600,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-81',
     author: 'Robert Campbell',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Feb 26, 2025 (Last Year)',
     period: 'last_year',
@@ -6616,7 +6616,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-82',
     author: 'Anthony Mitchell',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Apr 15, 2025 (Last Year)',
     period: 'last_year',
@@ -6680,7 +6680,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-86',
     author: 'Joshua Jones',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 22, 2025 (Last Year)',
     period: 'last_year',
@@ -6696,7 +6696,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-87',
     author: 'Amanda Thompson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 04, 2025 (Last Year)',
     period: 'last_year',
@@ -6712,7 +6712,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-88',
     author: 'Linda Hill',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Feb 09, 2025 (Last Year)',
     period: 'last_year',
@@ -6776,7 +6776,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-92',
     author: 'Linda Sanchez',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 26, 2025 (Last Year)',
     period: 'last_year',
@@ -6824,7 +6824,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-95',
     author: 'Deborah Martin',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Apr 11, 2025 (Last Year)',
     period: 'last_year',
@@ -6840,7 +6840,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-96',
     author: 'Donna Williams',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Sep 25, 2025 (Last Year)',
     period: 'last_year',
@@ -6920,7 +6920,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-101',
     author: 'Elizabeth Torres',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Nov 22, 2025 (Last Year)',
     period: 'last_year',
@@ -6936,7 +6936,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-102',
     author: 'Susan Campbell',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 21, 2025 (Last Year)',
     period: 'last_year',
@@ -6968,7 +6968,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-104',
     author: 'Mary Carter',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Nov 23, 2025 (Last Year)',
     period: 'last_year',
@@ -7048,7 +7048,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-109',
     author: 'Michelle Brown',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 06, 2025 (Last Year)',
     period: 'last_year',
@@ -7096,7 +7096,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-112',
     author: 'George Jones',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 01, 2025 (Last Year)',
     period: 'last_year',
@@ -7368,7 +7368,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-129',
     author: 'Joshua White',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Nov 23, 2025 (Last Year)',
     period: 'last_year',
@@ -7400,7 +7400,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-131',
     author: 'Carol Mitchell',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Feb 22, 2025 (Last Year)',
     period: 'last_year',
@@ -7416,7 +7416,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-132',
     author: 'Michael Young',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Feb 14, 2025 (Last Year)',
     period: 'last_year',
@@ -7544,7 +7544,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-140',
     author: 'Timothy Roberts',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Nov 24, 2025 (Last Year)',
     period: 'last_year',
@@ -7640,7 +7640,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-146',
     author: 'James Perez',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 27, 2025 (Last Year)',
     period: 'last_year',
@@ -7688,7 +7688,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-149',
     author: 'Timothy Torres',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 17, 2025 (Last Year)',
     period: 'last_year',
@@ -7720,7 +7720,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-151',
     author: 'William Walker',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jun 01, 2025 (Last Year)',
     period: 'last_year',
@@ -7768,7 +7768,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-154',
     author: 'Deborah Lee',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Dec 21, 2025 (Last Year)',
     period: 'last_year',
@@ -7800,7 +7800,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-156',
     author: 'Michelle Hall',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Nov 28, 2025 (Last Year)',
     period: 'last_year',
@@ -7832,7 +7832,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-158',
     author: 'Matthew Miller',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 28, 2025 (Last Year)',
     period: 'last_year',
@@ -7896,7 +7896,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-162',
     author: 'Kenneth Hill',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'May 16, 2025 (Last Year)',
     period: 'last_year',
@@ -7928,7 +7928,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-gen-164',
     author: 'Anthony Robinson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jun 03, 2025 (Last Year)',
     period: 'last_year',
@@ -8121,7 +8121,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-9',
     author: 'Iris West',
-    avatarBg: 'bg-emerald-700',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 05, 2025',
     period: 'last_year',
@@ -8169,7 +8169,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-12',
     author: 'Diana Prince',
-    avatarBg: 'bg-purple-700',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jul 24, 2025',
     period: 'last_year',
@@ -8201,7 +8201,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2025-14',
     author: 'Hal Jordan',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 08, 2025',
     period: 'last_year',
@@ -8283,7 +8283,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-1',
     author: 'David Davis',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 4,
     date: 'Jun 13, 2024',
     period: '2_years_ago',
@@ -8331,7 +8331,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-4',
     author: 'John Sanchez',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Feb 3, 2024',
     period: '2_years_ago',
@@ -8347,7 +8347,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-5',
     author: 'Donald Roberts',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Sep 2, 2024',
     period: '2_years_ago',
@@ -8363,7 +8363,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-6',
     author: 'Sandra Wilson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jan 27, 2024',
     period: '2_years_ago',
@@ -8427,7 +8427,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-10',
     author: 'John Campbell',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 28, 2024',
     period: '2_years_ago',
@@ -8619,7 +8619,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-22',
     author: 'Ashley Hall',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Sep 8, 2024',
     period: '2_years_ago',
@@ -8651,7 +8651,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-24',
     author: 'Elizabeth White',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jun 22, 2024',
     period: '2_years_ago',
@@ -8715,7 +8715,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-28',
     author: 'Patricia King',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jun 27, 2024',
     period: '2_years_ago',
@@ -8731,7 +8731,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-29',
     author: 'James Hill',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jan 15, 2024',
     period: '2_years_ago',
@@ -8891,7 +8891,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-39',
     author: 'Patricia Taylor',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 9, 2024',
     period: '2_years_ago',
@@ -8907,7 +8907,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-40',
     author: 'Elizabeth Wright',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Aug 26, 2024',
     period: '2_years_ago',
@@ -9019,7 +9019,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-47',
     author: 'Mary Flores',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 6, 2024',
     period: '2_years_ago',
@@ -9051,7 +9051,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-49',
     author: 'Steven King',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jun 11, 2024',
     period: '2_years_ago',
@@ -9147,7 +9147,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-55',
     author: 'Ashley Carter',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 18, 2024',
     period: '2_years_ago',
@@ -9211,7 +9211,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-59',
     author: 'Michael Roberts',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 1, 2024',
     period: '2_years_ago',
@@ -9243,7 +9243,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-61',
     author: 'Emily Thomas',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 4,
     date: 'Nov 23, 2024',
     period: '2_years_ago',
@@ -9275,7 +9275,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-63',
     author: 'Kevin Carter',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jun 28, 2024',
     period: '2_years_ago',
@@ -9339,7 +9339,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-67',
     author: 'Amanda Hall',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Apr 21, 2024',
     period: '2_years_ago',
@@ -9451,7 +9451,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-74',
     author: 'Robert Walker',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 1, 2024',
     period: '2_years_ago',
@@ -9563,7 +9563,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-81',
     author: 'Brian Allen',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 9, 2024',
     period: '2_years_ago',
@@ -9579,7 +9579,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-82',
     author: 'Robert Allen',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 11, 2024',
     period: '2_years_ago',
@@ -9675,7 +9675,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-88',
     author: 'George Torres',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 19, 2024',
     period: '2_years_ago',
@@ -9771,7 +9771,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-94',
     author: 'Amanda Wright',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Nov 9, 2024',
     period: '2_years_ago',
@@ -9883,7 +9883,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-101',
     author: 'Melissa Baker',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 15, 2024',
     period: '2_years_ago',
@@ -9979,7 +9979,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-107',
     author: 'Mark Sanchez',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 4,
     date: 'Jun 3, 2024',
     period: '2_years_ago',
@@ -10059,7 +10059,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-112',
     author: 'Carol Johnson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 3, 2024',
     period: '2_years_ago',
@@ -10123,7 +10123,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-116',
     author: 'Patricia Hill',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Nov 2, 2024',
     period: '2_years_ago',
@@ -10187,7 +10187,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-120',
     author: 'Richard Nelson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 17, 2024',
     period: '2_years_ago',
@@ -10219,7 +10219,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-122',
     author: 'Nancy Clark',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Dec 21, 2024',
     period: '2_years_ago',
@@ -10235,7 +10235,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-123',
     author: 'Dorothy Carter',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Feb 17, 2024',
     period: '2_years_ago',
@@ -10299,7 +10299,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-127',
     author: 'William Carter',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'May 26, 2024',
     period: '2_years_ago',
@@ -10347,7 +10347,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-130',
     author: 'Brian Walker',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 2, 2024',
     period: '2_years_ago',
@@ -10363,7 +10363,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-131',
     author: 'Elizabeth Johnson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Oct 11, 2024',
     period: '2_years_ago',
@@ -10427,7 +10427,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-135',
     author: 'Deborah Martin',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 28, 2024',
     period: '2_years_ago',
@@ -10443,7 +10443,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-136',
     author: 'Jennifer Smith',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 23, 2024',
     period: '2_years_ago',
@@ -10587,7 +10587,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-145',
     author: 'Barbara Martin',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 6, 2024',
     period: '2_years_ago',
@@ -10619,7 +10619,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-147',
     author: 'Kevin Clark',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 17, 2024',
     period: '2_years_ago',
@@ -10651,7 +10651,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-149',
     author: 'Anthony Nelson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jun 22, 2024',
     period: '2_years_ago',
@@ -10667,7 +10667,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-150',
     author: 'Timothy Walker',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 17, 2024',
     period: '2_years_ago',
@@ -10699,7 +10699,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-152',
     author: 'Charles Perez',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 4,
     date: 'Jul 2, 2024',
     period: '2_years_ago',
@@ -10715,7 +10715,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-153',
     author: 'Emily Wilson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 4, 2024',
     period: '2_years_ago',
@@ -10731,7 +10731,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-154',
     author: 'George Flores',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 26, 2024',
     period: '2_years_ago',
@@ -10747,7 +10747,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-155',
     author: 'William Harris',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 17, 2024',
     period: '2_years_ago',
@@ -10763,7 +10763,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-156',
     author: 'Barbara Hill',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Feb 20, 2024',
     period: '2_years_ago',
@@ -10795,7 +10795,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-158',
     author: 'Kimberly Sanchez',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Feb 15, 2024',
     period: '2_years_ago',
@@ -10811,7 +10811,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-159',
     author: 'Anthony Taylor',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'May 25, 2024',
     period: '2_years_ago',
@@ -10955,7 +10955,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-168',
     author: 'Linda Davis',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Feb 25, 2024',
     period: '2_years_ago',
@@ -11003,7 +11003,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-171',
     author: 'Richard Mitchell',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Nov 13, 2024',
     period: '2_years_ago',
@@ -11019,7 +11019,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-172',
     author: 'Susan Robinson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 4,
     date: 'Mar 1, 2024',
     period: '2_years_ago',
@@ -11163,7 +11163,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-181',
     author: 'Thomas Scott',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jun 22, 2024',
     period: '2_years_ago',
@@ -11227,7 +11227,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-185',
     author: 'Richard Thompson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Sep 9, 2024',
     period: '2_years_ago',
@@ -11259,7 +11259,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-187',
     author: 'Joshua Moore',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 19, 2024',
     period: '2_years_ago',
@@ -11307,7 +11307,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-190',
     author: 'George Torres',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 2, 2024',
     period: '2_years_ago',
@@ -11435,7 +11435,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-198',
     author: 'James Adams',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 27, 2024',
     period: '2_years_ago',
@@ -11451,7 +11451,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-extra-199',
     author: 'Robert Jackson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jun 16, 2024',
     period: '2_years_ago',
@@ -11532,7 +11532,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-4',
     author: 'James Moore',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jun 17, 2024',
     period: '2_years_ago',
@@ -11548,7 +11548,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-5',
     author: 'Robert Mitchell',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Dec 11, 2024',
     period: '2_years_ago',
@@ -11564,7 +11564,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-6',
     author: 'Michelle Robinson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Oct 9, 2024',
     period: '2_years_ago',
@@ -11580,7 +11580,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-7',
     author: 'Brian Flores',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Nov 2, 2024',
     period: '2_years_ago',
@@ -11692,7 +11692,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-14',
     author: 'Joseph Jackson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 28, 2024',
     period: '2_years_ago',
@@ -11708,7 +11708,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-15',
     author: 'Robert Scott',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 27, 2024',
     period: '2_years_ago',
@@ -11724,7 +11724,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-16',
     author: 'Kenneth Robinson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 19, 2024',
     period: '2_years_ago',
@@ -11756,7 +11756,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-18',
     author: 'Steven Lee',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 4, 2024',
     period: '2_years_ago',
@@ -11980,7 +11980,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-32',
     author: 'Deborah Allen',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 4,
     date: 'Sep 4, 2024',
     period: '2_years_ago',
@@ -12028,7 +12028,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-35',
     author: 'Elizabeth Clark',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Nov 15, 2024',
     period: '2_years_ago',
@@ -12060,7 +12060,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-37',
     author: 'Paul Sanchez',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 19, 2024',
     period: '2_years_ago',
@@ -12076,7 +12076,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-38',
     author: 'Kimberly Walker',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 11, 2024',
     period: '2_years_ago',
@@ -12124,7 +12124,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-41',
     author: 'Carol Torres',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jun 10, 2024',
     period: '2_years_ago',
@@ -12252,7 +12252,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-49',
     author: 'Charles Carter',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 8, 2024',
     period: '2_years_ago',
@@ -12284,7 +12284,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-51',
     author: 'Robert Mitchell',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 8, 2024',
     period: '2_years_ago',
@@ -12332,7 +12332,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-54',
     author: 'Ashley Hill',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jun 1, 2024',
     period: '2_years_ago',
@@ -12348,7 +12348,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-55',
     author: 'William Young',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 20, 2024',
     period: '2_years_ago',
@@ -12364,7 +12364,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-56',
     author: 'Kimberly Adams',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 28, 2024',
     period: '2_years_ago',
@@ -12444,7 +12444,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-61',
     author: 'Michael Johnson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 10, 2024',
     period: '2_years_ago',
@@ -12508,7 +12508,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-65',
     author: 'Linda Thomas',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 4,
     date: 'Apr 10, 2024',
     period: '2_years_ago',
@@ -12556,7 +12556,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-68',
     author: 'David Miller',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 17, 2024',
     period: '2_years_ago',
@@ -12588,7 +12588,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-70',
     author: 'Joseph White',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 15, 2024',
     period: '2_years_ago',
@@ -12620,7 +12620,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-72',
     author: 'Christopher Nguyen',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 11, 2024',
     period: '2_years_ago',
@@ -12684,7 +12684,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-76',
     author: 'Jessica Wilson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 19, 2024',
     period: '2_years_ago',
@@ -12700,7 +12700,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-77',
     author: 'Richard Taylor',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Dec 3, 2024',
     period: '2_years_ago',
@@ -12732,7 +12732,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-79',
     author: 'Matthew Hall',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 24, 2024',
     period: '2_years_ago',
@@ -12764,7 +12764,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-81',
     author: 'Linda Perez',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 4,
     date: 'Jul 27, 2024',
     period: '2_years_ago',
@@ -12796,7 +12796,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-83',
     author: 'Brian Wilson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Sep 22, 2024',
     period: '2_years_ago',
@@ -12844,7 +12844,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-86',
     author: 'Robert Adams',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 23, 2024',
     period: '2_years_ago',
@@ -12892,7 +12892,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-89',
     author: 'George Hall',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 6, 2024',
     period: '2_years_ago',
@@ -12940,7 +12940,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-92',
     author: 'Sandra Adams',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 16, 2024',
     period: '2_years_ago',
@@ -13036,7 +13036,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-gen-98',
     author: 'Kimberly Hall',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Dec 6, 2024',
     period: '2_years_ago',
@@ -13085,7 +13085,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-1',
     author: 'Robert Sterling',
-    avatarBg: 'bg-emerald-700',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Oct 18, 2024 (2 Years Ago)',
     period: '2_years_ago',
@@ -13181,7 +13181,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-7',
     author: 'Yuki Kato',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'May 16, 2024',
     period: '2_years_ago',
@@ -13277,7 +13277,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-13',
     author: 'Brienne of Tarth',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Oct 22, 2024',
     period: '2_years_ago',
@@ -13357,7 +13357,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-18',
     author: 'Varys',
-    avatarBg: 'bg-purple-800',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Dec 16, 2024',
     period: '2_years_ago',
@@ -13373,7 +13373,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2024-19',
     author: 'Paelish Baelish',
-    avatarBg: 'bg-emerald-800',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 22, 2024',
     period: '2_years_ago',
@@ -13487,7 +13487,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-5',
     author: 'Brian Young',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jun 12, 2023',
     period: '3_years_ago',
@@ -13567,7 +13567,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-10',
     author: 'George Scott',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 4, 2023',
     period: '3_years_ago',
@@ -13583,7 +13583,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-11',
     author: 'Timothy Moore',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Apr 12, 2023',
     period: '3_years_ago',
@@ -13615,7 +13615,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-13',
     author: 'Matthew Thompson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Feb 12, 2023',
     period: '3_years_ago',
@@ -13663,7 +13663,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-16',
     author: 'Dorothy King',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 3, 2023',
     period: '3_years_ago',
@@ -13727,7 +13727,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-20',
     author: 'Brian Baker',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Oct 26, 2023',
     period: '3_years_ago',
@@ -13807,7 +13807,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-25',
     author: 'Elizabeth Mitchell',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jun 1, 2023',
     period: '3_years_ago',
@@ -13871,7 +13871,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-29',
     author: 'Kimberly Brown',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'May 13, 2023',
     period: '3_years_ago',
@@ -13887,7 +13887,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-30',
     author: 'Kevin Nelson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 12, 2023',
     period: '3_years_ago',
@@ -13903,7 +13903,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-31',
     author: 'Donald Johnson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 14, 2023',
     period: '3_years_ago',
@@ -13935,7 +13935,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-33',
     author: 'Emily Green',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 28, 2023',
     period: '3_years_ago',
@@ -13951,7 +13951,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-34',
     author: 'Sarah Lee',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 26, 2023',
     period: '3_years_ago',
@@ -13967,7 +13967,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-35',
     author: 'Dorothy Wilson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Oct 6, 2023',
     period: '3_years_ago',
@@ -13983,7 +13983,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-36',
     author: 'Robert Torres',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 6, 2023',
     period: '3_years_ago',
@@ -14143,7 +14143,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-46',
     author: 'Joseph Smith',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'May 28, 2023',
     period: '3_years_ago',
@@ -14175,7 +14175,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-48',
     author: 'Deborah Torres',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Aug 19, 2023',
     period: '3_years_ago',
@@ -14191,7 +14191,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-49',
     author: 'George Rivera',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Feb 21, 2023',
     period: '3_years_ago',
@@ -14239,7 +14239,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-52',
     author: 'Elizabeth Rivera',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 28, 2023',
     period: '3_years_ago',
@@ -14271,7 +14271,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-54',
     author: 'Susan Lee',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Oct 22, 2023',
     period: '3_years_ago',
@@ -14351,7 +14351,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-59',
     author: 'Lisa Walker',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Feb 13, 2023',
     period: '3_years_ago',
@@ -14367,7 +14367,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-60',
     author: 'Charles Jackson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 16, 2023',
     period: '3_years_ago',
@@ -14399,7 +14399,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-62',
     author: 'Karen Hall',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 4,
     date: 'Dec 10, 2023',
     period: '3_years_ago',
@@ -14415,7 +14415,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-63',
     author: 'Amanda Smith',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 26, 2023',
     period: '3_years_ago',
@@ -14543,7 +14543,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-71',
     author: 'William Jackson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Apr 23, 2023',
     period: '3_years_ago',
@@ -14751,7 +14751,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-84',
     author: 'David Hill',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 1, 2023',
     period: '3_years_ago',
@@ -14799,7 +14799,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-87',
     author: 'Mary Jones',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jan 4, 2023',
     period: '3_years_ago',
@@ -14815,7 +14815,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-88',
     author: 'Mark Anderson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Oct 20, 2023',
     period: '3_years_ago',
@@ -14831,7 +14831,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-89',
     author: 'Steven Nguyen',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 26, 2023',
     period: '3_years_ago',
@@ -14863,7 +14863,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-91',
     author: 'Barbara Scott',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 3, 2023',
     period: '3_years_ago',
@@ -14879,7 +14879,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-92',
     author: 'David Campbell',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'May 17, 2023',
     period: '3_years_ago',
@@ -14959,7 +14959,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-97',
     author: 'Anthony Young',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Apr 14, 2023',
     period: '3_years_ago',
@@ -14975,7 +14975,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-98',
     author: 'Margaret Scott',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 10, 2023',
     period: '3_years_ago',
@@ -15039,7 +15039,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-102',
     author: 'Joseph Wilson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 11, 2023',
     period: '3_years_ago',
@@ -15087,7 +15087,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-105',
     author: 'Lisa Nguyen',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jul 17, 2023',
     period: '3_years_ago',
@@ -15119,7 +15119,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-107',
     author: 'Matthew Wilson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 18, 2023',
     period: '3_years_ago',
@@ -15215,7 +15215,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-113',
     author: 'Richard Thomas',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 11, 2023',
     period: '3_years_ago',
@@ -15327,7 +15327,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-120',
     author: 'Betty Moore',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 4,
     date: 'Jun 7, 2023',
     period: '3_years_ago',
@@ -15343,7 +15343,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-121',
     author: 'Andrew Thompson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 11, 2023',
     period: '3_years_ago',
@@ -15375,7 +15375,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-123',
     author: 'Charles Green',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jan 10, 2023',
     period: '3_years_ago',
@@ -15439,7 +15439,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-127',
     author: 'Amanda Campbell',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Sep 4, 2023',
     period: '3_years_ago',
@@ -15455,7 +15455,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-128',
     author: 'Sandra Miller',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Mar 12, 2023',
     period: '3_years_ago',
@@ -15487,7 +15487,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-130',
     author: 'James Williams',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Sep 16, 2023',
     period: '3_years_ago',
@@ -15519,7 +15519,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-132',
     author: 'Andrew Sanchez',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Aug 16, 2023',
     period: '3_years_ago',
@@ -15711,7 +15711,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-144',
     author: 'Mary Sanchez',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jul 19, 2023',
     period: '3_years_ago',
@@ -15871,7 +15871,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-154',
     author: 'Richard Mitchell',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 28, 2023',
     period: '3_years_ago',
@@ -15983,7 +15983,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-161',
     author: 'Mark Baker',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 19, 2023',
     period: '3_years_ago',
@@ -15999,7 +15999,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-162',
     author: 'Donald Smith',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 26, 2023',
     period: '3_years_ago',
@@ -16047,7 +16047,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-165',
     author: 'Robert Johnson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Dec 24, 2023',
     period: '3_years_ago',
@@ -16143,7 +16143,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-171',
     author: 'Donna Anderson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 15, 2023',
     period: '3_years_ago',
@@ -16159,7 +16159,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-172',
     author: 'Thomas Young',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 15, 2023',
     period: '3_years_ago',
@@ -16191,7 +16191,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-174',
     author: 'Kevin Nguyen',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Apr 25, 2023',
     period: '3_years_ago',
@@ -16287,7 +16287,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-180',
     author: 'Lisa Wilson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jun 6, 2023',
     period: '3_years_ago',
@@ -16303,7 +16303,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-181',
     author: 'Paul Walker',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 23, 2023',
     period: '3_years_ago',
@@ -16319,7 +16319,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-182',
     author: 'Margaret Walker',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Apr 28, 2023',
     period: '3_years_ago',
@@ -16367,7 +16367,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-185',
     author: 'James Green',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Nov 27, 2023',
     period: '3_years_ago',
@@ -16431,7 +16431,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-extra-189',
     author: 'Anthony Lee',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'May 16, 2023',
     period: '3_years_ago',
@@ -16672,7 +16672,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-4',
     author: 'Karen Walker',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 24, 2023',
     period: '3_years_ago',
@@ -16736,7 +16736,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-8',
     author: 'Deborah Taylor',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 1, 2023',
     period: '3_years_ago',
@@ -16912,7 +16912,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-19',
     author: 'Robert Johnson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 16, 2023',
     period: '3_years_ago',
@@ -16928,7 +16928,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-20',
     author: 'Richard Nelson',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Dec 7, 2023',
     period: '3_years_ago',
@@ -16944,7 +16944,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-21',
     author: 'Daniel Young',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Aug 26, 2023',
     period: '3_years_ago',
@@ -16960,7 +16960,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-22',
     author: 'Joseph Jones',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Jul 16, 2023',
     period: '3_years_ago',
@@ -17040,7 +17040,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-27',
     author: 'Anthony Hall',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Mar 16, 2023',
     period: '3_years_ago',
@@ -17072,7 +17072,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-29',
     author: 'Nancy Smith',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 25, 2023',
     period: '3_years_ago',
@@ -17200,7 +17200,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-37',
     author: 'Anthony Baker',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 4,
     date: 'Jan 18, 2023',
     period: '3_years_ago',
@@ -17232,7 +17232,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-39',
     author: 'Joseph Robinson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Oct 25, 2023',
     period: '3_years_ago',
@@ -17360,7 +17360,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-47',
     author: 'Margaret Moore',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Apr 16, 2023',
     period: '3_years_ago',
@@ -17376,7 +17376,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-48',
     author: 'Thomas Green',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Sep 12, 2023',
     period: '3_years_ago',
@@ -17392,7 +17392,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-49',
     author: 'Charles Thompson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 8, 2023',
     period: '3_years_ago',
@@ -17504,7 +17504,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-56',
     author: 'Mary Perez',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Dec 21, 2023',
     period: '3_years_ago',
@@ -17552,7 +17552,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-59',
     author: 'Amanda Johnson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Nov 26, 2023',
     period: '3_years_ago',
@@ -17568,7 +17568,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-60',
     author: 'Timothy Baker',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Nov 13, 2023',
     period: '3_years_ago',
@@ -17600,7 +17600,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-62',
     author: 'Steven Rivera',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 17, 2023',
     period: '3_years_ago',
@@ -17664,7 +17664,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-66',
     author: 'Donald Nguyen',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Feb 18, 2023',
     period: '3_years_ago',
@@ -17792,7 +17792,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-74',
     author: 'Barbara Martin',
-    avatarBg: 'bg-purple-600',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Feb 18, 2023',
     period: '3_years_ago',
@@ -17840,7 +17840,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-77',
     author: 'Margaret Wilson',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 4, 2023',
     period: '3_years_ago',
@@ -17920,7 +17920,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-82',
     author: 'Mary Campbell',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jan 8, 2023',
     period: '3_years_ago',
@@ -18064,7 +18064,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-gen-91',
     author: 'Donald King',
-    avatarBg: 'bg-emerald-600',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Oct 17, 2023',
     period: '3_years_ago',
@@ -18241,7 +18241,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-2',
     author: 'Seraphina Wright',
-    avatarBg: 'bg-purple-700',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Aug 14, 2023 (3 Years Ago)',
     period: '3_years_ago',
@@ -18369,7 +18369,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-10',
     author: 'Stefan Salvatore',
-    avatarBg: 'bg-emerald-700',
+    avatarBg: 'bg-[#86A98D]',
     rating: 5,
     date: 'Jul 22, 2023',
     period: '3_years_ago',
@@ -18417,7 +18417,7 @@ export const CUSTOMER_REVIEWS: CustomerReview[] = [
   {
     id: 'rev-2023-13',
     author: 'Bonnie Bennett',
-    avatarBg: 'bg-purple-800',
+    avatarBg: 'bg-[#2563EB]',
     rating: 5,
     date: 'Oct 02, 2023',
     period: '3_years_ago',

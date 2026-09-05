@@ -150,7 +150,7 @@ export const AdminSupportSection: React.FC = () => {
           <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-700/60">
             <div className="flex items-center justify-between text-slate-500 text-xs font-semibold">
               <span>Gift Cards</span>
-              <BarChart3 className="w-3.5 h-3.5 text-emerald-500" />
+              <BarChart3 className="w-3.5 h-3.5 text-[#2563EB]" />
             </div>
             <p className="text-xl font-extrabold text-slate-900 dark:text-white mt-1 font-mono">
               {stats.cardsCount}
@@ -159,7 +159,7 @@ export const AdminSupportSection: React.FC = () => {
           <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-700/60">
             <div className="flex items-center justify-between text-slate-500 text-xs font-semibold">
               <span>Conversations</span>
-              <MessageSquare className="w-3.5 h-3.5 text-blue-500" />
+              <MessageSquare className="w-3.5 h-3.5 text-[#2563EB]" />
             </div>
             <p className="text-xl font-extrabold text-slate-900 dark:text-white mt-1 font-mono">
               {stats.conversationsCount}
@@ -196,7 +196,7 @@ export const AdminSupportSection: React.FC = () => {
                 onClick={() => setStatusFilter(st)}
                 className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
                   statusFilter === st
-                    ? 'bg-indigo-600 text-white'
+                    ? 'bg-[#2563EB] text-white'
                     : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
@@ -209,7 +209,7 @@ export const AdminSupportSection: React.FC = () => {
           <div className="flex-1 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800/80">
             {isLoading && conversations.length === 0 ? (
               <div className="p-8 text-center text-slate-400 text-xs flex flex-col items-center gap-2">
-                <Loader2 className="w-5 h-5 animate-spin text-indigo-600" />
+                <Loader2 className="w-5 h-5 animate-spin text-[#2563EB]" />
                 <span>Loading tickets...</span>
               </div>
             ) : conversations.length === 0 ? (
@@ -226,7 +226,7 @@ export const AdminSupportSection: React.FC = () => {
                     onClick={() => handleSelectConversation(conv.id)}
                     className={`w-full text-left p-3.5 transition-colors cursor-pointer flex flex-col gap-1.5 ${
                       isSelected
-                        ? 'bg-indigo-50/90 dark:bg-indigo-950/50 border-l-4 border-indigo-600'
+                        ? 'bg-blue-50/90 dark:bg-blue-950/50 border-l-4 border-[#2563EB]'
                         : 'hover:bg-slate-100/70 dark:hover:bg-slate-800/50'
                     }`}
                   >
@@ -237,7 +237,7 @@ export const AdminSupportSection: React.FC = () => {
                       <span
                         className={`text-[10px] px-2 py-0.5 rounded-md font-bold uppercase ${
                           conv.status === 'OPEN'
-                            ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300'
+                            ? 'bg-[#86A98D]/20 text-[#86A98D]'
                             : conv.status === 'WAITING'
                             ? 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300'
                             : 'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-400'

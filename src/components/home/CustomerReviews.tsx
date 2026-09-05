@@ -76,7 +76,7 @@ export const CustomerReviews: React.FC = () => {
     const createdItem: CustomerReview = {
       id: `rev-custom-${Date.now()}`,
       author: newReview.author.trim(),
-      avatarBg: newReview.type === 'bought' ? 'bg-indigo-600' : 'bg-emerald-600',
+      avatarBg: newReview.type === 'bought' ? 'bg-[#2563EB]' : 'bg-[#86A98D]',
       rating: newReview.rating,
       date: 'Just now (2026)',
       period: 'recent',
@@ -136,18 +136,27 @@ export const CustomerReviews: React.FC = () => {
     );
   };
 
+  const getNormalizedAvatarBg = (bg?: string) => {
+    if (!bg) return 'bg-[#2563EB]';
+    if (bg.includes('emerald') || bg.includes('green') || bg.includes('teal')) return 'bg-[#86A98D]';
+    if (bg.includes('purple') || bg.includes('violet') || bg.includes('fuchsia') || bg.includes('indigo') || bg.includes('blue')) return 'bg-[#2563EB]';
+    if (bg.includes('amber') || bg.includes('yellow') || bg.includes('orange')) return 'bg-amber-600';
+    if (bg.includes('rose') || bg.includes('red') || bg.includes('pink')) return 'bg-[#1D4ED8]';
+    return 'bg-[#2563EB]';
+  };
+
   return (
-    <section id="customer-reviews-section" className="py-16 sm:py-24 bg-slate-50/70 dark:bg-slate-950/70 border-b border-slate-200/80 dark:border-slate-800 relative">
+    <section id="customer-reviews-section" className="py-16 sm:py-24 bg-[#F5F7FA] dark:bg-slate-950/70 border-b border-slate-200/80 dark:border-slate-800 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60 mb-2.5">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-300 border border-blue-200/60 dark:border-blue-800/60 mb-2.5">
               <Sparkles className="w-3.5 h-3.5 text-amber-500" />
               <span>Verified Customer Social Proof • 3+ Year Archive</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E293B] dark:text-white tracking-tight">
               Real Experiences From Real Users Over 3 Years
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
@@ -159,11 +168,10 @@ export const CustomerReviews: React.FC = () => {
             <Button
               type="button"
               id="btn-open-review-modal"
-              variant="outline"
               size="md"
               onClick={() => setShowWriteModal(true)}
-              className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-xs sm:text-sm font-bold shadow-xs"
-              leftIcon={<MessageSquarePlus className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />}
+              className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold border border-amber-600/30 text-xs sm:text-sm shadow-xs transition-colors cursor-pointer"
+              leftIcon={<MessageSquarePlus className="w-4 h-4 text-slate-950" />}
             >
               Write a Review
             </Button>
@@ -191,16 +199,16 @@ export const CustomerReviews: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-2 mt-3 px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-mono font-semibold">
-                <History className="w-3.5 h-3.5 text-indigo-500" />
+                <History className="w-3.5 h-3.5 text-[#2563EB]" />
                 <span>3+ Years Continuous Operation (2023 - 2026)</span>
               </div>
             </div>
 
             {/* Middle Trust Badges */}
             <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-              <div className="p-3.5 rounded-2xl bg-indigo-50/60 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/50">
-                <div className="flex items-center gap-2 text-indigo-700 dark:text-indigo-300 font-extrabold text-sm mb-1">
-                  <ShoppingBag className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+              <div className="p-3.5 rounded-2xl bg-blue-50/60 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/50">
+                <div className="flex items-center gap-2 text-[#2563EB] dark:text-blue-300 font-extrabold text-sm mb-1">
+                  <ShoppingBag className="w-4 h-4 text-[#2563EB] dark:text-blue-400" />
                   <span>{REVIEW_METRICS.deliveryRate} Delivery</span>
                 </div>
                 <div className="text-xs text-slate-600 dark:text-slate-400">
@@ -208,9 +216,9 @@ export const CustomerReviews: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/50">
-                <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-300 font-extrabold text-sm mb-1">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <div className="p-3.5 rounded-2xl bg-[#86A98D]/15 border border-[#86A98D]/30">
+                <div className="flex items-center gap-2 text-[#86A98D] font-extrabold text-sm mb-1">
+                  <ShieldCheck className="w-4 h-4 text-[#86A98D]" />
                   <span>{REVIEW_METRICS.satisfactionRate} Authentic</span>
                 </div>
                 <div className="text-xs text-slate-600 dark:text-slate-400">
@@ -222,11 +230,11 @@ export const CustomerReviews: React.FC = () => {
             {/* Right Quick Summary Pillars */}
             <div className="lg:col-span-3 space-y-2 border-t lg:border-t-0 border-slate-100 dark:border-slate-800 pt-4 lg:pt-0">
               <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#86A98D] shrink-0" />
                 <span>Zero hidden processing fees</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
-                <Lock className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                <Lock className="w-3.5 h-3.5 text-[#2563EB] shrink-0" />
                 <span>256-bit bank-grade encryption</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
@@ -244,7 +252,7 @@ export const CustomerReviews: React.FC = () => {
           {/* Row 1: Time Period Filters */}
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 pb-1">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono mr-1 flex items-center gap-1 shrink-0">
-              <Calendar className="w-3.5 h-3.5 text-indigo-400" /> Timeline:
+              <Calendar className="w-3.5 h-3.5 text-[#2563EB]" /> Timeline:
             </span>
 
             <button
@@ -252,7 +260,7 @@ export const CustomerReviews: React.FC = () => {
               onClick={() => setActiveFilter('all')}
               className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
                 activeFilter === 'all'
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                  ? 'bg-[#2563EB] text-white shadow-md shadow-blue-600/20'
                   : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
               }`}
             >
@@ -267,11 +275,11 @@ export const CustomerReviews: React.FC = () => {
               onClick={() => setActiveFilter('last_year')}
               className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
                 activeFilter === 'last_year'
-                  ? 'bg-cyan-600 text-white shadow-md shadow-cyan-600/20'
+                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/20'
                   : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
               }`}
             >
-              <Clock className="w-3 h-3 text-cyan-400" />
+              <Clock className="w-3 h-3 text-sky-400" />
               <span>Last Year (2025)</span>
               <span className={`text-[11px] px-1.5 py-0.2 rounded-full ${activeFilter === 'last_year' ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
                 {reviews.filter((r) => r.period === 'last_year').length}
@@ -283,11 +291,11 @@ export const CustomerReviews: React.FC = () => {
               onClick={() => setActiveFilter('2_years_ago')}
               className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
                 activeFilter === '2_years_ago'
-                  ? 'bg-purple-600 text-white shadow-md shadow-purple-600/20'
+                  ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-800/20'
                   : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
               }`}
             >
-              <History className="w-3 h-3 text-purple-400" />
+              <History className="w-3 h-3 text-blue-300" />
               <span>2 Years Ago (2024)</span>
               <span className={`text-[11px] px-1.5 py-0.2 rounded-full ${activeFilter === '2_years_ago' ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
                 {reviews.filter((r) => r.period === '2_years_ago').length}
@@ -320,11 +328,11 @@ export const CustomerReviews: React.FC = () => {
                 onClick={() => setActiveFilter('bought')}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
                   activeFilter === 'bought'
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                    ? 'bg-[#2563EB] text-white shadow-md shadow-blue-600/20'
                     : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
                 }`}
               >
-                <ShoppingBag className="w-3.5 h-3.5 text-indigo-400" />
+                <ShoppingBag className="w-3.5 h-3.5 text-blue-200" />
                 <span>Gift Cards Bought</span>
                 <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${activeFilter === 'bought' ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
                   {reviews.filter((r) => r.type === 'bought').length}
@@ -337,13 +345,13 @@ export const CustomerReviews: React.FC = () => {
                 onClick={() => setActiveFilter('validated')}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
                   activeFilter === 'validated'
-                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
+                    ? 'border-2 border-[#2563EB] bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-300 shadow-md shadow-blue-600/10'
                     : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
                 }`}
               >
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                <ShieldCheck className="w-3.5 h-3.5 text-[#2563EB] dark:text-blue-400" />
                 <span>Cards Validated</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${activeFilter === 'validated' ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${activeFilter === 'validated' ? 'bg-blue-100 dark:bg-blue-950 text-[#2563EB] dark:text-blue-300 font-bold' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
                   {reviews.filter((r) => r.type === 'validated').length}
                 </span>
               </button>
@@ -394,7 +402,7 @@ export const CustomerReviews: React.FC = () => {
                   {/* Top Author Row & Badges */}
                   <div className="flex items-start justify-between gap-3 mb-4">
                     <div className="flex items-center gap-3">
-                      <div className={`w-11 h-11 rounded-2xl ${review.avatarBg || 'bg-indigo-600'} text-white font-black text-sm flex items-center justify-center shadow-xs shrink-0`}>
+                      <div className={`w-11 h-11 rounded-2xl ${getNormalizedAvatarBg(review.avatarBg)} text-white font-black text-sm flex items-center justify-center shadow-xs shrink-0`}>
                         {initials}
                       </div>
                       <div>
@@ -415,24 +423,24 @@ export const CustomerReviews: React.FC = () => {
                         </span>
                       )}
                       {review.period === '2_years_ago' && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/15 text-purple-600 dark:text-purple-400 border border-purple-500/30">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30">
                           2024 Customer
                         </span>
                       )}
                       {review.period === 'last_year' && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/30">
                           2025 Buyer
                         </span>
                       )}
 
                       {review.type === 'bought' ? (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200/70 dark:border-indigo-800/70 shrink-0">
-                          <ShoppingBag className="w-3 h-3 text-indigo-500" />
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 dark:bg-blue-950/70 text-[#2563EB] dark:text-blue-300 border border-blue-200/70 dark:border-blue-800/70 shrink-0">
+                          <ShoppingBag className="w-3 h-3 text-[#2563EB]" />
                           <span>Verified Buyer</span>
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 border border-emerald-200/70 dark:border-emerald-800/70 shrink-0">
-                          <ShieldCheck className="w-3 h-3 text-emerald-500" />
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#86A98D]/15 text-[#86A98D] border border-[#86A98D]/30 shrink-0">
+                          <ShieldCheck className="w-3 h-3 text-[#86A98D]" />
                           <span>Card Validated</span>
                         </span>
                       )}
@@ -455,7 +463,7 @@ export const CustomerReviews: React.FC = () => {
 
                 {/* Bottom Helpful Row */}
                 <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-                  <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-semibold">
+                  <div className="flex items-center gap-1.5 text-[#86A98D] font-semibold">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                     <span>Verified Authenticity</span>
                   </div>
@@ -465,11 +473,11 @@ export const CustomerReviews: React.FC = () => {
                     onClick={() => handleHelpfulClick(review.id)}
                     className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg transition-colors cursor-pointer text-xs font-semibold ${
                       hasVoted
-                        ? 'bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 font-bold'
+                        ? 'bg-blue-50 dark:bg-blue-950/80 text-[#2563EB] dark:text-blue-400 font-bold'
                         : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400'
                     }`}
                   >
-                    <ThumbsUp className={`w-3.5 h-3.5 ${hasVoted ? 'fill-indigo-600 dark:fill-indigo-400' : ''}`} />
+                    <ThumbsUp className={`w-3.5 h-3.5 ${hasVoted ? 'fill-[#2563EB] dark:fill-blue-400' : ''}`} />
                     <span>Helpful ({review.helpfulCount || 0})</span>
                   </button>
                 </div>
@@ -508,7 +516,7 @@ export const CustomerReviews: React.FC = () => {
             </button>
 
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-md shadow-indigo-600/30">
+              <div className="w-10 h-10 rounded-2xl bg-[#2563EB] text-white flex items-center justify-center shadow-md shadow-blue-600/30">
                 <MessageSquarePlus className="w-5 h-5" />
               </div>
               <div>
@@ -523,7 +531,7 @@ export const CustomerReviews: React.FC = () => {
 
             {formSubmitted ? (
               <div className="py-10 text-center space-y-3">
-                <div className="w-14 h-14 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto">
+                <div className="w-14 h-14 rounded-full bg-[#86A98D]/20 text-[#86A98D] flex items-center justify-center mx-auto">
                   <Check className="w-8 h-8" />
                 </div>
                 <h4 className="text-lg font-extrabold text-slate-900 dark:text-white">
@@ -555,7 +563,7 @@ export const CustomerReviews: React.FC = () => {
                         setNewReview({ ...newReview, author: e.target.value });
                         if (formError) setFormError('');
                       }}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
                     />
                   </div>
 
@@ -568,7 +576,7 @@ export const CustomerReviews: React.FC = () => {
                       placeholder="e.g. Miami, FL"
                       value={newReview.location}
                       onChange={(e) => setNewReview({ ...newReview, location: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
                     />
                   </div>
                 </div>
@@ -584,7 +592,7 @@ export const CustomerReviews: React.FC = () => {
                       onClick={() => setNewReview({ ...newReview, type: 'bought' })}
                       className={`p-2.5 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
                         newReview.type === 'bought'
-                          ? 'bg-indigo-50 dark:bg-indigo-950/70 border-indigo-500 text-indigo-700 dark:text-indigo-300'
+                          ? 'bg-blue-50 dark:bg-blue-950/70 border-[#2563EB] text-[#2563EB] dark:text-blue-300'
                           : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                       }`}
                     >
@@ -595,13 +603,13 @@ export const CustomerReviews: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setNewReview({ ...newReview, type: 'validated' })}
-                      className={`p-2.5 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
+                      className={`p-2.5 rounded-xl border-2 text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
                         newReview.type === 'validated'
-                          ? 'bg-emerald-50 dark:bg-emerald-950/70 border-emerald-500 text-emerald-700 dark:text-emerald-300'
-                          : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
+                          ? 'border-[#2563EB] bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-300 shadow-xs'
+                          : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-slate-300'
                       }`}
                     >
-                      <ShieldCheck className="w-3.5 h-3.5" />
+                      <ShieldCheck className={`w-3.5 h-3.5 ${newReview.type === 'validated' ? 'text-[#2563EB] dark:text-blue-400' : ''}`} />
                       <span>I Validated a Code</span>
                     </button>
                   </div>
@@ -616,7 +624,7 @@ export const CustomerReviews: React.FC = () => {
                     <select
                       value={newReview.cardName}
                       onChange={(e) => setNewReview({ ...newReview, cardName: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
                     >
                       {GIFT_CARDS.slice(0, 15).map((card) => (
                         <option key={card.id} value={card.name}>
@@ -635,7 +643,7 @@ export const CustomerReviews: React.FC = () => {
                       placeholder="e.g. $50 USD"
                       value={newReview.denomination}
                       onChange={(e) => setNewReview({ ...newReview, denomination: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
                     />
                   </div>
                 </div>
@@ -682,7 +690,7 @@ export const CustomerReviews: React.FC = () => {
                       setNewReview({ ...newReview, comment: e.target.value });
                       if (formError) setFormError('');
                     }}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB] resize-none"
                   />
                 </div>
 
@@ -699,7 +707,7 @@ export const CustomerReviews: React.FC = () => {
                     type="submit"
                     variant="primary"
                     size="sm"
-                    className="bg-indigo-600 hover:bg-indigo-500"
+                    className="bg-[#2563EB] hover:bg-[#1D4ED8]"
                   >
                     Post Verified Review
                   </Button>

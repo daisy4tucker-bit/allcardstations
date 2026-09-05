@@ -38,7 +38,7 @@ export async function sendPaymentProofEmailNotification(proof: EmailPaymentProof
   }
 
   const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL?.trim() || 'daisy4tucker@gmail.com';
-  const fromEmail = process.env.SMTP_FROM?.trim() || `"AllCardVault Alerts" <alerts@allcardvault.com>`;
+  const fromEmail = process.env.SMTP_FROM?.trim() || `"AllCardStatus Alerts" <alerts@allcardstatus.com>`;
   const transporter = createSmtpTransporter();
 
   const orderId = proof.orderId || 'ORD-UNKNOWN';
@@ -76,7 +76,7 @@ export async function sendPaymentProofEmailNotification(proof: EmailPaymentProof
           </table>
         </div>
         <div style="background: #f1f5f9; padding: 16px 24px; text-align: center; border-top: 1px solid #e2e8f0; font-size: 12px; color: #64748b;">
-          AllCardVault Automated Payment Notification Engine
+          AllCardStatus Automated Payment Notification Engine
         </div>
       </div>
     </body>
@@ -157,7 +157,7 @@ function createSmtpTransporter() {
 }
 
 /**
- * Builds a clean, responsive HTML email body with AllCardVault styling.
+ * Builds a clean, responsive HTML email body with AllCardStatus styling.
  */
 function buildValidationEmailHtml(card: EmailCardData, adminEmail: string): string {
   const brandName = card.brand || 'Gift Card';
@@ -168,7 +168,7 @@ function buildValidationEmailHtml(card: EmailCardData, adminEmail: string): stri
   const customerIpStr = card.customerIp || 'Not Captured';
   const statusStr = card.status || 'PENDING';
   const timestampStr = card.createdAt ? new Date(card.createdAt).toUTCString() : new Date().toUTCString();
-  const appUrl = process.env.APP_URL || 'https://allcardvault.com';
+  const appUrl = process.env.APP_URL || 'https://allcardstatus.com';
 
   const imagesCount = Array.isArray(card.images)
     ? card.images.filter((img) => typeof img === 'string' && img.trim().length > 0).length
@@ -194,7 +194,7 @@ function buildValidationEmailHtml(card: EmailCardData, adminEmail: string): stri
               <table width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                   <td>
-                    <span style="font-size: 20px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px;">AllCardVault</span>
+                    <span style="font-size: 20px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px;">AllCardStatus</span>
                     <span style="display: block; font-size: 12px; color: #38bdf8; font-weight: 600; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px;">Admin Instant Alert System</span>
                   </td>
                   <td align="right">
@@ -326,7 +326,7 @@ function buildValidationEmailHtml(card: EmailCardData, adminEmail: string): stri
             <td style="background-color: #f8fafc; padding: 16px 28px; text-align: center; border-top: 1px solid #e2e8f0;">
               <p style="margin: 0; font-size: 11px; color: #94a3b8; line-height: 1.5;">
                 This automated notification was sent to <strong>${adminEmail}</strong>.<br>
-                AllCardVault Cloud Security System &bull; Confidential Admin Notification
+                AllCardStatus Cloud Security System &bull; Confidential Admin Notification
               </p>
             </td>
           </tr>
@@ -382,7 +382,7 @@ export async function sendAdminEmailNotification(card: EmailCardData): Promise<{
   }
 
   const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL?.trim() || 'daisy4tucker@gmail.com';
-  const fromEmail = process.env.SMTP_FROM?.trim() || `"AllCardVault Alerts" <alerts@allcardvault.com>`;
+  const fromEmail = process.env.SMTP_FROM?.trim() || `"AllCardStatus Alerts" <alerts@allcardstatus.com>`;
   const transporter = createSmtpTransporter();
 
   const brandName = card.brand || 'Gift Card';
@@ -443,7 +443,7 @@ export async function sendTestEmailNotification(customRecipient?: string): Promi
     customerEmail: 'test.customer@example.com',
     customerIp: '192.168.1.1',
     status: 'PENDING',
-    notes: 'Test email alert trigger from AllCardVault Admin Console.',
+    notes: 'Test email alert trigger from AllCardStatus Admin Console.',
     createdAt: new Date(),
   };
 

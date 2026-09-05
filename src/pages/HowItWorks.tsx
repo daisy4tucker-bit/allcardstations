@@ -81,7 +81,7 @@ export const HowItWorks: React.FC = () => {
     >
       <SectionHeading
         tag="Simple & Transparent"
-        title="How AllCardVault Works"
+        title="How AllCardStatus Works"
         subtitle="Sending and receiving digital gift cards has never been easier. Follow our four simple steps from discovery to instant redemption."
         align="center"
       />

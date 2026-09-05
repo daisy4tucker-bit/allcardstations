@@ -277,7 +277,7 @@ export const Dashboard: React.FC = () => {
                 <span>Crypto Gateway Rule</span>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed">
-                AllCardVault uses direct cryptocurrency settlement for privacy and global delivery.
+                AllCardStatus uses direct cryptocurrency settlement for privacy and global delivery.
               </p>
               <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-indigo-200">
                 <span>BTC • ETH • LTC • SOL</span>
@@ -326,7 +326,7 @@ export const Dashboard: React.FC = () => {
                       <span>Zero Traditional Gateways</span>
                     </div>
                     <p className="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
-                      AllCardVault does NOT integrate Stripe, PayPal, bank payment gateways, credit cards, Apple Pay, or Google Pay. We never store credit card numbers.
+                      AllCardStatus does NOT integrate Stripe, PayPal, bank payment gateways, credit cards, Apple Pay, or Google Pay. We never store credit card numbers.
                     </p>
                   </div>
 

@@ -94,25 +94,25 @@ export const LiveCurrencyConverter: React.FC<LiveCurrencyConverterProps> = ({
     return (
       <div 
         onClick={() => setIsFolded(false)}
-        className="rounded-2xl border border-indigo-200/80 dark:border-indigo-900/60 bg-gradient-to-br from-indigo-50/90 via-white to-blue-50/70 dark:from-slate-900 dark:via-slate-900 dark:to-indigo-950/60 p-4 shadow-xs flex items-center justify-between cursor-pointer hover:border-indigo-400 transition-all group"
+        className="rounded-2xl border border-blue-200/80 dark:border-blue-900/60 bg-[#F5F7FA] dark:bg-slate-900 p-4 shadow-xs flex items-center justify-between cursor-pointer hover:border-[#2563EB]/60 transition-all group"
       >
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-xs">
+          <div className="w-8 h-8 rounded-xl bg-[#2563EB] text-white flex items-center justify-center shadow-xs">
             <Globe className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-indigo-900 dark:text-indigo-200">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-[#1E293B] dark:text-blue-200">
                 Live Local Currency Conversion
               </span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#86A98D]/15 text-[#86A98D] border border-[#86A98D]/30">
                 Folded • {activeCurrencyObj.code} Chosen
               </span>
             </div>
             <div className="text-xs font-bold text-slate-700 dark:text-slate-300 mt-0.5 flex items-center gap-2">
               <span>{activeCurrencyObj.flag} {activeCurrencyObj.name} ({activeCurrencyObj.code})</span>
               <span className="text-slate-400">•</span>
-              <span className="text-indigo-600 dark:text-indigo-400 font-mono">{formatCurrencyAmount(safeAmount, selectedLocalCurrency)}</span>
+              <span className="text-[#2563EB] dark:text-blue-400 font-mono">{formatCurrencyAmount(safeAmount, selectedLocalCurrency)}</span>
             </div>
           </div>
         </div>
@@ -123,7 +123,7 @@ export const LiveCurrencyConverter: React.FC<LiveCurrencyConverterProps> = ({
             e.stopPropagation();
             setIsFolded(false);
           }}
-          className="text-xs font-bold px-3 py-1.5 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition-colors shadow-xs"
+          className="text-xs font-bold px-3 py-1.5 rounded-xl bg-[#2563EB] text-white hover:bg-[#1D4ED8] transition-colors shadow-xs"
         >
           Change Currency
         </button>
@@ -132,24 +132,24 @@ export const LiveCurrencyConverter: React.FC<LiveCurrencyConverterProps> = ({
   }
 
   return (
-    <div className="rounded-2xl border border-indigo-200/80 dark:border-indigo-900/60 bg-gradient-to-br from-indigo-50/70 via-white to-blue-50/40 dark:from-slate-900 dark:via-slate-900 dark:to-indigo-950/40 p-4 sm:p-5 shadow-xs transition-all">
+    <div className="rounded-2xl border border-blue-200/80 dark:border-blue-900/60 bg-[#F5F7FA] dark:bg-slate-900 p-4 sm:p-5 shadow-xs transition-all">
       {/* Header with Live Status badge & Refresh button */}
       <div className="flex items-center justify-between gap-3 mb-3.5">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-xs">
+          <div className="w-8 h-8 rounded-xl bg-[#2563EB] text-white flex items-center justify-center shadow-xs">
             <Globe className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+              <h3 className="text-sm font-bold text-[#1E293B] dark:text-white">
                 Live Local Currency Conversion
               </h3>
               <span className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full ${
                 isLive 
-                  ? 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800' 
+                  ? 'bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-900/40' 
                   : 'bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800'
               }`}>
-                <span className={`w-1.5 h-1.5 rounded-full ${isLive ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}`} />
+                <span className={`w-1.5 h-1.5 rounded-full ${isLive ? 'bg-red-500 animate-pulse' : 'bg-amber-500'}`} />
                 {isLive ? 'Live API Rates' : 'Standard Rates'}
               </span>
             </div>
@@ -166,12 +166,12 @@ export const LiveCurrencyConverter: React.FC<LiveCurrencyConverterProps> = ({
           title="Refresh real-time conversion rates"
           className="p-2 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 transition-all cursor-pointer disabled:opacity-50"
         >
-          <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin text-indigo-600' : ''}`} />
+          <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin text-[#2563EB]' : ''}`} />
         </button>
       </div>
 
       {/* Main Converted Display Card centered around the User's Chosen Currency and Amount */}
-      <div className="bg-white dark:bg-slate-950/80 rounded-xl p-4 border border-indigo-100 dark:border-indigo-900/50 shadow-xs mb-3.5">
+      <div className="bg-white dark:bg-slate-950/80 rounded-xl p-4 border border-slate-200 dark:border-slate-800 shadow-xs mb-3.5">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
           {/* User's Chosen Amount & Benchmark */}
           <div>
@@ -179,7 +179,7 @@ export const LiveCurrencyConverter: React.FC<LiveCurrencyConverterProps> = ({
               <span>Your Selected Amount & Currency</span>
             </div>
             <div className="flex items-baseline gap-2 mt-1">
-              <span className="text-2xl sm:text-3xl font-black text-indigo-600 dark:text-indigo-400 tracking-tight">
+              <span className="text-2xl sm:text-3xl font-black text-[#2563EB] dark:text-blue-400 tracking-tight">
                 {formatCurrencyAmount(safeAmount, selectedLocalCurrency)}
               </span>
               <span className="text-sm font-bold text-slate-600 dark:text-slate-300">
@@ -189,7 +189,7 @@ export const LiveCurrencyConverter: React.FC<LiveCurrencyConverterProps> = ({
 
             <div className="flex items-center gap-2 mt-1.5 text-xs text-slate-600 dark:text-slate-400 font-medium">
               <span>USD Benchmark:</span>
-              <span className="font-bold text-slate-900 dark:text-white bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">
+              <span className="font-bold text-[#1E293B] dark:text-white bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">
                 {formatCurrencyAmount(amountInUSD, 'USD')} USD
               </span>
             </div>
@@ -198,16 +198,16 @@ export const LiveCurrencyConverter: React.FC<LiveCurrencyConverterProps> = ({
           {/* Crypto Equivalent & Live Exchange Rate */}
           <div className="sm:text-right sm:border-l sm:border-slate-100 dark:sm:border-slate-800/80 sm:pl-4 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100 dark:border-slate-800">
             <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex sm:justify-end items-center gap-1">
-              <Coins className="w-3 h-3 text-amber-500" />
+              <Coins className="w-3 h-3 text-[#2563EB]" />
               <span>Est. Crypto Equivalent ({cryptoCurrency})</span>
             </div>
             
-            <div className="text-lg sm:text-xl font-mono font-extrabold text-amber-600 dark:text-amber-400 mt-1">
+            <div className="text-lg sm:text-xl font-mono font-extrabold text-[#2563EB] dark:text-blue-400 mt-1">
               ~ {cryptoQuote.cryptoAmount} {cryptoCurrency}
             </div>
 
             <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 mt-1 flex sm:justify-end items-center gap-1">
-              <TrendingUp className="w-3 h-3 text-emerald-500 shrink-0" />
+              <TrendingUp className="w-3 h-3 text-[#86A98D] shrink-0" />
               {selectedLocalCurrency.toUpperCase() === 'USD' ? (
                 <span>Base Currency USD (1.0000)</span>
               ) : (

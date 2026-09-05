@@ -32,7 +32,7 @@ apiRouter.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     phase: 2,
-    service: 'AllCardVault REST API',
+    service: 'AllCardStatus REST API',
     timestamp: new Date().toISOString(),
   });
 });

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export type AccentTheme = 'indigo' | 'cyan' | 'emerald' | 'amber' | 'rose' | 'violet';
+export type AccentTheme = 'blue' | 'sage' | 'slate' | 'navy' | 'indigo';
 
 export interface AccentThemeConfig {
   id: AccentTheme;
@@ -14,65 +14,55 @@ export interface AccentThemeConfig {
 }
 
 export const accentThemes: Record<AccentTheme, AccentThemeConfig> = {
+  blue: {
+    id: 'blue',
+    name: 'Muted Blue (Default)',
+    description: 'Crisp, high-clarity royal blue for simple, intuitive navigation.',
+    primaryColor: 'bg-[#2563EB] text-white',
+    badgeClass: 'bg-blue-500/15 border-blue-500/30 text-[#2563EB] dark:text-blue-400',
+    borderClass: 'border-[#2563EB]',
+    glowClass: 'shadow-blue-500/20',
+    dotColor: 'bg-[#2563EB]',
+  },
+  sage: {
+    id: 'sage',
+    name: 'Sage Green',
+    description: 'Calm, peaceful soft green tone (#86A98D) representing verified status.',
+    primaryColor: 'bg-[#86A98D] text-white',
+    badgeClass: 'bg-[#86A98D]/15 border-[#86A98D]/30 text-[#86A98D]',
+    borderClass: 'border-[#86A98D]',
+    glowClass: 'shadow-[#86A98D]/20',
+    dotColor: 'bg-[#86A98D]',
+  },
+  slate: {
+    id: 'slate',
+    name: 'Dark Slate',
+    description: 'Clean, minimalist slate tone (#1E293B) for understated modesty.',
+    primaryColor: 'bg-[#1E293B] text-white',
+    badgeClass: 'bg-slate-500/15 border-slate-500/30 text-slate-700 dark:text-slate-300',
+    borderClass: 'border-[#1E293B]',
+    glowClass: 'shadow-slate-500/20',
+    dotColor: 'bg-[#1E293B]',
+  },
+  navy: {
+    id: 'navy',
+    name: 'Deep Navy',
+    description: 'Focused dark blue (#1D4ED8) for high contrast and strong callouts.',
+    primaryColor: 'bg-[#1D4ED8] text-white',
+    badgeClass: 'bg-blue-900/15 border-blue-900/30 text-[#1D4ED8] dark:text-blue-300',
+    borderClass: 'border-[#1D4ED8]',
+    glowClass: 'shadow-blue-900/20',
+    dotColor: 'bg-[#1D4ED8]',
+  },
   indigo: {
     id: 'indigo',
-    name: 'Classic Indigo (Default)',
-    description: 'Professional, deep blue-violet aesthetic with high contrast clarity.',
-    primaryColor: 'bg-indigo-600 text-white',
-    badgeClass: 'bg-indigo-500/15 border-indigo-500/30 text-indigo-400',
-    borderClass: 'border-indigo-500',
-    glowClass: 'shadow-indigo-500/20',
-    dotColor: 'bg-indigo-400',
-  },
-  cyan: {
-    id: 'cyan',
-    name: 'Electric Cyan',
-    description: 'Vibrant futuristic digital glow with high-tech cyan accents.',
-    primaryColor: 'bg-cyan-600 text-white',
-    badgeClass: 'bg-cyan-500/15 border-cyan-500/30 text-cyan-400',
-    borderClass: 'border-cyan-500',
-    glowClass: 'shadow-cyan-500/20',
-    dotColor: 'bg-cyan-400',
-  },
-  emerald: {
-    id: 'emerald',
-    name: 'Emerald Mint',
-    description: 'Calm, secure financial green aura symbolizing trusted transactions.',
-    primaryColor: 'bg-emerald-600 text-white',
-    badgeClass: 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400',
-    borderClass: 'border-emerald-500',
-    glowClass: 'shadow-emerald-500/20',
-    dotColor: 'bg-emerald-400',
-  },
-  amber: {
-    id: 'amber',
-    name: 'Royal Amber',
-    description: 'Warm, luxurious gold-amber tone for a premium boutique feel.',
-    primaryColor: 'bg-amber-600 text-white',
-    badgeClass: 'bg-amber-500/15 border-amber-500/30 text-amber-400',
-    borderClass: 'border-amber-500',
-    glowClass: 'shadow-amber-500/20',
-    dotColor: 'bg-amber-400',
-  },
-  rose: {
-    id: 'rose',
-    name: 'Neon Rose',
-    description: 'Bold magenta-rose highlight for high-energy modern branding.',
-    primaryColor: 'bg-rose-600 text-white',
-    badgeClass: 'bg-rose-500/15 border-rose-500/30 text-rose-400',
-    borderClass: 'border-rose-500',
-    glowClass: 'shadow-rose-500/20',
-    dotColor: 'bg-rose-400',
-  },
-  violet: {
-    id: 'violet',
-    name: 'Cyberpunk Violet',
-    description: 'Deep midnight purple and neon violet digital atmosphere.',
-    primaryColor: 'bg-violet-600 text-white',
-    badgeClass: 'bg-violet-500/15 border-violet-500/30 text-violet-400',
-    borderClass: 'border-violet-500',
-    glowClass: 'shadow-violet-500/20',
-    dotColor: 'bg-violet-400',
+    name: 'Muted Blue Accent',
+    description: 'Standard deep blue aesthetic with high contrast clarity.',
+    primaryColor: 'bg-[#2563EB] text-white',
+    badgeClass: 'bg-blue-500/15 border-blue-500/30 text-[#2563EB] dark:text-blue-400',
+    borderClass: 'border-[#2563EB]',
+    glowClass: 'shadow-blue-500/20',
+    dotColor: 'bg-[#2563EB]',
   },
 };
 
@@ -84,17 +74,17 @@ interface AccentThemeContextType {
 
 const AccentThemeContext = createContext<AccentThemeContextType | undefined>(undefined);
 
-const STORAGE_KEY = 'allcardvault-accent-theme';
+const STORAGE_KEY = 'allcardstatus-accent-theme';
 
 export const AccentThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentAccent, setCurrentAccent] = useState<AccentTheme>(() => {
     try {
-      const saved = (localStorage.getItem(STORAGE_KEY) || localStorage.getItem('allcardstation-accent-theme')) as AccentTheme;
+      const saved = (localStorage.getItem(STORAGE_KEY) || localStorage.getItem('allcardvault-accent-theme') || localStorage.getItem('allcardstation-accent-theme')) as AccentTheme;
       if (saved && accentThemes[saved]) {
         return saved;
       }
     } catch {}
-    return 'indigo';
+    return 'blue';
   });
 
   useEffect(() => {
@@ -108,7 +98,7 @@ export const AccentThemeProvider: React.FC<{ children: React.ReactNode }> = ({ c
     } catch {}
   };
 
-  const config = accentThemes[currentAccent] || accentThemes.indigo;
+  const config = accentThemes[currentAccent] || accentThemes.blue;
 
   return (
     <AccentThemeContext.Provider value={{ currentAccent, setAccentTheme, config }}>

@@ -170,7 +170,7 @@ export const ProfileSection: React.FC = () => {
             onClick={handleCopyBtc}
             className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl font-bold text-xs transition-all shadow-xs cursor-pointer ${
               copiedBtc
-                ? 'bg-emerald-600 text-white shadow-emerald-600/20'
+                ? 'bg-[#86A98D] text-white shadow-[#86A98D]/20'
                 : 'bg-amber-600 hover:bg-amber-700 text-white shadow-amber-600/20 hover:scale-[1.02] active:scale-[0.98]'
             }`}
           >
@@ -211,8 +211,8 @@ export const ProfileSection: React.FC = () => {
               >
                 {copiedBtc ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">Copied</span>
+                    <Check className="w-3.5 h-3.5 text-[#86A98D]" />
+                    <span className="text-[#86A98D] font-bold">Copied</span>
                   </>
                 ) : (
                   <>
@@ -224,7 +224,7 @@ export const ProfileSection: React.FC = () => {
             </div>
           </div>
           {copiedBtc && (
-            <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-1.5 flex items-center gap-1">
+            <p className="text-[11px] text-[#86A98D] font-semibold mt-1.5 flex items-center gap-1">
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>Bitcoin wallet address copied to clipboard successfully!</span>
             </p>
@@ -241,15 +241,15 @@ export const ProfileSection: React.FC = () => {
               Manage your account credentials, regional preferences, and cryptocurrency wallet settings.
             </p>
           </div>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/60 dark:border-indigo-800/60 text-indigo-700 dark:text-indigo-400 text-xs font-semibold self-start sm:self-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 text-[#2563EB] dark:text-blue-400 text-xs font-semibold self-start sm:self-auto">
             <Shield className="w-4 h-4" />
             <span>Role: {user?.role || 'CUSTOMER'}</span>
           </div>
         </div>
 
         {successMsg && (
-          <div className="mt-6 p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-2xl flex items-center gap-3 text-emerald-800 dark:text-emerald-300 text-sm font-medium animate-in fade-in">
-            <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+          <div className="mt-6 p-4 bg-[#86A98D]/15 border border-[#86A98D]/30 rounded-2xl flex items-center gap-3 text-[#86A98D] text-sm font-medium animate-in fade-in">
+            <CheckCircle2 className="w-5 h-5 text-[#86A98D] shrink-0" />
             <span>{successMsg}</span>
           </div>
         )}
@@ -390,8 +390,8 @@ export const ProfileSection: React.FC = () => {
               >
                 {copiedBtc ? (
                   <>
-                    <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                    <span className="text-emerald-600 dark:text-emerald-400">Copied!</span>
+                    <Check className="w-4 h-4 text-[#86A98D]" />
+                    <span className="text-[#86A98D]">Copied!</span>
                   </>
                 ) : (
                   <>

@@ -551,10 +551,10 @@ export const ScanGiftCardModal: React.FC<ScanGiftCardModalProps> = ({
                   <button
                     type="button"
                     onClick={startCamera}
-                    className="flex flex-col items-center justify-center gap-2 py-4 px-3 rounded-2xl bg-slate-900 dark:bg-slate-800 text-white dark:text-white hover:bg-slate-800 dark:hover:bg-slate-700 transition-all shadow-md group cursor-pointer"
+                    className="flex flex-col items-center justify-center gap-2 py-4 px-3 rounded-2xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white transition-all shadow-md group cursor-pointer"
                   >
-                    <div className="w-9 h-9 rounded-full bg-white/10 dark:bg-slate-900/10 flex items-center justify-center">
-                      <Camera className="w-5 h-5 text-emerald-400 dark:text-emerald-600" />
+                    <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
+                      <Camera className="w-5 h-5 text-white" />
                     </div>
                     <span className="font-bold text-xs">Take Photo</span>
                   </button>
@@ -593,9 +593,9 @@ export const ScanGiftCardModal: React.FC<ScanGiftCardModalProps> = ({
                   <button
                     type="button"
                     onClick={handleApplyImagesOnly}
-                    className="flex-1 py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 active:scale-98 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-blue-600/25 transition-all cursor-pointer"
+                    className="flex-1 py-3 px-4 rounded-xl border-2 border-blue-600 dark:border-blue-500 bg-white dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-950/40 active:scale-98 text-blue-600 dark:text-blue-400 font-bold text-xs flex items-center justify-center gap-2 shadow-md shadow-blue-600/10 transition-all cursor-pointer"
                   >
-                    <CheckCircle2 className="w-4 h-4" />
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                     <span>Attach & Validate with Photos ({uploadedImages.length})</span>
                   </button>
                   <button
@@ -693,13 +693,13 @@ export const ScanGiftCardModal: React.FC<ScanGiftCardModalProps> = ({
           {/* STEP 3: EXTRACTED RESULTS READY */}
           {step === 3 && (
             <div className="space-y-4">
-              <div className="p-3.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60 flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+              <div className="p-3.5 rounded-2xl bg-[#86A98D]/15 border border-[#86A98D]/30 flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#86A98D] shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-xs font-bold text-emerald-900 dark:text-emerald-300">
+                  <div className="text-xs font-bold text-slate-900 dark:text-slate-100">
                     Card Scanned Successfully!
                   </div>
-                  <div className="text-[11px] text-emerald-700 dark:text-emerald-400 mt-0.5">
+                  <div className="text-[11px] text-[#86A98D] mt-0.5">
                     Credentials extracted and {uploadedImages.length} image(s) attached.
                   </div>
                 </div>

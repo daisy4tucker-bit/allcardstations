@@ -339,7 +339,7 @@ export const Contact: React.FC = () => {
       <div className="max-w-5xl mx-auto py-4 sm:py-8 space-y-8">
         <SectionHeading
           tag="Customer Care & Support"
-          title="Contact AllCardVault Operations"
+          title="Contact AllCardStatus Operations"
           subtitle="Need assistance with a gift card delivery, balance validation, crypto payment, or corporate bulk order? Our specialized support team is here 24/7."
           align="center"
         />

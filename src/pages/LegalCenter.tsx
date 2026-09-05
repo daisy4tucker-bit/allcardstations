@@ -67,7 +67,7 @@ export const LegalCenter: React.FC = () => {
           <div>
             <SectionHeading
               tag="Legal & Compliance Hub"
-              title="AllCardVault Legal & Security Center"
+              title="AllCardStatus Legal & Security Center"
               subtitle="Unified operational protocols, cryptographic standards, data privacy rights, and code redemption terms."
               align="left"
             />
@@ -127,7 +127,7 @@ export const LegalCenter: React.FC = () => {
           <div className="space-y-8 animate-fadeIn">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-2">
-                <div className="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
+                <div className="w-8 h-8 rounded-xl bg-[#86A98D]/15 text-[#86A98D] flex items-center justify-center font-bold">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Zero Sale of Data</h4>
@@ -137,7 +137,7 @@ export const LegalCenter: React.FC = () => {
               </div>
 
               <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-2">
-                <div className="w-8 h-8 rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold">
+                <div className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950 text-[#2563EB] dark:text-blue-400 flex items-center justify-center font-bold">
                   <Lock className="w-4 h-4" />
                 </div>
                 <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">AES-256 Transport</h4>
@@ -171,7 +171,7 @@ export const LegalCenter: React.FC = () => {
               <section className="space-y-3">
                 <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">1. Information Collection & Usage Overview</h3>
                 <p>
-                  AllCardVault collects minimal necessary personal details required to issue and verify authentic digital eGift cards. Collected information includes your account email, order history, recipient dispatch details, and technical session metadata (IP address, browser user-agent, timestamp) used solely for automated fraud protection and rate-limiting.
+                  AllCardStatus collects minimal necessary personal details required to issue and verify authentic digital eGift cards. Collected information includes your account email, order history, recipient dispatch details, and technical session metadata (IP address, browser user-agent, timestamp) used solely for automated fraud protection and rate-limiting.
                 </p>
               </section>
 
@@ -202,14 +202,14 @@ export const LegalCenter: React.FC = () => {
                 <FileText className="w-6 h-6 text-indigo-600 dark:text-indigo-400 shrink-0" />
                 <div className="text-xs">
                   <span className="font-bold">Terms of Usage & Guarantee: </span>
-                  All digital cards issued by AllCardVault are guaranteed 100% authentic and valid for instant balance balance redemption at authorized merchant outlets.
+                  All digital cards issued by AllCardStatus are guaranteed 100% authentic and valid for instant balance balance redemption at authorized merchant outlets.
                 </div>
               </div>
 
               <section className="space-y-3">
                 <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">1. Electronic Issuance & Digital Code Delivery</h3>
                 <p>
-                  Upon payment authorization on the blockchain or payment network, AllCardVault generates authentic digital gift card claim codes. Codes are dispatched electronically to your delivery email and instantly accessible in your secure Account Dashboard.
+                  Upon payment authorization on the blockchain or payment network, AllCardStatus generates authentic digital gift card claim codes. Codes are dispatched electronically to your delivery email and instantly accessible in your secure Account Dashboard.
                 </p>
               </section>
 
@@ -223,7 +223,7 @@ export const LegalCenter: React.FC = () => {
               <section className="space-y-3">
                 <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">3. Merchant Balance Redemption</h3>
                 <p>
-                  eGift cards purchased through AllCardVault carry standard merchant terms and expiration dates as mandated by the issuing retailer (e.g. Apple, Amazon, Steam, Visa). AllCardVault guarantees full initial balance validity upon code issuance.
+                  eGift cards purchased through AllCardStatus carry standard merchant terms and expiration dates as mandated by the issuing retailer (e.g. Apple, Amazon, Steam, Visa). AllCardStatus guarantees full initial balance validity upon code issuance.
                 </p>
               </section>
             </div>
@@ -234,8 +234,8 @@ export const LegalCenter: React.FC = () => {
         {activeTab === 'security' && (
           <div className="space-y-8 animate-fadeIn">
             <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-xs space-y-8 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              <div className="flex items-center gap-3 p-4 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/50 border border-emerald-100 dark:border-emerald-800/80 text-emerald-900 dark:text-emerald-200">
-                <Lock className="w-6 h-6 text-emerald-600 dark:text-emerald-400 shrink-0" />
+              <div className="flex items-center gap-3 p-4 rounded-2xl bg-[#86A98D]/15 border border-[#86A98D]/30 text-slate-800 dark:text-slate-200">
+                <Lock className="w-6 h-6 text-[#86A98D] shrink-0" />
                 <div className="text-xs">
                   <span className="font-bold">Cryptographic Shield: </span>
                   All communications enforce TLS 1.3 OpenSSL ciphers, strict HSTS headers, and salt-hashed access tokens.
@@ -244,11 +244,11 @@ export const LegalCenter: React.FC = () => {
 
               <section className="space-y-3">
                 <h3 className="text-lg font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-                  <Server className="w-5 h-5 text-indigo-500" />
+                  <Server className="w-5 h-5 text-[#2563EB]" />
                   <span>1. Enforced HTTPS & HSTS Security Headers</span>
                 </h3>
                 <p>
-                  Every request transmitted across AllCardVault is encrypted. Unencrypted requests are automatically upgraded via <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-xs font-mono">Strict-Transport-Security: max-age=63072000; includeSubDomains; preload</code> headers.
+                  Every request transmitted across AllCardStatus is encrypted. Unencrypted requests are automatically upgraded via <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-xs font-mono">Strict-Transport-Security: max-age=63072000; includeSubDomains; preload</code> headers.
                 </p>
               </section>
 
@@ -273,7 +273,7 @@ export const LegalCenter: React.FC = () => {
                 <Scale className="w-6 h-6 text-amber-600 dark:text-amber-400 shrink-0" />
                 <div className="text-xs">
                   <span className="font-bold">Regulatory Compliance: </span>
-                  AllCardVault adheres strictly to global Anti-Money Laundering (AML) directives and algorithmic transaction risk monitoring.
+                  AllCardStatus adheres strictly to global Anti-Money Laundering (AML) directives and algorithmic transaction risk monitoring.
                 </div>
               </div>
 

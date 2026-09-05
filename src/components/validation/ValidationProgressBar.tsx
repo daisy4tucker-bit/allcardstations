@@ -103,23 +103,23 @@ export const ValidationProgressBar: React.FC<ValidationProgressBarProps> = ({
   }, [brandName, onComplete]);
 
   return (
-    <div className="bg-slate-900 text-white rounded-2xl border border-indigo-500/30 p-6 shadow-xl relative overflow-hidden">
+    <div className="bg-slate-900 text-white rounded-2xl border border-blue-500/30 p-6 shadow-xl relative overflow-hidden">
       {/* Background ambient glow */}
-      <div className="absolute -top-16 -right-16 w-48 h-48 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-16 -right-16 w-48 h-48 bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-[#86A98D]/15 rounded-full blur-3xl pointer-events-none" />
 
       {/* Header Bar */}
       <div className="flex items-center justify-between gap-4 mb-5 pb-4 border-b border-slate-800">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/40 text-indigo-400 flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-500/40 text-blue-400 flex items-center justify-center shrink-0">
             {progressPercent === 100 ? (
-              <CheckCircle2 className="w-5 h-5 text-emerald-400 animate-bounce" />
+              <CheckCircle2 className="w-5 h-5 text-[#86A98D] animate-bounce" />
             ) : (
-              <Loader2 className="w-5 h-5 animate-spin text-indigo-400" />
+              <Loader2 className="w-5 h-5 animate-spin text-blue-400" />
             )}
           </div>
           <div>
-            <div className="text-xs uppercase font-mono tracking-wider text-indigo-300 font-bold flex items-center gap-1.5">
+            <div className="text-xs uppercase font-mono tracking-wider text-blue-300 font-bold flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               <span>Real-Time Card Validation</span>
             </div>
@@ -131,7 +131,7 @@ export const ValidationProgressBar: React.FC<ValidationProgressBarProps> = ({
 
         {/* Progress Percentage Badge */}
         <div className="text-right">
-          <div className="text-2xl font-black font-mono text-emerald-400">
+          <div className="text-2xl font-black font-mono text-[#86A98D]">
             {progressPercent}%
           </div>
           <div className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
@@ -144,7 +144,7 @@ export const ValidationProgressBar: React.FC<ValidationProgressBarProps> = ({
       <div className="space-y-2 mb-6">
         <div className="flex justify-between text-xs font-semibold">
           <span className="text-slate-300 flex items-center gap-1.5">
-            <Lock className="w-3.5 h-3.5 text-indigo-400" />
+            <Lock className="w-3.5 h-3.5 text-blue-400" />
             {statusMessage}
           </span>
           <span className="text-slate-400 font-mono text-[11px]">Step {Math.min(currentStepIndex + 1, 4)} of 4</span>
@@ -152,7 +152,7 @@ export const ValidationProgressBar: React.FC<ValidationProgressBarProps> = ({
 
         <div className="h-2.5 w-full bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700/80">
           <div
-            className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-400 rounded-full transition-all duration-500 ease-out shadow-sm shadow-emerald-400/30"
+            className="h-full bg-gradient-to-r from-blue-600 via-blue-500 to-[#86A98D] rounded-full transition-all duration-500 ease-out shadow-sm shadow-[#86A98D]/30"
             style={{ width: `${progressPercent}%` }}
           />
         </div>
@@ -171,20 +171,20 @@ export const ValidationProgressBar: React.FC<ValidationProgressBarProps> = ({
               key={step.id}
               className={`flex items-center gap-3 p-2.5 rounded-xl transition-all duration-300 ${
                 isCurrent 
-                  ? 'bg-indigo-950/60 border border-indigo-500/40 text-white' 
+                  ? 'bg-blue-950/60 border border-blue-500/40 text-white' 
                   : isDone 
-                  ? 'bg-slate-800/40 border border-emerald-500/20 text-slate-300' 
+                  ? 'bg-slate-800/40 border border-[#86A98D]/30 text-slate-300' 
                   : 'bg-slate-900/40 border border-slate-800/60 text-slate-500'
               }`}
             >
               {/* Step Status Icon */}
               <div className="shrink-0">
                 {isDone ? (
-                  <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-[#86A98D]/20 text-[#86A98D] flex items-center justify-center">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
                 ) : isCurrent ? (
-                  <div className="w-6 h-6 rounded-full bg-indigo-500/30 text-indigo-300 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-blue-500/30 text-blue-300 flex items-center justify-center">
                     <Loader2 className="w-3.5 h-3.5 animate-spin" />
                   </div>
                 ) : (
@@ -197,7 +197,7 @@ export const ValidationProgressBar: React.FC<ValidationProgressBarProps> = ({
               {/* Step Details */}
               <div className="flex-1 min-w-0">
                 <div className="text-xs font-bold flex items-center gap-1.5">
-                  <StepIcon className={`w-3.5 h-3.5 ${isCurrent ? 'text-indigo-400' : isDone ? 'text-emerald-400' : 'text-slate-500'}`} />
+                  <StepIcon className={`w-3.5 h-3.5 ${isCurrent ? 'text-blue-400' : isDone ? 'text-[#86A98D]' : 'text-slate-500'}`} />
                   <span className={isCurrent ? 'text-white' : isDone ? 'text-slate-200' : 'text-slate-500'}>
                     {step.title}
                   </span>
@@ -209,8 +209,8 @@ export const ValidationProgressBar: React.FC<ValidationProgressBarProps> = ({
 
               {/* Status Badge */}
               <div className="text-[10px] font-mono font-bold shrink-0">
-                {isDone && <span className="text-emerald-400">PASSED</span>}
-                {isCurrent && <span className="text-indigo-300 animate-pulse">CHECKING...</span>}
+                {isDone && <span className="text-[#86A98D]">PASSED</span>}
+                {isCurrent && <span className="text-blue-300 animate-pulse">CHECKING...</span>}
                 {isPending && <span className="text-slate-600">QUEUED</span>}
               </div>
             </div>

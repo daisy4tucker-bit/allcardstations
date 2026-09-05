@@ -9,7 +9,7 @@ export interface OpenGraphMetaProps {
 }
 
 export const OpenGraphMeta: React.FC<OpenGraphMetaProps> = ({
-  title = 'AllCardVault - Digital Gift Card Marketplace & Instant Card Validation',
+  title = 'AllCardStatus - Digital Gift Card Marketplace & Instant Card Validation',
   description = 'Buy, redeem, and validate digital gift cards with instant email delivery and live balance checking across Apple, Amazon, Steam, Visa, Xbox, and top global brands.',
   image = 'https://images.unsplash.com/photo-1556742049-0a67d268a735?w=1200&h=630&fit=crop&q=80',
   url = typeof window !== 'undefined' ? window.location.href : 'https://allcardstatus.com/',
@@ -47,7 +47,7 @@ export const OpenGraphMeta: React.FC<OpenGraphMetaProps> = ({
     setMetaTag('meta[property="og:image:secure_url"]', image);
     setMetaTag('meta[property="og:url"]', url);
     setMetaTag('meta[property="og:type"]', type);
-    setMetaTag('meta[property="og:site_name"]', 'AllCardVault');
+    setMetaTag('meta[property="og:site_name"]', 'AllCardStatus');
     setMetaTag('meta[property="og:locale"]', 'en_US');
 
     // Twitter Tags

@@ -31,12 +31,12 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const variantStyles: Record<ButtonVariant, string> = {
-    primary: 'bg-[var(--accent-primary)] text-white hover:bg-[var(--accent-hover)] focus:ring-[var(--accent-primary)] shadow-sm hover:shadow shadow-[var(--accent-primary)]/20',
-    secondary: 'bg-indigo-600 dark:bg-indigo-500 text-white hover:bg-indigo-700 dark:hover:bg-indigo-600 focus:ring-indigo-500 shadow-sm font-bold',
-    outline: 'border border-slate-300 dark:border-slate-700 text-slate-950 dark:text-slate-100 bg-slate-100/90 dark:bg-slate-800/90 hover:bg-slate-200 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-600 focus:ring-[var(--accent-primary)] font-bold',
-    ghost: 'text-slate-900 dark:text-slate-100 hover:text-black dark:hover:text-white hover:bg-slate-200/80 dark:hover:bg-slate-800 focus:ring-slate-400 font-bold',
-    danger: 'bg-rose-600 text-white hover:bg-rose-700 focus:ring-rose-500 shadow-sm font-bold',
-    white: 'bg-amber-500 hover:bg-amber-400 text-slate-950 dark:text-slate-950 border border-amber-300 focus:ring-amber-500 shadow-sm font-extrabold',
+    primary: 'bg-[#2563EB] text-white hover:bg-[#1D4ED8] focus:ring-[#2563EB] shadow-xs font-bold',
+    secondary: 'bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/60 border border-blue-200 dark:border-blue-800 focus:ring-[#2563EB] font-bold',
+    outline: 'border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-850 hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-slate-400 focus:ring-[#2563EB] font-bold',
+    ghost: 'text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 focus:ring-slate-400 font-bold',
+    danger: 'bg-rose-600 text-white hover:bg-rose-700 focus:ring-rose-500 shadow-xs font-bold',
+    white: 'bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 focus:ring-[#2563EB] shadow-xs font-bold',
   };
 
   return (

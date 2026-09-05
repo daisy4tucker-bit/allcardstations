@@ -51,7 +51,7 @@ export const TopProgressBar: React.FC<TopProgressBarProps> = ({
     <div className={`fixed top-0 left-0 right-0 z-50 pointer-events-none ${className}`}>
       <div className={`w-full bg-slate-200/20 dark:bg-slate-800/20 overflow-hidden ${height}`}>
         <div
-          className={`h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-400 transition-all duration-300 ease-out shadow-sm shadow-indigo-500/50`}
+          className={`h-full bg-gradient-to-r from-[#2563EB] via-blue-500 to-[#86A98D] transition-all duration-300 ease-out shadow-sm shadow-blue-500/50`}
           style={{ width: `${progress}%` }}
         />
       </div>

@@ -233,7 +233,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
           }}
           className={`p-5 rounded-2xl border transition-all cursor-pointer ${
             activeSubTab === 'validations'
-              ? 'bg-rose-50/80 dark:bg-rose-950/40 border-rose-300 dark:border-rose-800 shadow-sm ring-2 ring-rose-500/20'
+              ? 'bg-blue-50/80 dark:bg-blue-950/40 border-[#2563EB] shadow-xs ring-2 ring-[#2563EB]/20'
               : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
           }`}
         >
@@ -241,15 +241,15 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
             <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Uploaded Card Database
             </span>
-            <div className="w-9 h-9 rounded-xl bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-400 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950 text-[#2563EB] dark:text-blue-400 flex items-center justify-center">
               <CreditCard className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900 dark:text-white">
+          <div className="text-2xl font-black text-[#1E293B] dark:text-white">
             {isLoading ? '...' : data?.counts.totalValidations || 0}
           </div>
           <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
-            <span className="font-semibold text-rose-600 dark:text-rose-400">Uploaded card records</span>
+            <span className="font-semibold text-[#2563EB] dark:text-blue-400">Uploaded card records</span>
             <span>in admin database</span>
           </p>
         </div>
@@ -262,7 +262,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
           }}
           className={`p-5 rounded-2xl border transition-all cursor-pointer ${
             activeSubTab === 'users'
-              ? 'bg-indigo-50/80 dark:bg-indigo-950/40 border-indigo-300 dark:border-indigo-800 shadow-sm ring-2 ring-indigo-500/20'
+              ? 'bg-blue-50/80 dark:bg-blue-950/40 border-[#2563EB] shadow-xs ring-2 ring-[#2563EB]/20'
               : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
           }`}
         >
@@ -270,11 +270,11 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
             <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               User Profiles
             </span>
-            <div className="w-9 h-9 rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 text-[#1E293B] dark:text-slate-300 flex items-center justify-center">
               <Users className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900 dark:text-white">
+          <div className="text-2xl font-black text-[#1E293B] dark:text-white">
             {isLoading ? '...' : data?.counts.totalUsers || 0}
           </div>
           <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
@@ -290,7 +290,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
           }}
           className={`p-5 rounded-2xl border transition-all cursor-pointer ${
             activeSubTab === 'orders'
-              ? 'bg-emerald-50/80 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800 shadow-sm ring-2 ring-emerald-500/20'
+              ? 'bg-[#86A98D]/15 border-[#86A98D] shadow-xs ring-2 ring-[#86A98D]/20'
               : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
           }`}
         >
@@ -298,15 +298,15 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
             <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Transactions Ledger
             </span>
-            <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-xl bg-[#86A98D]/20 text-[#86A98D] flex items-center justify-center">
               <History className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900 dark:text-white">
+          <div className="text-2xl font-black text-[#1E293B] dark:text-white">
             {isLoading ? '...' : data?.counts.totalOrders || 0}
           </div>
           <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
-            <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+            <span className="font-semibold text-[#86A98D]">
               ${(data?.counts.totalVolumeUsd || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </span>
             <span>settled volume</span>
@@ -321,7 +321,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
           }}
           className={`p-5 rounded-2xl border transition-all cursor-pointer ${
             activeSubTab === 'giftcards'
-              ? 'bg-purple-50/80 dark:bg-purple-950/40 border-purple-300 dark:border-purple-800 shadow-sm ring-2 ring-purple-500/20'
+              ? 'bg-blue-50/80 dark:bg-blue-950/40 border-[#2563EB] shadow-xs ring-2 ring-[#2563EB]/20'
               : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
           }`}
         >
@@ -329,11 +329,11 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
             <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Gift Card SKUs
             </span>
-            <div className="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950 text-[#2563EB] dark:text-blue-400 flex items-center justify-center">
               <CreditCard className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900 dark:text-white">
+          <div className="text-2xl font-black text-[#1E293B] dark:text-white">
             {isLoading ? '...' : data?.counts.totalGiftCards || 0}
           </div>
           <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
@@ -348,7 +348,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
         <div className="p-5 sm:p-6 border-b border-slate-100 dark:border-slate-800 space-y-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             {/* Sub-tabs Selector */}
-            <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800/80 rounded-2xl w-fit flex-wrap">
+            <div className="flex items-center gap-1.5 p-1 bg-[#F5F7FA] dark:bg-slate-800/80 rounded-2xl w-fit flex-wrap">
               <button
                 type="button"
                 onClick={() => {
@@ -357,7 +357,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                 }}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
                   activeSubTab === 'validations'
-                    ? 'bg-rose-600 text-white shadow-xs'
+                    ? 'bg-[#2563EB] text-white shadow-xs'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
@@ -373,7 +373,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                 }}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
                   activeSubTab === 'users'
-                    ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs'
+                    ? 'bg-white dark:bg-slate-900 text-[#2563EB] shadow-xs'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
@@ -389,7 +389,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                 }}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
                   activeSubTab === 'orders'
-                    ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs'
+                    ? 'bg-white dark:bg-slate-900 text-[#2563EB] shadow-xs'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
@@ -405,7 +405,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                 }}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
                   activeSubTab === 'giftcards'
-                    ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs'
+                    ? 'bg-white dark:bg-slate-900 text-[#2563EB] shadow-xs'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
@@ -420,7 +420,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                 type="button"
                 onClick={onRefresh}
                 disabled={isLoading}
-                className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/60 dark:hover:bg-indigo-900/60 text-indigo-600 dark:text-indigo-400 transition-colors cursor-pointer disabled:opacity-50"
+                className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/60 dark:hover:bg-blue-900/60 text-[#2563EB] dark:text-blue-400 transition-colors cursor-pointer disabled:opacity-50"
               >
                 <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
                 <span>Refresh Data</span>
@@ -455,7 +455,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                   }
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-950/50 text-xs font-medium text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                  className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-950/50 text-xs font-medium text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB]"
                 />
               </div>
 
@@ -543,7 +543,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                     <tr key={u.id} className="hover:bg-slate-50/60 dark:hover:bg-slate-800/30 transition-colors">
                       <td className="py-3.5 px-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold flex items-center justify-center text-xs">
+                          <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-950 text-[#2563EB] dark:text-blue-300 font-bold flex items-center justify-center text-xs">
                             {u.firstName ? u.firstName.charAt(0).toUpperCase() : 'U'}
                           </div>
                           <div>
@@ -565,7 +565,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                               ? 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800'
                               : u.role === 'SUPPORT_AGENT'
                               ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800'
-                              : 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800'
+                              : 'bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-300 border-blue-200 dark:border-blue-800'
                           }`}
                         >
                           {u.role}
@@ -643,7 +643,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                 ) : (
                   filteredOrders.map((o) => (
                     <tr key={o.id} className="hover:bg-slate-50/60 dark:hover:bg-slate-800/30 transition-colors">
-                      <td className="py-3.5 px-4 font-mono font-bold text-indigo-600 dark:text-indigo-400">
+                      <td className="py-3.5 px-4 font-mono font-bold text-[#2563EB] dark:text-blue-400">
                         #{o.id.slice(0, 10)}
                       </td>
 
@@ -677,7 +677,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                       <td className="py-3.5 px-4">
                         <div className="space-y-1">
                           {o.transactionHash ? (
-                            <div className="flex items-center gap-1 font-mono text-[10.5px] text-indigo-600 dark:text-indigo-400 font-bold bg-indigo-50 dark:bg-indigo-950/50 px-2 py-0.5 rounded border border-indigo-200 dark:border-indigo-800 max-w-[180px] truncate" title={o.transactionHash}>
+                            <div className="flex items-center gap-1 font-mono text-[10.5px] text-[#2563EB] dark:text-blue-400 font-bold bg-blue-50 dark:bg-blue-950/50 px-2 py-0.5 rounded border border-blue-200 dark:border-blue-800 max-w-[180px] truncate" title={o.transactionHash}>
                               <span>tx:</span>
                               <span className="truncate">{o.transactionHash}</span>
                             </div>
@@ -835,7 +835,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
                         </div>
                       </td>
 
-                      <td className="py-3.5 px-4 font-mono text-[11px] text-indigo-600 dark:text-indigo-400">
+                      <td className="py-3.5 px-4 font-mono text-[11px] text-[#2563EB] dark:text-blue-400">
                         {g.slug}
                       </td>
                     </tr>
@@ -895,7 +895,7 @@ export const AdminDataBrowser: React.FC<AdminDataBrowserProps> = ({
               <button
                 type="button"
                 onClick={() => setPreviewImageModalUrl(null)}
-                className="px-4 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors"
+                className="px-4 py-1.5 rounded-lg text-xs font-bold bg-[#2563EB] hover:bg-[#1D4ED8] text-white transition-colors cursor-pointer"
               >
                 Close Preview
               </button>

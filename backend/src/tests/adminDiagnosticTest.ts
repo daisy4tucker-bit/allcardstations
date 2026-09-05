@@ -17,7 +17,7 @@ async function request(endpoint: string, options: RequestInit = {}) {
 
 async function runAdminDiagnosticTest() {
   console.log('================================================================');
-  console.log('🔒 ALLCARDVAULT ADMIN SYSTEM DIAGNOSTIC SECURITY & HEALTH TEST');
+  console.log('🔒 ALLCARDSTATUS ADMIN SYSTEM DIAGNOSTIC SECURITY & HEALTH TEST');
   console.log('================================================================');
 
   let customerToken = '';
@@ -39,10 +39,19 @@ async function runAdminDiagnosticTest() {
   let adminLogin = await request('/auth/login', {
     method: 'POST',
     body: JSON.stringify({
-      email: 'admin@allcardvault.com',
+      email: 'admin@allcardstatus.com',
       password: 'AdminSecure123!',
     }),
   });
+  if (!adminLogin.ok) {
+    adminLogin = await request('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: 'admin@allcardvault.com',
+        password: 'AdminSecure123!',
+      }),
+    });
+  }
   if (!adminLogin.ok) {
     adminLogin = await request('/auth/login', {
       method: 'POST',

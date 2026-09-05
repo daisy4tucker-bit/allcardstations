@@ -75,8 +75,8 @@ export const GiftCardCard: React.FC<GiftCardCardProps> = ({
 
         {/* Stock & Instant Delivery Indicators */}
         <div className="absolute bottom-2 left-2.5 z-20 flex items-center gap-1.5 pointer-events-none">
-          <span className="inline-flex items-center gap-1 bg-slate-950/80 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-semibold text-emerald-400 border border-emerald-500/30">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span className="inline-flex items-center gap-1 bg-slate-950/80 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-semibold text-[#86A98D] border border-[#86A98D]/40">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#86A98D] animate-pulse"></span>
             In Stock
           </span>
           <span className="inline-flex items-center gap-1 bg-slate-950/80 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-semibold text-amber-300 border border-amber-500/30">
@@ -95,7 +95,7 @@ export const GiftCardCard: React.FC<GiftCardCardProps> = ({
         <Link
           to={`/gift-cards/${slug}${queryString}`}
           id={`btn-buy-${slug}`}
-          className="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 shadow-xs transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
+          className="w-full py-2.5 px-4 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-xs transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB] cursor-pointer"
         >
           <ShoppingBag className="w-4 h-4" />
           <span>Buy Gift Card</span>
@@ -104,9 +104,9 @@ export const GiftCardCard: React.FC<GiftCardCardProps> = ({
         <Link
           to={`/validate?card=${slug}`}
           id={`btn-validate-${slug}`}
-          className="w-full py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/80 text-emerald-800 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-700/60 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-xs transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer"
+          className="w-full py-2.5 px-4 rounded-xl bg-white dark:bg-slate-800/80 hover:bg-blue-50 dark:hover:bg-blue-950/40 text-[#2563EB] dark:text-blue-400 border-2 border-[#2563EB] dark:border-blue-500 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-xs transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB] cursor-pointer"
         >
-          <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          <ShieldCheck className="w-4 h-4 text-[#2563EB] dark:text-blue-400" />
           <span>Validate Card</span>
         </Link>
       </div>

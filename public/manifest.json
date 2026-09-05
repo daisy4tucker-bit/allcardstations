@@ -1,6 +1,6 @@
 {
-  "name": "AllCardVault",
-  "short_name": "AllCardVault",
+  "name": "AllCardStatus",
+  "short_name": "AllCardStatus",
   "description": "Digital Gift Card Marketplace & Instant Card Validation Portal",
   "start_url": "/",
   "display": "standalone",

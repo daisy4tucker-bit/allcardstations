@@ -133,7 +133,7 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
   /* VARIANT 2: COMPACT (Card / Sidebar Banner) */
   if (variant === 'compact') {
     return (
-      <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-indigo-900 dark:via-slate-900 dark:to-indigo-950 text-slate-800 dark:text-white p-5 border border-indigo-200 dark:border-indigo-500/30 shadow-md ${className}`}>
+      <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-50 via-white to-blue-50 dark:from-indigo-900 dark:via-slate-900 dark:to-indigo-950 text-slate-800 dark:text-white p-5 border border-indigo-200 dark:border-indigo-500/30 shadow-md ${className}`}>
         <div className="absolute top-0 right-0 -mt-6 -mr-6 w-28 h-28 bg-indigo-500/10 dark:bg-indigo-500/20 rounded-full blur-2xl pointer-events-none" />
 
         {dismissible && (
@@ -155,15 +155,15 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
           <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{description}</p>
 
           {discountCode && (
-            <div className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-slate-900/80 border border-indigo-200 dark:border-indigo-500/40 shadow-xs">
+            <div className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-slate-900/80 border border-blue-200 dark:border-blue-500/40 shadow-xs">
               <div className="text-[11px] text-slate-500 dark:text-slate-400">
-                Promo Code: <span className="font-mono font-bold text-indigo-600 dark:text-amber-400 text-xs">{discountCode}</span>
+                Promo Code: <span className="font-mono font-bold text-[#2563EB] dark:text-blue-400 text-xs">{discountCode}</span>
               </div>
               <button
                 onClick={handleCopyCode}
-                className="text-xs font-semibold text-indigo-700 dark:text-indigo-300 hover:text-indigo-900 dark:hover:text-white flex items-center gap-1 px-2 py-1 rounded bg-indigo-50 dark:bg-indigo-900/60 hover:bg-indigo-100 dark:hover:bg-indigo-800 transition-colors cursor-pointer"
+                className="text-xs font-semibold text-[#2563EB] dark:text-blue-300 hover:text-[#1D4ED8] dark:hover:text-white flex items-center gap-1 px-2 py-1 rounded bg-blue-50 dark:bg-blue-900/60 hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors cursor-pointer"
               >
-                {copied ? <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                {copied ? <Check className="w-3 h-3 text-[#86A98D]" /> : <Copy className="w-3 h-3" />}
                 <span>{copied ? 'Copied' : 'Copy'}</span>
               </button>
             </div>
@@ -188,7 +188,7 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
 
   /* VARIANT 3: FULL (Rich Home Page Section / Hero Showcase Banner) */
   return (
-    <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-50 via-white to-purple-50 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 text-slate-800 dark:text-white border border-indigo-200/80 dark:border-indigo-500/30 shadow-lg shadow-indigo-100/50 dark:shadow-2xl ${className}`}>
+    <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-50 via-white to-blue-50 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 text-slate-800 dark:text-white border border-indigo-200/80 dark:border-indigo-500/30 shadow-lg shadow-indigo-100/50 dark:shadow-2xl ${className}`}>
       {/* Background Decorative Ambient Shapes */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(99,102,241,0.08),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(99,102,241,0.25),rgba(255,255,255,0))]" />
       <div className="absolute top-0 right-1/4 w-72 h-72 bg-amber-500/5 dark:bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -261,10 +261,10 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
                   <button
                     onClick={handleCopyCode}
                     id="btn-copy-promo-code"
-                    className="ml-1 p-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/80 hover:bg-indigo-100 dark:hover:bg-indigo-800 text-indigo-700 dark:text-indigo-200 hover:text-indigo-900 dark:hover:text-white transition-colors cursor-pointer"
+                    className="ml-1 p-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/80 hover:bg-blue-100 dark:hover:bg-blue-800 text-[#2563EB] dark:text-blue-200 hover:text-[#1D4ED8] dark:hover:text-white transition-colors cursor-pointer"
                     title="Copy promo code"
                   >
-                    {copied ? <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                    {copied ? <Check className="w-3.5 h-3.5 text-[#86A98D]" /> : <Copy className="w-3.5 h-3.5" />}
                   </button>
                 </div>
               )}
@@ -274,11 +274,11 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
 
           {/* Visual Card Graphic / Featured Offer Highlights */}
           <div className="lg:col-span-4 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-xs p-5 rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-indigo-500/40 shadow-xl backdrop-blur-md space-y-4">
+            <div className="relative w-full max-w-xs p-5 rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-blue-500/40 shadow-xl backdrop-blur-md space-y-4">
               
               <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
                 <div className="flex items-center gap-2">
-                  <div className="p-2 rounded-xl bg-indigo-50 dark:bg-indigo-600/30 text-indigo-600 dark:text-amber-400 border border-indigo-100 dark:border-indigo-500/30">
+                  <div className="p-2 rounded-xl bg-blue-50 dark:bg-blue-600/30 text-[#2563EB] dark:text-blue-400 border border-blue-100 dark:border-blue-500/30">
                     <Gift className="w-5 h-5" />
                   </div>
                   <div>
@@ -286,7 +286,7 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
                     <div className="text-[10px] text-slate-500 dark:text-slate-400">Instant Code Dispatch</div>
                   </div>
                 </div>
-                <span className="text-xs font-mono font-extrabold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-800 px-2 py-0.5 rounded-md">
+                <span className="text-xs font-mono font-extrabold text-[#86A98D] bg-[#86A98D]/15 border border-[#86A98D]/30 px-2 py-0.5 rounded-md">
                   Active
                 </span>
               </div>
@@ -298,7 +298,7 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
                 </div>
                 <div className="flex items-center justify-between text-slate-600 dark:text-slate-300">
                   <span>Delivery Method:</span>
-                  <span className="font-semibold text-emerald-600 dark:text-emerald-400">Instant Email & Vault</span>
+                  <span className="font-semibold text-[#86A98D]">Instant Email & Vault</span>
                 </div>
                 <div className="flex items-center justify-between text-slate-600 dark:text-slate-300">
                   <span>Minimum Order:</span>

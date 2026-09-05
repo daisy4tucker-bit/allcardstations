@@ -32,13 +32,26 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-slate-200 dark:border-slate-850">
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
-            <Link to="/" className="flex items-center gap-2.5 inline-block">
-              <div className="w-10 h-10 rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 shadow-xs flex items-center justify-center p-0.5">
-                <img src="/logo.svg" alt="AllCardVault Logo" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+            <Link to="/" className="flex items-center gap-3 inline-block group">
+              <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex items-center justify-center p-1 group-hover:border-[#2563EB]/50 group-hover:shadow-md group-hover:scale-105 transition-all duration-300">
+                <img src="/logo.svg" alt="AllCardStatus Logo" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
               </div>
-              <span className="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                All<span className="text-indigo-600 dark:text-indigo-400">Card</span>Vault
-              </span>
+              <div className="flex flex-col justify-center">
+                <div className="flex items-center">
+                  <span className="text-xl font-black tracking-tight text-slate-900 dark:text-white leading-none">
+                    All<span className="text-[#2563EB] dark:text-blue-400">Card</span>Status
+                  </span>
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#2563EB] dark:bg-blue-400 ml-0.5 -mt-2 animate-pulse" />
+                </div>
+                <div className="flex items-center gap-1.5 mt-1">
+                  <span className="text-[10px] font-extrabold text-[#2563EB] dark:text-blue-400 uppercase tracking-widest leading-none">
+                    Digital Marketplace
+                  </span>
+                  <span className="inline-flex items-center px-1.5 py-0.2 rounded-full text-[8.5px] font-black uppercase tracking-wider bg-emerald-50 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 leading-none">
+                    Verified
+                  </span>
+                </div>
+              </div>
             </Link>
 
             <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm leading-relaxed">
@@ -47,18 +60,18 @@ export const Footer: React.FC = () => {
 
             <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
               <div className="flex items-center gap-1.5 bg-white dark:bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 shadow-xs">
-                <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <ShieldCheck className="w-4 h-4 text-[#86A98D]" />
                 <span>SSL Encrypted</span>
               </div>
               <div className="flex items-center gap-1.5 bg-white dark:bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 shadow-xs">
-                <Zap className="w-4 h-4 text-amber-500 dark:text-amber-400" />
+                <Zap className="w-4 h-4 text-[#2563EB] dark:text-blue-400" />
                 <span>Instant eDelivery</span>
               </div>
             </div>
 
             {/* Newsletter Subscription Box */}
             <div className="pt-4 max-w-md">
-              <h5 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-2">
+              <h5 className="text-xs font-bold uppercase tracking-wider text-[#1E293B] dark:text-white mb-2">
                 Subscribe to Flash Deals & Discounts
               </h5>
               <form onSubmit={handleSubscribe} className="flex gap-2">
@@ -67,20 +80,20 @@ export const Footer: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address..."
-                  className="bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-white placeholder-slate-400 px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-xs flex-1"
+                  className="bg-white dark:bg-slate-900 text-sm text-[#1E293B] dark:text-white placeholder-slate-400 px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-[#2563EB] shadow-xs flex-1"
                 />
-                <Button type="submit" variant="primary" size="sm" className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-4">
+                <Button type="submit" variant="primary" size="sm" className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold px-4">
                   Join
                 </Button>
               </form>
               {status === 'success' && (
-                <div className="mt-2 flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 animate-in fade-in">
+                <div className="mt-2 flex items-center gap-1.5 text-xs text-[#86A98D] animate-in fade-in font-medium">
                   <CheckCircle2 className="w-4 h-4 shrink-0" />
                   <span>{message}</span>
                 </div>
               )}
               {status === 'error' && (
-                <div className="mt-2 flex items-center gap-1.5 text-xs text-rose-600 dark:text-rose-400 animate-in fade-in">
+                <div className="mt-2 flex items-center gap-1.5 text-xs text-rose-600 dark:text-rose-400 animate-in fade-in font-medium">
                   <AlertCircle className="w-4 h-4 shrink-0" />
                   <span>{message}</span>
                 </div>
@@ -90,32 +103,32 @@ export const Footer: React.FC = () => {
 
           {/* Marketplace Column */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#1E293B] dark:text-white mb-4">
               Marketplace
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link to="/gift-cards" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/gift-cards" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   Browse All Cards
                 </Link>
               </li>
               <li>
-                <Link to="/gift-cards?category=Gaming" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/gift-cards?category=Gaming" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   Gaming Gift Cards
                 </Link>
               </li>
               <li>
-                <Link to="/gift-cards?category=Shopping" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/gift-cards?category=Shopping" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   Shopping & Retail
                 </Link>
               </li>
               <li>
-                <Link to="/gift-cards?category=Entertainment" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/gift-cards?category=Entertainment" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   Streaming & Entertainment
                 </Link>
               </li>
               <li>
-                <Link to="/validate" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/validate" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   Validate a Card
                 </Link>
               </li>
@@ -124,41 +137,41 @@ export const Footer: React.FC = () => {
 
           {/* Company & Platform */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#1E293B] dark:text-white mb-4">
               Company
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link to="/about" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/about" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/how-it-works" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/how-it-works" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   How It Works
                 </Link>
               </li>
               <li>
-                <Link to="/faq" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/faq" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   Frequently Asked
                 </Link>
               </li>
               <li>
                 <button
                   onClick={openTawkChat}
-                  className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300 font-semibold transition-colors flex items-center gap-1.5 cursor-pointer text-left"
+                  className="text-[#2563EB] dark:text-blue-400 hover:text-[#1D4ED8] dark:hover:text-blue-300 font-semibold transition-colors flex items-center gap-1.5 cursor-pointer text-left"
                 >
                   <Headphones className="w-3.5 h-3.5 animate-pulse" />
                   <span>24/7 Live Chat (Tawk.to)</span>
                 </button>
               </li>
               <li>
-                <Link to="/contact" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/contact" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   Contact Support
                 </Link>
               </li>
               <li>
-                <Link to="/sitemap" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/sitemap" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   Sitemap Directory
                 </Link>
               </li>
@@ -167,32 +180,32 @@ export const Footer: React.FC = () => {
 
           {/* Legal & Trust */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#1E293B] dark:text-white mb-4">
               Legal & Trust
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link to="/legal" className="text-slate-900 dark:text-white font-semibold hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                <Link to="/legal" className="text-[#1E293B] dark:text-white font-semibold hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors flex items-center gap-1.5">
                   <span>Legal & Compliance Hub</span>
                 </Link>
               </li>
               <li>
-                <Link to="/legal?tab=privacy" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/legal?tab=privacy" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   Privacy Policy (GDPR)
                 </Link>
               </li>
               <li>
-                <Link to="/legal?tab=terms" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/legal?tab=terms" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link to="/legal?tab=security" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/legal?tab=security" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   Security & Encryption
                 </Link>
               </li>
               <li>
-                <Link to="/legal?tab=compliance" className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors">
+                <Link to="/legal?tab=compliance" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
                   AML & Anti-Fraud
                 </Link>
               </li>
@@ -202,7 +215,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom copyright & disclaimer */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
-          <p>© {currentYear} AllCardVault. All rights reserved.</p>
+          <p>© {currentYear} AllCardStatus. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <span className="text-slate-500 dark:text-slate-400 font-medium">Enterprise Digital Gift-Card Marketplace</span>
             <div className="flex items-center gap-1">

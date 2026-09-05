@@ -752,7 +752,7 @@ export const ValidateCard: React.FC = () => {
   return (
     <div id="validate-card-page" className="min-h-screen bg-slate-50 dark:bg-slate-950 py-8 sm:py-12 transition-colors">
       <OpenGraphMeta
-        title={selectedBrand ? `Validate ${selectedBrand.name} Gift Card - Real-Time Balance & Authenticity Check` : "Gift Card Validation & Authenticity Checker | AllCardVault"}
+        title={selectedBrand ? `Validate ${selectedBrand.name} Gift Card - Real-Time Balance & Authenticity Check` : "Gift Card Validation & Authenticity Checker | AllCardStatus"}
         description={selectedBrand ? `Check card number and security PIN authenticity for ${selectedBrand.name} gift cards with 256-bit SSL encryption.` : "Verify gift card balances, format rules, and redemption status instantly across top global brands."}
         image={selectedBrand?.image || "https://images.unsplash.com/photo-1556742049-0a67d268a735?w=1200&h=630&fit=crop&q=80"}
       />
@@ -897,9 +897,9 @@ export const ValidateCard: React.FC = () => {
                     <button
                       type="button"
                       onClick={handleResetForm}
-                      className="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 active:scale-98 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full py-3.5 px-4 rounded-xl border-2 border-blue-600 dark:border-blue-500 bg-white dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-950/40 active:scale-98 text-blue-600 dark:text-blue-400 font-bold text-sm shadow-md shadow-blue-600/10 transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
-                      <RotateCcw className="w-4 h-4" />
+                      <RotateCcw className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                       <span>Validate Another Card</span>
                     </button>
 
@@ -1347,11 +1347,11 @@ export const ValidateCard: React.FC = () => {
                   <button
                     id="btn-validate-card-submit"
                     type="submit"
-                    className="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 active:scale-98 text-white font-bold text-base shadow-lg shadow-blue-600/30 transition-all cursor-pointer mt-4 flex items-center justify-center gap-2"
+                    className="w-full py-3.5 px-4 rounded-xl border-2 border-blue-600 dark:border-blue-500 bg-white dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-950/40 active:scale-98 text-blue-600 dark:text-blue-400 font-bold text-base shadow-md shadow-blue-600/10 transition-all cursor-pointer mt-4 flex items-center justify-center gap-2"
                   >
                     {uploadedImages.length > 0 && !cardCode.trim() ? (
                       <>
-                        <Camera className="w-5 h-5" />
+                        <Camera className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                         <span>Validate Card with Attached Photos ({uploadedImages.length})</span>
                       </>
                     ) : (

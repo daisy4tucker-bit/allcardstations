@@ -69,7 +69,7 @@ export const LiveActivityTicker: React.FC<LiveActivityTickerProps> = ({
         setCurrentIndex((prev) => (prev + 1) % INITIAL_EVENTS.length);
         setFade(true);
       }, 150);
-    }, 1500);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [isPaused]);
@@ -105,45 +105,32 @@ export const LiveActivityTicker: React.FC<LiveActivityTickerProps> = ({
         <div className="w-full xl:w-auto flex items-center flex-wrap justify-center sm:justify-start gap-2 text-xs font-semibold shrink-0">
           
           {/* Live Indicator Pill */}
-          <div className="inline-flex items-center gap-1.5 bg-emerald-600 text-white dark:bg-emerald-500 dark:text-slate-950 px-3 py-1.5 rounded-full text-xs font-mono font-black uppercase tracking-wider shrink-0 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-white dark:bg-slate-950 animate-ping" />
-            <Zap className="w-3.5 h-3.5 fill-current text-white dark:text-slate-950" />
+          <div className="inline-flex items-center gap-1.5 bg-[#2563EB] text-white px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider shrink-0 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
             <span>LIVE</span>
           </div>
 
-          {/* Today's Purchases Pill with Flash Effect */}
-          <div 
-            className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border transition-all duration-300 shadow-xs ${
-              purchasedFlash 
-                ? 'bg-indigo-100 dark:bg-indigo-900/80 border-indigo-500 ring-2 ring-indigo-400/40 scale-[1.02]' 
-                : 'bg-indigo-50/90 dark:bg-indigo-950/70 border-indigo-200 dark:border-indigo-800 text-slate-800 dark:text-slate-100'
-            }`}
-          >
-            <ShoppingBag className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
-            <span className="text-slate-700 dark:text-slate-200 font-bold">Today's purchases:</span>
-            <span className="font-black text-indigo-700 dark:text-cyan-300 font-mono text-xs sm:text-sm">
+          {/* Today's Purchases Pill */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+            <ShoppingBag className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
+            <span>Today's orders:</span>
+            <span className="font-bold text-slate-900 dark:text-white font-mono text-xs">
               {todayPurchased.toLocaleString()}
             </span>
-            <span className="text-[11px] text-slate-500 dark:text-slate-400 pl-2 border-l border-indigo-200 dark:border-indigo-800">
-              all-time: <strong className="font-bold text-slate-900 dark:text-white font-mono text-xs sm:text-sm">{giftCardsPurchased.toLocaleString()}</strong>
+            <span className="text-[11px] text-slate-400 pl-2 border-l border-slate-200 dark:border-slate-700">
+              all-time: <strong className="font-bold text-slate-700 dark:text-slate-300 font-mono text-xs">{giftCardsPurchased.toLocaleString()}</strong>
             </span>
           </div>
 
-          {/* Today's Verifications Pill with Flash Effect */}
-          <div 
-            className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border transition-all duration-300 shadow-xs ${
-              verifiedFlash 
-                ? 'bg-emerald-100 dark:bg-emerald-900/80 border-emerald-500 ring-2 ring-emerald-400/40 scale-[1.02]' 
-                : 'bg-emerald-50/90 dark:bg-emerald-950/70 border-emerald-200 dark:border-emerald-800 text-slate-800 dark:text-slate-100'
-            }`}
-          >
-            <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-            <span className="text-slate-700 dark:text-slate-200 font-bold">Today's verifications:</span>
-            <span className="font-black text-emerald-700 dark:text-emerald-300 font-mono text-xs sm:text-sm">
+          {/* Today's Verifications Pill */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+            <ShieldCheck className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
+            <span>Today's checks:</span>
+            <span className="font-bold text-blue-600 dark:text-blue-400 font-mono text-xs">
               {todayVerified.toLocaleString()}
             </span>
-            <span className="text-[11px] text-slate-500 dark:text-slate-400 pl-2 border-l border-emerald-200 dark:border-emerald-800">
-              all-time: <strong className="font-bold text-slate-900 dark:text-white font-mono text-xs sm:text-sm">{giftCardsVerified.toLocaleString()}</strong>
+            <span className="text-[11px] text-slate-400 pl-2 border-l border-slate-200 dark:border-slate-700">
+              all-time: <strong className="font-bold text-slate-700 dark:text-slate-300 font-mono text-xs">{giftCardsVerified.toLocaleString()}</strong>
             </span>
           </div>
 
@@ -155,19 +142,19 @@ export const LiveActivityTicker: React.FC<LiveActivityTickerProps> = ({
             <Link
               to="/gift-cards"
               id="ticker-buy-gift-card-btn"
-              className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-600 via-indigo-700 to-indigo-800 hover:from-indigo-500 hover:via-indigo-600 hover:to-indigo-700 text-white font-extrabold text-xs sm:text-sm shadow-md shadow-indigo-600/25 border border-indigo-400/40 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-1.5 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
-              <ShoppingBag className="w-4 h-4" />
+              <ShoppingBag className="w-3.5 h-3.5" />
               <span>Buy Gift Card</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3 h-3" />
             </Link>
 
             <Link
               to="/validate"
               id="ticker-validate-card-btn"
-              className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:via-teal-500 hover:to-emerald-600 text-white font-extrabold text-xs sm:text-sm shadow-md shadow-emerald-600/25 border border-emerald-400/50 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full border-2 border-[#2563EB] dark:border-blue-500 bg-white dark:bg-slate-850 hover:bg-blue-50 dark:hover:bg-blue-950/40 text-[#2563EB] dark:text-blue-400 font-bold text-xs shadow-xs transition-colors cursor-pointer"
             >
-              <ShieldCheck className="w-4 h-4 text-emerald-100" />
+              <ShieldCheck className="w-3.5 h-3.5 text-[#2563EB] dark:text-blue-400" />
               <span>Validate Card</span>
             </Link>
 
@@ -175,9 +162,9 @@ export const LiveActivityTicker: React.FC<LiveActivityTickerProps> = ({
               type="button"
               id="ticker-reviews-btn"
               onClick={handleReviewsClick}
-              className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-400 hover:via-amber-500 hover:to-amber-600 text-white font-extrabold text-xs sm:text-sm shadow-md shadow-amber-500/25 border border-amber-300/40 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full border border-amber-300 dark:border-amber-500/60 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/60 dark:hover:bg-amber-900/60 text-amber-800 dark:text-amber-200 font-bold text-xs transition-all cursor-pointer shadow-xs hover:scale-[1.02] active:scale-[0.98]"
             >
-              <Star className="w-4 h-4 fill-amber-200 text-amber-200" />
+              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
               <span>Reviews</span>
             </button>
           </div>
@@ -192,7 +179,8 @@ export const LiveActivityTicker: React.FC<LiveActivityTickerProps> = ({
           
           {/* Label chip */}
           <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-[11px] font-mono font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 shrink-0">
-            <Activity className="w-3.5 h-3.5 text-indigo-500 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse shrink-0" />
+            <Activity className="w-3.5 h-3.5 text-red-500 animate-pulse" />
             <span>Live Card Stream:</span>
           </div>
 
@@ -203,13 +191,13 @@ export const LiveActivityTicker: React.FC<LiveActivityTickerProps> = ({
             }`}
           >
             {currentEvent.type === 'purchased' ? (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/60 text-indigo-900 dark:text-indigo-200 font-black text-xs border border-indigo-300 dark:border-indigo-700/60 shadow-xs shrink-0">
-                <ShoppingBag className="w-3.5 h-3.5 text-indigo-600 dark:text-cyan-400" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/60 text-[#2563EB] dark:text-blue-200 font-black text-xs border border-blue-300 dark:border-blue-700/60 shadow-xs shrink-0">
+                <ShoppingBag className="w-3.5 h-3.5 text-[#2563EB] dark:text-blue-400" />
                 CARD PURCHASED
               </span>
             ) : (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-900 dark:text-emerald-200 font-black text-xs border border-emerald-300 dark:border-emerald-700/60 shadow-xs shrink-0">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#86A98D]/15 text-[#86A98D] font-black text-xs border border-[#86A98D]/30 shadow-xs shrink-0">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#86A98D]" />
                 CARD VERIFIED
               </span>
             )}
@@ -239,12 +227,12 @@ export const LiveActivityTicker: React.FC<LiveActivityTickerProps> = ({
 
         {/* Security & Verification Guarantee Tag */}
         <div className="hidden lg:flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 shrink-0 font-medium">
-          <div className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-semibold">
+          <div className="flex items-center gap-1 text-[#86A98D] font-semibold">
             <CheckCircle2 className="w-3.5 h-3.5" />
             <span>Instant Fulfillment</span>
           </div>
           <div className="flex items-center gap-1">
-            <Lock className="w-3.5 h-3.5 text-indigo-500" />
+            <Lock className="w-3.5 h-3.5 text-[#2563EB]" />
             <span>256-Bit Encrypted</span>
           </div>
         </div>

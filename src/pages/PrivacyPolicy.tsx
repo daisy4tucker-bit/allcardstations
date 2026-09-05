@@ -54,7 +54,7 @@ export const PrivacyPolicy: React.FC = () => {
           <div>
             <SectionHeading
               tag="Data Protection & Privacy"
-              title="AllCardVault Privacy Policy"
+              title="AllCardStatus Privacy Policy"
               subtitle="Last Updated: August 17, 2026 | Effective for all global users & cardholders."
               align="left"
             />
@@ -158,10 +158,10 @@ export const PrivacyPolicy: React.FC = () => {
                 <span>Introduction & Scope</span>
               </h2>
               <p>
-                Welcome to AllCardVault ("AllCardVault", "we", "our", or "us"). This Privacy Policy explains our practices regarding the collection, storage, processing, transfer, and safeguarding of information gathered from individuals who access our marketplace website (allcardstatus.com), mobile interfaces, gift card validation utilities, or customer support communication channels.
+                Welcome to AllCardStatus ("AllCardStatus", "we", "our", or "us"). This Privacy Policy explains our practices regarding the collection, storage, processing, transfer, and safeguarding of information gathered from individuals who access our marketplace website (allcardstatus.com), mobile interfaces, gift card validation utilities, or customer support communication channels.
               </p>
               <p>
-                By accessing or purchasing digital gift card products through AllCardVault, you acknowledge that you have read, understood, and agree to the data handling terms outlined in this statement.
+                By accessing or purchasing digital gift card products through AllCardStatus, you acknowledge that you have read, understood, and agree to the data handling terms outlined in this statement.
               </p>
             </section>
 
@@ -235,7 +235,7 @@ export const PrivacyPolicy: React.FC = () => {
                   <span>Unconditional Non-Disclosure Commitment</span>
                 </div>
                 <p>
-                  AllCardVault has never sold, traded, rented, or leased customer identities or contact records to third-party brokers, and will never do so under any circumstances.
+                  AllCardStatus has never sold, traded, rented, or leased customer identities or contact records to third-party brokers, and will never do so under any circumstances.
                 </p>
               </div>
             </section>
@@ -319,7 +319,7 @@ export const PrivacyPolicy: React.FC = () => {
               </p>
               
               <div className="p-4 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 space-y-2 text-xs">
-                <div className="font-bold text-indigo-950 dark:text-indigo-200 text-sm">AllCardVault Privacy Operations</div>
+                <div className="font-bold text-indigo-950 dark:text-indigo-200 text-sm">AllCardStatus Privacy Operations</div>
                 <div><strong>Email:</strong> privacy@allcardstatus.com / support@allcardstatus.com</div>
                 <div><strong>Response Guarantee:</strong> Written response within 14 business days</div>
                 <div><strong>Physical Jurisdiction:</strong> Digital Asset Compliance Division</div>

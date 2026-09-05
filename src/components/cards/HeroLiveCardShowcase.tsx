@@ -119,9 +119,9 @@ export const HeroLiveCardShowcase: React.FC = () => {
                     <Link
                       to={`/validate?card=${card.slug}`}
                       id={`hero-slide-validate-${card.slug}`}
-                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-transparent hover:bg-white/10 text-white font-bold text-xs border border-white/40 hover:border-white/70 backdrop-blur-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-transparent hover:bg-blue-950/40 text-blue-300 hover:text-blue-200 font-bold text-xs border border-blue-400/60 hover:border-blue-400 backdrop-blur-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
                     >
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                      <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
                       <span>Validate</span>
                     </Link>
                   </div>
@@ -137,7 +137,7 @@ export const HeroLiveCardShowcase: React.FC = () => {
           id="hero-slide-prev-btn"
           onClick={handlePrev}
           aria-label="Previous card"
-          className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white flex items-center justify-center border border-white/10 backdrop-blur-sm z-30 transition-all hover:scale-110 cursor-pointer"
+          className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/80 hover:bg-slate-900 text-white flex items-center justify-center border border-white/15 backdrop-blur-sm z-30 transition-all hover:scale-110 cursor-pointer shadow-md"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
@@ -146,14 +146,14 @@ export const HeroLiveCardShowcase: React.FC = () => {
           id="hero-slide-next-btn"
           onClick={handleNext}
           aria-label="Next card"
-          className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white flex items-center justify-center border border-white/10 backdrop-blur-sm z-30 transition-all hover:scale-110 cursor-pointer"
+          className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-950/80 hover:bg-slate-900 text-white flex items-center justify-center border border-white/15 backdrop-blur-sm z-30 transition-all hover:scale-110 cursor-pointer shadow-md"
         >
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>
 
       {/* Clean Slide Dots */}
-      <div className="flex items-center justify-center gap-1.5 mt-3">
+      <div className="flex items-center justify-center gap-1.5 mt-3.5">
         {cards.map((card, idx) => (
           <button
             key={card.id}
@@ -163,7 +163,7 @@ export const HeroLiveCardShowcase: React.FC = () => {
             aria-label={`Go to slide ${idx + 1}: ${card.name}`}
             className={`transition-all duration-300 rounded-full cursor-pointer ${
               idx === currentIndex
-                ? 'w-5 h-1.5 bg-indigo-600 dark:bg-amber-500'
+                ? 'w-6 h-1.5 bg-[#2563EB] dark:bg-blue-500'
                 : 'w-1.5 h-1.5 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-500'
             }`}
           />

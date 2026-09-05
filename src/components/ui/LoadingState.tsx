@@ -24,7 +24,7 @@ export const LoadingState: React.FC<LoadingStateProps> = ({
         <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 shadow-xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2.5">
             <div className="flex items-center gap-2.5 text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">
-              <Loader2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400 animate-spin" />
+              <Loader2 className="w-4 h-4 text-[#2563EB] dark:text-blue-400 animate-spin" />
               <span>{message}</span>
             </div>
             <div className="flex items-center gap-2 text-xs font-mono font-semibold text-slate-500 dark:text-slate-400">
@@ -37,11 +37,11 @@ export const LoadingState: React.FC<LoadingStateProps> = ({
           <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden relative">
             {typeof progress === 'number' ? (
               <div 
-                className="h-full bg-gradient-to-r from-indigo-500 via-indigo-600 to-emerald-400 rounded-full transition-all duration-300 ease-out"
+                className="h-full bg-gradient-to-r from-blue-600 via-blue-500 to-[#86A98D] rounded-full transition-all duration-300 ease-out"
                 style={{ width: `${progress}%` }}
               />
             ) : (
-              <div className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 rounded-full w-1/3 animate-indeterminate" />
+              <div className="h-full bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rounded-full w-1/3 animate-indeterminate" />
             )}
           </div>
         </div>

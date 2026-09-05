@@ -125,16 +125,11 @@ export const Home: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50/70 via-slate-50/60 to-white dark:from-slate-950 dark:via-indigo-950/60 dark:to-slate-950 text-slate-900 dark:text-white pt-8 pb-16 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24 transition-colors">
-        {/* Ambient Radial Glows */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.10),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.25),rgba(255,255,255,0))]" />
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-indigo-400/10 dark:bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-[#F5F7FA] dark:bg-slate-950 text-[#1E293B] dark:text-white pt-6 pb-12 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-18 border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           
           {/* Top Live Ticker Ribbon */}
-          <div className="mb-8">
+          <div>
             <LiveActivityTicker
               giftCardsPurchased={giftCardsPurchased}
               giftCardsVerified={giftCardsVerified}
@@ -143,13 +138,134 @@ export const Home: React.FC = () => {
             />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          {/* Carousel & Featured Display of Cards Showcase (Rendered directly after Live Stream container) */}
+          <div className="space-y-5 max-w-4xl mx-auto pt-1">
+            {/* Micro Trust & Gold Review Button Header Row */}
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-slate-700 dark:text-slate-300 font-medium">
+              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                <span>Instant eDelivery</span>
+              </div>
+              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200">
+                <Lock className="w-4 h-4 text-[#2563EB] shrink-0" />
+                <span>256-bit Encrypted</span>
+              </div>
+              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200">
+                <Zap className="w-4 h-4 text-amber-500 shrink-0" />
+                <span>Zero Inactivity Fees</span>
+              </div>
+              <button
+                type="button"
+                id="hero-client-reviews-badge-btn"
+                onClick={() => {
+                  document.getElementById('customer-reviews-section')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-amber-300 dark:border-amber-500/80 bg-amber-50/90 hover:bg-amber-100 dark:bg-amber-950/60 dark:hover:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-bold text-xs transition-all shadow-xs cursor-pointer hover:scale-105 active:scale-95"
+              >
+                <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500 shrink-0" />
+                <span>Client Reviews (4.9/5)</span>
+              </button>
+            </div>
+
+            {/* Interactive Carousel */}
+            <HeroLiveCardShowcase />
+          </div>
+
+          {/* Clean Main Header */}
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1E293B] dark:text-white">
+              Digital Gift Cards & Card Validation
+            </h1>
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+              Choose an action below to get started. You can buy new digital gift cards with instant delivery, or verify the status and balance of an existing card.
+            </p>
+          </div>
+
+          {/* TWO MAIN CLEAR CHOICE CARDS */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             
-            {/* Left Column: Headline, Responsive Search & 1-Tap Filters */}
-            <div className="lg:col-span-7 text-center lg:text-left space-y-6">
-              
-              {/* Search Bar with Instant Suggestions */}
-              <div className="relative max-w-xl">
+            {/* OPTION 1: BUY A GIFT CARD */}
+            <div className="rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow">
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center text-[#2563EB] dark:text-blue-400 shrink-0">
+                    <ShoppingBag className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#2563EB] dark:text-blue-400 font-mono">Option 1</span>
+                    <h2 className="text-xl font-extrabold text-[#1E293B] dark:text-white">Buy a Gift Card</h2>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Purchase authentic digital gift cards for Apple, Amazon, Steam, Xbox, PlayStation, and 50+ brands. Delivered to your email instantly.
+                </p>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {['Apple', 'Amazon', 'PlayStation', 'Xbox', 'Steam', 'Target'].map((brand) => (
+                    <span key={brand} className="text-[11px] px-2.5 py-1 rounded-lg bg-[#F5F7FA] dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">
+                      {brand}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800">
+                <Link
+                  to="/gift-cards"
+                  id="hero-buy-gift-card-btn"
+                  className="w-full py-3.5 px-5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs"
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  <span>Browse & Buy Cards</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* OPTION 2: VALIDATE A CARD */}
+            <div className="rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow">
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center text-[#2563EB] dark:text-blue-400 shrink-0">
+                    <ShieldCheck className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#2563EB] dark:text-blue-400 font-mono">Option 2</span>
+                    <h2 className="text-xl font-extrabold text-[#1E293B] dark:text-white">Check / Validate Card</h2>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Check if your gift card is active, verify its available balance, or test your physical card code and receipt photos securely.
+                </p>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {['Balance Check', 'Code Authenticity', 'Photo Verification', 'Instant Results'].map((tag) => (
+                    <span key={tag} className="text-[11px] px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950/40 text-[#2563EB] dark:text-blue-300 font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800">
+                <Link
+                  to="/validate"
+                  id="hero-validate-card-btn"
+                  className="w-full py-3.5 px-5 rounded-xl border-2 border-[#2563EB] dark:border-blue-500 bg-white dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-950/40 text-[#2563EB] dark:text-blue-400 font-bold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs"
+                >
+                  <ShieldCheck className="w-4 h-4 text-[#2563EB] dark:text-blue-400" />
+                  <span>Validate Card Now</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Quick Search & Showcase Row */}
+          <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-center pt-2">
+            
+            {/* Search Bar */}
+            <div className="lg:col-span-7">
+              <div className="relative">
                 <form onSubmit={handleHeroSearchSubmit} className="relative flex items-center">
                   <div className="relative w-full">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
@@ -164,23 +280,23 @@ export const Home: React.FC = () => {
                         setShowHeroSuggestions(true);
                       }}
                       onFocus={() => setShowHeroSuggestions(true)}
-                      placeholder="Search card by brand name (e.g. PlayStation, Apple, Target)..."
-                      className="w-full pl-10 pr-24 py-3.5 rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700/80 focus:border-indigo-500 dark:focus:border-amber-400 text-sm text-slate-900 dark:text-white placeholder-slate-400 shadow-md shadow-slate-200/50 dark:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/30 dark:focus:ring-amber-400/40 transition-all"
+                      placeholder="Search card by brand (e.g. Apple, Amazon, Steam)..."
+                      className="w-full pl-10 pr-24 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm text-[#1E293B] dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-all"
                     />
                     <button
                       type="submit"
                       id="hero-search-submit-btn"
-                      className="absolute right-1.5 top-1.5 bottom-1.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 dark:bg-amber-500 dark:hover:bg-amber-400 text-white dark:text-slate-950 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+                      className="absolute right-1.5 top-1.5 bottom-1.5 px-4 rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
                     >
                       <span>Search</span>
                     </button>
                   </div>
                 </form>
 
-                {/* Instant Suggestions Dropdown */}
+                {/* Suggestions Dropdown */}
                 {showHeroSuggestions && filteredSuggestions.length > 0 && (
                   <div 
-                    className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden z-30 p-2 text-left"
+                    className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl overflow-hidden z-30 p-2 text-left"
                     onMouseLeave={() => setShowHeroSuggestions(false)}
                   >
                     <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 py-1.5 border-b border-slate-100 dark:border-slate-800">
@@ -192,15 +308,15 @@ export const Home: React.FC = () => {
                           key={item.id}
                           to={`/gift-cards/${item.slug}`}
                           onClick={() => setShowHeroSuggestions(false)}
-                          className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                          className="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                         >
-                          <div className="flex items-center gap-2.5">
-                            <span className="text-xs font-bold text-slate-900 dark:text-white">{item.name}</span>
-                            <span className="text-[10px] bg-slate-100 dark:bg-slate-800 text-indigo-600 dark:text-indigo-300 px-2 py-0.5 rounded-md font-mono">
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-bold text-[#1E293B] dark:text-white">{item.name}</span>
+                            <span className="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-0.5 rounded font-mono">
                               {item.category}
                             </span>
                           </div>
-                          <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 font-mono">
+                          <span className="text-xs font-bold text-[#2563EB] dark:text-blue-400 font-mono">
                             From ${item.startingPrice}
                           </span>
                         </Link>
@@ -209,77 +325,67 @@ export const Home: React.FC = () => {
                   </div>
                 )}
               </div>
-
-              {/* Main Typography */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-white">
-                Digital Gift Cards. <br className="hidden sm:inline" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-indigo-500 to-amber-600 dark:from-indigo-300 dark:via-indigo-200 dark:to-amber-200">
-                  Simple, Fast, Secure.
-                </span>
-              </h1>
-
-              <p className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Discover authentic digital gift cards from 50+ world-class brands. Choose your card, select an exact amount, and get instant electronic delivery.
-              </p>
-
-              {/* Primary Action Row: Buy Gift Card & Validate Card */}
-              <div className="max-w-xl mx-auto lg:mx-0">
-                <div className="flex flex-col sm:flex-row items-center gap-3 pt-1">
-                  <Link
-                    to="/gift-cards"
-                    id="hero-buy-gift-card-btn"
-                    className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-indigo-800 hover:from-indigo-500 hover:via-indigo-600 hover:to-indigo-700 text-white font-extrabold text-sm shadow-lg shadow-indigo-600/20 border border-indigo-500/30 transition-all duration-200 hover:scale-[1.02] active:scale-[0.99] cursor-pointer"
-                  >
-                    <ShoppingBag className="w-4 h-4" />
-                    <span>Buy Gift Card</span>
-                    <ArrowRight className="w-4 h-4 ml-0.5" />
-                  </Link>
-
-                  <Link
-                    to="/validate"
-                    id="hero-validate-card-btn"
-                    className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:via-teal-500 hover:to-emerald-600 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/20 border border-emerald-500/40 transition-all duration-200 hover:scale-[1.02] active:scale-[0.99] cursor-pointer"
-                  >
-                    <ShieldCheck className="w-4 h-4 text-emerald-100" />
-                    <span>Validate Card</span>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Micro Trust Indicators */}
-              <div className="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-5 text-xs text-slate-500 dark:text-slate-400 font-medium">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Instant eDelivery</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Lock className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
-                  <span>256-bit Encrypted</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Zap className="w-4 h-4 text-amber-500 dark:text-amber-400 shrink-0" />
-                  <span>Zero Inactivity Fees</span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    document.getElementById('customer-reviews-section')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-50 dark:bg-amber-500/15 hover:bg-amber-100 dark:hover:bg-amber-500/25 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-500/30 transition-all cursor-pointer font-bold text-xs shadow-xs hover:scale-105 active:scale-95"
-                >
-                  <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500 shrink-0" />
-                  <span>Client Reviews (4.9/5)</span>
-                </button>
-              </div>
-
             </div>
 
-            {/* Right Column: Interactive 3D Card Switcher & Live Metrics */}
-            <div className="lg:col-span-5 w-full flex items-center justify-center py-4">
-              <HeroLiveCardShowcase />
+            {/* Micro Trust Indicators (with Sage Green Checkmarks) */}
+            <div className="lg:col-span-5 flex flex-wrap items-center justify-center lg:justify-end gap-4 text-xs text-slate-600 dark:text-slate-400 font-medium">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-[#86A98D] shrink-0" />
+                <span className="text-[#1E293B] dark:text-slate-300">Instant Delivery</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Lock className="w-4 h-4 text-[#2563EB] shrink-0" />
+                <span className="text-[#1E293B] dark:text-slate-300">256-bit Secure</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  document.getElementById('customer-reviews-section')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-300 dark:border-amber-500/80 bg-amber-50/90 hover:bg-amber-100 dark:bg-amber-950/60 dark:hover:bg-amber-900/60 text-amber-900 dark:text-amber-200 cursor-pointer font-bold transition-all shadow-xs"
+              >
+                <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500 shrink-0" />
+                <span>4.9/5 Reviews</span>
+              </button>
             </div>
 
           </div>
+
+          {/* 3 Ultra-Simple Visual Steps for Any User */}
+          <div className="max-w-4xl mx-auto pt-4 border-t border-slate-200 dark:border-slate-800">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+              <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-3 text-left">
+                <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 flex items-center justify-center font-black text-[#2563EB] dark:text-blue-400 text-sm shrink-0">
+                  1
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-[#1E293B] dark:text-white">Choose Brand</div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400">Apple, Steam, Xbox & more</div>
+                </div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-3 text-left">
+                <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 flex items-center justify-center font-black text-[#2563EB] dark:text-blue-400 text-sm shrink-0">
+                  2
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-[#1E293B] dark:text-white">Buy or Check Code</div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400">Select amount or enter code</div>
+                </div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-3 text-left">
+                <div className="w-8 h-8 rounded-lg bg-[#86A98D]/15 dark:bg-[#86A98D]/25 flex items-center justify-center font-black text-[#86A98D] text-sm shrink-0">
+                  3
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-[#1E293B] dark:text-white">Instant Result</div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400">Get code or balance status</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -291,8 +397,8 @@ export const Home: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-slate-100 dark:border-slate-800/80">
             <div>
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <h3 className="text-sm uppercase font-mono tracking-wider text-accent font-bold">
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                <h3 className="text-sm uppercase font-mono tracking-wider text-[#2563EB] dark:text-blue-400 font-bold">
                   Verified Marketplace Metrics
                 </h3>
               </div>
@@ -308,7 +414,7 @@ export const Home: React.FC = () => {
                 onClick={() => setStatsView('comparison')}
                 className={`flex-1 sm:flex-none text-center px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   statsView === 'comparison'
-                    ? 'bg-indigo-600 text-white font-extrabold shadow-sm'
+                    ? 'bg-[#2563EB] text-white font-extrabold shadow-xs'
                     : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
                 }`}
               >
@@ -319,7 +425,7 @@ export const Home: React.FC = () => {
                 onClick={() => setStatsView('overall')}
                 className={`flex-1 sm:flex-none text-center px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   statsView === 'overall'
-                    ? 'bg-indigo-600 text-white font-extrabold shadow-sm'
+                    ? 'bg-[#2563EB] text-white font-extrabold shadow-xs'
                     : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
                 }`}
               >
@@ -330,7 +436,7 @@ export const Home: React.FC = () => {
                 onClick={() => setStatsView('today')}
                 className={`flex-1 sm:flex-none text-center px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   statsView === 'today'
-                    ? 'bg-indigo-600 text-white font-extrabold shadow-sm'
+                    ? 'bg-[#2563EB] text-white font-extrabold shadow-xs'
                     : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
@@ -387,7 +493,7 @@ export const Home: React.FC = () => {
                 iconName: 'ShieldCheck',
               }}
               badge={statsView === 'today' ? '99.98% authentic' : `+${todayCardsVerified} today`}
-              badgeType="emerald"
+              badgeType="sage"
               isLive={true}
               timeframeBreakdown={statsView === 'comparison' ? {
                 overallLabel: 'All-Time Total',
@@ -511,31 +617,31 @@ export const Home: React.FC = () => {
       </section>
 
       {/* QUICK VALIDATE CALLOUT BANNER */}
-      <section className="py-12 bg-indigo-900 dark:bg-indigo-950 text-white relative overflow-hidden border-y border-indigo-800">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(99,102,241,0.3),transparent_70%)]" />
+      <section className="py-12 bg-blue-900 dark:bg-slate-900 text-white relative overflow-hidden border-y border-blue-800 dark:border-slate-800">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(37,99,235,0.25),transparent_70%)]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-slate-900/60 rounded-3xl border border-indigo-500/30 backdrop-blur-md">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-blue-950/60 dark:bg-slate-900/90 rounded-3xl border border-blue-500/30 backdrop-blur-md">
             <div className="space-y-2 text-center lg:text-left">
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-400">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#86A98D]">
                 <ShieldCheck className="w-4 h-4" />
                 <span>Card Authentication Suite</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-extrabold text-white">
                 Already have a gift card code? Validate it now.
               </h3>
-              <p className="text-slate-300 text-xs sm:text-sm max-w-xl">
+              <p className="text-blue-100 dark:text-slate-300 text-xs sm:text-sm max-w-xl">
                 Check regional compatibility and claim protocol formats for all supported brands in seconds.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full lg:w-auto">
               <Link to="/validate" className="w-full sm:w-auto">
-                <Button size="lg" variant="primary" className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-bold" leftIcon={<ShieldCheck className="w-4 h-4" />}>
+                <Button size="lg" variant="primary" className="w-full sm:w-auto bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold" leftIcon={<ShieldCheck className="w-4 h-4" />}>
                   Go to Card Validator
                 </Button>
               </Link>
               <Link to="/how-it-works" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-slate-900/90 text-white border-indigo-400/50 hover:bg-slate-800 font-bold">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent hover:bg-blue-800/50 text-white border-blue-300/40 font-bold">
                   How It Works
                 </Button>
               </Link>
@@ -548,7 +654,7 @@ export const Home: React.FC = () => {
       <section className="py-16 sm:py-24 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            tag="Why AllCardVault"
+            tag="Why AllCardStatus"
             title="Everything you need for digital gifting"
             subtitle="Engineered from the ground up for seamless gift card discovery, secure digital delivery, and effortless validation."
             align="center"
@@ -566,18 +672,16 @@ export const Home: React.FC = () => {
       <CustomerReviews />
 
       {/* HOW IT WORKS TEASER */}
-      <section className="py-16 sm:py-24 bg-slate-900 dark:bg-slate-950 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_120%,rgba(99,102,241,0.2),rgba(255,255,255,0))]" />
-        
+      <section className="py-16 sm:py-24 bg-[#F5F7FA] dark:bg-slate-950 text-[#1E293B] dark:text-white relative overflow-hidden border-t border-slate-200 dark:border-slate-800">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 mb-3">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-300 border border-blue-200 dark:border-blue-800 mb-3">
               Simple 4-Step Process
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-              How AllCardVault Works
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#1E293B] dark:text-white">
+              How AllCardStatus Works
             </h2>
-            <p className="mt-3 text-slate-400 text-base sm:text-lg">
+            <p className="mt-3 text-slate-600 dark:text-slate-400 text-base sm:text-lg">
               Get your digital gift card in your inbox in less than a minute.
             </p>
           </div>
@@ -607,13 +711,13 @@ export const Home: React.FC = () => {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="relative bg-slate-800/60 dark:bg-slate-900/60 border border-slate-700/80 dark:border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 transition-colors"
+                className="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-[#2563EB]/50 transition-colors shadow-xs"
               >
-                <div className="text-3xl font-extrabold font-mono text-indigo-400 mb-3">
+                <div className="text-3xl font-extrabold font-mono text-[#2563EB] dark:text-blue-400 mb-3">
                   {item.step}
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
+                <h3 className="text-lg font-bold text-[#1E293B] dark:text-white mb-2">{item.title}</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -622,7 +726,7 @@ export const Home: React.FC = () => {
             <Link to="/how-it-works">
               <Button
                 variant="outline"
-                className="bg-indigo-900/90 border-indigo-400/50 text-white hover:bg-indigo-800 font-bold"
+                className="border-blue-300 dark:border-blue-800 text-[#2563EB] dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950 font-bold"
                 rightIcon={<ArrowRight className="w-4 h-4" />}
               >
                 Learn More About The Process
@@ -633,23 +737,23 @@ export const Home: React.FC = () => {
       </section>
 
       {/* CTA BANNER */}
-      <section className="py-16 sm:py-20 bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 text-white relative">
+      <section className="py-16 sm:py-20 bg-gradient-to-r from-blue-700 via-blue-600 to-[#1D4ED8] text-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 text-white">
               Ready to find the perfect gift card?
             </h2>
-            <p className="text-indigo-100 text-base sm:text-lg mb-8 leading-relaxed">
+            <p className="text-blue-100 text-base sm:text-lg mb-8 leading-relaxed">
               Explore 50+ digital brands with instant electronic delivery and zero fees.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/gift-cards" className="w-full sm:w-auto">
-                <Button size="lg" variant="primary" className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold shadow-lg border border-amber-300/50">
+                <Button size="lg" variant="primary" className="w-full sm:w-auto bg-white hover:bg-slate-100 text-[#1E293B] font-extrabold shadow-md border border-slate-200">
                   Browse Marketplace
                 </Button>
               </Link>
               <Link to="/validate" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-slate-900/90 text-white border-indigo-300/40 hover:bg-slate-800 font-bold">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-[#1D4ED8] hover:bg-blue-700 text-white border-blue-300/40 font-bold">
                   Check Card Validity
                 </Button>
               </Link>

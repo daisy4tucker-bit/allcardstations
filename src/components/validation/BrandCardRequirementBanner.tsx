@@ -53,7 +53,7 @@ export const BrandCardRequirementBanner: React.FC<BrandCardRequirementBannerProp
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
         {/* Code Format Rule */}
         <div className="flex items-center gap-2 rounded-lg bg-white dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 p-2.5">
-          <Hash className="h-4 w-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+          <Hash className="h-4 w-4 text-[#2563EB] dark:text-blue-400 shrink-0" />
           <div className="min-w-0">
             <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
               Format Rule
@@ -66,7 +66,7 @@ export const BrandCardRequirementBanner: React.FC<BrandCardRequirementBannerProp
 
         {/* PIN / Security requirement */}
         <div className="flex items-center gap-2 rounded-lg bg-white dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 p-2.5">
-          <ShieldAlert className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+          <ShieldAlert className="h-4 w-4 text-[#86A98D] shrink-0" />
           <div className="min-w-0">
             <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
               Security PIN
@@ -85,7 +85,7 @@ export const BrandCardRequirementBanner: React.FC<BrandCardRequirementBannerProp
         <div className="flex items-center justify-between text-[11px] mb-1.5 font-medium">
           <span className="text-slate-600 dark:text-slate-400 flex items-center gap-1.5">
             {codeLengthCurrent >= 6 ? (
-              <CheckCircle className="h-3.5 w-3.5 text-emerald-500" />
+              <CheckCircle className="h-3.5 w-3.5 text-[#86A98D]" />
             ) : (
               <span className="inline-block w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
             )}
