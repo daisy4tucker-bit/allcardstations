@@ -11,7 +11,8 @@ import {
 import { PageContainer } from '../components/layout/PageContainer';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { Button } from '../components/ui/Button';
-import { OpenGraphMeta } from '../components/common/OpenGraphMeta';
+import { SEO } from '../components/common/SEO';
+import { SEO_CONFIG } from '../config/seo';
 
 export const About: React.FC = () => {
   const values = [
@@ -43,33 +44,37 @@ export const About: React.FC = () => {
         { label: 'About Us' }
       ]}
     >
-      <OpenGraphMeta
-        title="About AllCardStatus - Our Mission, Security & Global Marketplace"
+      <SEO
+        title="About AllCardStatus – Digital Gift Card Marketplace & Security Standards"
         description="Learn about AllCardStatus, our mission to redefine digital gifting, our 256-bit encryption standards, and instant digital delivery worldwide."
-        keywords="about allcardstatus, digital gift card company, secure gift card marketplace, gift card verification company"
-        url="https://allcardstatus.com/about"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "AboutPage",
-          "name": "About AllCardStatus",
-          "url": "https://allcardstatus.com/about",
-          "description": "AllCardStatus is an instant digital gift card marketplace and card validation platform."
-        }}
+        canonicalPath="/about"
+        structuredData={[
+          {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "About AllCardStatus",
+            "url": "https://allcardstatus.com/about",
+            "description": "AllCardStatus is an authorized digital gift card marketplace and card validation platform.",
+            "mainEntity": SEO_CONFIG.organizationSchema
+          },
+          SEO_CONFIG.organizationSchema
+        ]}
       />
       <SectionHeading
         tag="Our Mission & Values"
-        title="Redefining Digital Gifting for Everyone"
-        subtitle="AllCardStatus is built with a singular focus: to make finding, selecting, and sending digital gift cards simple, fast, and trustworthy."
+        title="About AllCardStatus – Redefining Digital Gifting & Validation"
+        subtitle="AllCardStatus is built with a singular focus: to make finding, selecting, validating, and sending digital gift cards simple, fast, and trustworthy."
         align="center"
+        as="h1"
       />
 
       {/* Main Mission Story Card */}
       <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8 sm:p-12 shadow-xs my-8 max-w-4xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-8 space-y-4">
-            <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white">
+            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
               The AllCardStatus Mission
-            </h3>
+            </h2>
             <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
               Traditional gift giving often involves physical store trips, postal delays, or confusing terms. AllCardStatus was conceived to create a streamlined digital marketplace where modern consumers can browse a rich catalog of digital cards, choose exact denominations, and send memorable gifts instantly.
             </p>
@@ -91,9 +96,9 @@ export const About: React.FC = () => {
       {/* Core Values Grid */}
       <div className="my-16">
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
             What Sets Us Apart
-          </h3>
+          </h2>
           <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base mt-2">
             The principles that guide our marketplace design and engineering standards.
           </p>
@@ -110,7 +115,7 @@ export const About: React.FC = () => {
                 <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4">
                   <IconComponent className="w-6 h-6" />
                 </div>
-                <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">{val.title}</h4>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">{val.title}</h3>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{val.desc}</p>
               </div>
             );
@@ -124,7 +129,7 @@ export const About: React.FC = () => {
           <div className="text-indigo-400 font-bold text-sm uppercase tracking-wider mb-1">
             Authenticity
           </div>
-          <h4 className="text-lg font-bold text-white mb-2">100% Genuine Codes</h4>
+          <h3 className="text-lg font-bold text-white mb-2">100% Genuine Codes</h3>
           <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
             All cards in our catalog are sourced and verified to ensure direct, uncompromised account redemption.
           </p>
@@ -134,7 +139,7 @@ export const About: React.FC = () => {
           <div className="text-indigo-400 font-bold text-sm uppercase tracking-wider mb-1">
             Availability
           </div>
-          <h4 className="text-lg font-bold text-white mb-2">24/7 Global Access</h4>
+          <h3 className="text-lg font-bold text-white mb-2">24/7 Global Access</h3>
           <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
             Instant digital fulfillment anytime, day or night, with dedicated customer support.
           </p>
@@ -144,7 +149,7 @@ export const About: React.FC = () => {
           <div className="text-indigo-400 font-bold text-sm uppercase tracking-wider mb-1">
             Simplicity
           </div>
-          <h4 className="text-lg font-bold text-white mb-2">Zero Hassle</h4>
+          <h3 className="text-lg font-bold text-white mb-2">Zero Hassle</h3>
           <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
             No complex signups required to browse. Clean, responsive design on all devices.
           </p>

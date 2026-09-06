@@ -3,10 +3,16 @@ import { Link } from 'react-router-dom';
 import { Home, Search, CreditCard } from 'lucide-react';
 import { PageContainer } from '../components/layout/PageContainer';
 import { Button } from '../components/ui/Button';
+import { SEO } from '../components/common/SEO';
 
 export const NotFound: React.FC = () => {
   return (
-    <PageContainer>
+    <PageContainer breadcrumbs={[{ label: 'Page Not Found' }]}>
+      <SEO
+        title="404 – Page Not Found | AllCardStatus"
+        description="The requested page could not be found on AllCardStatus."
+        noindex={true}
+      />
       <div className="text-center py-16 sm:py-24 max-w-lg mx-auto">
         <div className="w-20 h-20 rounded-3xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mx-auto mb-6 shadow-sm">
           <CreditCard className="w-10 h-10" />

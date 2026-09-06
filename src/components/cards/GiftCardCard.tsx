@@ -52,7 +52,9 @@ export const GiftCardCard: React.FC<GiftCardCardProps> = ({
         {image && !isImageError ? (
           <img
             src={image}
-            alt={`${name} gift card`}
+            alt={`${name} digital gift card`}
+            loading="lazy"
+            decoding="async"
             referrerPolicy="no-referrer"
             onLoad={() => setIsImageLoaded(true)}
             onError={() => setIsImageError(true)}

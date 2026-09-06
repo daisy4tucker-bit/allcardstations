@@ -34,6 +34,7 @@ import {
   Table,
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { SEO } from '../components/common/SEO';
 import { useAuth } from '../context/AuthContext';
 import * as adminService from '../services/adminService';
 import {
@@ -163,6 +164,12 @@ export const AdminSystemTest: React.FC = () => {
   if (!isAuthenticated || !isAdmin) {
     return (
       <div className="min-h-[80vh] flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        <SEO
+          title="Admin Access Required – AllCardStatus"
+          description="Administrative portal restricted to authorized security personnel."
+          canonicalPath="/admin/system-test"
+          noindex={true}
+        />
         <div className="w-full max-w-lg bg-white dark:bg-slate-900 rounded-3xl border border-rose-200/80 dark:border-rose-900/50 shadow-xl overflow-hidden">
           <div className="p-6 sm:p-8 text-center space-y-5">
             <div className="w-16 h-16 rounded-2xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800/80 flex items-center justify-center text-rose-600 dark:text-rose-400 mx-auto shadow-sm">
@@ -255,6 +262,12 @@ export const AdminSystemTest: React.FC = () => {
   // --- AUTHENTICATED ADMIN DASHBOARD ---
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 py-8 px-4 sm:px-6 lg:px-8">
+      <SEO
+        title="Admin System Console & Diagnostics – AllCardStatus"
+        description="Internal administrative diagnostic interface for monitoring system health and gift card validations."
+        canonicalPath="/admin/system-test"
+        noindex={true}
+      />
       <div className="max-w-7xl mx-auto space-y-8">
         
         {/* Navigation Breadcrumb & Back Link */}

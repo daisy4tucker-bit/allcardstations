@@ -24,7 +24,7 @@ import { useAuth } from '../context/AuthContext';
 import { SUPPORTED_CURRENCIES, getCurrencyByCode, formatCurrencyAmount } from '../data/currencies';
 import { useCurrencyRates } from '../hooks/useCurrencyRates';
 import { LiveCurrencyConverter } from '../components/checkout/LiveCurrencyConverter';
-import { OpenGraphMeta } from '../components/common/OpenGraphMeta';
+import { SEO } from '../components/common/SEO';
 
 export const GiftCardDetails: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -148,12 +148,13 @@ export const GiftCardDetails: React.FC = () => {
         { label: name },
       ]}
     >
-      <OpenGraphMeta
-        title={`Buy ${name} Gift Card Online - Instant Email Delivery | AllCardStatus`}
-        description={`Purchase digital ${name} gift cards with instant 256-bit encrypted delivery. ${description}`}
-        image={card.image}
-        type="product"
-        jsonLd={{
+      <SEO
+        title={`Buy ${name} Gift Card Online – Instant Email Delivery`}
+        description={`Purchase official digital ${name} gift cards with instant 256-bit encrypted delivery. ${description}`}
+        ogImage={card.image}
+        canonicalPath={`/gift-cards/${slug}`}
+        ogType="product"
+        structuredData={{
           "@context": "https://schema.org",
           "@type": "Product",
           "name": `${name} Gift Card (Digital Delivery)`,
@@ -192,7 +193,8 @@ export const GiftCardDetails: React.FC = () => {
             {card.image ? (
               <img
                 src={card.image}
-                alt={`${name} gift card`}
+                alt={`${name} official digital gift card`}
+                decoding="async"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover select-none"
               />

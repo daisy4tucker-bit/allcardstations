@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { PageContainer } from '../components/layout/PageContainer';
+import { SEO } from '../components/common/SEO';
 import { ProfileSection } from '../components/dashboard/ProfileSection';
 import { FavoritesSection } from '../components/dashboard/FavoritesSection';
 import { RecipientsSection } from '../components/dashboard/RecipientsSection';
@@ -120,6 +121,12 @@ export const Dashboard: React.FC = () => {
       <PageContainer
         breadcrumbs={[{ label: 'Dashboard' }]}
       >
+        <SEO
+          title="Account Dashboard – AllCardStatus"
+          description="Customer account dashboard."
+          canonicalPath="/dashboard"
+          noindex={true}
+        />
         <div className="max-w-md mx-auto my-12 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8 shadow-xs">
           <div className="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mx-auto mb-4 border border-indigo-100 dark:border-indigo-900/50">
             <Lock className="w-8 h-8" />
@@ -165,11 +172,21 @@ export const Dashboard: React.FC = () => {
 
   return (
     <PageContainer
-      breadcrumbs={[
-        { label: 'Account Dashboard' },
-        { label: tabs.find((t) => t.id === activeTab)?.label || 'Overview' },
-      ]}
+      breadcrumbs={
+        activeTab === 'profile'
+          ? [{ label: 'Account Dashboard' }]
+          : [
+              { label: 'Account Dashboard', path: '/dashboard' },
+              { label: tabs.find((t) => t.id === activeTab)?.label || 'Overview' },
+            ]
+      }
     >
+      <SEO
+        title="Account Dashboard – AllCardStatus"
+        description="Manage your account profile, purchased gift cards, order receipts, and customer support conversations."
+        canonicalPath="/dashboard"
+        noindex={true}
+      />
       <div className="py-6 sm:py-8">
         {/* Top Header Card */}
         <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-xs mb-8">

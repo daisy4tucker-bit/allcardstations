@@ -1,6 +1,6 @@
 {
   "name": "AllCardStatus",
-  "description": "A modern digital gift-card marketplace with gift card validation, user authentication, customer profile management, favorites, recipient directory, and live customer support.",
+  "description": "Buy, send, and instantly validate digital gift cards from Apple, Steam, Amazon, Visa, PlayStation, and top global brands with instant delivery, 256-bit SSL encryption, and zero KYC or hidden fees.",
   "requestFramePermissions": ["camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -12,7 +12,7 @@ import {
 import { PageContainer } from '../components/layout/PageContainer';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { Button } from '../components/ui/Button';
-import { OpenGraphMeta } from '../components/common/OpenGraphMeta';
+import { SEO } from '../components/common/SEO';
 
 export const HowItWorks: React.FC = () => {
   const steps = [
@@ -80,15 +80,14 @@ export const HowItWorks: React.FC = () => {
         { label: 'How It Works' }
       ]}
     >
-      <OpenGraphMeta
-        title="How It Works - Digital Gift Card Purchase & Instant Delivery | AllCardStatus"
-        description="Learn how to buy, customize, pay with cryptocurrency or secure methods, and instantly receive digital gift cards in 4 simple steps."
-        keywords="how to buy digital gift cards, instant gift card guide, digital voucher delivery, gift card steps"
-        url="https://allcardstatus.com/how-it-works"
-        jsonLd={{
+      <SEO
+        title="How It Works – Digital Gift Card Purchase & Instant Delivery Guide"
+        description="Learn how to buy, customize, pay with cryptocurrency or secure payment methods, and instantly receive verified digital gift cards in 4 simple steps."
+        canonicalPath="/how-it-works"
+        structuredData={{
           "@context": "https://schema.org",
           "@type": "HowTo",
-          "name": "How to Buy and Receive Digital Gift Cards on AllCardStatus",
+          "name": "How to Buy, Validate, and Redeem Digital Gift Cards on AllCardStatus",
           "description": "Four simple steps to browse, order, securely pay, and instantly receive verified digital gift cards.",
           "step": steps.map((s, idx) => ({
             "@type": "HowToStep",
@@ -101,8 +100,9 @@ export const HowItWorks: React.FC = () => {
       <SectionHeading
         tag="Simple & Transparent"
         title="How AllCardStatus Works"
-        subtitle="Sending and receiving digital gift cards has never been easier. Follow our four simple steps from discovery to instant redemption."
+        subtitle="Sending, validating, and receiving digital gift cards has never been easier. Follow our four simple steps from discovery to instant redemption."
         align="center"
+        as="h1"
       />
 
       {/* 4 Steps Timeline Section */}

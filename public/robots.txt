@@ -1,5 +1,42 @@
+# Robots.txt for AllCardStatus (https://allcardstatus.com)
+# Allow legitimate search crawlers full access to public catalog & validation routes
 User-agent: *
 Allow: /
+Allow: /gift-cards
+Allow: /gift-cards/*
+Allow: /validate
+Allow: /how-it-works
+Allow: /about
+Allow: /faq
+Allow: /contact
+Allow: /legal
+Allow: /privacy
+Allow: /terms
+Allow: /security
+Allow: /compliance
+Allow: /sitemap
 
-# Sitemaps
+# Allow static CSS, JavaScript, WebP, SVG, and images for complete Googlebot rendering
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.svg$
+Allow: /*.webp$
+Allow: /*.ico$
+Allow: /assets/*
+
+# Disallow private user accounts, checkout transactions, internal API, and admin diagnostics
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /admin-system-test
+Disallow: /signin
+Disallow: /signup
+Disallow: /dashboard
+Disallow: /dashboard/*
+Disallow: /checkout/*
+Disallow: /api/
+Disallow: /api/*
+
+# XML Sitemap Directive
 Sitemap: https://allcardstatus.com/sitemap.xml

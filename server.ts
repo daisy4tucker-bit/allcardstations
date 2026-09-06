@@ -15,12 +15,14 @@ if (
 }
 import express from 'express';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
 import apiRouter from './backend/src/routes/index.js';
 import { errorHandler } from './backend/src/middleware/errorHandler.js';
 import { runMigrations } from './backend/src/database/migrate.js';
 import { seedDatabase } from './backend/src/database/seed.js';
+import { prisma } from './backend/src/database/prisma.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -84,16 +86,77 @@ async function startServer() {
   // REST API Routes
   app.use('/api', apiRouter);
 
-  // Search Engine & Sitemap Endpoints
-  app.get('/sitemap.xml', (req, res) => {
-    const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
-    res.setHeader('Content-Type', 'application/xml; charset=utf-8');
-    res.sendFile(sitemapPath);
+  // Search Engine & Sitemap Endpoints (Dynamic Sitemap Generator with fallback)
+  app.get('/sitemap.xml', async (req, res) => {
+    try {
+      const today = new Date().toISOString().split('T')[0];
+      const staticPages = [
+        { loc: 'https://allcardstatus.com/', changefreq: 'daily', priority: '1.0' },
+        { loc: 'https://allcardstatus.com/gift-cards', changefreq: 'daily', priority: '0.9' },
+        { loc: 'https://allcardstatus.com/validate', changefreq: 'daily', priority: '0.9' },
+        { loc: 'https://allcardstatus.com/how-it-works', changefreq: 'weekly', priority: '0.8' },
+        { loc: 'https://allcardstatus.com/about', changefreq: 'monthly', priority: '0.8' },
+        { loc: 'https://allcardstatus.com/faq', changefreq: 'weekly', priority: '0.8' },
+        { loc: 'https://allcardstatus.com/contact', changefreq: 'monthly', priority: '0.8' },
+        { loc: 'https://allcardstatus.com/sitemap', changefreq: 'weekly', priority: '0.7' },
+        { loc: 'https://allcardstatus.com/legal', changefreq: 'monthly', priority: '0.7' },
+        { loc: 'https://allcardstatus.com/privacy', changefreq: 'monthly', priority: '0.7' },
+        { loc: 'https://allcardstatus.com/terms', changefreq: 'monthly', priority: '0.7' },
+        { loc: 'https://allcardstatus.com/security', changefreq: 'monthly', priority: '0.7' },
+        { loc: 'https://allcardstatus.com/compliance', changefreq: 'monthly', priority: '0.7' },
+      ];
+
+      let cardSlugs: string[] = [];
+      try {
+        const cards = await prisma.giftCard.findMany({
+          where: { available: true },
+          select: { slug: true, updatedAt: true },
+          orderBy: { name: 'asc' },
+        });
+        cardSlugs = cards.map((c) => c.slug);
+      } catch {
+        // Database not ready, proceed to static fallback
+      }
+
+      let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+      xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n`;
+      xml += `        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\n`;
+      xml += `        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9\n`;
+      xml += `        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">\n\n`;
+
+      for (const page of staticPages) {
+        xml += `  <url>\n    <loc>${page.loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${page.changefreq}</changefreq>\n    <priority>${page.priority}</priority>\n  </url>\n`;
+      }
+
+      if (cardSlugs.length > 0) {
+        for (const slug of cardSlugs) {
+          xml += `  <url>\n    <loc>https://allcardstatus.com/gift-cards/${slug}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.85</priority>\n  </url>\n`;
+        }
+      } else {
+        const fallbackPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+        if (fs.existsSync(fallbackPath)) {
+          res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+          res.setHeader('Cache-Control', 'public, max-age=3600');
+          return res.sendFile(fallbackPath);
+        }
+      }
+
+      xml += `</urlset>\n`;
+
+      res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+      res.setHeader('Cache-Control', 'public, max-age=3600');
+      res.send(xml);
+    } catch {
+      const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+      res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+      res.sendFile(sitemapPath);
+    }
   });
 
   app.get('/robots.txt', (req, res) => {
     const robotsPath = path.join(process.cwd(), 'public', 'robots.txt');
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, max-age=86400');
     res.sendFile(robotsPath);
   });
 

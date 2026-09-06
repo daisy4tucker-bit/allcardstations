@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CreditCard, Lock, Mail, ArrowRight, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { PageContainer } from '../components/layout/PageContainer';
+import { SEO } from '../components/common/SEO';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
 import { useAuth } from '../context/AuthContext';
@@ -56,6 +57,12 @@ export const SignIn: React.FC = () => {
         { label: 'Sign In' }
       ]}
     >
+      <SEO
+        title="Sign In – AllCardStatus"
+        description="Sign in to your AllCardStatus account to manage orders, view gift card transaction histories, and access purchased digital codes."
+        canonicalPath="/signin"
+        noindex={true}
+      />
       <div className="max-w-md mx-auto my-6 sm:my-10">
         <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-7 sm:p-9 shadow-xs">
           

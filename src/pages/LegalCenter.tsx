@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams, useNavigate, Link } from 'react-router-dom';
+import { useSearchParams, useNavigate, Link, useLocation } from 'react-router-dom';
 import { 
   ShieldCheck, 
   Lock, 
@@ -20,25 +20,51 @@ import {
 import { PageContainer } from '../components/layout/PageContainer';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { Button } from '../components/ui/Button';
+import { SEO } from '../components/common/SEO';
 
 type LegalTab = 'privacy' | 'terms' | 'security' | 'compliance';
 
 export const LegalCenter: React.FC = () => {
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialTabParam = (searchParams.get('tab') as LegalTab) || 'privacy';
-  const [activeTab, setActiveTab] = useState<LegalTab>(initialTabParam);
+  
+  const getInitialTab = (): LegalTab => {
+    const pathSlug = location.pathname.replace(/^\//, '');
+    if (['privacy', 'terms', 'security', 'compliance'].includes(pathSlug)) {
+      return pathSlug as LegalTab;
+    }
+    const param = searchParams.get('tab') as LegalTab;
+    if (param && ['privacy', 'terms', 'security', 'compliance'].includes(param)) {
+      return param;
+    }
+    return 'privacy';
+  };
+
+  const [activeTab, setActiveTab] = useState<LegalTab>(getInitialTab);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
-    const tabFromUrl = searchParams.get('tab') as LegalTab;
-    if (tabFromUrl && ['privacy', 'terms', 'security', 'compliance'].includes(tabFromUrl)) {
-      setActiveTab(tabFromUrl);
+    const pathSlug = location.pathname.replace(/^\//, '');
+    if (['privacy', 'terms', 'security', 'compliance'].includes(pathSlug)) {
+      setActiveTab(pathSlug as LegalTab);
+    } else {
+      const tabFromUrl = searchParams.get('tab') as LegalTab;
+      if (tabFromUrl && ['privacy', 'terms', 'security', 'compliance'].includes(tabFromUrl)) {
+        setActiveTab(tabFromUrl);
+      }
     }
-  }, [searchParams]);
+  }, [location.pathname, searchParams]);
+
+  const navigate = useNavigate();
 
   const handleTabChange = (tab: LegalTab) => {
     setActiveTab(tab);
-    setSearchParams({ tab });
+    // If on a dedicated route like /privacy or /terms, route cleanly
+    if (['/privacy', '/terms', '/security', '/compliance'].includes(location.pathname)) {
+      navigate(`/${tab}`, { replace: false });
+    } else {
+      setSearchParams({ tab });
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -53,13 +79,44 @@ export const LegalCenter: React.FC = () => {
     { id: 'compliance', label: 'Compliance & Anti-Fraud', icon: Scale, badge: 'AML & KYC' },
   ];
 
+  const tabDescriptions: Record<LegalTab, string> = {
+    privacy: "Official AllCardStatus Privacy Policy: Learn about our strict no-data-selling policy, 256-bit SSL encryption, GDPR and CCPA user rights, and data retention standards.",
+    terms: "Official AllCardStatus Terms of Service: Review digital code redemption conditions, electronic delivery guarantees, cryptocurrency payment terms, and user guidelines.",
+    security: "AllCardStatus Security & Encryption Standards: Explore our 256-bit TLS transport encryption, automated fraud detection, cold-storage ledger auditing, and security certifications.",
+    compliance: "AllCardStatus Compliance & Anti-Fraud Hub: Overview of our Anti-Money Laundering (AML) controls, automated risk scoring, dispute resolution, and regulatory transparency."
+  };
+
+  const currentTabObj = tabs.find(t => t.id === activeTab);
+  const pageTitle = currentTabObj ? `${currentTabObj.label} – AllCardStatus Legal Center` : 'Legal & Privacy Center – AllCardStatus';
+  const pageDescription = tabDescriptions[activeTab] || "Review AllCardStatus's official legal policies, GDPR and CCPA privacy compliance, 256-bit encryption protocols, and digital card redemption terms.";
+
+  const canonicalPath = ['/privacy', '/terms', '/security', '/compliance'].includes(location.pathname)
+    ? location.pathname
+    : (activeTab === 'privacy' ? '/legal' : `/legal?tab=${activeTab}`);
+
   return (
     <PageContainer
-      breadcrumbs={[
-        { label: 'Legal Center', path: '/legal' },
-        { label: tabs.find(t => t.id === activeTab)?.label || 'Legal & Compliance' }
-      ]}
+      breadcrumbs={
+        activeTab === 'privacy' && location.pathname === '/legal'
+          ? [{ label: 'Legal Center' }]
+          : [
+              { label: 'Legal Center', path: '/legal' },
+              { label: currentTabObj?.label || 'Policy' }
+            ]
+      }
     >
+      <SEO
+        title={pageTitle}
+        description={pageDescription}
+        canonicalPath={canonicalPath}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": pageTitle,
+          "url": `https://allcardstatus.com${canonicalPath}`,
+          "description": pageDescription
+        }}
+      />
       <div className="max-w-6xl mx-auto py-4 sm:py-8 space-y-8">
         
         {/* Header */}
@@ -70,6 +127,7 @@ export const LegalCenter: React.FC = () => {
               title="AllCardStatus Legal & Security Center"
               subtitle="Unified operational protocols, cryptographic standards, data privacy rights, and code redemption terms."
               align="left"
+              as="h1"
             />
           </div>
           <div className="flex items-center gap-3 shrink-0">

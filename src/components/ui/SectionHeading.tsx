@@ -7,6 +7,7 @@ export interface SectionHeadingProps {
   align?: 'left' | 'center' | 'right';
   className?: string;
   titleClassName?: string;
+  as?: 'h1' | 'h2' | 'h3';
 }
 
 export const SectionHeading: React.FC<SectionHeadingProps> = ({
@@ -16,12 +17,15 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   align = 'center',
   className = '',
   titleClassName = '',
+  as = 'h2',
 }) => {
   const alignmentStyles = {
     left: 'text-left items-start',
     center: 'text-center items-center mx-auto',
     right: 'text-right items-end ml-auto',
   };
+
+  const HeadingTag = as;
 
   return (
     <div className={`flex flex-col ${alignmentStyles[align]} max-w-3xl mb-8 sm:mb-12 ${className}`}>
@@ -30,9 +34,9 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
           {tag}
         </span>
       )}
-      <h2 className={`text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight ${titleClassName}`}>
+      <HeadingTag className={`text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight ${titleClassName}`}>
         {title}
-      </h2>
+      </HeadingTag>
       {subtitle && (
         <p className="mt-3.5 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
           {subtitle}

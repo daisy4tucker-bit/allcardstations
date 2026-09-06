@@ -23,6 +23,8 @@ import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
 import { openTawkChat } from '../components/common/TawkToChat';
+import { SEO } from '../components/common/SEO';
+import { SEO_CONFIG } from '../config/seo';
 
 interface ContactFormDataExtended {
   fullName: string;
@@ -336,12 +338,26 @@ export const Contact: React.FC = () => {
 
   return (
     <PageContainer breadcrumbs={[{ label: 'Contact Support' }]}>
+      <SEO
+        title="Contact AllCardStatus Support – 24/7 Customer Care"
+        description="Get in touch with AllCardStatus customer support for instant assistance with gift card deliveries, balance validation, crypto payments, and bulk orders."
+        canonicalPath="/contact"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact AllCardStatus Support",
+          "description": "24/7 Customer support and ticket resolution for gift card orders and validations.",
+          "url": "https://allcardstatus.com/contact",
+          "mainEntity": SEO_CONFIG.organizationSchema
+        }}
+      />
       <div className="max-w-5xl mx-auto py-4 sm:py-8 space-y-8">
         <SectionHeading
           tag="Customer Care & Support"
           title="Contact AllCardStatus Operations"
           subtitle="Need assistance with a gift card delivery, balance validation, crypto payment, or corporate bulk order? Our specialized support team is here 24/7."
           align="center"
+          as="h1"
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

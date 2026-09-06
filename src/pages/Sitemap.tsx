@@ -24,6 +24,7 @@ import {
   Check,
 } from 'lucide-react';
 import { PageContainer } from '../components/layout/PageContainer';
+import { SEO } from '../components/common/SEO';
 import { GIFT_CARDS } from '../data/brands';
 import { CATEGORIES } from '../data/categories';
 
@@ -250,7 +251,12 @@ export const Sitemap: React.FC = () => {
   const categoriesList = ['All', 'Core', 'Categories', 'Brands', 'Account', 'Legal', 'Technical'];
 
   return (
-    <PageContainer>
+    <PageContainer breadcrumbs={[{ label: 'Directory Sitemap' }]}>
+      <SEO
+        title="HTML Sitemap & Directory Index – AllCardStatus"
+        description="Comprehensive index and directory of all digital gift card brands, categories, validation tools, legal policies, and technical resources on AllCardStatus."
+        canonicalPath="/sitemap"
+      />
       <div className="py-8 sm:py-12 space-y-8 max-w-6xl mx-auto">
         {/* Header Banner */}
         <div className="bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-indigo-500/20 relative overflow-hidden">

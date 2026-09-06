@@ -19,6 +19,8 @@ import { PageContainer } from '../components/layout/PageContainer';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/common/SEO';
+import { SEO_CONFIG } from '../config/seo';
 
 export const PrivacyPolicy: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('intro');
@@ -43,10 +45,23 @@ export const PrivacyPolicy: React.FC = () => {
   return (
     <PageContainer
       breadcrumbs={[
-        { label: 'Legal Center', path: '/privacy' },
+        { label: 'Legal Center', path: '/legal' },
         { label: 'Privacy Policy' }
       ]}
     >
+      <SEO
+        title="Privacy Policy – AllCardStatus"
+        description="Review AllCardStatus's official Privacy Policy. Learn about our strict no-data-selling pledge, 256-bit SSL encryption, GDPR and CCPA compliance, and user rights."
+        canonicalPath="/privacy"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Privacy Policy – AllCardStatus",
+          "url": "https://allcardstatus.com/privacy",
+          "description": "AllCardStatus official data privacy policy, GDPR and CCPA compliance commitments, and cryptographic data protection standards.",
+          "mainEntity": SEO_CONFIG.organizationSchema
+        }}
+      />
       <div className="max-w-6xl mx-auto py-4 sm:py-8 space-y-8">
         
         {/* Header */}
@@ -57,6 +72,7 @@ export const PrivacyPolicy: React.FC = () => {
               title="AllCardStatus Privacy Policy"
               subtitle="Last Updated: August 17, 2026 | Effective for all global users & cardholders."
               align="left"
+              as="h1"
             />
           </div>
           <div className="flex items-center gap-2.5 shrink-0">

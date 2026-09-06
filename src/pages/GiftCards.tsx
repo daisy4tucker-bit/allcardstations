@@ -11,7 +11,7 @@ import { Select } from '../components/ui/Select';
 import { Button } from '../components/ui/Button';
 import { LoadingState } from '../components/ui/LoadingState';
 import { TopProgressBar } from '../components/ui/TopProgressBar';
-import { OpenGraphMeta } from '../components/common/OpenGraphMeta';
+import { SEO } from '../components/common/SEO';
 import { GIFT_CARDS } from '../data/brands';
 import { CategoryType, SortOption } from '../types/giftCard';
 
@@ -184,21 +184,21 @@ export const GiftCards: React.FC = () => {
 
   return (
     <PageContainer breadcrumbs={breadcrumbs}>
-      <OpenGraphMeta
-        title="Buy Digital Gift Cards Online - Instant Email Delivery | AllCardStatus"
-        description="Browse hundreds of digital gift cards including Apple, Amazon, Steam, Visa, Xbox, PlayStation, and Razer Gold with cryptocurrency and secure checkout."
+      <SEO
+        title="Buy Digital Gift Cards Online – Instant Email Delivery"
+        description="Browse authorized digital gift cards including Apple, Amazon, Steam, Visa, Xbox, PlayStation, and Razer Gold with cryptocurrency and secure checkout."
+        canonicalPath="/gift-cards"
         keywords="buy gift cards, digital gift cards online, instant gift cards, apple gift cards, steam gift cards, crypto gift cards"
-        url="https://allcardstatus.com/gift-cards"
-        jsonLd={{
+        structuredData={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",
           "name": "Digital Gift Card Marketplace Catalog",
           "url": "https://allcardstatus.com/gift-cards",
           "description": "Browse and buy verified digital gift cards online with instant email delivery.",
-          "hasPart": GIFT_CARDS.slice(0, 12).map((c) => ({
+          "hasPart": GIFT_CARDS.slice(0, 15).map((c) => ({
             "@type": "Product",
             "name": `${c.name} Gift Card`,
-            "url": `https://allcardstatus.com/gift-cards/${c.id}`
+            "url": `https://allcardstatus.com/gift-cards/${c.slug}`
           }))
         }}
       />
@@ -214,6 +214,7 @@ export const GiftCards: React.FC = () => {
             subtitle="Explore all available digital gift cards, filter by category, region, or price, and receive instant electronic codes."
             align="left"
             className="mb-0"
+            as="h1"
           />
 
           {/* Real-time Inventory Sync Button */}

@@ -18,6 +18,7 @@ import {
   Gift
 } from 'lucide-react';
 import { PageContainer } from '../components/layout/PageContainer';
+import { SEO } from '../components/common/SEO';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { GIFT_CARDS } from '../data/brands';
@@ -257,6 +258,12 @@ export const Checkout: React.FC = () => {
         { label: 'Secure Checkout' },
       ]}
     >
+      <SEO
+        title={`Secure Checkout: ${card.name} Gift Card – AllCardStatus`}
+        description={`Complete your purchase of ${card.name} digital gift card securely with encrypted payment.`}
+        canonicalPath={`/checkout/${slug}`}
+        noindex={true}
+      />
       <div className="max-w-4xl mx-auto py-4">
         
         {/* Checkout Header Steps Indicator */}

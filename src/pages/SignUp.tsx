@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CreditCard, Lock, Mail, ArrowRight, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { PageContainer } from '../components/layout/PageContainer';
+import { SEO } from '../components/common/SEO';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
 import { useAuth } from '../context/AuthContext';
@@ -86,6 +87,12 @@ export const SignUp: React.FC = () => {
         { label: 'Create Account' }
       ]}
     >
+      <SEO
+        title="Create an Account – AllCardStatus"
+        description="Register for an AllCardStatus customer account to organize, redeem, and manage digital gift cards securely."
+        canonicalPath="/signup"
+        noindex={true}
+      />
       <div className="max-w-md mx-auto my-6 sm:my-10">
         <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-7 sm:p-9 shadow-xs">
           

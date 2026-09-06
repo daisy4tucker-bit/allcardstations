@@ -73,7 +73,9 @@ export const HeroLiveCardShowcase: React.FC = () => {
                 {card.image ? (
                   <img
                     src={card.image}
-                    alt={card.name}
+                    alt={`${card.name} digital gift card`}
+                    loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover select-none"
                   />
