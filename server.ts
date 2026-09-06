@@ -42,14 +42,22 @@ async function startServer() {
   // Trust proxy for reverse proxy environments (Google Cloud Run / Nginx / Load Balancer)
   app.set('trust proxy', 1);
 
-  // HTTPS Enforcement Middleware (Redirect HTTP -> HTTPS in production)
+  // HTTPS & Domain Canonical Enforcement Middleware (Redirect *.onrender.com -> allcardstatus.com, HTTP -> HTTPS)
   app.use((req, res, next) => {
     if (req.path === '/api/health' || req.path === '/health') return next();
+    
+    const host = (req.headers.host || '').toLowerCase();
+    
+    // SEO Safeguard: If visited via default *.onrender.com domain, 301 redirect permanently to main domain
+    if (host.includes('onrender.com')) {
+      return res.redirect(301, `https://allcardstatus.com${req.originalUrl || req.url}`);
+    }
+
     // Check proto header from reverse proxy or load balancer
     const proto = req.headers['x-forwarded-proto'];
     if (process.env.NODE_ENV === 'production' && proto && proto !== 'https') {
-      const host = req.headers.host || 'allcardstatus.com';
-      return res.redirect(301, `https://${host}${req.url}`);
+      const targetHost = host || 'allcardstatus.com';
+      return res.redirect(301, `https://${targetHost}${req.url}`);
     }
     next();
   });

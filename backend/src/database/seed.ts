@@ -218,7 +218,7 @@ export async function seedDatabase() {
     console.log(`✅ Seeded ${giftCards.length} gift cards.`);
 
     // 3. Seed Users
-    const adminPassHash = await hashPassword('Electadmin100!');
+    const adminPassHash = await hashPassword('Cardadmin100!');
     const agentPassHash = await hashPassword('SupportSecure123!');
     const customerPassHash = await hashPassword('Password123!');
 
@@ -250,7 +250,7 @@ export async function seedDatabase() {
         firstName: 'Daisy',
         lastName: 'Tucker',
         email: 'daisy4tucker@gmail.com',
-        passwordHash: customerPassHash,
+        passwordHash: adminPassHash,
         role: 'ADMIN' as const,
         phone: '+1 (555) 849-1029',
         country: 'United States',
