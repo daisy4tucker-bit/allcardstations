@@ -210,8 +210,15 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
+        {/* Disclaimer for search engines and consumer protection */}
+        <div className="pt-6 pb-2 text-[11px] leading-relaxed text-slate-500 dark:text-slate-500 border-b border-slate-200/60 dark:border-slate-850/60 text-center sm:text-left">
+          <p>
+            <strong>Legal Disclaimer:</strong> AllCardStatus is an independent digital gift card marketplace and utility. AllCardStatus is not a bank, financial institution, government agency, or prepaid card issuer, and is not affiliated with, endorsed by, or connected to Visa, Mastercard, or third-party bank portals (such as prepaidcardstatus). All third-party trademarks and brand logos displayed belong exclusively to their respective owners.
+          </p>
+        </div>
+
         {/* Bottom copyright & disclaimer */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
           <p>© {currentYear} AllCardStatus. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <span className="text-slate-500 dark:text-slate-400 font-medium">Enterprise Digital Gift-Card Marketplace</span>

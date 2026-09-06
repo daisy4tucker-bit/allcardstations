@@ -5,7 +5,19 @@ export const FAQS: FAQItem[] = [
     id: 'faq-1',
     category: 'General',
     question: 'What is AllCardStatus?',
-    answer: 'AllCardStatus is a modern digital gift-card marketplace where customers can browse, select, and manage digital gift cards from top global brands with ease, speed, and trusted security.',
+    answer: 'AllCardStatus is an independent digital gift-card marketplace and validation utility where customers can browse, select, and manage digital gift cards from top global brands (Apple, Steam, Amazon, Xbox, PlayStation) with ease, speed, and 256-bit SSL encryption.',
+  },
+  {
+    id: 'faq-1b',
+    category: 'Security',
+    question: 'Is AllCardStatus a real and legitimate website?',
+    answer: 'Yes. AllCardStatus (allcardstatus.com) is an authentic, independent digital gift card marketplace. We operate exclusively as a legitimate e-commerce platform for digital store vouchers. We are NOT a bank or government portal, and we never ask for your personal bank account logins, social security numbers, or debit card PINs.',
+  },
+  {
+    id: 'faq-1c',
+    category: 'Security',
+    question: 'Is AllCardStatus affiliated with bank portals or PrepaidCardStatus?',
+    answer: 'No. AllCardStatus is completely independent and has no affiliation with government agencies, banks, or third-party card issuer portals such as prepaidcardstatus. We strictly sell and validate retail digital gift vouchers for consumer entertainment and gaming platforms.',
   },
   {
     id: 'faq-2',

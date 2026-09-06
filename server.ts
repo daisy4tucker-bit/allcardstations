@@ -168,6 +168,12 @@ async function startServer() {
     res.sendFile(robotsPath);
   });
 
+  // Zoho Domain Verification HTML Route
+  app.get('/zohoverify/verifyforzoho.html', (req, res) => {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.send('03029839');
+  });
+
   // Static asset serving from public directory (og-image.png, favicon, robots, sitemap, cards)
   app.use(
     express.static(path.join(process.cwd(), 'public'), {
