@@ -4,6 +4,7 @@ import { CreditCard, Menu, X, ShieldCheck, ArrowRight, User, LogOut, LayoutDashb
 import { Button } from '../ui/Button';
 import { ThemeToggle } from '../ui/ThemeToggle';
 import { useAuth } from '../../context/AuthContext';
+import { ShareButton } from '../common/ShareButton';
 
 export const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -81,9 +82,6 @@ export const Navbar: React.FC = () => {
                   <span className="text-[10px] font-extrabold text-[#2563EB] dark:text-blue-400 uppercase tracking-widest leading-none">
                     Digital Marketplace
                   </span>
-                  <span className="inline-flex items-center px-1.5 py-0.2 rounded-full text-[8.5px] font-black uppercase tracking-wider bg-emerald-50 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 leading-none">
-                    Verified
-                  </span>
                 </div>
               </div>
             </Link>
@@ -110,10 +108,18 @@ export const Navbar: React.FC = () => {
 
             {/* Desktop Right Action Buttons + Theme Toggle */}
             <div className="hidden lg:flex items-center gap-2.5">
+              <ShareButton
+                id="desktop-share-btn"
+                title="AllCardStatus – Digital Gift Card Marketplace & Instant Validation"
+                description="Buy, send, and instantly validate digital gift cards with instant delivery and zero KYC."
+                variant="icon"
+                size="sm"
+                className="text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400"
+              />
               <ThemeToggle id="desktop-theme-toggle" />
               <div className="h-5 w-px bg-slate-200 dark:bg-slate-800 mx-0.5" aria-hidden="true" />
               
-              {isAuthenticated && user ? (
+              {isAuthenticated && user && (
                 <div className="flex items-center gap-2">
                   {isAdmin && (
                     <Link to="/admin" id="nav-admin-console-btn">
@@ -122,18 +128,6 @@ export const Navbar: React.FC = () => {
                       </Button>
                     </Link>
                   )}
-                  <Link to="/dashboard" id="nav-user-dashboard-link">
-                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#F5F7FA] dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-950/60 border border-slate-200 dark:border-slate-700 transition-colors">
-                      <div className="w-6 h-6 rounded-lg bg-[#2563EB] text-white text-xs font-bold flex items-center justify-center">
-                        {user.firstName ? user.firstName.charAt(0).toUpperCase() : 'U'}
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-xs font-bold text-[#1E293B] dark:text-slate-200 leading-none">
-                          {user.firstName || 'Account'}
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -144,35 +138,24 @@ export const Navbar: React.FC = () => {
                     <LogOut className="w-4 h-4" />
                   </Button>
                 </div>
-              ) : (
-                <>
-                  <Link to="/signin" id="nav-signin-btn">
-                    <Button variant="ghost" size="sm">
-                      Sign In
-                    </Button>
-                  </Link>
-                  <Link to="/signup" id="nav-signup-btn">
-                    <Button variant="primary" size="sm" rightIcon={<ArrowRight className="w-3.5 h-3.5" />}>
-                      Create Account
-                    </Button>
-                  </Link>
-                </>
               )}
             </div>
 
-            {/* Mobile Header Buttons (Theme Toggle + Sign In/Dashboard + Hamburger) */}
+            {/* Mobile Header Buttons (Share + Theme Toggle + Hamburger) */}
             <div className="flex lg:hidden items-center gap-1.5 sm:gap-2">
+              <ShareButton
+                id="mobile-header-share-btn"
+                title="AllCardStatus – Digital Gift Card Marketplace & Instant Validation"
+                description="Buy, send, and instantly validate digital gift cards with instant delivery and zero KYC."
+                variant="icon"
+                size="sm"
+                className="text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400"
+              />
               <ThemeToggle id="mobile-header-theme-toggle" />
-              {isAuthenticated ? (
-                <Link to="/dashboard" className="hidden sm:inline-block">
-                  <Button variant="outline" size="sm" leftIcon={<LayoutDashboard className="w-3.5 h-3.5" />}>
-                    Dashboard
-                  </Button>
-                </Link>
-              ) : (
-                <Link to="/signin" className="hidden sm:inline-block">
-                  <Button variant="ghost" size="sm">
-                    Sign In
+              {isAuthenticated && isAdmin && (
+                <Link to="/admin" className="hidden sm:inline-block">
+                  <Button variant="secondary" size="sm" className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs">
+                    Admin
                   </Button>
                 </Link>
               )}
@@ -258,11 +241,11 @@ export const Navbar: React.FC = () => {
                 <ThemeToggle id="mobile-drawer-theme-toggle" />
               </div>
 
-              {isAuthenticated && user ? (
+              {isAuthenticated && user && (
                 <div className="space-y-2">
                   <div className="p-3 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-100 dark:border-blue-900/50 flex items-center gap-3">
                     <div className="w-8 h-8 rounded-xl bg-[#2563EB] text-white font-bold flex items-center justify-center">
-                      {user.firstName ? user.firstName.charAt(0).toUpperCase() : 'U'}
+                      {user.firstName ? user.firstName.charAt(0).toUpperCase() : 'A'}
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-xs font-bold text-[#1E293B] dark:text-white truncate">
@@ -273,11 +256,13 @@ export const Navbar: React.FC = () => {
                       </p>
                     </div>
                   </div>
-                  <Link to="/dashboard" className="w-full block" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button variant="primary" className="w-full" leftIcon={<LayoutDashboard className="w-4 h-4" />}>
-                      Go to Dashboard
-                    </Button>
-                  </Link>
+                  {isAdmin && (
+                    <Link to="/admin" className="w-full block" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button variant="secondary" className="w-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold" leftIcon={<ShieldCheck className="w-4 h-4 text-[#86A98D]" />}>
+                        Admin Suite
+                      </Button>
+                    </Link>
+                  )}
                   <Button
                     variant="outline"
                     className="w-full text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 border-rose-200 dark:border-rose-900/50"
@@ -290,19 +275,6 @@ export const Navbar: React.FC = () => {
                     Sign Out
                   </Button>
                 </div>
-              ) : (
-                <>
-                  <Link to="/signin" className="w-full block" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button variant="outline" className="w-full">
-                      Sign In
-                    </Button>
-                  </Link>
-                  <Link to="/signup" className="w-full block" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button variant="primary" className="w-full">
-                      Create Account
-                    </Button>
-                  </Link>
-                </>
               )}
 
               <div className="flex items-center justify-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 pt-2">

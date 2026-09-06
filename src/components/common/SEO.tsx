@@ -82,6 +82,15 @@ export const SEO: React.FC<SEOProps> = ({
     setMetaTag('meta[property="og:locale"]', 'property', 'og:locale', 'en_US');
     setMetaTag('meta[property="og:image"]', 'property', 'og:image', ogImage);
     setMetaTag('meta[property="og:image:secure_url"]', 'property', 'og:image:secure_url', ogImage);
+    setMetaTag('meta[property="og:image:width"]', 'property', 'og:image:width', '1200');
+    setMetaTag('meta[property="og:image:height"]', 'property', 'og:image:height', '630');
+    setMetaTag(
+      'meta[property="og:image:type"]',
+      'property',
+      'og:image:type',
+      ogImage.endsWith('.jpg') || ogImage.endsWith('.jpeg') ? 'image/jpeg' : 'image/png'
+    );
+    setMetaTag('meta[property="og:image:alt"]', 'property', 'og:image:alt', formattedTitle);
 
     // 7. Twitter Meta Tags
     setMetaTag('meta[name="twitter:card"]', 'name', 'twitter:card', twitterCard);
@@ -90,6 +99,7 @@ export const SEO: React.FC<SEOProps> = ({
     setMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', formattedTitle);
     setMetaTag('meta[name="twitter:description"]', 'name', 'twitter:description', description);
     setMetaTag('meta[name="twitter:image"]', 'name', 'twitter:image', ogImage);
+    setMetaTag('meta[name="twitter:image:alt"]', 'name', 'twitter:image:alt', formattedTitle);
 
     // 8. JSON-LD Structured Data Injection
     const scriptId = 'page-seo-jsonld';

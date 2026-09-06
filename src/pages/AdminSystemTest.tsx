@@ -12,10 +12,12 @@ import {
   Clock,
   HardDrive,
   Lock,
+  Eye,
   EyeOff,
   CheckCircle2,
   XCircle,
   AlertTriangle,
+  AlertCircle,
   FileText,
   FileCheck,
   UserCheck,
@@ -32,6 +34,8 @@ import {
   X,
   FolderTree,
   Table,
+  CreditCard,
+  Loader2,
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { SEO } from '../components/common/SEO';
@@ -47,29 +51,52 @@ import {
 import { AdminDataBrowser } from '../components/admin/AdminDataBrowser';
 
 export const AdminSystemTest: React.FC = () => {
-  const { user, isAuthenticated, isLoading: isAuthLoading, login } = useAuth();
+  const { user, isAuthenticated, isLoading: isAuthLoading, login, logout } = useAuth();
   const navigate = useNavigate();
-  const [isQuickLoggingIn, setIsQuickLoggingIn] = useState(false);
-  const [quickLoginError, setQuickLoginError] = useState<string | null>(null);
 
-  const handleQuickAdminLogin = async () => {
-    setIsQuickLoggingIn(true);
-    setQuickLoginError(null);
-    try {
-      await login({ email: 'admin@allcardstatus.com', password: 'Electadmin100!' });
-    } catch (err: any) {
-      // Fallback attempt with legacy emails if database has not re-seeded yet
+  // Admin Password Gate State
+  const [adminPasswordInput, setAdminPasswordInput] = useState('');
+  const [showAdminPassword, setShowAdminPassword] = useState(false);
+  const [adminPasswordError, setAdminPasswordError] = useState<string | null>(null);
+  const [isVerifyingPassword, setIsVerifyingPassword] = useState(false);
+
+  const handleAdminPasswordSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!adminPasswordInput.trim()) {
+      setAdminPasswordError('Please enter your admin password.');
+      return;
+    }
+
+    setIsVerifyingPassword(true);
+    setAdminPasswordError(null);
+
+    const password = adminPasswordInput.trim();
+    let authenticated = false;
+
+    // Verify password against system admin and executive accounts
+    const adminEmails = [
+      'admin@allcardstatus.com',
+      'daisy4tucker@gmail.com',
+      'admin@allcardvault.com',
+      'admin@allcardstation.com',
+    ];
+
+    for (const email of adminEmails) {
       try {
-        await login({ email: 'admin@allcardvault.com', password: 'Electadmin100!' });
+        await login({ email, password });
+        authenticated = true;
+        break;
       } catch {
-        try {
-          await login({ email: 'admin@allcardstation.com', password: 'Electadmin100!' });
-        } catch {
-          setQuickLoginError(err.message || 'Failed to sign in as admin');
-        }
+        // Continue checking other admin accounts
       }
-    } finally {
-      setIsQuickLoggingIn(false);
+    }
+
+    if (!authenticated) {
+      setAdminPasswordError('Invalid admin password. Access denied.');
+      setIsVerifyingPassword(false);
+    } else {
+      setIsVerifyingPassword(false);
+      setAdminPasswordInput('');
     }
   };
 
@@ -163,97 +190,94 @@ export const AdminSystemTest: React.FC = () => {
 
   if (!isAuthenticated || !isAdmin) {
     return (
-      <div className="min-h-[80vh] flex items-center justify-center p-4 sm:p-6 lg:p-8">
+      <div className="min-h-[80vh] flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
         <SEO
-          title="Admin Access Required – AllCardStatus"
+          title="Admin Sign In – AllCardStatus"
           description="Administrative portal restricted to authorized security personnel."
           canonicalPath="/admin/system-test"
           noindex={true}
         />
-        <div className="w-full max-w-lg bg-white dark:bg-slate-900 rounded-3xl border border-rose-200/80 dark:border-rose-900/50 shadow-xl overflow-hidden">
-          <div className="p-6 sm:p-8 text-center space-y-5">
-            <div className="w-16 h-16 rounded-2xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800/80 flex items-center justify-center text-rose-600 dark:text-rose-400 mx-auto shadow-sm">
-              <ShieldAlert className="w-8 h-8" />
+        <div className="w-full max-w-md bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl p-6 sm:p-8 animate-in fade-in duration-200">
+          {/* Header Icon + Title matching uploaded screenshot */}
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-2xl bg-indigo-600 dark:bg-indigo-500 text-white flex items-center justify-center shadow-md shadow-indigo-600/25">
+              <CreditCard className="w-5 h-5" />
             </div>
+            <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">Admin sign in</h2>
+          </div>
 
-            <div className="space-y-2">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-900/60">
-                403 Forbidden · Access Denied
+          {/* Password-only challenge form */}
+          <form onSubmit={handleAdminPasswordSubmit} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  id="admin-password-field"
+                  type={showAdminPassword ? 'text' : 'password'}
+                  value={adminPasswordInput}
+                  onChange={(e) => {
+                    setAdminPasswordInput(e.target.value);
+                    if (adminPasswordError) setAdminPasswordError(null);
+                  }}
+                  placeholder="Enter your admin password"
+                  className="w-full px-4 py-3 rounded-xl border border-indigo-200 dark:border-indigo-900/60 bg-white dark:bg-slate-800/80 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400/70 focus:border-indigo-500 transition-all text-sm font-medium pr-11 shadow-xs"
+                  autoFocus
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowAdminPassword(!showAdminPassword)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 focus:outline-none p-1 cursor-pointer"
+                  tabIndex={-1}
+                  aria-label={showAdminPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showAdminPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                Admin Privileges Required
-              </h1>
-              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-md mx-auto">
-                The route <code className="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-rose-600 dark:text-rose-400 font-mono text-xs">/admin/system-test</code> is strictly restricted to platform administrators. Customer and guest sessions are blocked, and access attempts are logged for security auditing.
-              </p>
             </div>
 
-            {/* Current Session Info */}
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 text-left space-y-2 text-xs">
-              <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
-                <span>Current Status:</span>
-                <span className="font-semibold text-slate-700 dark:text-slate-300">
-                  {isAuthenticated ? 'Authenticated User (Non-Admin)' : 'Unauthenticated Guest'}
-                </span>
-              </div>
-              {isAuthenticated && user ? (
-                <>
-                  <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
-                    <span>Account Email:</span>
-                    <span className="font-semibold text-slate-900 dark:text-white">{user.email}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
-                    <span>Assigned Role:</span>
-                    <span className="px-2 py-0.5 rounded font-mono font-bold bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300">
-                      {user.role}
-                    </span>
-                  </div>
-                </>
-              ) : (
-                <div className="text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-2">
-                  <p className="font-semibold text-slate-700 dark:text-slate-300">Admin Demo Credentials:</p>
-                  <p>Email: <code className="text-indigo-600 dark:text-indigo-400 font-mono font-bold">admin@allcardstatus.com</code></p>
-                  <p>Password: <code className="text-indigo-600 dark:text-indigo-400 font-mono font-bold">Electadmin100!</code></p>
-                </div>
-              )}
-            </div>
-
-            {quickLoginError && (
-              <div className="p-3 rounded-xl bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-900/50 text-rose-700 dark:text-rose-300 text-xs">
-                {quickLoginError}
+            {adminPasswordError && (
+              <div className="p-3 rounded-xl bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-900/50 text-rose-700 dark:text-rose-300 text-xs font-medium flex items-center gap-2 animate-in fade-in">
+                <AlertCircle className="w-4 h-4 shrink-0 text-rose-500" />
+                <span>{adminPasswordError}</span>
               </div>
             )}
 
-            <div className="space-y-2.5 pt-2">
-              <Button
-                variant="primary"
-                className="w-full py-3 text-sm font-bold bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-600/20"
-                leftIcon={<UserCheck className="w-4 h-4" />}
-                onClick={handleQuickAdminLogin}
-                isLoading={isQuickLoggingIn}
-              >
-                ⚡ 1-Click Sign In as Admin & Open Table
-              </Button>
+            <button
+              id="btn-admin-signin"
+              type="submit"
+              disabled={isVerifyingPassword}
+              className="w-full py-3.5 px-4 rounded-xl bg-[#818cf8] hover:bg-[#6366f1] active:bg-[#4f46e5] text-white font-semibold text-sm shadow-md shadow-indigo-500/20 transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {isVerifyingPassword ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Verifying...</span>
+                </>
+              ) : (
+                <span>Sign in</span>
+              )}
+            </button>
 
-              <div className="flex flex-col sm:flex-row items-center gap-2.5">
-                <Link to="/signin" className="w-full sm:flex-1">
-                  <Button variant="outline" className="w-full text-xs" leftIcon={<Lock className="w-3.5 h-3.5" />}>
-                    Regular Sign In
-                  </Button>
-                </Link>
-                <Link to="/" className="w-full sm:flex-1">
-                  <Button variant="ghost" className="w-full text-xs" leftIcon={<ArrowLeft className="w-3.5 h-3.5" />}>
-                    Back to Store
-                  </Button>
-                </Link>
-              </div>
+            {/* Note matching uploaded screenshot */}
+            <div className="pt-2 text-center">
+              <p className="text-xs text-slate-400 dark:text-slate-500 font-normal">
+                CEO and coworker accounts use the same sign-in.
+              </p>
             </div>
+          </form>
+        </div>
 
-            <div className="pt-2 flex items-center justify-center gap-1.5 text-[11px] text-slate-400 dark:text-slate-400">
-              <Lock className="w-3.5 h-3.5" />
-              <span>Multi-Tier Role Based Access Control (RBAC) active</span>
-            </div>
-          </div>
+        {/* Back link */}
+        <div className="mt-4 text-center">
+          <Link
+            to="/"
+            className="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors inline-flex items-center gap-1"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Return to Store</span>
+          </Link>
         </div>
       </div>
     );
@@ -307,6 +331,16 @@ export const AdminSystemTest: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-2.5">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={async () => {
+                await logout();
+              }}
+              leftIcon={<Lock className="w-3.5 h-3.5 text-slate-500" />}
+            >
+              Lock Console
+            </Button>
             <Button
               variant="outline"
               size="sm"

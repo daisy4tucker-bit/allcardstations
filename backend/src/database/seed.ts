@@ -270,24 +270,45 @@ export async function seedDatabase() {
     ];
 
     for (const u of usersToSeed) {
-      const user = await prisma.user.upsert({
-        where: { email: u.email },
-        update: {
-          firstName: u.firstName,
-          lastName: u.lastName,
-          passwordHash: u.passwordHash,
-          role: u.role,
-          updatedAt: new Date(),
-        },
-        create: {
-          id: u.id,
-          firstName: u.firstName,
-          lastName: u.lastName,
-          email: u.email,
-          passwordHash: u.passwordHash,
-          role: u.role,
-        },
-      });
+      const existingUserById = await prisma.user.findUnique({ where: { id: u.id } });
+      const existingUserByEmail = await prisma.user.findUnique({ where: { email: u.email } });
+
+      let user;
+      if (existingUserById) {
+        user = await prisma.user.update({
+          where: { id: u.id },
+          data: {
+            firstName: u.firstName,
+            lastName: u.lastName,
+            email: u.email,
+            passwordHash: u.passwordHash,
+            role: u.role,
+            updatedAt: new Date(),
+          },
+        });
+      } else if (existingUserByEmail) {
+        user = await prisma.user.update({
+          where: { email: u.email },
+          data: {
+            firstName: u.firstName,
+            lastName: u.lastName,
+            passwordHash: u.passwordHash,
+            role: u.role,
+            updatedAt: new Date(),
+          },
+        });
+      } else {
+        user = await prisma.user.create({
+          data: {
+            id: u.id,
+            firstName: u.firstName,
+            lastName: u.lastName,
+            email: u.email,
+            passwordHash: u.passwordHash,
+            role: u.role,
+          },
+        });
+      }
 
       await prisma.profile.upsert({
         where: { userId: user.id },

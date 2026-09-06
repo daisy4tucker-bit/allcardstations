@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams, Link } from 'react-router-dom';
+import { useNavigate, useSearchParams, Link, Navigate } from 'react-router-dom';
 import {
   User,
   Heart,
@@ -102,7 +102,7 @@ export const Dashboard: React.FC = () => {
 
   const handleLogout = async () => {
     await logout();
-    navigate('/signin');
+    navigate('/');
   };
 
   if (isLoading) {
@@ -117,41 +117,7 @@ export const Dashboard: React.FC = () => {
   }
 
   if (!isAuthenticated || !user) {
-    return (
-      <PageContainer
-        breadcrumbs={[{ label: 'Dashboard' }]}
-      >
-        <SEO
-          title="Account Dashboard – AllCardStatus"
-          description="Customer account dashboard."
-          canonicalPath="/dashboard"
-          noindex={true}
-        />
-        <div className="max-w-md mx-auto my-12 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8 shadow-xs">
-          <div className="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mx-auto mb-4 border border-indigo-100 dark:border-indigo-900/50">
-            <Lock className="w-8 h-8" />
-          </div>
-          <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-2">
-            Sign In Required
-          </h2>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
-            You must be signed in to view your user profile, saved gift cards, recipients, and support conversations.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link to="/signin">
-              <Button variant="primary" className="w-full sm:w-auto">
-                Sign In to Account
-              </Button>
-            </Link>
-            <Link to="/signup">
-              <Button variant="outline" className="w-full sm:w-auto">
-                Create Account
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </PageContainer>
-    );
+    return <Navigate to="/" replace />;
   }
 
   const tabs = [

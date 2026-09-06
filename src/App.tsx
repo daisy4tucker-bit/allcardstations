@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { AccentThemeProvider } from './context/AccentThemeContext';
 import { AuthProvider } from './context/AuthContext';
@@ -51,8 +51,8 @@ export default function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/signin" element={<SignIn />} />
-                <Route path="/signup" element={<SignUp />} />
+                <Route path="/signin" element={<Navigate to="/admin" replace />} />
+                <Route path="/signup" element={<Navigate to="/" replace />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/checkout/:slug" element={<Checkout />} />
                 

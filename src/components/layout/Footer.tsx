@@ -47,9 +47,6 @@ export const Footer: React.FC = () => {
                   <span className="text-[10px] font-extrabold text-[#2563EB] dark:text-blue-400 uppercase tracking-widest leading-none">
                     Digital Marketplace
                   </span>
-                  <span className="inline-flex items-center px-1.5 py-0.2 rounded-full text-[8.5px] font-black uppercase tracking-wider bg-emerald-50 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 leading-none">
-                    Verified
-                  </span>
                 </div>
               </div>
             </Link>

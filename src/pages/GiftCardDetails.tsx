@@ -25,6 +25,7 @@ import { SUPPORTED_CURRENCIES, getCurrencyByCode, formatCurrencyAmount } from '.
 import { useCurrencyRates } from '../hooks/useCurrencyRates';
 import { LiveCurrencyConverter } from '../components/checkout/LiveCurrencyConverter';
 import { SEO } from '../components/common/SEO';
+import { ShareButton } from '../components/common/ShareButton';
 
 export const GiftCardDetails: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -208,7 +209,6 @@ export const GiftCardDetails: React.FC = () => {
                 </div>
                 <div className="text-white font-extrabold text-2xl drop-shadow-md">{name}</div>
                 <div className="flex items-center justify-between text-xs text-white/90">
-                  <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-emerald-300" /> Verified</span>
                   <span>{region} • {redemptionType}</span>
                 </div>
               </div>
@@ -283,19 +283,31 @@ export const GiftCardDetails: React.FC = () => {
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               {name}
             </h1>
-            <button
-              type="button"
-              id={`btn-fav-detail-${slug}`}
-              onClick={() => toggleFavorite(slug!)}
-              className={`p-2.5 rounded-xl border transition-all duration-200 cursor-pointer ${
-                isFavorite(slug!)
-                  ? 'bg-rose-50 dark:bg-rose-950/60 border-rose-200 dark:border-rose-900 text-rose-600 dark:text-rose-400'
-                  : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-400 hover:text-rose-500'
-              }`}
-              title={isFavorite(slug!) ? 'Remove from favorites' : 'Add to favorites'}
-            >
-              <Heart className={`w-5 h-5 ${isFavorite(slug!) ? 'fill-current' : ''}`} />
-            </button>
+            <div className="flex items-center gap-2">
+              <ShareButton
+                id={`btn-share-header-${slug}`}
+                title={`${name} – Digital Gift Card`}
+                description={`Buy ${name} gift cards starting at ${card.currency} ${card.startingPrice}. Instant email delivery with zero KYC & 256-bit encryption.`}
+                url={typeof window !== 'undefined' ? window.location.href : `https://allcardstatus.com/gift-cards/${slug}`}
+                image={card.image}
+                variant="outline"
+                size="sm"
+                label="Share"
+              />
+              <button
+                type="button"
+                id={`btn-fav-detail-${slug}`}
+                onClick={() => toggleFavorite(slug!)}
+                className={`p-2 rounded-xl border transition-all duration-200 cursor-pointer ${
+                  isFavorite(slug!)
+                    ? 'bg-rose-50 dark:bg-rose-950/60 border-rose-200 dark:border-rose-900 text-rose-600 dark:text-rose-400'
+                    : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-400 hover:text-rose-500'
+                }`}
+                title={isFavorite(slug!) ? 'Remove from favorites' : 'Add to favorites'}
+              >
+                <Heart className={`w-4 h-4 ${isFavorite(slug!) ? 'fill-current' : ''}`} />
+              </button>
+            </div>
           </div>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
@@ -484,13 +496,26 @@ export const GiftCardDetails: React.FC = () => {
                 : `Continue to Checkout (${formatCurrencyAmount(totalOrderPrice, selectedCurrency)})`}
             </Button>
 
-            <Link
-              to={`/validate?card=${slug}`}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-            >
-              <ShieldCheck className="w-4 h-4 text-emerald-500" />
-              <span>Already have this card? Verify balance & scratch-off PIN</span>
-            </Link>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <ShareButton
+                id={`btn-share-bottom-${slug}`}
+                title={`${name} Digital Gift Card`}
+                description={`Buy ${name} gift card starting at ${card.currency} ${card.startingPrice}. Instant email delivery, 256-bit SSL encryption & zero KYC.`}
+                url={typeof window !== 'undefined' ? window.location.href : `https://allcardstatus.com/gift-cards/${slug}`}
+                image={card.image}
+                variant="outline"
+                size="md"
+                label="Share Card Link"
+                className="w-full justify-center py-3"
+              />
+              <Link
+                to={`/validate?card=${slug}`}
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              >
+                <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" />
+                <span className="truncate">Verify PIN & Balance</span>
+              </Link>
+            </div>
           </div>
 
           {/* Terms and Conditions Accordion/List */}

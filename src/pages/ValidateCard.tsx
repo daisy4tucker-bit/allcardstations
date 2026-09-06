@@ -35,6 +35,7 @@ import {
 } from 'lucide-react';
 import { PageContainer } from '../components/layout/PageContainer';
 import { SEO } from '../components/common/SEO';
+import { ShareButton } from '../components/common/ShareButton';
 import { ValidationProgressBar } from '../components/validation/ValidationProgressBar';
 import { WhereIsMyCodeModal } from '../components/validation/WhereIsMyCodeModal';
 import { ScanGiftCardModal } from '../components/validation/ScanGiftCardModal';
@@ -754,7 +755,7 @@ export const ValidateCard: React.FC = () => {
       <SEO
         title={selectedBrand ? `Validate ${selectedBrand.name} Gift Card – Balance & PIN Verification` : "Gift Card Balance & Validation Gateway – AllCardStatus"}
         description={selectedBrand ? `Check card number and security PIN authenticity for ${selectedBrand.name} gift cards with 256-bit SSL encryption.` : "Verify gift card balances, format rules, and redemption status instantly across Apple, Steam, Amazon, Visa, and top global brands."}
-        ogImage={selectedBrand?.image || "https://images.unsplash.com/photo-1556742049-0a67d268a735?w=1200&h=630&fit=crop&q=80"}
+        ogImage={selectedBrand?.image || "https://allcardstatus.com/og-image.png"}
         canonicalPath="/validate"
         keywords="gift card validation, check gift card balance, verify gift card pin, gift card authenticity checker, test apple gift card, check amazon gift card balance"
         structuredData={{
@@ -926,6 +927,18 @@ export const ValidateCard: React.FC = () => {
                       <RotateCcw className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                       <span>Validate Another Card</span>
                     </button>
+
+                    <ShareButton
+                      id="btn-share-validation-result"
+                      title={`${validationRecord.brand} Gift Card Validation Gateway`}
+                      description={`Securely verify digital claim codes and check balances with bank-grade 256-bit SSL encryption on AllCardStatus.`}
+                      url={typeof window !== 'undefined' ? `${window.location.origin}/validate?card=${encodeURIComponent(validationRecord.brand.toLowerCase())}` : `https://allcardstatus.com/validate`}
+                      image={selectedBrand?.image || 'https://allcardstatus.com/og-image.png'}
+                      variant="secondary"
+                      size="md"
+                      label="Share Validation Link"
+                      className="w-full justify-center py-3"
+                    />
 
                     {isAdmin && (
                       <Link

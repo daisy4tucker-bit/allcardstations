@@ -134,25 +134,11 @@ export const Sitemap: React.FC = () => {
   // Account links
   const accountLinks: SitemapLink[] = [
     {
-      title: 'Customer Sign In',
-      path: '/signin',
-      description: 'Access your customer account to view past orders, track deliveries, and manage favorites.',
-      category: 'Account',
-      icon: User,
-    },
-    {
-      title: 'Create an Account (Sign Up)',
-      path: '/signup',
-      description: 'Register for instant checkout, gift recipient address book, and security alerts.',
-      category: 'Account',
-      icon: User,
-    },
-    {
       title: 'Customer Dashboard',
       path: '/dashboard',
       description: 'Manage profile information, saved recipients, payment preferences, and support tickets.',
       category: 'Account',
-      badge: 'Auth Required',
+      badge: 'Protected',
       icon: User,
     },
   ];

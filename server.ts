@@ -37,7 +37,7 @@ async function startServer() {
   }
 
   const app = express();
-  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+  const PORT = 3000;
 
   // Trust proxy for reverse proxy environments (Google Cloud Run / Nginx / Load Balancer)
   app.set('trust proxy', 1);
@@ -160,6 +160,175 @@ async function startServer() {
     res.sendFile(robotsPath);
   });
 
+  // Static asset serving from public directory (og-image.png, favicon, robots, sitemap, cards)
+  app.use(
+    express.static(path.join(process.cwd(), 'public'), {
+      maxAge: '1d',
+      setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.png')) {
+          res.setHeader('Content-Type', 'image/png');
+        } else if (filePath.endsWith('.jpg') || filePath.endsWith('.jpeg')) {
+          res.setHeader('Content-Type', 'image/jpeg');
+        } else if (filePath.endsWith('.svg')) {
+          res.setHeader('Content-Type', 'image/svg+xml');
+        }
+      },
+    })
+  );
+
+  // Helper to extract base URL from incoming request
+  const getBaseUrl = (req: express.Request): string => {
+    const host = (req.headers['x-forwarded-host'] as string) || req.headers.host || 'allcardstatus.com';
+    const proto = (req.headers['x-forwarded-proto'] as string) || (req.secure ? 'https' : 'http');
+    return `${proto}://${host}`;
+  };
+
+  interface PageMeta {
+    title: string;
+    description: string;
+    image: string;
+    url: string;
+  }
+
+  // Resolve dynamic metadata based on path
+  const resolvePageMeta = async (pathname: string, baseUrl: string): Promise<PageMeta> => {
+    const defaultMeta: PageMeta = {
+      title: 'AllCardStatus – Digital Gift Card Marketplace & Instant Validation',
+      description: 'Buy, send, and instantly validate digital gift cards from Apple, Steam, Amazon, Visa, PlayStation, and top global brands with instant delivery, 256-bit SSL encryption, and zero KYC or hidden fees.',
+      image: `${baseUrl}/og-image.png`,
+      url: `${baseUrl}${pathname === '/' ? '' : pathname}`,
+    };
+
+    if (pathname.startsWith('/gift-cards/')) {
+      const slug = pathname.replace('/gift-cards/', '').split('/')[0].split('?')[0];
+      if (slug) {
+        try {
+          const card = await prisma.giftCard.findUnique({
+            where: { slug },
+            select: { name: true, description: true, image: true, startingPrice: true, currency: true },
+          });
+          if (card) {
+            return {
+              title: `${card.name} – Instant Digital Delivery | AllCardStatus`,
+              description: `Buy ${card.name} gift cards starting at ${card.currency} ${card.startingPrice}. Instant email delivery, 256-bit SSL encryption & zero KYC. ${card.description}`,
+              image: card.image && card.image.startsWith('http') ? card.image : `${baseUrl}/og-image.png`,
+              url: `${baseUrl}/gift-cards/${slug}`,
+            };
+          }
+        } catch {
+          // Fallback to default
+        }
+      }
+    } else if (pathname === '/gift-cards') {
+      return {
+        title: 'Buy Digital Gift Cards Online – Instant Delivery | AllCardStatus',
+        description: 'Explore authentic digital gift cards for Apple, Steam, Amazon, PlayStation, Xbox, and 24+ global brands with instant code delivery & zero KYC.',
+        image: `${baseUrl}/og-image.png`,
+        url: `${baseUrl}/gift-cards`,
+      };
+    } else if (pathname === '/validate') {
+      return {
+        title: 'Check Gift Card Balance & Code Authenticity | AllCardStatus',
+        description: 'Securely check digital claim codes, verify balances, and validate gift cards instantly with bank-grade 256-bit SSL encryption.',
+        image: `${baseUrl}/og-image.png`,
+        url: `${baseUrl}/validate`,
+      };
+    } else if (pathname === '/how-it-works') {
+      return {
+        title: 'How It Works – Instant Digital Gift Cards | AllCardStatus',
+        description: 'Learn how to buy, customize, pay with crypto or card, and instantly receive verified digital gift cards in 4 simple steps.',
+        image: `${baseUrl}/og-image.png`,
+        url: `${baseUrl}/how-it-works`,
+      };
+    } else if (pathname === '/faq') {
+      return {
+        title: 'Frequently Asked Questions – Help & Support | AllCardStatus',
+        description: 'Common questions and answers regarding gift card codes, redemption, crypto checkout, and balance validation security.',
+        image: `${baseUrl}/og-image.png`,
+        url: `${baseUrl}/faq`,
+      };
+    } else if (pathname === '/about') {
+      return {
+        title: 'About AllCardStatus – Trusted Digital Gift Card Marketplace',
+        description: "Learn about AllCardStatus's mission to provide secure, instant, and frictionless digital gift card transactions worldwide.",
+        image: `${baseUrl}/og-image.png`,
+        url: `${baseUrl}/about`,
+      };
+    } else if (pathname === '/contact') {
+      return {
+        title: 'Contact Support – 24/7 Assistance | AllCardStatus',
+        description: 'Get in touch with AllCardStatus support for help with digital gift card purchases, verification, and code redemption.',
+        image: `${baseUrl}/og-image.png`,
+        url: `${baseUrl}/contact`,
+      };
+    }
+
+    return defaultMeta;
+  };
+
+  // Inject metadata into raw index.html
+  const injectMeta = (html: string, meta: PageMeta): string => {
+    const escapeAttr = (str: string) =>
+      str.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    let result = html;
+    result = result.replace(/<title>.*?<\/title>/i, `<title>${escapeAttr(meta.title)}</title>`);
+    result = result.replace(
+      /<meta name="description" content=".*?" \/>/i,
+      `<meta name="description" content="${escapeAttr(meta.description)}" />`
+    );
+    result = result.replace(
+      /<meta property="og:title" content=".*?" \/>/i,
+      `<meta property="og:title" content="${escapeAttr(meta.title)}" />`
+    );
+    result = result.replace(
+      /<meta property="og:description" content=".*?" \/>/i,
+      `<meta property="og:description" content="${escapeAttr(meta.description)}" />`
+    );
+    result = result.replace(
+      /<meta property="og:url" content=".*?" \/>/i,
+      `<meta property="og:url" content="${escapeAttr(meta.url)}" />`
+    );
+    result = result.replace(
+      /<meta property="og:image" content=".*?" \/>/i,
+      `<meta property="og:image" content="${escapeAttr(meta.image)}" />`
+    );
+    result = result.replace(
+      /<meta property="og:image:secure_url" content=".*?" \/>/i,
+      `<meta property="og:image:secure_url" content="${escapeAttr(meta.image)}" />`
+    );
+    result = result.replace(
+      /<meta property="og:image:alt" content=".*?" \/>/i,
+      `<meta property="og:image:alt" content="${escapeAttr(meta.title)}" />`
+    );
+    result = result.replace(
+      /<meta name="twitter:title" content=".*?" \/>/i,
+      `<meta name="twitter:title" content="${escapeAttr(meta.title)}" />`
+    );
+    result = result.replace(
+      /<meta name="twitter:description" content=".*?" \/>/i,
+      `<meta name="twitter:description" content="${escapeAttr(meta.description)}" />`
+    );
+    result = result.replace(
+      /<meta name="twitter:image" content=".*?" \/>/i,
+      `<meta name="twitter:image" content="${escapeAttr(meta.image)}" />`
+    );
+    result = result.replace(
+      /<meta name="twitter:image:alt" content=".*?" \/>/i,
+      `<meta name="twitter:image:alt" content="${escapeAttr(meta.title)}" />`
+    );
+    result = result.replace(
+      /<link rel="canonical" href=".*?" \/>/i,
+      `<link rel="canonical" href="${escapeAttr(meta.url)}" />`
+    );
+
+    return result;
+  };
+
+  // Social crawler detector (WhatsApp, iMessage, Facebook, Twitter, Telegram, Discord, etc.)
+  const SOCIAL_CRAWLERS =
+    /facebookexternalhit|whatsapp|twitterbot|applebot|telegrambot|slackbot|discordbot|linkedinbot|pinterest|skypeuripreview|googlebot|bingbot/i;
+
   // Central Error Handler for API routes
   app.use('/api', errorHandler);
 
@@ -169,12 +338,48 @@ async function startServer() {
       server: { middlewareMode: true },
       appType: 'spa',
     });
+
+    // Intercept social crawlers in development mode to provide full OpenGraph tags
+    app.use(async (req, res, next) => {
+      const userAgent = req.headers['user-agent'] || '';
+      const isCrawler = SOCIAL_CRAWLERS.test(userAgent);
+      const isHtmlRoute =
+        req.method === 'GET' &&
+        !req.path.startsWith('/api') &&
+        !req.path.includes('.') &&
+        (isCrawler || req.query.crawler === '1' || req.query.og === '1');
+
+      if (isHtmlRoute) {
+        try {
+          const rawHtml = fs.readFileSync(path.join(process.cwd(), 'index.html'), 'utf-8');
+          const transformedHtml = await vite.transformIndexHtml(req.originalUrl, rawHtml);
+          const baseUrl = getBaseUrl(req);
+          const meta = await resolvePageMeta(req.path, baseUrl);
+          const finalHtml = injectMeta(transformedHtml, meta);
+          res.setHeader('Content-Type', 'text/html; charset=utf-8');
+          return res.send(finalHtml);
+        } catch (err) {
+          return next(err);
+        }
+      }
+      next();
+    });
+
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+    app.get('*', async (req, res) => {
+      try {
+        const rawHtml = fs.readFileSync(path.join(distPath, 'index.html'), 'utf-8');
+        const baseUrl = getBaseUrl(req);
+        const meta = await resolvePageMeta(req.path, baseUrl);
+        const finalHtml = injectMeta(rawHtml, meta);
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.send(finalHtml);
+      } catch {
+        res.sendFile(path.join(distPath, 'index.html'));
+      }
     });
   }
 

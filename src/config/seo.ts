@@ -78,7 +78,7 @@ export const SEO_CONFIG: SEOConfig = {
   businessDescription:
     'AllCardStatus is an authorized digital gift card marketplace and multi-brand validation portal delivering authenticated electronic codes with bank-grade encryption, instant email fulfillment, and responsive customer support.',
   contactEmail: 'support@allcardstatus.com',
-  defaultOgImage: 'https://images.unsplash.com/photo-1556742049-0a67d268a735?w=1200&h=630&fit=crop&q=80',
+  defaultOgImage: 'https://allcardstatus.com/og-image.png',
   twitterHandle: '@allcardstatus',
   verification: {
     // Easily configure via .env (VITE_GOOGLE_SITE_VERIFICATION & VITE_GA_MEASUREMENT_ID)
