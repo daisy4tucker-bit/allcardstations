@@ -26,6 +26,7 @@ export interface SEOConfig {
   };
   socialLinks: {
     twitter?: string;
+    trustpilot?: string;
     github?: string;
     discord?: string;
     telegram?: string;
@@ -89,6 +90,7 @@ export const SEO_CONFIG: SEOConfig = {
   },
   socialLinks: {
     twitter: 'https://twitter.com/allcardstatus',
+    trustpilot: 'https://www.trustpilot.com/review/allcardstatus.com',
   },
   organizationSchema: {
     '@context': 'https://schema.org',
@@ -111,7 +113,10 @@ export const SEO_CONFIG: SEOConfig = {
       'Xbox Live Cards',
       'Amazon Gift Cards'
     ],
-    sameAs: ['https://twitter.com/allcardstatus'],
+    sameAs: [
+      'https://twitter.com/allcardstatus',
+      'https://www.trustpilot.com/review/allcardstatus.com'
+    ],
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer support',

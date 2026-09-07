@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CreditCard, ShieldCheck, Zap, Globe, Send, CheckCircle2, AlertCircle, Headphones } from 'lucide-react';
+import { CreditCard, ShieldCheck, Zap, Globe, Send, CheckCircle2, AlertCircle, Headphones, Star } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { openTawkChat } from '../common/TawkToChat';
 
@@ -55,7 +55,16 @@ export const Footer: React.FC = () => {
               AllCardStatus is a platform where you can buy, send, and check your gift card status or balance for Apple, Steam, Amazon, PlayStation, Xbox, and top global brands with instant email delivery and secure checkout.
             </p>
 
-            <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <div className="pt-2 flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+              <a
+                href="https://www.trustpilot.com/review/allcardstatus.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 bg-white dark:bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 shadow-xs hover:border-[#00B67A] dark:hover:border-[#00B67A] transition-colors group cursor-pointer"
+              >
+                <Star className="w-4 h-4 text-[#00B67A] fill-[#00B67A]" />
+                <span className="font-semibold text-slate-700 dark:text-slate-300 group-hover:text-[#00B67A]">Trustpilot Verified</span>
+              </a>
               <div className="flex items-center gap-1.5 bg-white dark:bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 shadow-xs">
                 <ShieldCheck className="w-4 h-4 text-[#86A98D]" />
                 <span>SSL Encrypted</span>
