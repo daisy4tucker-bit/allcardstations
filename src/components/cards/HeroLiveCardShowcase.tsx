@@ -159,31 +159,6 @@ export const HeroLiveCardShowcase: React.FC = () => {
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>
-
-      {/* Interactive Carousel Pagination Dots & Brand Indicators */}
-      <div className="flex items-center justify-center gap-1.5 mt-3 px-2">
-        {cards.map((card, idx) => {
-          const isActive = idx === currentIndex;
-          return (
-            <button
-              key={`dot-${card.id}`}
-              type="button"
-              id={`hero-slide-dot-${card.slug}`}
-              onClick={(e) => {
-                e.stopPropagation();
-                setCurrentIndex(idx);
-              }}
-              aria-label={`Jump to ${card.name} card`}
-              title={`${card.name} (${card.category})`}
-              className={`transition-all duration-300 rounded-full cursor-pointer flex items-center justify-center ${
-                isActive
-                  ? 'w-7 h-2 bg-[#2563EB] shadow-xs'
-                  : 'w-2 h-2 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-600'
-              }`}
-            />
-          );
-        })}
-      </div>
     </div>
   );
 };
