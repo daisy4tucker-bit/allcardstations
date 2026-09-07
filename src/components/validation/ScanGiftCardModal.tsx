@@ -596,7 +596,7 @@ export const ScanGiftCardModal: React.FC<ScanGiftCardModalProps> = ({
                     className="flex-1 py-3 px-4 rounded-xl border-2 border-blue-600 dark:border-blue-500 bg-white dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-950/40 active:scale-98 text-blue-600 dark:text-blue-400 font-bold text-xs flex items-center justify-center gap-2 shadow-md shadow-blue-600/10 transition-all cursor-pointer"
                   >
                     <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                    <span>Attach & Validate with Photos ({uploadedImages.length})</span>
+                    <span>Attach & Check with Photos ({uploadedImages.length})</span>
                   </button>
                   <button
                     type="button"

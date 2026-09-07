@@ -513,7 +513,7 @@ export const GiftCardDetails: React.FC = () => {
                 className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
               >
                 <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span className="truncate">Verify PIN & Balance</span>
+                <span className="truncate">Check PIN & Balance</span>
               </Link>
             </div>
           </div>

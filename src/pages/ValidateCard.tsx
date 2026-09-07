@@ -35,7 +35,7 @@ import {
 } from 'lucide-react';
 import { PageContainer } from '../components/layout/PageContainer';
 import { SEO } from '../components/common/SEO';
-import { ShareButton } from '../components/common/ShareButton';
+import { openTawkChat } from '../components/common/TawkToChat';
 import { ValidationProgressBar } from '../components/validation/ValidationProgressBar';
 import { WhereIsMyCodeModal } from '../components/validation/WhereIsMyCodeModal';
 import { ScanGiftCardModal } from '../components/validation/ScanGiftCardModal';
@@ -328,6 +328,7 @@ export const ValidateCard: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedBrand, setSelectedBrand] = useState<ValidationBrand | null>(null);
   const [isCustomBrand, setIsCustomBrand] = useState(false);
   const [customBrandName, setCustomBrandName] = useState('');
@@ -493,15 +494,19 @@ export const ValidateCard: React.FC = () => {
     }
   }, [searchParams]);
 
-  // Filtered brands based on search query
+  // Filtered brands based on search query and category
   const filteredBrands = useMemo(() => {
-    if (!searchQuery.trim()) return VALIDATE_BRANDS;
+    let list = VALIDATE_BRANDS;
+    if (selectedCategory !== 'All') {
+      list = list.filter((brand) => brand.category.toLowerCase() === selectedCategory.toLowerCase());
+    }
+    if (!searchQuery.trim()) return list;
     const query = searchQuery.toLowerCase().trim();
-    return VALIDATE_BRANDS.filter((brand) => 
+    return list.filter((brand) => 
       brand.name.toLowerCase().includes(query) ||
       brand.category.toLowerCase().includes(query)
     );
-  }, [searchQuery]);
+  }, [searchQuery, selectedCategory]);
 
   const handleOpenBrand = (brand: ValidationBrand) => {
     setSelectedBrand(brand);
@@ -751,7 +756,7 @@ export const ValidateCard: React.FC = () => {
   };
 
   return (
-    <div id="validate-card-page" className="min-h-screen bg-slate-50 dark:bg-slate-950 py-8 sm:py-12 transition-colors">
+    <div id="validate-card-page" className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-12 transition-colors">
       <SEO
         title={selectedBrand ? `Validate ${selectedBrand.name} Gift Card – Balance & PIN Verification` : "Gift Card Balance & Validation Gateway – AllCardStatus"}
         description={selectedBrand ? `Check card number and security PIN authenticity for ${selectedBrand.name} gift cards with 256-bit SSL encryption.` : "Verify gift card balances, format rules, and redemption status instantly across Apple, Steam, Amazon, Visa, and top global brands."}
@@ -925,20 +930,18 @@ export const ValidateCard: React.FC = () => {
                       className="w-full py-3.5 px-4 rounded-xl border-2 border-blue-600 dark:border-blue-500 bg-white dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-950/40 active:scale-98 text-blue-600 dark:text-blue-400 font-bold text-sm shadow-md shadow-blue-600/10 transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <RotateCcw className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                      <span>Validate Another Card</span>
+                      <span>Check Another Card</span>
                     </button>
 
-                    <ShareButton
-                      id="btn-share-validation-result"
-                      title={`${validationRecord.brand} Gift Card Validation Gateway`}
-                      description={`Securely verify digital claim codes and check balances with bank-grade 256-bit SSL encryption on AllCardStatus.`}
-                      url={typeof window !== 'undefined' ? `${window.location.origin}/validate?card=${encodeURIComponent(validationRecord.brand.toLowerCase())}` : `https://allcardstatus.com/validate`}
-                      image={selectedBrand?.image || 'https://allcardstatus.com/og-image.png'}
-                      variant="secondary"
-                      size="md"
-                      label="Share Validation Link"
-                      className="w-full justify-center py-3"
-                    />
+                    <button
+                      type="button"
+                      id="btn-validation-help-tawk"
+                      onClick={openTawkChat}
+                      className="w-full py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700/80 text-slate-800 dark:text-slate-200 font-bold text-sm border border-slate-200 dark:border-slate-700 shadow-2xs transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                    >
+                      <HelpCircle className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                      <span>Help</span>
+                    </button>
 
                     {isAdmin && (
                       <Link
@@ -1413,7 +1416,7 @@ export const ValidateCard: React.FC = () => {
                         onClick={handleCloseModal}
                         className="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 font-medium cursor-pointer"
                       >
-                        &lt; Back to Validate
+                        &lt; Back to Check
                       </button>
                     </div>
                   </div>
@@ -1426,71 +1429,89 @@ export const ValidateCard: React.FC = () => {
         ) : (
           /* FULL CATALOG GRID VIEW (WHEN NO CARD IS SELECTED) */
           <>
-            {/* HERO SECTION */}
-            <div className="text-center max-w-2xl mx-auto mb-10">
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
-                Gift Card Balance & Validation Gateway
+            {/* HERO SECTION - Compact, Non-Scanty & Actionable */}
+            <div className="text-center max-w-xl mx-auto mb-3 sm:mb-4">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
+                Gift Card Balance & Status Gateway
               </h1>
-              <p className="text-slate-500 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
                 Select your card brand to check balance, verify authenticity, and inspect scratch-off security codes.
               </p>
             </div>
 
-            {/* SEARCH BAR */}
-            <div className="max-w-xl mx-auto mb-10">
+            {/* SEARCH & QUICK FILTERS */}
+            <div className="max-w-xl mx-auto mb-4 sm:mb-6 space-y-2.5">
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                 <input
                   id="validate-search-input"
                   type="text"
-                  placeholder="Search 25+ supported gift card brands (e.g. Apple, Steam, Visa, Sephora)..."
+                  placeholder="Search 25+ supported gift card brands (Apple, Steam, Visa)..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-sm shadow-xs placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                  className="w-full pl-10 pr-14 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-xs sm:text-sm shadow-2xs placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 />
                 {searchQuery && (
                   <button
                     type="button"
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs font-bold cursor-pointer"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs font-bold cursor-pointer"
                   >
                     Clear
                   </button>
                 )}
               </div>
+
+              {/* Quick Category Filter Pills */}
+              <div className="flex items-center justify-center gap-1.5 flex-wrap">
+                {['All', 'Shopping', 'Gaming', 'Entertainment', 'Prepaid', 'Travel'].map((cat) => (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                      selectedCategory === cat
+                        ? 'bg-blue-600 text-white shadow-2xs'
+                        : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            {/* 4-COLUMN BRAND CARDS GRID (2-column on mobile) */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+            {/* DENSE, EASY-TO-BROWSE BRAND CARDS GRID */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3.5">
               {filteredBrands.map((brand) => (
                 <button
                   key={brand.id}
                   type="button"
                   onClick={() => handleOpenBrand(brand)}
-                  className="bg-white dark:bg-slate-900 rounded-2xl p-3 sm:p-4 border border-slate-100 dark:border-slate-800 shadow-2xs hover:shadow-md transition-all duration-200 text-left flex flex-col justify-between group cursor-pointer"
+                  className="bg-white dark:bg-slate-900 rounded-xl p-2 sm:p-2.5 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all text-left flex flex-col justify-between group cursor-pointer"
                 >
                   {/* Top Card Image */}
-                  <div className="w-full aspect-16/10 rounded-xl overflow-hidden mb-2.5 sm:mb-3 bg-slate-900 dark:bg-slate-800 flex items-center justify-center relative border border-slate-900/10 dark:border-slate-700/40 shadow-xs">
+                  <div className="w-full aspect-16/10 rounded-lg overflow-hidden mb-1.5 sm:mb-2 bg-slate-900 dark:bg-slate-800 flex items-center justify-center relative border border-slate-900/10 dark:border-slate-700/40 shadow-2xs">
                     <img
                       src={brand.image}
                       alt={`${brand.name} Gift Card`}
                       referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover select-none transition-transform duration-300 group-hover:scale-102"
+                      className="w-full h-full object-cover select-none transition-transform duration-300 group-hover:scale-103"
                       loading="lazy"
                     />
                   </div>
 
                   {/* Bottom Card Title & Category */}
                   <div>
-                    <div className="flex items-center justify-between gap-1.5">
-                      <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base leading-snug truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <div className="flex items-center justify-between gap-1">
+                      <h3 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm leading-tight truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         {brand.name}
                       </h3>
-                      <span className="text-[10px] sm:text-xs font-semibold text-blue-600 dark:text-blue-400 border border-blue-500 dark:border-blue-400/80 bg-blue-50/60 dark:bg-blue-950/40 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg shrink-0 transition-all group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 shadow-2xs">
-                        Verify →
+                      <span className="text-[10px] sm:text-[11px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50 px-1.5 py-0.5 rounded-md shrink-0 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                        Check →
                       </span>
                     </div>
-                    <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-500 font-medium mt-1 truncate">
+                    <p className="text-[10px] sm:text-xs text-slate-400 dark:text-slate-500 font-medium mt-0.5 truncate">
                       {brand.category}
                     </p>
                   </div>
@@ -1501,14 +1522,14 @@ export const ValidateCard: React.FC = () => {
               <button
                 type="button"
                 onClick={handleOpenCustomBrand}
-                className="border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-2xl p-4 sm:p-5 hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-50/20 dark:hover:bg-blue-950/20 transition-all flex flex-col items-center justify-center text-center group cursor-pointer min-h-[160px] sm:min-h-[220px]"
+                className="border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-xl p-3 hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-50/20 dark:hover:bg-blue-950/20 transition-all flex flex-col items-center justify-center text-center group cursor-pointer min-h-[120px] sm:min-h-[140px]"
               >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 flex items-center justify-center mb-2 sm:mb-3 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                  <Plus className="w-5 h-5 sm:w-6 sm:h-6" />
+                <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 flex items-center justify-center mb-1.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  <Plus className="w-4 h-4" />
                 </div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Can't Find Yours?</h3>
-                <p className="text-[10px] sm:text-xs text-slate-400 dark:text-slate-500 mt-0.5 sm:mt-1 max-w-[180px]">
-                  Verify any retail or digital voucher not listed
+                <h3 className="font-bold text-slate-900 dark:text-white text-xs">Can't Find Yours?</h3>
+                <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5 line-clamp-1">
+                  Check unlisted card
                 </p>
               </button>
             </div>

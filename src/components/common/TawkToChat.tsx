@@ -141,19 +141,19 @@ export const TawkToChat: React.FC = () => {
   }, [user]);
 
   return (
-    <div className="fixed bottom-5 right-5 z-40 print:hidden">
+    <div className="fixed bottom-3.5 right-3.5 sm:bottom-5 sm:right-5 z-30 print:hidden">
       <button
         id="tawk-fallback-launcher"
         onClick={openTawkChat}
-        className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs shadow-md transition-all transform hover:-translate-y-0.5 cursor-pointer active:scale-95 border border-blue-400/30"
-        title="Open Tawk.to 24/7 Live Support Chat"
+        className="group flex items-center justify-center gap-2 p-2.5 sm:px-4 sm:py-2.5 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs shadow-lg shadow-blue-600/25 transition-all transform hover:-translate-y-0.5 cursor-pointer active:scale-95 border border-blue-400/30"
+        title="Open 24/7 Live Support Chat"
+        aria-label="Open 24/7 Live Support Chat"
       >
-        <div className="relative">
-          <Headphones className="w-4 h-4 text-white animate-bounce" />
-          <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#86A98D] ring-2 ring-blue-700"></span>
+        <div className="relative flex items-center justify-center">
+          <Headphones className="w-4 h-4 text-white" />
+          <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-blue-700 animate-pulse" />
         </div>
-        <span className="hidden sm:inline">24/7 Live Support</span>
-        <span className="sm:hidden">Support</span>
+        <span className="hidden sm:inline font-semibold">24/7 Live Support</span>
       </button>
     </div>
   );

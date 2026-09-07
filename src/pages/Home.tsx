@@ -9,6 +9,7 @@ import {
   Lock, 
   ChevronRight,
   TrendingUp,
+  Search,
   ShoppingBag,
   Activity,
   Tag,
@@ -39,7 +40,7 @@ export const Home: React.FC = () => {
   });
 
   const [todayCardsPurchased, setTodayCardsPurchased] = useState<number>(() => {
-    return 1842 + Math.floor(Math.random() * 85);
+    return 300 + Math.floor(Math.random() * 251);
   });
 
   const [giftCardsVerified, setGiftCardsVerified] = useState<number>(() => {
@@ -47,33 +48,36 @@ export const Home: React.FC = () => {
   });
 
   const [todayCardsVerified, setTodayCardsVerified] = useState<number>(() => {
-    return 946 + Math.floor(Math.random() * 45);
+    return 300 + Math.floor(Math.random() * 251);
   });
 
   // Stats timescale view state
   const [statsView, setStatsView] = useState<'comparison' | 'overall' | 'today'>('comparison');
 
+  // Hero search bar state
+  const [heroSearch, setHeroSearch] = useState<string>('');
+  const [showHeroSuggestions, setShowHeroSuggestions] = useState<boolean>(false);
+
+
   // Home category tab filter for preview grid
   const [activeCategoryTab, setActiveCategoryTab] = useState<CategoryType>('All');
 
-  // Realistic random increment timers for live counters
+  // Live increment timer for orders and checks with 4-second interval
   useEffect(() => {
-    // Increment purchased counter every 4.5 - 7.5 seconds
-    const purchasedInterval = setInterval(() => {
-      const inc = Math.random() > 0.3 ? 1 : 2;
-      setGiftCardsPurchased((prev) => prev + inc);
-      setTodayCardsPurchased((prev) => prev + inc);
-    }, 5500);
+    const liveUpdateInterval = setInterval(() => {
+      // Increment orders live count every 4 seconds
+      const orderInc = Math.random() > 0.35 ? 1 : 2;
+      setGiftCardsPurchased((prev) => prev + orderInc);
+      setTodayCardsPurchased((prev) => prev + orderInc);
 
-    // Increment verified counter every 6 - 9 seconds
-    const verifiedInterval = setInterval(() => {
-      setGiftCardsVerified((prev) => prev + 1);
-      setTodayCardsVerified((prev) => prev + 1);
-    }, 7200);
+      // Increment verified checks live count every 4 seconds
+      const checkInc = Math.random() > 0.4 ? 1 : 2;
+      setGiftCardsVerified((prev) => prev + checkInc);
+      setTodayCardsVerified((prev) => prev + checkInc);
+    }, 4000);
 
     return () => {
-      clearInterval(purchasedInterval);
-      clearInterval(verifiedInterval);
+      clearInterval(liveUpdateInterval);
     };
   }, []);
 
@@ -89,6 +93,27 @@ export const Home: React.FC = () => {
     { label: 'Travel', value: 'Travel', icon: '✈️' },
   ];
 
+  // Search auto-suggestions
+  const filteredSuggestions = useMemo(() => {
+    if (!heroSearch.trim()) return [];
+    const query = heroSearch.toLowerCase().trim();
+    return GIFT_CARDS.filter(
+      (c) =>
+        c.name.toLowerCase().includes(query) ||
+        c.category.toLowerCase().includes(query) ||
+        c.tagline.toLowerCase().includes(query)
+    ).slice(0, 5);
+  }, [heroSearch]);
+
+  const handleHeroSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (heroSearch.trim()) {
+      navigate(`/gift-cards?search=${encodeURIComponent(heroSearch.trim())}`);
+    } else {
+      navigate('/gift-cards');
+    }
+  };
+
   // Filtered popular cards for the showcase section
   const displayedCards = useMemo(() => {
     if (activeCategoryTab === 'All') {
@@ -101,7 +126,7 @@ export const Home: React.FC = () => {
     <div className="flex flex-col min-h-screen">
       <SEO
         title="AllCardStatus – Digital Gift Card Marketplace & Instant Validation"
-        description="Buy, send, and instantly validate digital gift cards from Apple, Steam, Amazon, and Visa with zero KYC or personal data required. Fast, private checkout with instant delivery and zero fees."
+        description="Buy, send, and check your gift card status or balance for Apple, Steam, Amazon, PlayStation, Xbox, and top global brands with instant email delivery and secure checkout."
         canonicalPath="/"
         structuredData={[
           {
@@ -136,88 +161,64 @@ export const Home: React.FC = () => {
         ]}
       />
       {/* HERO SECTION */}
-      <section className="relative bg-[#F5F7FA] dark:bg-slate-950 text-[#1E293B] dark:text-white pt-4 pb-12 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-18 border-b border-slate-200 dark:border-slate-800 transition-colors">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
+      <section className="relative bg-[#F5F7FA] dark:bg-slate-950 text-[#1E293B] dark:text-white pt-6 pb-12 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-18 border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           
-          {/* Top Live Ticker Ribbon (Sleek, Compact, High-Trust) */}
-          <div className="max-w-4xl mx-auto">
+          {/* Top Live Ticker Ribbon */}
+          <div>
             <LiveActivityTicker
               giftCardsPurchased={giftCardsPurchased}
               giftCardsVerified={giftCardsVerified}
               todayPurchased={todayCardsPurchased}
               todayVerified={todayCardsVerified}
-              showButtons={false}
             />
           </div>
 
-          {/* Main Hero Header & Primary Actions (First thing visible on mobile) */}
-          <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 pt-1">
-            {/* Clear, Authoritative Headline */}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1E293B] dark:text-white leading-tight">
-              AllCardStatus – Digital Gift Cards & Check Card Status
-            </h1>
-
-            {/* Honest, Clear Subtitle */}
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              Buy authentic digital gift codes with immediate email fulfillment, or securely verify card status, balance, and activation with zero fees.
-            </p>
-
-            {/* TWO PRIMARY ACTION BUTTONS (Thumb-friendly & high-contrast on mobile) */}
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto">
-              <Link
-                to="/gift-cards"
-                id="hero-primary-buy-btn"
-                className="w-full sm:w-auto flex-1 py-3.5 px-6 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] active:scale-98 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-md shadow-blue-600/20 transition-all cursor-pointer"
-              >
-                <ShoppingBag className="w-5 h-5" />
-                <span>Buy a Gift Card</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-
-              <Link
-                to="/validate"
-                id="hero-primary-validate-btn"
-                className="w-full sm:w-auto flex-1 py-3.5 px-6 rounded-xl border-2 border-[#2563EB] dark:border-blue-500 bg-white dark:bg-slate-900 hover:bg-blue-50 dark:hover:bg-blue-950/40 active:scale-98 text-[#2563EB] dark:text-blue-400 font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-2xs transition-all cursor-pointer"
-              >
-                <ShieldCheck className="w-5 h-5 text-[#2563EB] dark:text-blue-400" />
-                <span>Check Card Status</span>
-              </Link>
-            </div>
-
-            {/* Trust Signals Under Buttons */}
-            <div className="pt-2 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-slate-600 dark:text-slate-400 font-medium">
-              <div className="flex items-center gap-1.5">
+          {/* Carousel & Featured Display of Cards Showcase (Rendered directly after Live Stream container) */}
+          <div className="space-y-5 max-w-4xl mx-auto pt-1">
+            {/* Micro Trust & Gold Review Button Header Row */}
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-slate-700 dark:text-slate-300 font-medium">
+              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                 <span>Instant eDelivery</span>
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200">
                 <Lock className="w-4 h-4 text-[#2563EB] shrink-0" />
-                <span>256-Bit SSL Encrypted</span>
+                <span>256-bit Encrypted</span>
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200">
                 <Zap className="w-4 h-4 text-amber-500 shrink-0" />
-                <span>Zero Hidden Fees</span>
+                <span>Zero Inactivity Fees</span>
               </div>
               <button
                 type="button"
+                id="hero-client-reviews-badge-btn"
                 onClick={() => {
                   document.getElementById('customer-reviews-section')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="inline-flex items-center gap-1 text-amber-600 dark:text-amber-400 font-bold hover:underline cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-amber-300 dark:border-amber-500/80 bg-amber-50/90 hover:bg-amber-100 dark:bg-amber-950/60 dark:hover:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-bold text-xs transition-all shadow-xs cursor-pointer hover:scale-105 active:scale-95"
               >
-                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500 shrink-0" />
-                <span>4.9/5 Rating (12k+ Reviews)</span>
+                <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500 shrink-0" />
+                <span>Client Reviews (4.9/5)</span>
               </button>
             </div>
-          </div>
 
-          {/* Featured Cards Live Showcase Carousel (Replacing the search block) */}
-          <div className="max-w-4xl mx-auto pt-2">
+            {/* Interactive Carousel */}
             <HeroLiveCardShowcase />
           </div>
 
-          {/* TWO MAIN CLEAR CHOICE CARDS (Option 1: Buy vs Option 2: Check Status) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto pt-2">
+          {/* Clean Main Header */}
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1E293B] dark:text-white">
+              AllCardStatus – Digital Gift Cards & Instant Card Validation
+            </h1>
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+              Choose an action below to get started. You can buy new digital gift cards with instant delivery, or verify the status and balance of an existing card.
+            </p>
+          </div>
+
+          {/* TWO MAIN CLEAR CHOICE CARDS */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             
             {/* OPTION 1: BUY A GIFT CARD */}
             <div className="rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow">
@@ -256,7 +257,7 @@ export const Home: React.FC = () => {
               </div>
             </div>
 
-            {/* OPTION 2: CHECK CARD STATUS */}
+            {/* OPTION 2: VALIDATE A CARD */}
             <div className="rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow">
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -291,6 +292,97 @@ export const Home: React.FC = () => {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
+            </div>
+
+          </div>
+
+          {/* Quick Search & Showcase Row */}
+          <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-center pt-2">
+            
+            {/* Search Bar */}
+            <div className="lg:col-span-7">
+              <div className="relative">
+                <form onSubmit={handleHeroSearchSubmit} className="relative flex items-center">
+                  <div className="relative w-full">
+                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                      <Search className="w-4 h-4" />
+                    </div>
+                    <input
+                      type="text"
+                      id="hero-search-input"
+                      value={heroSearch}
+                      onChange={(e) => {
+                        setHeroSearch(e.target.value);
+                        setShowHeroSuggestions(true);
+                      }}
+                      onFocus={() => setShowHeroSuggestions(true)}
+                      placeholder="Search card by brand (e.g. Apple, Amazon, Steam)..."
+                      className="w-full pl-10 pr-24 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm text-[#1E293B] dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-all"
+                    />
+                    <button
+                      type="submit"
+                      id="hero-search-submit-btn"
+                      className="absolute right-1.5 top-1.5 bottom-1.5 px-4 rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+                    >
+                      <span>Search</span>
+                    </button>
+                  </div>
+                </form>
+
+                {/* Suggestions Dropdown */}
+                {showHeroSuggestions && filteredSuggestions.length > 0 && (
+                  <div 
+                    className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl overflow-hidden z-30 p-2 text-left"
+                    onMouseLeave={() => setShowHeroSuggestions(false)}
+                  >
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 py-1.5 border-b border-slate-100 dark:border-slate-800">
+                      Matching Gift Cards
+                    </div>
+                    <div className="py-1">
+                      {filteredSuggestions.map((item) => (
+                        <Link
+                          key={item.id}
+                          to={`/gift-cards/${item.slug}`}
+                          onClick={() => setShowHeroSuggestions(false)}
+                          className="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-bold text-[#1E293B] dark:text-white">{item.name}</span>
+                            <span className="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-0.5 rounded font-mono">
+                              {item.category}
+                            </span>
+                          </div>
+                          <span className="text-xs font-bold text-[#2563EB] dark:text-blue-400 font-mono">
+                            From ${item.startingPrice}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Micro Trust Indicators (with Sage Green Checkmarks) */}
+            <div className="lg:col-span-5 flex flex-wrap items-center justify-center lg:justify-end gap-4 text-xs text-slate-600 dark:text-slate-400 font-medium">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-[#86A98D] shrink-0" />
+                <span className="text-[#1E293B] dark:text-slate-300">Instant Delivery</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Lock className="w-4 h-4 text-[#2563EB] shrink-0" />
+                <span className="text-[#1E293B] dark:text-slate-300">256-bit Secure</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  document.getElementById('customer-reviews-section')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-300 dark:border-amber-500/80 bg-amber-50/90 hover:bg-amber-100 dark:bg-amber-950/60 dark:hover:bg-amber-900/60 text-amber-900 dark:text-amber-200 cursor-pointer font-bold transition-all shadow-xs"
+              >
+                <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500 shrink-0" />
+                <span>4.9/5 Reviews</span>
+              </button>
             </div>
 
           </div>

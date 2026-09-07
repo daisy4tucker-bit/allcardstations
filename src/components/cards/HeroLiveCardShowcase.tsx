@@ -107,24 +107,24 @@ export const HeroLiveCardShowcase: React.FC = () => {
                     </h3>
                   </div>
 
-                  {/* Direct Action Options: Buy & Check Status with clean borders and mobile clarity */}
+                  {/* Direct Action Options: Buy & Check with high-contrast, easy-to-read styling */}
                   <div className="flex items-center gap-2">
                     <Link
                       to={`/gift-cards/${card.slug}`}
                       id={`hero-slide-buy-${card.slug}`}
-                      className="flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-white/20 hover:bg-white/30 text-white font-bold text-xs border border-white/40 backdrop-blur-md transition-all active:scale-95 cursor-pointer shadow-xs"
+                      className="flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
                     >
-                      <ShoppingBag className="w-3.5 h-3.5 text-amber-300" />
-                      <span>Buy Now</span>
+                      <ShoppingBag className="w-3.5 h-3.5 text-[#2563EB]" />
+                      <span>Buy</span>
                     </Link>
 
                     <Link
                       to={`/validate?card=${card.slug}`}
                       id={`hero-slide-validate-${card.slug}`}
-                      className="flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-blue-600/30 hover:bg-blue-600/50 text-blue-200 hover:text-white font-bold text-xs border border-blue-400/60 backdrop-blur-md transition-all active:scale-95 cursor-pointer shadow-xs"
+                      className="flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-slate-950/80 hover:bg-slate-900 text-white font-bold text-xs border border-white/25 backdrop-blur-md shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
                     >
-                      <ShieldCheck className="w-3.5 h-3.5 text-blue-300" />
-                      <span>Check Status</span>
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Check</span>
                     </Link>
                   </div>
                 </div>
@@ -152,24 +152,6 @@ export const HeroLiveCardShowcase: React.FC = () => {
         >
           <ChevronRight className="w-4 h-4" />
         </button>
-      </div>
-
-      {/* Clean Slide Dots */}
-      <div className="flex items-center justify-center gap-1.5 mt-3.5">
-        {cards.map((card, idx) => (
-          <button
-            key={card.id}
-            type="button"
-            id={`hero-dot-${idx}`}
-            onClick={() => setCurrentIndex(idx)}
-            aria-label={`Go to slide ${idx + 1}: ${card.name}`}
-            className={`transition-all duration-300 rounded-full cursor-pointer ${
-              idx === currentIndex
-                ? 'w-6 h-1.5 bg-[#2563EB] dark:bg-blue-500'
-                : 'w-1.5 h-1.5 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-500'
-            }`}
-          />
-        ))}
       </div>
     </div>
   );

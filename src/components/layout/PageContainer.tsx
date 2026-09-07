@@ -18,10 +18,10 @@ export const PageContainer: React.FC<PageContainerProps> = ({
   containerClassName = '',
 }) => {
   return (
-    <main className={`flex-1 w-full py-6 sm:py-10 ${className}`}>
+    <main className={`flex-1 w-full py-3 sm:py-6 ${className}`}>
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${containerClassName}`}>
         {breadcrumbs && breadcrumbs.length > 0 && (
-          <div className="mb-6">
+          <div className="mb-3 sm:mb-4">
             <Breadcrumb items={breadcrumbs} {...breadcrumbProps} />
           </div>
         )}
