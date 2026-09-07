@@ -141,7 +141,8 @@ async function startServer() {
           xml += `  <url>\n    <loc>https://allcardstatus.com/gift-cards/${slug}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.85</priority>\n  </url>\n`;
         }
       } else {
-        const fallbackPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+        const rootPath = path.join(process.cwd(), 'sitemap.xml');
+        const fallbackPath = fs.existsSync(rootPath) ? rootPath : path.join(process.cwd(), 'public', 'sitemap.xml');
         if (fs.existsSync(fallbackPath)) {
           res.setHeader('Content-Type', 'application/xml; charset=utf-8');
           res.setHeader('Cache-Control', 'public, max-age=3600');
@@ -155,7 +156,8 @@ async function startServer() {
       res.setHeader('Cache-Control', 'public, max-age=3600');
       res.send(xml);
     } catch {
-      const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+      const rootPath = path.join(process.cwd(), 'sitemap.xml');
+      const sitemapPath = fs.existsSync(rootPath) ? rootPath : path.join(process.cwd(), 'public', 'sitemap.xml');
       res.setHeader('Content-Type', 'application/xml; charset=utf-8');
       res.sendFile(sitemapPath);
     }
@@ -207,9 +209,9 @@ async function startServer() {
   // Resolve dynamic metadata based on path
   const resolvePageMeta = async (pathname: string, baseUrl: string): Promise<PageMeta> => {
     const defaultMeta: PageMeta = {
-      title: 'AllCardStatus – Digital Gift Card Marketplace & Instant Validation',
-      description: 'Instantly buy, send, and redeem digital gift cards for Apple, Steam, Amazon, PlayStation, Xbox, and top global brands with instant email delivery and secure checkout.',
-      image: `${baseUrl}/og-image.png`,
+      title: 'AllCardStatus – Digital Gift Card Marketplace & Check Card Status',
+      description: 'Buy, send, and check your gift card status for Apple, Steam, Amazon, PlayStation, Xbox, and top global brands with instant email delivery and secure checkout.',
+      image: `${baseUrl}/og-image.png?v=4`,
       url: `${baseUrl}${pathname === '/' ? '' : pathname}`,
     };
 

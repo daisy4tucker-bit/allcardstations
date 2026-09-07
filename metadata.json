@@ -1,6 +1,6 @@
 {
   "name": "AllCardStatus",
-  "description": "Instantly buy, send, and redeem digital gift cards for Apple, Steam, Amazon, PlayStation, Xbox, and top global brands with instant email delivery and secure checkout.",
+  "description": "Instantly buy and send digital gift cards for Apple, Steam, Amazon, PlayStation, Xbox, and top global brands with instant email delivery and secure checkout.",
   "requestFramePermissions": ["camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

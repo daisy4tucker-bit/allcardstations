@@ -58,7 +58,7 @@ export const SEO_CONFIG: SEOConfig = {
   defaultTitle: 'AllCardStatus – Digital Gift Card Marketplace & Instant Validation',
   titleTemplate: '%s | AllCardStatus',
   defaultDescription:
-    'Buy, send, and instantly validate digital gift cards from Apple, Steam, Amazon, Visa, PlayStation, and top global brands with instant delivery, 256-bit SSL encryption, and zero KYC or hidden fees.',
+    'Instantly buy and send digital gift cards for Apple, Steam, Amazon, PlayStation, Xbox, and top global brands with instant email delivery and secure checkout.',
   mainKeyword: 'Digital Gift Card Marketplace & Validation',
   secondaryKeywords: [
     'safe gift card validation',

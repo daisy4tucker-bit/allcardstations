@@ -1,53 +1,102 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
   <defs>
-    <linearGradient id="favBg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Background Shield/Vault Gradient -->
+    <linearGradient id="vaultBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="50%" stop-color="#0f172a" />
       <stop offset="100%" stop-color="#020617" />
     </linearGradient>
-    <linearGradient id="favCardEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
+
+    <!-- Shield Outer Glow/Border Gradient -->
+    <linearGradient id="shieldBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#fbbf24" />
+    </linearGradient>
+
+    <!-- Card 1 (Back - Emerald/Teal) -->
+    <linearGradient id="cardEmeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#34d399" />
       <stop offset="100%" stop-color="#059669" />
     </linearGradient>
-    <linearGradient id="favCardGold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fbbf24" />
+
+    <!-- Card 2 (Middle - Gold/Amber) -->
+    <linearGradient id="cardGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047" />
       <stop offset="100%" stop-color="#d97706" />
     </linearGradient>
-    <linearGradient id="favCardIndigo" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6366f1" />
-      <stop offset="100%" stop-color="#3730a3" />
+
+    <!-- Card 3 (Front - Deep Royal Blue) -->
+    <linearGradient id="cardIndigoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
     </linearGradient>
-    <linearGradient id="favChip" x1="0%" y1="0%" x2="100%" y2="100%">
+
+    <!-- Metallic Chip Gradient -->
+    <linearGradient id="chipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#fef08a" />
       <stop offset="100%" stop-color="#eab308" />
     </linearGradient>
-    <linearGradient id="favBorder" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#818cf8" />
-      <stop offset="100%" stop-color="#f59e0b" />
+
+    <!-- Vault Lock Ring Gradient -->
+    <linearGradient id="lockRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#818cf8" />
     </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
   </defs>
 
-  <!-- Container -->
-  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#favBg)" stroke="url(#favBorder)" stroke-width="2" />
+  <!-- Base Rounded Shield Container -->
+  <rect x="6" y="6" width="108" height="108" rx="28" fill="url(#vaultBgGrad)" stroke="url(#shieldBorderGrad)" stroke-width="3" />
 
-  <!-- Back Card: Emerald -->
-  <g transform="translate(10, 14) rotate(-12, 18, 12)">
-    <rect x="0" y="0" width="34" height="22" rx="3.5" fill="url(#favCardEmerald)" stroke="#ffffff" stroke-width="0.8" opacity="0.8" />
+  <!-- Subtle Internal Grid Pattern Lines -->
+  <path d="M 6 40 L 114 40 M 6 80 L 114 80 M 40 6 L 40 114 M 80 6 L 80 114" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.05" />
+
+  <!-- Back Card: Emerald (Rotated Left) -->
+  <g transform="translate(22, 28) rotate(-12, 35, 25)">
+    <rect x="0" y="0" width="62" height="40" rx="6" fill="url(#cardEmeraldGrad)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.8" />
+    <rect x="8" y="10" width="12" height="9" rx="2" fill="#ffffff" fill-opacity="0.3" />
+    <line x1="8" y1="28" x2="48" y2="28" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-opacity="0.5" />
   </g>
 
-  <!-- Middle Card: Gold -->
-  <g transform="translate(18, 12) rotate(10, 18, 12)">
-    <rect x="0" y="0" width="36" height="23" rx="3.5" fill="url(#favCardGold)" stroke="#ffffff" stroke-width="0.8" opacity="0.9" />
+  <!-- Middle Card: Gold / Amber (Rotated Right) -->
+  <g transform="translate(36, 26) rotate(10, 35, 25)">
+    <rect x="0" y="0" width="64" height="42" rx="6" fill="url(#cardGoldGrad)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.9" />
+    <circle cx="48" cy="21" r="9" fill="#ffffff" fill-opacity="0.25" />
+    <rect x="8" y="12" width="14" height="10" rx="2" fill="url(#chipGrad)" />
   </g>
 
-  <!-- Front Hero Card: Indigo with Chip and Lock -->
-  <g transform="translate(13, 22)">
-    <rect x="0" y="0" width="38" height="25" rx="4" fill="url(#favCardIndigo)" stroke="#ffffff" stroke-width="1" />
-    <rect x="4" y="11" width="8" height="6" rx="1.5" fill="url(#favChip)" />
-    <!-- Lock Circle -->
-    <circle cx="28" cy="14" r="5" fill="#0f172a" stroke="#38bdf8" stroke-width="1" />
-    <rect x="26" y="13" width="4" height="3" rx="0.5" fill="#38bdf8" />
+  <!-- Front Hero Card: Indigo / Vault Core (Centered) -->
+  <g transform="translate(26, 44)">
+    <rect x="0" y="0" width="68" height="44" rx="7" fill="url(#cardIndigoGrad)" stroke="#ffffff" stroke-width="1.5" />
+    
+    <!-- Magnetic Stripe / Accent Ribbon -->
+    <rect x="0" y="8" width="68" height="8" fill="#1e1b4b" fill-opacity="0.7" />
+    
+    <!-- Smart EMV Chip -->
+    <rect x="8" y="22" width="13" height="10" rx="2.5" fill="url(#chipGrad)" stroke="#b45309" stroke-width="0.5" />
+    <line x1="14.5" y1="22" x2="14.5" y2="32" stroke="#92400e" stroke-width="0.5" />
+    <line x1="8" y1="27" x2="21" y2="27" stroke="#92400e" stroke-width="0.5" />
+
+    <!-- Security Vault Lock / Shield Badge on Card -->
+    <g transform="translate(42, 20)">
+      <circle cx="10" cy="10" r="10" fill="#0f172a" stroke="url(#lockRingGrad)" stroke-width="1.5" />
+      <!-- Lock Keyhole Icon -->
+      <path d="M 10 5.5 C 8 5.5 6.5 7 6.5 9 L 6.5 11 L 13.5 11 L 13.5 9 C 13.5 7 12 5.5 10 5.5 Z" fill="none" stroke="#38bdf8" stroke-width="1.2" />
+      <rect x="6" y="10.5" width="8" height="6" rx="1" fill="#38bdf8" />
+      <circle cx="10" cy="13.5" r="1" fill="#0f172a" />
+    </g>
   </g>
 
-  <!-- Sparkle Top Right -->
-  <path d="M 48 8 Q 48 14 54 14 Q 48 14 48 20 Q 48 14 42 14 Q 48 14 48 8 Z" fill="#fbbf24" />
+  <!-- Top-Right Sparkle / Verification Star -->
+  <g transform="translate(90, 18)" filter="url(#glow)">
+    <path d="M 12 0 Q 12 12 24 12 Q 12 12 12 24 Q 12 12 0 12 Q 12 12 12 0 Z" fill="#fbbf24" />
+  </g>
+
+  <!-- Bottom Vault Lock Arc / Shield Base -->
+  <path d="M 38 100 Q 60 110 82 100" fill="none" stroke="url(#shieldBorderGrad)" stroke-width="3.5" stroke-linecap="round" />
 </svg>
