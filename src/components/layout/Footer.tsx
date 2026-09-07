@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
             </Link>
 
             <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm leading-relaxed">
-              A premium digital gift-card marketplace that makes discovering, purchasing, and sending digital gifts simple, fast, and secure.
+              AllCardStatus is a platform where you can buy, send, and check your gift card status or balance for Apple, Steam, Amazon, PlayStation, Xbox, and top global brands with instant email delivery and secure checkout.
             </p>
 
             <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
@@ -211,9 +211,12 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Disclaimer for search engines and consumer protection */}
-        <div className="pt-6 pb-2 text-[11px] leading-relaxed text-slate-500 dark:text-slate-500 border-b border-slate-200/60 dark:border-slate-850/60 text-center sm:text-left">
+        <div className="pt-6 pb-2 text-[11px] leading-relaxed text-slate-500 dark:text-slate-400 border-b border-slate-200/60 dark:border-slate-800/60 text-center sm:text-left space-y-1.5">
           <p>
-            <strong>Legal Disclaimer:</strong> AllCardStatus is an independent digital gift card marketplace and utility. AllCardStatus is not a bank, financial institution, government agency, or prepaid card issuer, and is not affiliated with, endorsed by, or connected to Visa, Mastercard, or third-party bank portals (such as prepaidcardstatus). All third-party trademarks and brand logos displayed belong exclusively to their respective owners.
+            <strong>Consumer Protection & Entity Disclaimer:</strong> AllCardStatus is an independent digital gift card marketplace and validation platform for retail and gaming e-gift vouchers (Apple, Steam, Amazon, Xbox, PlayStation). AllCardStatus is not a government agency, voter registration portal, or banking entity, and does not process government voter ID cards, national identification records, or credit/debit banking cards.
+          </p>
+          <p>
+            AllCardStatus is an independent digital gift card marketplace and is not affiliated with, endorsed by, or connected to prepaidcardstatus, government agencies, or financial institutions. All third-party trademarks and brand logos displayed belong exclusively to their respective owners.
           </p>
         </div>
 

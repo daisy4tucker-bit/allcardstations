@@ -1533,6 +1533,24 @@ export const ValidateCard: React.FC = () => {
                 </p>
               </button>
             </div>
+
+            {/* Consumer Protection & Disambiguation Notice Banner */}
+            <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-blue-50/60 dark:bg-slate-900/80 border border-blue-200/80 dark:border-blue-900/40 text-left">
+              <div className="flex items-start gap-3">
+                <ShieldCheck className="w-5 h-5 text-[#2563EB] dark:text-blue-400 shrink-0 mt-0.5" />
+                <div className="space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                  <p className="font-bold text-slate-900 dark:text-white">
+                    Consumer Protection & Verification Notice
+                  </p>
+                  <p>
+                    AllCardStatus is an independent digital gift card marketplace and validation platform for retail and gaming e-gift vouchers (Apple, Steam, Amazon, Xbox, PlayStation). AllCardStatus is not a government agency, voter registration portal, or banking entity, and does not process government voter ID cards, national identification records, or credit/debit banking cards.
+                  </p>
+                  <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 pt-1">
+                    AllCardStatus is not affiliated with or connected to prepaidcardstatus. All card checks are processed with 256-bit SSL encryption.
+                  </p>
+                </div>
+              </div>
+            </div>
           </>
         )}
 

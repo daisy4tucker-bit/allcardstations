@@ -78,7 +78,7 @@ export const SEO_CONFIG: SEOConfig = {
     'Global consumers, gamers, digital shoppers, and businesses seeking fast and secure electronic gift card purchases and authenticity validation.',
   marketLocation: 'Global / International (US, UK, EU, CA, AU, Worldwide)',
   businessDescription:
-    'AllCardStatus is an independent digital gift card marketplace and multi-brand validation portal delivering authenticated retail and gaming electronic codes (such as Apple, Steam, PlayStation, Xbox, and Amazon) with bank-grade encryption and instant email fulfillment. AllCardStatus is not a government agency, voter registration portal, or banking entity.',
+    'AllCardStatus is an independent digital gift card marketplace and multi-brand validation platform for retail and gaming e-gift vouchers (Apple, Steam, Amazon, Xbox, PlayStation) delivering authenticated electronic codes with bank-grade encryption and instant email fulfillment. AllCardStatus is not a government agency, voter registration portal, or banking entity, and is not affiliated with or connected to prepaidcardstatus.',
   contactEmail: 'support@allcardstatus.com',
   defaultOgImage: 'https://allcardstatus.com/og-image.png',
   twitterHandle: '@allcardstatus',
