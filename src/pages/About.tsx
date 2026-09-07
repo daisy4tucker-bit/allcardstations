@@ -13,6 +13,7 @@ import { SectionHeading } from '../components/ui/SectionHeading';
 import { Button } from '../components/ui/Button';
 import { SEO } from '../components/common/SEO';
 import { SEO_CONFIG } from '../config/seo';
+import { TrustpilotProofSection } from '../components/common/TrustpilotProofSection';
 
 export const About: React.FC = () => {
   const values = [
@@ -93,27 +94,9 @@ export const About: React.FC = () => {
         </div>
       </div>
 
-      {/* Domain Scope & Consumer Protection Notice */}
-      <div className="bg-blue-50/70 dark:bg-slate-900/90 rounded-2xl border border-blue-200 dark:border-blue-900/60 p-6 sm:p-8 max-w-4xl mx-auto my-8 shadow-xs">
-        <div className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 dark:bg-blue-500/20 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shrink-0 mt-0.5">
-            <ShieldCheck className="w-5 h-5" />
-          </div>
-          <div className="space-y-3">
-            <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
-              Consumer Protection & Entity Disambiguation Notice
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-              AllCardStatus is an independent digital gift card marketplace and validation platform for retail and gaming e-gift vouchers (Apple, Steam, Amazon, Xbox, PlayStation). AllCardStatus is not a government agency, voter registration portal, or banking entity, and does not process government voter ID cards, national identification records, or credit/debit banking cards.
-            </p>
-            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-              AllCardStatus is an independent digital gift card marketplace and is not affiliated with, endorsed by, or connected to prepaidcardstatus, government agencies, or financial institutions.
-            </p>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed pt-1 border-t border-blue-200/60 dark:border-blue-900/40">
-              AllCardStatus is a dedicated platform where you can buy, send, and check your gift card status or balance for Apple, Steam, Amazon, PlayStation, Xbox, and top global brands with instant email delivery and secure checkout.
-            </p>
-          </div>
-        </div>
+      {/* Verified Trustpilot Proof & Domain Notice Section */}
+      <div className="max-w-4xl mx-auto">
+        <TrustpilotProofSection />
       </div>
 
       {/* Core Values Grid */}

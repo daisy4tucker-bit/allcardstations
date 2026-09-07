@@ -8,6 +8,7 @@ import { Accordion } from '../components/ui/Accordion';
 import { Button } from '../components/ui/Button';
 import { EmptyState } from '../components/ui/EmptyState';
 import { SEO } from '../components/common/SEO';
+import { TrustpilotProofSection } from '../components/common/TrustpilotProofSection';
 import { FAQS } from '../data/faq';
 
 export const FAQ: React.FC = () => {
@@ -98,6 +99,9 @@ export const FAQ: React.FC = () => {
             );
           })}
         </div>
+
+        {/* Verified Trustpilot Proof & Domain Scope Section */}
+        <TrustpilotProofSection />
 
         {/* Accordion Questions List */}
         {filteredFaqs.length > 0 ? (
