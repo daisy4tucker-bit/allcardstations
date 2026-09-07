@@ -109,7 +109,7 @@ export const GiftCardCard: React.FC<GiftCardCardProps> = ({
           className="w-full py-2.5 px-4 rounded-xl bg-white dark:bg-slate-800/80 hover:bg-blue-50 dark:hover:bg-blue-950/40 text-[#2563EB] dark:text-blue-400 border-2 border-[#2563EB] dark:border-blue-500 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-xs transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB] cursor-pointer"
         >
           <ShieldCheck className="w-4 h-4 text-[#2563EB] dark:text-blue-400" />
-          <span>Validate Card</span>
+          <span>Check Card Status</span>
         </Link>
       </div>
     </div>

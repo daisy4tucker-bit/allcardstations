@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { CreditCard, Menu, X, ShieldCheck, ArrowRight, User, LogOut, LayoutDashboard, Database } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { CreditCard, Menu, X, ShieldCheck, ArrowRight, User, LogOut, LayoutDashboard, Database, Search } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { ThemeToggle } from '../ui/ThemeToggle';
 import { useAuth } from '../../context/AuthContext';
-import { ShareButton } from '../common/ShareButton';
+import { GIFT_CARDS } from '../../data/brands';
 
 export const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const location = useLocation();
+  const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuth();
 
   useEffect(() => {
@@ -20,14 +24,15 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile drawer on route change
+  // Close mobile drawer and search modal on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setIsSearchOpen(false);
   }, [location.pathname]);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll when mobile menu or search modal is open
   useEffect(() => {
-    if (isMobileMenuOpen) {
+    if (isMobileMenuOpen || isSearchOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -35,14 +40,59 @@ export const Navbar: React.FC = () => {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, isSearchOpen]);
+
+  // Focus search input when modal opens
+  useEffect(() => {
+    if (isSearchOpen) {
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 50);
+    } else {
+      setSearchQuery('');
+    }
+  }, [isSearchOpen]);
+
+  // Keyboard shortcut: ESC to close search, Ctrl/Cmd + K to toggle
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isSearchOpen) {
+        setIsSearchOpen(false);
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setIsSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isSearchOpen]);
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      setIsSearchOpen(false);
+      navigate(`/gift-cards?search=${encodeURIComponent(searchQuery.trim())}`);
+    } else {
+      setIsSearchOpen(false);
+      navigate('/gift-cards');
+    }
+  };
+
+  const filteredSearchResults = searchQuery.trim()
+    ? GIFT_CARDS.filter((c) =>
+        c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        c.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        c.tagline?.toLowerCase().includes(searchQuery.toLowerCase())
+      ).slice(0, 6)
+    : GIFT_CARDS.slice(0, 6);
 
   const isAdmin = user?.role === 'ADMIN' || user?.email?.toLowerCase() === 'daisy4tucker@gmail.com';
 
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Gift Cards', path: '/gift-cards' },
-    { name: 'Validate Card', path: '/validate' },
+    { name: 'Check Card Status', path: '/validate' },
     { name: 'How It Works', path: '/how-it-works' },
     { name: 'About', path: '/about' },
     { name: 'FAQ', path: '/faq' },
@@ -108,14 +158,16 @@ export const Navbar: React.FC = () => {
 
             {/* Desktop Right Action Buttons + Theme Toggle */}
             <div className="hidden lg:flex items-center gap-2.5">
-              <ShareButton
-                id="desktop-share-btn"
-                title="AllCardStatus – Digital Gift Card Marketplace & Instant Validation"
-                description="Buy, send, and instantly validate digital gift cards with instant delivery and zero KYC."
-                variant="icon"
-                size="sm"
-                className="text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400"
-              />
+              <button
+                type="button"
+                id="desktop-search-nav-btn"
+                onClick={() => setIsSearchOpen(true)}
+                title="Search Gift Cards (Ctrl+K)"
+                aria-label="Search Gift Cards"
+                className="p-2 rounded-xl text-slate-500 hover:text-[#2563EB] dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer flex items-center justify-center"
+              >
+                <Search className="w-5 h-5" />
+              </button>
               <ThemeToggle id="desktop-theme-toggle" />
               <div className="h-5 w-px bg-slate-200 dark:bg-slate-800 mx-0.5" aria-hidden="true" />
               
@@ -141,16 +193,18 @@ export const Navbar: React.FC = () => {
               )}
             </div>
 
-            {/* Mobile Header Buttons (Share + Theme Toggle + Hamburger) */}
+            {/* Mobile Header Buttons (Search + Theme Toggle + Hamburger) */}
             <div className="flex lg:hidden items-center gap-1.5 sm:gap-2">
-              <ShareButton
-                id="mobile-header-share-btn"
-                title="AllCardStatus – Digital Gift Card Marketplace & Instant Validation"
-                description="Buy, send, and instantly validate digital gift cards with instant delivery and zero KYC."
-                variant="icon"
-                size="sm"
-                className="text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400"
-              />
+              <button
+                type="button"
+                id="mobile-header-search-btn"
+                onClick={() => setIsSearchOpen(true)}
+                title="Search Gift Cards"
+                aria-label="Search Gift Cards"
+                className="p-2 rounded-xl text-slate-500 hover:text-[#2563EB] dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer flex items-center justify-center"
+              >
+                <Search className="w-5 h-5" />
+              </button>
               <ThemeToggle id="mobile-header-theme-toggle" />
               {isAuthenticated && isAdmin && (
                 <Link to="/admin" className="hidden sm:inline-block">
@@ -281,6 +335,135 @@ export const Navbar: React.FC = () => {
                 <ShieldCheck className="w-3.5 h-3.5 text-[#86A98D]" />
                 <span>Encrypted & Verified Platform</span>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Quick Search Modal Overlay */}
+      {isSearchOpen && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-14 sm:pt-20 px-4" role="dialog" aria-modal="true">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-slate-900/60 dark:bg-black/80 backdrop-blur-sm transition-opacity animate-in fade-in duration-150"
+            onClick={() => setIsSearchOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Search Box Modal */}
+          <div className="relative w-full max-w-xl bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-150">
+            {/* Search Input Form */}
+            <form onSubmit={handleSearchSubmit} className="relative flex items-center border-b border-slate-200 dark:border-slate-800 px-4">
+              <Search className="w-5 h-5 text-slate-400 shrink-0" />
+              <input
+                ref={searchInputRef}
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search 50+ gift cards (e.g. Apple, Steam, Amazon)..."
+                className="w-full py-4 pl-3 pr-8 bg-transparent text-sm sm:text-base text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none"
+              />
+              {searchQuery ? (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="p-1 rounded-md text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
+                  title="Clear input"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              ) : (
+                <span className="hidden sm:inline-block text-[11px] font-mono text-slate-400 bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700">
+                  ESC
+                </span>
+              )}
+            </form>
+
+            {/* Popular Brand Chips */}
+            <div className="p-3 bg-slate-50 dark:bg-slate-950/60 border-b border-slate-100 dark:border-slate-800/80">
+              <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none text-xs">
+                <span className="text-slate-400 dark:text-slate-500 font-medium text-[11px] shrink-0 mr-1">Popular:</span>
+                {[
+                  { name: 'Apple', slug: 'apple' },
+                  { name: 'Steam', slug: 'steam' },
+                  { name: 'Amazon', slug: 'amazon' },
+                  { name: 'PlayStation', slug: 'playstation' },
+                  { name: 'Xbox', slug: 'xbox' },
+                  { name: 'Target', slug: 'target' },
+                  { name: 'Netflix', slug: 'netflix' },
+                ].map((brand) => (
+                  <button
+                    key={brand.slug}
+                    type="button"
+                    onClick={() => {
+                      setIsSearchOpen(false);
+                      navigate(`/gift-cards/${brand.slug}`);
+                    }}
+                    className="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-semibold shrink-0 transition-colors shadow-2xs cursor-pointer"
+                  >
+                    {brand.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Live Search Results */}
+            <div className="max-h-80 overflow-y-auto p-2">
+              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 py-1">
+                {searchQuery ? `Matching Results (${filteredSearchResults.length})` : 'Featured Cards'}
+              </div>
+              <div className="space-y-1">
+                {filteredSearchResults.map((card) => (
+                  <button
+                    key={card.id}
+                    type="button"
+                    onClick={() => {
+                      setIsSearchOpen(false);
+                      navigate(`/gift-cards/${card.slug}`);
+                    }}
+                    className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left cursor-pointer group"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden shrink-0 border border-slate-200/80 dark:border-slate-700 p-1">
+                        <img
+                          src={card.image}
+                          alt={card.name}
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                          {card.name}
+                        </p>
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
+                          {card.category} • Instant eDelivery
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0 ml-2">
+                      <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">
+                        From ${card.startingPrice}
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="p-3 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span className="text-slate-500 dark:text-slate-400">
+                {searchQuery ? `Searching for "${searchQuery}"` : 'Browse 50+ supported brands'}
+              </span>
+              <button
+                type="button"
+                onClick={handleSearchSubmit}
+                className="font-bold text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+              >
+                View all gift cards →
+              </button>
             </div>
           </div>
         </div>

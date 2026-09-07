@@ -107,24 +107,24 @@ export const HeroLiveCardShowcase: React.FC = () => {
                     </h3>
                   </div>
 
-                  {/* Direct Action Options: Buy & Validate with transparent background and clean borders */}
+                  {/* Direct Action Options: Buy & Check Status with clean borders and mobile clarity */}
                   <div className="flex items-center gap-2">
                     <Link
                       to={`/gift-cards/${card.slug}`}
                       id={`hero-slide-buy-${card.slug}`}
-                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-transparent hover:bg-white/10 text-white font-bold text-xs border border-white/40 hover:border-white/70 backdrop-blur-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                      className="flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-white/20 hover:bg-white/30 text-white font-bold text-xs border border-white/40 backdrop-blur-md transition-all active:scale-95 cursor-pointer shadow-xs"
                     >
-                      <ShoppingBag className="w-3.5 h-3.5 text-amber-400" />
-                      <span>Buy</span>
+                      <ShoppingBag className="w-3.5 h-3.5 text-amber-300" />
+                      <span>Buy Now</span>
                     </Link>
 
                     <Link
                       to={`/validate?card=${card.slug}`}
                       id={`hero-slide-validate-${card.slug}`}
-                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-transparent hover:bg-blue-950/40 text-blue-300 hover:text-blue-200 font-bold text-xs border border-blue-400/60 hover:border-blue-400 backdrop-blur-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                      className="flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-blue-600/30 hover:bg-blue-600/50 text-blue-200 hover:text-white font-bold text-xs border border-blue-400/60 backdrop-blur-md transition-all active:scale-95 cursor-pointer shadow-xs"
                     >
-                      <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
-                      <span>Validate</span>
+                      <ShieldCheck className="w-3.5 h-3.5 text-blue-300" />
+                      <span>Check Status</span>
                     </Link>
                   </div>
                 </div>

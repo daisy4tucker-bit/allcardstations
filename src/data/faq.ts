@@ -59,7 +59,7 @@ export const FAQS: FAQItem[] = [
     id: 'faq-8',
     category: 'Validation',
     question: 'How does the gift card validation tool work?',
-    answer: 'The Validate Card suite performs rigorous format checks, brand-specific checksum evaluations, visual OCR extraction, and multi-tier security inspection to verify card structural integrity prior to redemption.',
+    answer: 'The Check Card Status suite performs rigorous format checks, brand-specific checksum evaluations, visual OCR extraction, and multi-tier security inspection to verify card structural integrity and balance status.',
   },
   {
     id: 'faq-9',

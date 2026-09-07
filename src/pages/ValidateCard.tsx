@@ -1389,10 +1389,10 @@ export const ValidateCard: React.FC = () => {
                     {uploadedImages.length > 0 && !cardCode.trim() ? (
                       <>
                         <Camera className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                        <span>Validate Card with Attached Photos ({uploadedImages.length})</span>
+                        <span>Check Card Status with Attached Photos ({uploadedImages.length})</span>
                       </>
                     ) : (
-                      <span>Validate Card</span>
+                      <span>Check Card Status</span>
                     )}
                   </button>
 
@@ -1404,7 +1404,7 @@ export const ValidateCard: React.FC = () => {
                         onClick={handleCloseModal}
                         className="text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
                       >
-                        Validate a different brand →
+                        Check a different brand →
                       </button>
                     </div>
                     <div>
@@ -1482,15 +1482,15 @@ export const ValidateCard: React.FC = () => {
 
                   {/* Bottom Card Title & Category */}
                   <div>
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between gap-1.5">
                       <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base leading-snug truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         {brand.name}
                       </h3>
-                      <span className="text-[10px] sm:text-[11px] font-semibold text-blue-600 dark:text-blue-400 shrink-0 ml-1">
+                      <span className="text-[10px] sm:text-xs font-semibold text-blue-600 dark:text-blue-400 border border-blue-500 dark:border-blue-400/80 bg-blue-50/60 dark:bg-blue-950/40 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg shrink-0 transition-all group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 shadow-2xs">
                         Verify →
                       </span>
                     </div>
-                    <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-500 font-medium mt-0.5 truncate">
+                    <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-500 font-medium mt-1 truncate">
                       {brand.category}
                     </p>
                   </div>

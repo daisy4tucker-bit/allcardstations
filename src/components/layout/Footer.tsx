@@ -126,7 +126,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/validate" className="text-slate-500 dark:text-slate-400 hover:text-[#2563EB] dark:hover:text-blue-400 transition-colors">
-                  Validate a Card
+                  Check Card Status
                 </Link>
               </li>
             </ul>
