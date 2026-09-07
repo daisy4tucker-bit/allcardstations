@@ -28,17 +28,17 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   const HeadingTag = as;
 
   return (
-    <div className={`flex flex-col ${alignmentStyles[align]} max-w-3xl mb-8 sm:mb-12 ${className}`}>
+    <div className={`flex flex-col ${alignmentStyles[align]} max-w-3xl mb-4 sm:mb-6 lg:mb-8 ${className}`}>
       {tag && (
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60 mb-3">
+        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wide uppercase bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60 mb-2 sm:mb-2.5">
           {tag}
         </span>
       )}
-      <HeadingTag className={`text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight ${titleClassName}`}>
+      <HeadingTag className={`text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-snug ${titleClassName}`}>
         {title}
       </HeadingTag>
       {subtitle && (
-        <p className="mt-3.5 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+        <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
           {subtitle}
         </p>
       )}

@@ -185,10 +185,10 @@ export const GiftCardDetails: React.FC = () => {
           }
         }}
       />
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start">
         
         {/* Left Column: Visual Gift Card & Feature Highlights */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="lg:col-span-5 space-y-4">
           {/* Main Visual Gift Card Display */}
           <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-slate-900/10 dark:border-slate-700/30 bg-slate-900">
             {card.image ? (
@@ -222,7 +222,7 @@ export const GiftCardDetails: React.FC = () => {
 
             {/* Overlaid Selected Denomination & Currency Badge */}
             <div className="absolute top-4 right-4 z-10">
-              <span className="text-sm font-mono font-extrabold text-white bg-slate-950/85 px-3.5 py-1.5 rounded-xl border border-white/25 shadow-lg backdrop-blur-xs flex items-center gap-1.5">
+              <span className="text-xs sm:text-sm font-mono font-extrabold text-white bg-slate-950/85 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl border border-white/25 shadow-lg backdrop-blur-xs flex items-center gap-1.5">
                 <span>{activeCurrency.symbol}{effectiveAmount > 0 ? effectiveAmount : '--'}</span>
                 <span className="text-[11px] text-slate-300 font-normal">{activeCurrency.code}</span>
               </span>
@@ -230,12 +230,12 @@ export const GiftCardDetails: React.FC = () => {
           </div>
 
           {/* Key Card Guarantees / Features Box */}
-          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 space-y-3.5 shadow-xs">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-5 space-y-2.5 shadow-2xs">
+            <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
               AllCardStatus Assurance
             </h4>
 
-            <div className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+            <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
               <div className="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
                 <CheckCircle2 className="w-3.5 h-3.5" />
               </div>
@@ -244,7 +244,7 @@ export const GiftCardDetails: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+            <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
               <div className="w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 mt-0.5">
                 <Lock className="w-3.5 h-3.5" />
               </div>
@@ -253,7 +253,7 @@ export const GiftCardDetails: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+            <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
               <div className="w-5 h-5 rounded-full bg-amber-100 dark:bg-amber-950/70 text-amber-700 dark:text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
                 <ShieldCheck className="w-3.5 h-3.5" />
               </div>
@@ -265,22 +265,22 @@ export const GiftCardDetails: React.FC = () => {
         </div>
 
         {/* Right Column: Details, Currency Picker, Custom/Preset Amount, Checkout Action */}
-        <div className="lg:col-span-7 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-xs">
+        <div className="lg:col-span-7 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 shadow-2xs">
           {/* Header & Badges */}
-          <div className="flex flex-wrap items-center gap-2.5 mb-3">
-            <Badge variant="primary" size="md">
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <Badge variant="primary" size="sm">
               {category}
             </Badge>
-            <Badge variant="default" size="md">
+            <Badge variant="default" size="sm">
               Region: {region}
             </Badge>
-            <Badge variant="success" size="md">
+            <Badge variant="success" size="sm">
               {redemptionType}
             </Badge>
           </div>
 
           <div className="flex items-start justify-between gap-4 mb-2">
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               {name}
             </h1>
             <div className="flex items-center gap-2">
@@ -310,21 +310,21 @@ export const GiftCardDetails: React.FC = () => {
             </div>
           </div>
 
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
             {longDescription || description}
           </p>
 
-          <hr className="border-slate-100 dark:border-slate-800 mb-6" />
+          <hr className="border-slate-100 dark:border-slate-800 mb-4" />
 
           {/* Currency Selection Section */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-2.5">
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+          <div className="mb-4">
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
                 <Globe className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
                 <span>Currency</span>
               </label>
               <div className="flex items-center gap-2">
-                <span className="text-xs text-slate-500 dark:text-slate-400">
+                <span className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">
                   Selected: <strong className="text-indigo-600 dark:text-indigo-400 font-bold">{activeCurrency.name} ({activeCurrency.code})</strong>
                 </span>
                 <button
@@ -340,25 +340,25 @@ export const GiftCardDetails: React.FC = () => {
             {isCurrencyFolded ? (
               <div 
                 onClick={() => setIsCurrencyFolded(false)}
-                className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex items-center justify-between cursor-pointer hover:border-indigo-400 transition-all shadow-2xs"
+                className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex items-center justify-between cursor-pointer hover:border-indigo-400 transition-all shadow-2xs"
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-xl">{activeCurrency.flag}</span>
+                <div className="flex items-center gap-2.5">
+                  <span className="text-lg sm:text-xl">{activeCurrency.flag}</span>
                   <div>
                     <div className="font-extrabold text-slate-900 dark:text-white text-xs sm:text-sm">
                       {activeCurrency.code} — {activeCurrency.name} ({activeCurrency.symbol})
                     </div>
-                    <div className="text-[11px] text-slate-500 dark:text-slate-400">
-                      Currency chosen successfully • Click to change or unfold
+                    <div className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400">
+                      Currency chosen • Click to change
                     </div>
                   </div>
                 </div>
-                <span className="text-xs font-bold px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800">
+                <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800">
                   Change
                 </span>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5 sm:gap-2">
                 {SUPPORTED_CURRENCIES.slice(0, 10).map((curr) => {
                   const isCurSelected = selectedCurrency === curr.code;
                   return (
@@ -370,7 +370,7 @@ export const GiftCardDetails: React.FC = () => {
                         setSelectedCurrency(curr.code);
                         setIsCurrencyFolded(true);
                       }}
-                      className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1.5 border cursor-pointer ${
+                      className={`py-1.5 px-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 border cursor-pointer ${
                         isCurSelected
                           ? 'bg-indigo-50 dark:bg-indigo-950/80 border-indigo-600 text-indigo-700 dark:text-indigo-300 ring-2 ring-indigo-500/20'
                           : 'bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
@@ -387,18 +387,18 @@ export const GiftCardDetails: React.FC = () => {
           </div>
 
           {/* Amount Input */}
-          <div className="mb-8 space-y-2">
+          <div className="mb-4 space-y-1.5">
             <div className="flex items-center justify-between">
-              <label htmlFor="input-card-amount" className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+              <label htmlFor="input-card-amount" className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
                 Enter Card Amount ({activeCurrency.code})
               </label>
-              <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+              <span className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">
                 Min {activeCurrency.symbol}50 • Max {activeCurrency.symbol}10,000
               </span>
             </div>
 
             <div className="relative">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 font-bold font-mono text-base pointer-events-none">
+              <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 font-bold font-mono text-base pointer-events-none">
                 {activeCurrency.symbol}
               </div>
               <input
@@ -410,9 +410,9 @@ export const GiftCardDetails: React.FC = () => {
                 placeholder="Enter amount (min. 50)"
                 value={amountInput}
                 onChange={(e) => handleAmountChange(e.target.value)}
-                className="w-full pl-16 pr-16 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white font-bold text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white dark:focus:bg-slate-900 transition-all"
+                className="w-full pl-12 pr-14 py-2.5 sm:py-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white font-bold text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white dark:focus:bg-slate-900 transition-all"
               />
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 pointer-events-none">
+              <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 pointer-events-none">
                 {activeCurrency.code}
               </div>
             </div>
@@ -426,7 +426,7 @@ export const GiftCardDetails: React.FC = () => {
           </div>
 
           {/* Real-time Live Currency Conversion API Box */}
-          <div className="mb-6">
+          <div className="mb-4">
             <LiveCurrencyConverter
               cardAmount={effectiveAmount > 0 ? effectiveAmount : 50}
               cardBaseCurrency={card?.currency || 'USD'}
@@ -443,35 +443,35 @@ export const GiftCardDetails: React.FC = () => {
           </div>
 
           {/* Order Summary Box */}
-          <div className="bg-slate-50 dark:bg-slate-950/60 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-5 mb-8 space-y-3">
-            <div className="flex justify-between items-center text-sm text-slate-600 dark:text-slate-300">
+          <div className="bg-slate-50 dark:bg-slate-950/60 rounded-xl border border-slate-200/80 dark:border-slate-800 p-3.5 sm:p-4 mb-5 space-y-2.5">
+            <div className="flex justify-between items-center text-xs sm:text-sm text-slate-600 dark:text-slate-300">
               <span>Selected Amount & Currency:</span>
-              <span className="font-bold text-slate-900 dark:text-white text-base">
+              <span className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">
                 {formatCurrencyAmount(effectiveAmount, selectedCurrency)} ({activeCurrency.code})
               </span>
             </div>
 
-            <div className="flex justify-between items-center text-sm text-slate-600 dark:text-slate-300">
+            <div className="flex justify-between items-center text-xs sm:text-sm text-slate-600 dark:text-slate-300">
               <span className="flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                <Clock className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
                 <span>Estimated Delivery:</span>
               </span>
-              <span className="font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded">
+              <span className="font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded text-xs">
                 Digital Delivery (&lt; 1 min)
               </span>
             </div>
 
-            <div className="flex justify-between items-center text-sm text-slate-600 dark:text-slate-300">
+            <div className="flex justify-between items-center text-xs sm:text-sm text-slate-600 dark:text-slate-300">
               <span>Platform Service Fee (5.499%):</span>
               <span className="font-semibold text-slate-900 dark:text-white">
                 {formatCurrencyAmount(platformServiceFee, selectedCurrency)}
               </span>
             </div>
 
-            <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-between items-baseline">
-              <span className="text-base font-bold text-slate-900 dark:text-white">Total Order Price:</span>
+            <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex justify-between items-baseline">
+              <span className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Total Order Price:</span>
               <div className="text-right">
-                <span className="text-2xl font-extrabold text-slate-900 dark:text-white">
+                <span className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
                   {formatCurrencyAmount(totalOrderPrice, selectedCurrency)}
                 </span>
                 <span className="text-xs text-slate-500 dark:text-slate-400 ml-1">{activeCurrency.code}</span>
@@ -480,23 +480,23 @@ export const GiftCardDetails: React.FC = () => {
           </div>
 
           {/* Action Button */}
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             <Button
               id="btn-continue-checkout"
-              size="lg"
+              size="md"
               variant="primary"
               onClick={handleStartCheckout}
               disabled={!isValidAmount || !amountInput}
               isLoading={isProcessingCheckout}
-              className="w-full text-base py-3.5 shadow-md shadow-indigo-600/20"
-              rightIcon={<CreditCard className="w-5 h-5" />}
+              className="w-full text-sm sm:text-base py-3 shadow-md shadow-indigo-600/20"
+              rightIcon={<CreditCard className="w-4 h-4" />}
             >
               {isProcessingCheckout 
                 ? 'Securing Digital Allocation...' 
                 : `Continue to Checkout (${formatCurrencyAmount(totalOrderPrice, selectedCurrency)})`}
             </Button>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <ShareButton
                 id={`btn-share-bottom-${slug}`}
                 title={`${name} Digital Gift Card`}
@@ -504,13 +504,13 @@ export const GiftCardDetails: React.FC = () => {
                 url={typeof window !== 'undefined' ? window.location.href : `https://allcardstatus.com/gift-cards/${slug}`}
                 image={card.image}
                 variant="outline"
-                size="md"
+                size="sm"
                 label="Share Card Link"
-                className="w-full justify-center py-3"
+                className="w-full justify-center py-2.5"
               />
               <Link
                 to={`/validate?card=${slug}`}
-                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
               >
                 <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" />
                 <span className="truncate">Check PIN & Balance</span>

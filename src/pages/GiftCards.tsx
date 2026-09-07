@@ -271,7 +271,7 @@ export const GiftCards: React.FC = () => {
         </div>
 
         {/* Category Horizontal Filter Bar */}
-        <div className="mt-4">
+        <div className="mt-2.5 sm:mt-3">
           <CategoryFilter
             selectedCategory={selectedCategory}
             onSelectCategory={setSelectedCategory}
@@ -279,9 +279,9 @@ export const GiftCards: React.FC = () => {
         </div>
 
         {/* Secondary Filter Bar (Region, Currency, Price Range) */}
-        <div className={`mt-4 pt-4 border-t border-slate-200/80 dark:border-slate-800 ${showMobileFilters ? 'block' : 'hidden lg:block'}`}>
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-            <div className="grid grid-cols-1 sm:grid-cols-3 lg:flex lg:flex-row items-center gap-3 w-full lg:w-auto">
+        <div className={`mt-2.5 sm:mt-3 pt-2.5 sm:pt-3 border-t border-slate-200/80 dark:border-slate-800 ${showMobileFilters ? 'block' : 'hidden lg:block'}`}>
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:flex lg:flex-row items-center gap-2 sm:gap-3 w-full lg:w-auto">
               <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1 col-span-full lg:col-auto">
                 <Filter className="w-3.5 h-3.5" />
                 <span>Filters:</span>
@@ -338,7 +338,7 @@ export const GiftCards: React.FC = () => {
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="self-start lg:self-auto text-xs font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 flex items-center gap-1 py-2 px-3 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors cursor-pointer"
+                className="self-start lg:self-auto text-xs font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 flex items-center gap-1 py-1.5 px-2.5 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors cursor-pointer"
               >
                 <X className="w-3.5 h-3.5" />
                 <span>Reset Filters ({activeFilterCount})</span>
@@ -349,8 +349,8 @@ export const GiftCards: React.FC = () => {
       </div>
 
       {/* Results Header / Counter */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
+      <div className="flex items-center justify-between mb-3 sm:mb-4">
+        <div className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
           <span>
             Showing <span className="text-indigo-600 dark:text-indigo-400 font-bold">{filteredGiftCards.length}</span> {filteredGiftCards.length === 1 ? 'gift card' : 'gift cards'}
             {selectedCategory !== 'All' && ` in ${selectedCategory}`}
@@ -371,7 +371,7 @@ export const GiftCards: React.FC = () => {
           progress={fetchProgress}
         />
       ) : filteredGiftCards.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-5">
           {filteredGiftCards.map((card) => (
             <GiftCardCard 
               key={card.id} 

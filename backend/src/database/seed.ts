@@ -123,7 +123,7 @@ export async function seedDatabase() {
         description: 'Enjoy ad-free music, offline listening, and unlimited skips with prepaid Spotify Premium.',
         startingPrice: 10.0,
         available: true,
-        image: 'https://images.unsplash.com/photo-1614680376593-902f749f7ffc?w=600&auto=format&fit=crop&q=80',
+        image: 'https://cdn.shopify.com/s/files/1/0267/6935/8923/products/spotify-card_2000x.png?v=1591691902',
       },
       {
         id: 'gc-roblox',

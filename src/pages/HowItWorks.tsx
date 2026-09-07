@@ -106,7 +106,7 @@ export const HowItWorks: React.FC = () => {
       />
 
       {/* 4 Steps Timeline Section */}
-      <div className="space-y-8 my-12 max-w-5xl mx-auto">
+      <div className="space-y-4 sm:space-y-6 my-6 sm:my-8 max-w-5xl mx-auto">
         {steps.map((step) => {
           const IconComp = step.icon;
 
@@ -114,34 +114,34 @@ export const HowItWorks: React.FC = () => {
             <div
               key={step.number}
               id={`step-${step.number}`}
-              className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 lg:p-10 shadow-xs hover:shadow-lg transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+              className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 lg:p-7 shadow-2xs hover:shadow-md transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-center"
             >
               {/* Step Number & Visual Badge */}
-              <div className="lg:col-span-4 flex flex-col items-start lg:items-center text-left lg:text-center p-6 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-100 dark:border-slate-800">
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-tr ${step.color} text-white flex items-center justify-center shadow-md mb-4`}>
-                  <IconComp className="w-7 h-7" />
+              <div className="lg:col-span-4 flex flex-col items-start lg:items-center text-left lg:text-center p-3.5 sm:p-5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-100 dark:border-slate-800">
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-tr ${step.color} text-white flex items-center justify-center shadow-xs mb-2 sm:mb-3`}>
+                  <IconComp className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <div className="text-3xl sm:text-4xl font-extrabold font-mono text-slate-900 dark:text-white tracking-tight">
+                <div className="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900 dark:text-white tracking-tight">
                   Step {step.number}
                 </div>
-                <div className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mt-1">
+                <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mt-0.5 sm:mt-1">
                   {step.subtitle}
                 </div>
               </div>
 
               {/* Step Details & Bullet Points */}
-              <div className="lg:col-span-8 space-y-4">
-                <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
+              <div className="lg:col-span-8 space-y-2.5 sm:space-y-3">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white">
                   {step.title}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
                   {step.description}
                 </p>
 
-                <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="pt-1.5 grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {step.points.map((pt, pIdx) => (
                     <div key={pIdx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                       <span>{pt}</span>
                     </div>
                   ))}
@@ -153,31 +153,31 @@ export const HowItWorks: React.FC = () => {
       </div>
 
       {/* Assurance Highlights Grid */}
-      <div className="bg-slate-900 dark:bg-slate-950 text-white rounded-3xl p-8 sm:p-12 my-16 relative overflow-hidden border border-slate-800">
+      <div className="bg-slate-900 dark:bg-slate-950 text-white rounded-2xl p-5 sm:p-8 my-8 sm:my-10 relative overflow-hidden border border-slate-800">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(99,102,241,0.25),transparent_70%)]" />
         
-        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-400/30">
+        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-3 sm:space-y-4">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-400/30">
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
             <span>Digital Delivery Guarantee</span>
           </span>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
             Ready to experience seamless digital gifting?
           </h2>
 
-          <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
             Browse our digital marketplace right now to explore gift cards from top gaming, retail, and entertainment brands.
           </p>
 
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3">
             <Link to="/gift-cards" className="w-full sm:w-auto">
-              <Button size="lg" variant="primary" className="w-full sm:w-auto bg-indigo-500 hover:bg-indigo-600" rightIcon={<ArrowRight className="w-4 h-4" />}>
+              <Button size="md" variant="primary" className="w-full sm:w-auto bg-indigo-500 hover:bg-indigo-600" rightIcon={<ArrowRight className="w-4 h-4" />}>
                 Browse Gift Cards
               </Button>
             </Link>
             <Link to="/faq" className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-slate-900/90 text-white border-indigo-400/50 hover:bg-slate-800 font-bold">
+              <Button size="md" variant="outline" className="w-full sm:w-auto bg-slate-900/90 text-white border-indigo-400/50 hover:bg-slate-800 font-bold">
                 View Common Questions
               </Button>
             </Link>

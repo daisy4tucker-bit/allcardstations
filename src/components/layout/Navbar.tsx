@@ -74,25 +74,25 @@ export const Navbar: React.FC = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20">
+          <div className="flex items-center justify-between h-14 sm:h-16">
             {/* Brand Logo / Wordmark */}
             <Link
               to="/"
               id="brand-logo"
-              className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-[#2563EB] rounded-xl p-1 -ml-1 transition-all"
+              className="flex items-center gap-2.5 group focus:outline-none focus:ring-2 focus:ring-[#2563EB] rounded-xl p-1 -ml-1 transition-all"
             >
-              <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-xs flex items-center justify-center p-1 group-hover:border-[#2563EB]/50 group-hover:shadow-md group-hover:shadow-blue-500/10 group-hover:scale-105 transition-all duration-300">
+              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-xs flex items-center justify-center p-1 group-hover:border-[#2563EB]/50 group-hover:shadow-md group-hover:shadow-blue-500/10 group-hover:scale-105 transition-all duration-300">
                 <img src="/logo.svg" alt="AllCardStatus Logo" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
               </div>
               <div className="flex flex-col justify-center">
                 <div className="flex items-center">
-                  <span className="text-xl font-black tracking-tight text-slate-900 dark:text-white leading-none">
+                  <span className="text-lg sm:text-xl font-black tracking-tight text-slate-900 dark:text-white leading-none">
                     All<span className="text-[#2563EB] dark:text-blue-400">Card</span>Status
                   </span>
                   <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#2563EB] dark:bg-blue-400 ml-0.5 -mt-2 animate-pulse" />
                 </div>
-                <div className="flex items-center gap-1.5 mt-1">
-                  <span className="text-[10px] font-extrabold text-[#2563EB] dark:text-blue-400 uppercase tracking-widest leading-none">
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <span className="text-[9px] sm:text-[10px] font-extrabold text-[#2563EB] dark:text-blue-400 uppercase tracking-widest leading-none">
                     Digital Marketplace
                   </span>
                 </div>

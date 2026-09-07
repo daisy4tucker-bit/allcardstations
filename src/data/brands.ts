@@ -524,10 +524,10 @@ export const GIFT_CARDS: GiftCard[] = [
     },
     symbol: 'SPOT',
     tagline: 'Soundtrack every moment with ad-free music',
-    image: 'https://cloud.shopback.com/shopback/image/fetch/c_scale,c_auto,q_70,f_webp/https://cloud.shopback.com/image/upload/v1730957379/app-assets/AU/giftcards/spotify/spotify_giftcard_600x400_v2.png',
+    image: 'https://cdn.shopify.com/s/files/1/0267/6935/8923/products/spotify-card_2000x.png?v=1591691902',
     redemptionType: 'Online',
-    popular: false,
-    featured: false,
+    popular: true,
+    featured: true,
     terms: [
       'Applies to standard standalone Individual Premium subscription plans.',
       'Cannot be applied to discounted Student or Family memberships.',

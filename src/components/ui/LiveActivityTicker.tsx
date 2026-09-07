@@ -88,7 +88,7 @@ export const LiveActivityTicker: React.FC<LiveActivityTickerProps> = ({
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 text-xs">
           
           {/* Top micro-bar on mobile: Live Indicator Badge */}
-          <div className="flex items-center justify-between sm:justify-start">
+          <div className="flex items-center justify-center sm:justify-start">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-[11px] shrink-0">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />

@@ -9,10 +9,11 @@ import {
 import { GIFT_CARDS } from '../../data/brands';
 
 export const HeroLiveCardShowcase: React.FC = () => {
-  // Curated showcase cards representing major top brands
-  const showcaseSlugs = ['apple', 'playstation', 'xbox', 'amazon', 'steam', 'target', 'netflix', 'spotify'];
-  const showcaseCards = GIFT_CARDS.filter((c) => showcaseSlugs.includes(c.slug));
-  const cards = showcaseCards.length > 0 ? showcaseCards : GIFT_CARDS.slice(0, 6);
+  // Curated showcase cards representing major top brands (featuring Spotify, Apple, etc.)
+  const showcaseSlugs = ['spotify', 'apple', 'playstation', 'xbox', 'amazon', 'steam', 'target', 'netflix'];
+  const cards = showcaseSlugs
+    .map((slug) => GIFT_CARDS.find((c) => c.slug === slug))
+    .filter((c): c is (typeof GIFT_CARDS)[0] => Boolean(c));
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
@@ -77,6 +78,11 @@ export const HeroLiveCardShowcase: React.FC = () => {
                     loading="lazy"
                     decoding="async"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      if (card.slug === 'spotify') {
+                        (e.currentTarget as HTMLImageElement).src = '/cards/spotify.png';
+                      }
+                    }}
                     className="w-full h-full object-cover select-none"
                   />
                 ) : (
@@ -152,6 +158,31 @@ export const HeroLiveCardShowcase: React.FC = () => {
         >
           <ChevronRight className="w-4 h-4" />
         </button>
+      </div>
+
+      {/* Interactive Carousel Pagination Dots & Brand Indicators */}
+      <div className="flex items-center justify-center gap-1.5 mt-3 px-2">
+        {cards.map((card, idx) => {
+          const isActive = idx === currentIndex;
+          return (
+            <button
+              key={`dot-${card.id}`}
+              type="button"
+              id={`hero-slide-dot-${card.slug}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentIndex(idx);
+              }}
+              aria-label={`Jump to ${card.name} card`}
+              title={`${card.name} (${card.category})`}
+              className={`transition-all duration-300 rounded-full cursor-pointer flex items-center justify-center ${
+                isActive
+                  ? 'w-7 h-2 bg-[#2563EB] shadow-xs'
+                  : 'w-2 h-2 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-600'
+              }`}
+            />
+          );
+        })}
       </div>
     </div>
   );

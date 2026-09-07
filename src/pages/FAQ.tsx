@@ -69,7 +69,7 @@ export const FAQ: React.FC = () => {
         />
 
         {/* Search Bar */}
-        <div className="mb-6">
+        <div className="mb-3 sm:mb-4">
           <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
@@ -78,7 +78,7 @@ export const FAQ: React.FC = () => {
         </div>
 
         {/* Category Filters */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 pb-3 mb-8">
+        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth -mx-3 px-3 sm:mx-0 sm:px-0 pb-2 mb-4 sm:mb-6">
           {categories.map((cat) => {
             const isSelected = selectedCategory === cat;
             return (
@@ -87,7 +87,7 @@ export const FAQ: React.FC = () => {
                 type="button"
                 id={`faq-cat-${cat.toLowerCase().replace(/\s+/g, '-')}`}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 shrink-0 ${
+                className={`px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 shrink-0 ${
                   isSelected
                     ? 'bg-indigo-600 text-white shadow-xs'
                     : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
@@ -101,7 +101,7 @@ export const FAQ: React.FC = () => {
 
         {/* Accordion Questions List */}
         {filteredFaqs.length > 0 ? (
-          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-xs mb-12">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 shadow-2xs mb-6 sm:mb-8">
             <Accordion items={filteredFaqs} defaultOpenIndex={0} />
           </div>
         ) : (
@@ -113,18 +113,18 @@ export const FAQ: React.FC = () => {
               setSearchQuery('');
               setSelectedCategory('All');
             }}
-            className="mb-12"
+            className="mb-6 sm:mb-8"
           />
         )}
 
         {/* Still Have Questions Box */}
-        <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 dark:from-slate-950 dark:via-indigo-950 dark:to-slate-950 text-white rounded-3xl p-8 sm:p-10 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-6 border border-slate-800">
-          <div className="space-y-2 text-center sm:text-left">
+        <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 dark:from-slate-950 dark:via-indigo-950 dark:to-slate-950 text-white rounded-2xl p-4 sm:p-6 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 border border-slate-800">
+          <div className="space-y-1.5 text-center sm:text-left">
             <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-400">
               <HelpCircle className="w-4 h-4" />
               <span>Need More Assistance?</span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold text-white">
               Still have questions about your order?
             </h3>
             <p className="text-slate-300 text-xs sm:text-sm max-w-md">
@@ -134,7 +134,7 @@ export const FAQ: React.FC = () => {
 
           <Link to="/contact" className="shrink-0 w-full sm:w-auto">
             <Button
-              size="lg"
+              size="md"
               variant="primary"
               className="w-full sm:w-auto bg-indigo-500 hover:bg-indigo-600"
               rightIcon={<ArrowRight className="w-4 h-4" />}

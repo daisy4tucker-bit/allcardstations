@@ -161,8 +161,8 @@ export const Home: React.FC = () => {
         ]}
       />
       {/* HERO SECTION */}
-      <section className="relative bg-[#F5F7FA] dark:bg-slate-950 text-[#1E293B] dark:text-white pt-6 pb-12 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-18 border-b border-slate-200 dark:border-slate-800 transition-colors">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <section className="relative bg-[#F5F7FA] dark:bg-slate-950 text-[#1E293B] dark:text-white pt-3 pb-6 sm:pt-6 sm:pb-10 lg:pt-8 lg:pb-12 border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div className="relative max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-4 sm:space-y-6">
           
           {/* Top Live Ticker Ribbon */}
           <div>
@@ -175,19 +175,19 @@ export const Home: React.FC = () => {
           </div>
 
           {/* Carousel & Featured Display of Cards Showcase (Rendered directly after Live Stream container) */}
-          <div className="space-y-5 max-w-4xl mx-auto pt-1">
+          <div className="space-y-3 sm:space-y-4 max-w-4xl mx-auto pt-1">
             {/* Micro Trust & Gold Review Button Header Row */}
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-slate-700 dark:text-slate-300 font-medium">
-              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs text-slate-700 dark:text-slate-300 font-medium">
+              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200 text-[11px] sm:text-xs">
+                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500 shrink-0" />
                 <span>Instant eDelivery</span>
               </div>
-              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200">
-                <Lock className="w-4 h-4 text-[#2563EB] shrink-0" />
+              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200 text-[11px] sm:text-xs">
+                <Lock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#2563EB] shrink-0" />
                 <span>256-bit Encrypted</span>
               </div>
-              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200">
-                <Zap className="w-4 h-4 text-amber-500 shrink-0" />
+              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200 text-[11px] sm:text-xs">
+                <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 shrink-0" />
                 <span>Zero Inactivity Fees</span>
               </div>
               <button
@@ -196,7 +196,7 @@ export const Home: React.FC = () => {
                 onClick={() => {
                   document.getElementById('customer-reviews-section')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-amber-300 dark:border-amber-500/80 bg-amber-50/90 hover:bg-amber-100 dark:bg-amber-950/60 dark:hover:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-bold text-xs transition-all shadow-xs cursor-pointer hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-1.5 px-3 py-0.5 sm:py-1 rounded-full border border-amber-300 dark:border-amber-500/80 bg-amber-50/90 hover:bg-amber-100 dark:bg-amber-950/60 dark:hover:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-bold text-[11px] sm:text-xs transition-all shadow-2xs cursor-pointer hover:scale-105 active:scale-95"
               >
                 <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500 shrink-0" />
                 <span>Client Reviews (4.9/5)</span>
@@ -208,47 +208,47 @@ export const Home: React.FC = () => {
           </div>
 
           {/* Clean Main Header */}
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1E293B] dark:text-white">
+          <div className="text-center max-w-3xl mx-auto space-y-1.5 sm:space-y-2">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#1E293B] dark:text-white leading-tight">
               AllCardStatus – Digital Gift Cards & Instant Card Validation
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
               Choose an action below to get started. You can buy new digital gift cards with instant delivery, or verify the status and balance of an existing card.
             </p>
           </div>
 
           {/* TWO MAIN CLEAR CHOICE CARDS */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-5 max-w-4xl mx-auto">
             
             {/* OPTION 1: BUY A GIFT CARD */}
-            <div className="rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow">
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center text-[#2563EB] dark:text-blue-400 shrink-0">
-                    <ShoppingBag className="w-6 h-6" />
+            <div className="rounded-xl sm:rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 flex flex-col justify-between shadow-2xs hover:shadow-md transition-shadow">
+              <div className="space-y-2 sm:space-y-2.5">
+                <div className="flex items-center gap-2.5 sm:gap-3">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center text-[#2563EB] dark:text-blue-400 shrink-0">
+                    <ShoppingBag className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#2563EB] dark:text-blue-400 font-mono">Option 1</span>
-                    <h2 className="text-xl font-extrabold text-[#1E293B] dark:text-white">Buy a Gift Card</h2>
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#2563EB] dark:text-blue-400 font-mono">Option 1</span>
+                    <h2 className="text-base sm:text-lg lg:text-xl font-extrabold text-[#1E293B] dark:text-white leading-tight">Buy a Gift Card</h2>
                   </div>
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   Purchase authentic digital gift cards for Apple, Amazon, Steam, Xbox, PlayStation, and 50+ brands. Delivered to your email instantly.
                 </p>
-                <div className="flex flex-wrap gap-1.5 pt-1">
+                <div className="flex flex-wrap gap-1.5 pt-0.5">
                   {['Apple', 'Amazon', 'PlayStation', 'Xbox', 'Steam', 'Target'].map((brand) => (
-                    <span key={brand} className="text-[11px] px-2.5 py-1 rounded-lg bg-[#F5F7FA] dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">
+                    <span key={brand} className="text-[10px] sm:text-[11px] px-2 py-0.5 rounded-md sm:rounded-lg bg-[#F5F7FA] dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">
                       {brand}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800">
+              <div className="pt-3.5 mt-3 border-t border-slate-100 dark:border-slate-800">
                 <Link
                   to="/gift-cards"
                   id="hero-buy-gift-card-btn"
-                  className="w-full py-3.5 px-5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs"
+                  className="w-full py-2.5 sm:py-3 px-4 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-xs"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>Browse & Buy Cards</span>
@@ -258,34 +258,34 @@ export const Home: React.FC = () => {
             </div>
 
             {/* OPTION 2: VALIDATE A CARD */}
-            <div className="rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow">
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center text-[#2563EB] dark:text-blue-400 shrink-0">
-                    <ShieldCheck className="w-6 h-6" />
+            <div className="rounded-xl sm:rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 flex flex-col justify-between shadow-2xs hover:shadow-md transition-shadow">
+              <div className="space-y-2 sm:space-y-2.5">
+                <div className="flex items-center gap-2.5 sm:gap-3">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center text-[#2563EB] dark:text-blue-400 shrink-0">
+                    <ShieldCheck className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#2563EB] dark:text-blue-400 font-mono">Option 2</span>
-                    <h2 className="text-xl font-extrabold text-[#1E293B] dark:text-white">Check Card Status</h2>
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#2563EB] dark:text-blue-400 font-mono">Option 2</span>
+                    <h2 className="text-base sm:text-lg lg:text-xl font-extrabold text-[#1E293B] dark:text-white leading-tight">Check Card Status</h2>
                   </div>
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   Check if your gift card is active, verify its available balance, or test your physical card code and receipt photos securely.
                 </p>
-                <div className="flex flex-wrap gap-1.5 pt-1">
+                <div className="flex flex-wrap gap-1.5 pt-0.5">
                   {['Balance Check', 'Code Authenticity', 'Photo Verification', 'Instant Results'].map((tag) => (
-                    <span key={tag} className="text-[11px] px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950/40 text-[#2563EB] dark:text-blue-300 font-medium">
+                    <span key={tag} className="text-[10px] sm:text-[11px] px-2 py-0.5 rounded-md sm:rounded-lg bg-blue-50 dark:bg-blue-950/40 text-[#2563EB] dark:text-blue-300 font-medium">
                       {tag}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800">
+              <div className="pt-3.5 mt-3 border-t border-slate-100 dark:border-slate-800">
                 <Link
                   to="/validate"
                   id="hero-validate-card-btn"
-                  className="w-full py-3.5 px-5 rounded-xl border-2 border-[#2563EB] dark:border-blue-500 bg-white dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-950/40 text-[#2563EB] dark:text-blue-400 font-bold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs"
+                  className="w-full py-2.5 sm:py-3 px-4 rounded-xl border-2 border-[#2563EB] dark:border-blue-500 bg-white dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-950/40 text-[#2563EB] dark:text-blue-400 font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-xs"
                 >
                   <ShieldCheck className="w-4 h-4 text-[#2563EB] dark:text-blue-400" />
                   <span>Check Card Status</span>
@@ -426,19 +426,19 @@ export const Home: React.FC = () => {
       </section>
 
       {/* TRUST & REAL-TIME STATS SECTION */}
-      <section className="relative py-12 sm:py-16 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-6 sm:py-10 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           
           {/* Timescale Selector Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-slate-100 dark:border-slate-800/80">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6 pb-3 border-b border-slate-100 dark:border-slate-800/80">
             <div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                <h3 className="text-sm uppercase font-mono tracking-wider text-[#2563EB] dark:text-blue-400 font-bold">
+                <h3 className="text-xs sm:text-sm uppercase font-mono tracking-wider text-[#2563EB] dark:text-blue-400 font-bold">
                   Verified Marketplace Metrics
                 </h3>
               </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                 Comparing all-time platform volume with live 24-hour activity.
               </p>
             </div>
@@ -448,7 +448,7 @@ export const Home: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setStatsView('comparison')}
-                className={`flex-1 sm:flex-none text-center px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                className={`flex-1 sm:flex-none text-center px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   statsView === 'comparison'
                     ? 'bg-[#2563EB] text-white font-extrabold shadow-xs'
                     : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
@@ -459,7 +459,7 @@ export const Home: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setStatsView('overall')}
-                className={`flex-1 sm:flex-none text-center px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                className={`flex-1 sm:flex-none text-center px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   statsView === 'overall'
                     ? 'bg-[#2563EB] text-white font-extrabold shadow-xs'
                     : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
@@ -470,7 +470,7 @@ export const Home: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setStatsView('today')}
-                className={`flex-1 sm:flex-none text-center px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                className={`flex-1 sm:flex-none text-center px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   statsView === 'today'
                     ? 'bg-[#2563EB] text-white font-extrabold shadow-xs'
                     : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
@@ -481,7 +481,7 @@ export const Home: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             
             {/* Stat 1: Gift Cards Purchased (All-Time vs Today) */}
             <StatsCard
@@ -570,8 +570,8 @@ export const Home: React.FC = () => {
       </section>
 
       {/* FEATURED PROMOTIONAL BANNER SECTION */}
-      <section className="py-8 bg-slate-100/80 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-4 sm:py-6 bg-slate-100/80 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <PromotionalBanner
             variant="full"
             badgeText="🔥 HOT PROMOTION"
@@ -590,31 +590,31 @@ export const Home: React.FC = () => {
       </section>
 
       {/* POPULAR GIFT CARDS MARKETPLACE PREVIEW */}
-      <section className="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+      <section className="py-6 sm:py-12 bg-slate-50 dark:bg-slate-950">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-4 sm:mb-6 gap-3 sm:gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60 mb-2">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60 mb-1.5">
                 <TrendingUp className="w-3.5 h-3.5" />
                 <span>Featured Digital Catalog</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 Popular Gift Cards
               </h2>
-              <p className="mt-2 text-slate-600 dark:text-slate-300 text-sm sm:text-base max-w-xl">
+              <p className="mt-1 text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-xl">
                 Choose a category or explore our most purchased digital cards with authentic claim guarantees.
               </p>
             </div>
 
             <Link to="/gift-cards" className="shrink-0">
-              <Button variant="outline" size="md" rightIcon={<ChevronRight className="w-4 h-4" />}>
+              <Button variant="outline" size="sm" rightIcon={<ChevronRight className="w-3.5 h-3.5" />}>
                 View All 50+ Cards
               </Button>
             </Link>
           </div>
 
           {/* Home Category Filter Bar */}
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 pb-3 mb-8">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth -mx-3 px-3 sm:mx-0 sm:px-0 pb-2 mb-4 sm:mb-6">
             {heroCategories.map((cat) => {
               const isSelected = activeCategoryTab === cat.value;
               return (
@@ -622,7 +622,7 @@ export const Home: React.FC = () => {
                   key={cat.value}
                   type="button"
                   onClick={() => setActiveCategoryTab(cat.value)}
-                  className={`px-3.5 py-2 sm:px-4 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-accent shrink-0 ${
+                  className={`px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-accent shrink-0 ${
                     isSelected
                       ? 'bg-accent text-white shadow-md shadow-[var(--accent-primary)]/20'
                       : 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-extrabold hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300/80 dark:border-slate-700'
@@ -635,16 +635,16 @@ export const Home: React.FC = () => {
             })}
           </div>
 
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {/* Cards Grid: 2 cols on mobile, 3 on md, 4 on lg */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-5">
             {displayedCards.map((card) => (
               <GiftCardCard key={card.id} giftCard={card} />
             ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-6 sm:mt-8 text-center">
             <Link to="/gift-cards">
-              <Button size="lg" variant="primary" rightIcon={<ArrowRight className="w-4 h-4" />}>
+              <Button size="md" variant="primary" rightIcon={<ArrowRight className="w-4 h-4" />}>
                 Explore Full Gift Card Catalog ({GIFT_CARDS.length} Available)
               </Button>
             </Link>
@@ -653,16 +653,16 @@ export const Home: React.FC = () => {
       </section>
 
       {/* QUICK VALIDATE CALLOUT BANNER */}
-      <section className="py-12 bg-blue-900 dark:bg-slate-900 text-white relative overflow-hidden border-y border-blue-800 dark:border-slate-800">
+      <section className="py-6 sm:py-10 bg-blue-900 dark:bg-slate-900 text-white relative overflow-hidden border-y border-blue-800 dark:border-slate-800">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(37,99,235,0.25),transparent_70%)]" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-blue-950/60 dark:bg-slate-900/90 rounded-3xl border border-blue-500/30 backdrop-blur-md">
-            <div className="space-y-2 text-center lg:text-left">
+        <div className="relative max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6 p-4 sm:p-6 bg-blue-950/60 dark:bg-slate-900/90 rounded-2xl border border-blue-500/30 backdrop-blur-md">
+            <div className="space-y-1.5 text-center lg:text-left">
               <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#86A98D]">
                 <ShieldCheck className="w-4 h-4" />
                 <span>Card Authentication Suite</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold text-white">
                 Already have a gift card code? Check card status now.
               </h3>
               <p className="text-blue-100 dark:text-slate-300 text-xs sm:text-sm max-w-xl">
@@ -670,14 +670,14 @@ export const Home: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full lg:w-auto">
+            <div className="flex flex-col sm:flex-row items-center gap-2.5 shrink-0 w-full lg:w-auto">
               <Link to="/validate" className="w-full sm:w-auto">
-                <Button size="lg" variant="primary" className="w-full sm:w-auto bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold" leftIcon={<ShieldCheck className="w-4 h-4" />}>
+                <Button size="md" variant="primary" className="w-full sm:w-auto bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold" leftIcon={<ShieldCheck className="w-4 h-4" />}>
                   Check Card Status
                 </Button>
               </Link>
               <Link to="/how-it-works" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent hover:bg-blue-800/50 text-white border-blue-300/40 font-bold">
+                <Button size="md" variant="outline" className="w-full sm:w-auto bg-transparent hover:bg-blue-800/50 text-white border-blue-300/40 font-bold">
                   How It Works
                 </Button>
               </Link>
@@ -687,7 +687,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* FEATURES SECTION */}
-      <section className="py-16 sm:py-24 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800">
+      <section className="py-8 sm:py-14 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             tag="Why AllCardStatus"
@@ -696,7 +696,7 @@ export const Home: React.FC = () => {
             align="center"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {FEATURES.map((feature) => (
               <FeatureCard key={feature.id} feature={feature} />
             ))}
@@ -708,21 +708,21 @@ export const Home: React.FC = () => {
       <CustomerReviews />
 
       {/* HOW IT WORKS TEASER */}
-      <section className="py-16 sm:py-24 bg-[#F5F7FA] dark:bg-slate-950 text-[#1E293B] dark:text-white relative overflow-hidden border-t border-slate-200 dark:border-slate-800">
+      <section className="py-8 sm:py-14 bg-[#F5F7FA] dark:bg-slate-950 text-[#1E293B] dark:text-white relative overflow-hidden border-t border-slate-200 dark:border-slate-800">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-300 border border-blue-200 dark:border-blue-800 mb-3">
+          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-300 border border-blue-200 dark:border-blue-800 mb-2">
               Simple 4-Step Process
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#1E293B] dark:text-white">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-[#1E293B] dark:text-white">
               How AllCardStatus Works
             </h2>
-            <p className="mt-3 text-slate-600 dark:text-slate-400 text-base sm:text-lg">
+            <p className="mt-1.5 text-slate-600 dark:text-slate-400 text-xs sm:text-sm">
               Get your digital gift card in your inbox in less than a minute.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
               {
                 step: '01',
@@ -747,23 +747,24 @@ export const Home: React.FC = () => {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-[#2563EB]/50 transition-colors shadow-xs"
+                className="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 hover:border-[#2563EB]/50 transition-colors shadow-2xs"
               >
-                <div className="text-3xl font-extrabold font-mono text-[#2563EB] dark:text-blue-400 mb-3">
+                <div className="text-2xl sm:text-3xl font-extrabold font-mono text-[#2563EB] dark:text-blue-400 mb-2">
                   {item.step}
                 </div>
-                <h3 className="text-lg font-bold text-[#1E293B] dark:text-white mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{item.desc}</p>
+                <h3 className="text-base font-bold text-[#1E293B] dark:text-white mb-1">{item.title}</h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-6 sm:mt-8 text-center">
             <Link to="/how-it-works">
               <Button
                 variant="outline"
+                size="sm"
                 className="border-blue-300 dark:border-blue-800 text-[#2563EB] dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950 font-bold"
-                rightIcon={<ArrowRight className="w-4 h-4" />}
+                rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
               >
                 Learn More About The Process
               </Button>
@@ -773,23 +774,23 @@ export const Home: React.FC = () => {
       </section>
 
       {/* CTA BANNER */}
-      <section className="py-16 sm:py-20 bg-gradient-to-r from-blue-700 via-blue-600 to-[#1D4ED8] text-white relative">
+      <section className="py-8 sm:py-14 bg-gradient-to-r from-blue-700 via-blue-600 to-[#1D4ED8] text-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 text-white">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight mb-2 text-white">
               Ready to find the perfect gift card?
             </h2>
-            <p className="text-blue-100 text-base sm:text-lg mb-8 leading-relaxed">
+            <p className="text-blue-100 text-xs sm:text-sm mb-5 leading-relaxed">
               Explore 50+ digital brands with instant electronic delivery and zero fees.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3">
               <Link to="/gift-cards" className="w-full sm:w-auto">
-                <Button size="lg" variant="primary" className="w-full sm:w-auto bg-white hover:bg-slate-100 text-[#1E293B] font-extrabold shadow-md border border-slate-200">
+                <Button size="md" variant="primary" className="w-full sm:w-auto bg-white hover:bg-slate-100 text-[#1E293B] font-extrabold shadow-md border border-slate-200">
                   Browse Marketplace
                 </Button>
               </Link>
               <Link to="/validate" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-[#1D4ED8] hover:bg-blue-700 text-white border-blue-300/40 font-bold">
+                <Button size="md" variant="outline" className="w-full sm:w-auto bg-[#1D4ED8] hover:bg-blue-700 text-white border-blue-300/40 font-bold">
                   Check Card Validity
                 </Button>
               </Link>

@@ -243,7 +243,7 @@ export const VALIDATE_BRANDS: ValidationBrand[] = [
     id: 'spotify',
     name: 'Spotify',
     category: 'Music',
-    image: findHomeCardImage('spotify', '/cards/spotify.svg'),
+    image: findHomeCardImage('spotify', 'https://cdn.shopify.com/s/files/1/0267/6935/8923/products/spotify-card_2000x.png?v=1591691902'),
     sampleCode: 'SPOT-8492-1049-5820',
     samplePin: '',
     defaultDenomination: 50,
@@ -791,16 +791,16 @@ export const ValidateCard: React.FC = () => {
         {selectedBrand ? (
           /* DEDICATED CARD VERIFICATION VIEW (MATCHING USER SCREENSHOT) */
           <div className="max-w-md mx-auto animate-in fade-in zoom-in-95 duration-200">
-            <div className="w-full bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-100 dark:border-slate-800 text-slate-900 dark:text-white">
+            <div className="w-full bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-6 shadow-lg border border-slate-100 dark:border-slate-800 text-slate-900 dark:text-white">
               
               {/* Top Brand Artwork / Logo Badge */}
-              <div className="flex justify-center mb-4">
+              <div className="flex justify-center mb-3">
                 {selectedBrand.id === 'ebay' ? (
-                  <div className="w-24 h-11 rounded-lg bg-[#0064D2] flex items-center justify-center shadow-xs">
-                    <span className="text-white font-black text-2xl tracking-tighter lowercase select-none">ebay</span>
+                  <div className="w-20 sm:w-24 h-9 sm:h-11 rounded-lg bg-[#0064D2] flex items-center justify-center shadow-2xs">
+                    <span className="text-white font-black text-xl sm:text-2xl tracking-tighter lowercase select-none">ebay</span>
                   </div>
                 ) : (
-                  <div className="w-20 h-13 rounded-xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                  <div className="w-16 sm:w-20 h-10 sm:h-13 rounded-xl overflow-hidden shadow-xs border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
                     <img
                       src={selectedBrand.image}
                       alt={selectedBrand.name}
@@ -812,110 +812,110 @@ export const ValidateCard: React.FC = () => {
               </div>
 
               {/* Title & Subtitle */}
-              <div className="text-center mb-6">
-                <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+              <div className="text-center mb-4 sm:mb-5">
+                <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white tracking-tight">
                   {activeRequirement.title || `Verify Your ${selectedBrand.name} Card`}
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium mt-1">
+                <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">
                   Enter your card details below
                 </p>
               </div>
 
               {/* Progress Simulator or Result Certificate */}
               {isValidating ? (
-                <div className="py-10 text-center space-y-4">
-                  <div className="relative w-12 h-12 mx-auto">
-                    <div className="absolute inset-0 rounded-full border-4 border-indigo-100 dark:border-indigo-950"></div>
-                    <div className="absolute inset-0 rounded-full border-4 border-indigo-600 border-t-transparent animate-spin"></div>
+                <div className="py-8 text-center space-y-3">
+                  <div className="relative w-10 h-10 mx-auto">
+                    <div className="absolute inset-0 rounded-full border-3 border-indigo-100 dark:border-indigo-950"></div>
+                    <div className="absolute inset-0 rounded-full border-3 border-indigo-600 border-t-transparent animate-spin"></div>
                   </div>
-                  <div className="space-y-1">
-                    <p className="text-sm font-bold text-slate-800 dark:text-slate-200">
+                  <div className="space-y-0.5">
+                    <p className="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">
                       Checking Card Activation Status...
                     </p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
                       Connecting securely to merchant database...
                     </p>
                   </div>
                 </div>
               ) : validationRecord ? (
-                <div className="space-y-4 animate-in fade-in">
+                <div className="space-y-3.5 animate-in fade-in">
                   {/* ILLUSTRATIVE CARD ARTWORK HEADER WITH STATUS BADGE */}
-                  <div className="relative w-full rounded-2xl bg-slate-50 dark:bg-slate-800/80 p-8 pt-10 pb-10 flex flex-col items-center justify-center border border-slate-200/60 dark:border-slate-700/60 overflow-hidden shadow-inner">
+                  <div className="relative w-full rounded-xl bg-slate-50 dark:bg-slate-800/80 p-4 sm:p-6 flex flex-col items-center justify-center border border-slate-200/60 dark:border-slate-700/60 overflow-hidden shadow-inner">
                     <div className="absolute inset-0 bg-radial from-blue-500/5 via-transparent to-transparent"></div>
                     
                     {/* Floating background cross hairs / sparkles */}
-                    <div className="absolute top-3 left-4 text-slate-300 dark:text-slate-700 font-bold text-sm">+</div>
-                    <div className="absolute top-4 right-5 text-slate-300 dark:text-slate-700 font-bold text-sm">+</div>
-                    <div className="absolute bottom-3 left-6 text-slate-300 dark:text-slate-700 font-bold text-sm">+</div>
+                    <div className="absolute top-2 left-3 text-slate-300 dark:text-slate-700 font-bold text-xs">+</div>
+                    <div className="absolute top-3 right-4 text-slate-300 dark:text-slate-700 font-bold text-xs">+</div>
+                    <div className="absolute bottom-2 left-4 text-slate-300 dark:text-slate-700 font-bold text-xs">+</div>
 
                     {/* Virtual Gift Card Mock */}
-                    <div className="w-64 h-36 rounded-2xl bg-white dark:bg-slate-900 shadow-lg border border-slate-200 dark:border-slate-800 p-2 flex flex-col items-center justify-center relative transform transition-transform hover:scale-102 my-2">
+                    <div className="w-52 sm:w-60 h-28 sm:h-34 rounded-xl bg-white dark:bg-slate-900 shadow-md border border-slate-200 dark:border-slate-800 p-1.5 flex flex-col items-center justify-center relative transform transition-transform hover:scale-102 my-1">
                       <img
                         src={selectedBrand?.image || '/cards/visa-blue.svg'}
                         alt={validationRecord.brand}
                         referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover rounded-xl"
+                        className="w-full h-full object-cover rounded-lg"
                       />
 
                       {/* Warning Alert Badge in bottom right of card */}
-                      <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-md ring-4 ring-white dark:ring-slate-900 z-10">
-                        <AlertTriangle className="w-4 h-4" />
+                      <div className="absolute -bottom-2 -right-2 w-7 h-7 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-md ring-3 ring-white dark:ring-slate-900 z-10">
+                        <AlertTriangle className="w-3.5 h-3.5" />
                       </div>
                     </div>
                   </div>
 
                   {/* STACKED RESULT LIST (BRAND, AMOUNT, STATUS, SUBMITTED) */}
-                  <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xs divide-y divide-slate-100 dark:divide-slate-800">
+                  <div className="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xs divide-y divide-slate-100 dark:divide-slate-800">
                     
                     {/* Brand Row */}
-                    <div className="px-5 py-3.5 flex items-center justify-between">
-                      <div className="flex items-center gap-3 text-slate-500 dark:text-slate-400">
-                        <div className="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                          <Tag className="w-4 h-4" />
+                    <div className="px-4 py-2.5 sm:py-3 flex items-center justify-between">
+                      <div className="flex items-center gap-2.5 text-slate-500 dark:text-slate-400">
+                        <div className="w-7 h-7 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                          <Tag className="w-3.5 h-3.5" />
                         </div>
                         <span className="text-xs sm:text-sm font-medium">Brand</span>
                       </div>
-                      <span className="text-sm font-bold text-slate-900 dark:text-white">
+                      <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
                         {validationRecord.brand}
                       </span>
                     </div>
 
                     {/* Amount Row */}
-                    <div className="px-5 py-3.5 flex items-center justify-between">
-                      <div className="flex items-center gap-3 text-slate-500 dark:text-slate-400">
-                        <div className="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                          <CreditCard className="w-4 h-4" />
+                    <div className="px-4 py-2.5 sm:py-3 flex items-center justify-between">
+                      <div className="flex items-center gap-2.5 text-slate-500 dark:text-slate-400">
+                        <div className="w-7 h-7 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                          <CreditCard className="w-3.5 h-3.5" />
                         </div>
                         <span className="text-xs sm:text-sm font-medium">Amount</span>
                       </div>
-                      <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
+                      <span className="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400">
                         {cardAmount ? `${selectedCurrency} ${cardAmount}` : `${selectedCurrency} 100.00`}
                       </span>
                     </div>
 
                     {/* Status Row */}
-                    <div className="px-5 py-3.5 flex items-center justify-between">
-                      <div className="flex items-center gap-3 text-slate-500 dark:text-slate-400">
-                        <div className="w-8 h-8 rounded-xl bg-red-50 dark:bg-red-950/60 text-red-600 dark:text-red-400 flex items-center justify-center">
-                          <AlertTriangle className="w-4 h-4" />
+                    <div className="px-4 py-2.5 sm:py-3 flex items-center justify-between">
+                      <div className="flex items-center gap-2.5 text-slate-500 dark:text-slate-400">
+                        <div className="w-7 h-7 rounded-lg bg-red-50 dark:bg-red-950/60 text-red-600 dark:text-red-400 flex items-center justify-center">
+                          <AlertTriangle className="w-3.5 h-3.5" />
                         </div>
                         <span className="text-xs sm:text-sm font-medium">Status</span>
                       </div>
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 text-xs font-bold">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 text-xs font-bold">
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                         Not Activated
                       </span>
                     </div>
 
                     {/* Submitted Timestamp Row */}
-                    <div className="px-5 py-3.5 flex items-center justify-between">
-                      <div className="flex items-center gap-3 text-slate-500 dark:text-slate-400">
-                        <div className="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                          <Calendar className="w-4 h-4" />
+                    <div className="px-4 py-2.5 sm:py-3 flex items-center justify-between">
+                      <div className="flex items-center gap-2.5 text-slate-500 dark:text-slate-400">
+                        <div className="w-7 h-7 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                          <Calendar className="w-3.5 h-3.5" />
                         </div>
                         <span className="text-xs sm:text-sm font-medium">Submitted</span>
                       </div>
-                      <span className="text-xs sm:text-sm font-mono font-semibold text-slate-900 dark:text-white">
+                      <span className="text-[11px] sm:text-xs font-mono font-semibold text-slate-900 dark:text-white">
                         {new Date(validationRecord.createdAt).toLocaleString()}
                       </span>
                     </div>
@@ -923,11 +923,11 @@ export const ValidateCard: React.FC = () => {
                   </div>
 
                   {/* ACTION BUTTON & BACK LINK */}
-                  <div className="pt-2 space-y-3">
+                  <div className="pt-1.5 space-y-2.5">
                     <button
                       type="button"
                       onClick={handleResetForm}
-                      className="w-full py-3.5 px-4 rounded-xl border-2 border-blue-600 dark:border-blue-500 bg-white dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-950/40 active:scale-98 text-blue-600 dark:text-blue-400 font-bold text-sm shadow-md shadow-blue-600/10 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full py-2.5 sm:py-3 px-4 rounded-xl border-2 border-blue-600 dark:border-blue-500 bg-white dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-950/40 active:scale-98 text-blue-600 dark:text-blue-400 font-bold text-xs sm:text-sm shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <RotateCcw className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                       <span>Check Another Card</span>
@@ -937,7 +937,7 @@ export const ValidateCard: React.FC = () => {
                       type="button"
                       id="btn-validation-help-tawk"
                       onClick={openTawkChat}
-                      className="w-full py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700/80 text-slate-800 dark:text-slate-200 font-bold text-sm border border-slate-200 dark:border-slate-700 shadow-2xs transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                      className="w-full py-2.5 sm:py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700/80 text-slate-800 dark:text-slate-200 font-bold text-xs sm:text-sm border border-slate-200 dark:border-slate-700 shadow-2xs transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                     >
                       <HelpCircle className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                       <span>Help</span>
@@ -946,7 +946,7 @@ export const ValidateCard: React.FC = () => {
                     {isAdmin && (
                       <Link
                         to="/admin"
-                        className="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white font-bold text-xs transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                        className="w-full py-2 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white font-bold text-xs transition-all shadow-2xs flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <span className="text-base">📊</span>
                         <span className="text-slate-900 dark:text-slate-100">Open in Admin Validations Table</span>
@@ -966,10 +966,10 @@ export const ValidateCard: React.FC = () => {
                 </div>
               ) : (
                 /* THE VERIFICATION FORM */
-                <form onSubmit={handleSubmitValidation} className="space-y-4">
+                <form onSubmit={handleSubmitValidation} className="space-y-3">
 
                   {apiError && (
-                    <div className="p-3 rounded-xl bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-800 text-xs text-red-700 dark:text-red-300 font-medium flex items-center gap-2">
+                    <div className="p-2.5 rounded-xl bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-800 text-xs text-red-700 dark:text-red-300 font-medium flex items-center gap-2">
                       <AlertTriangle className="w-4 h-4 shrink-0 text-red-500" />
                       <span>{apiError}</span>
                     </div>
@@ -977,11 +977,11 @@ export const ValidateCard: React.FC = () => {
 
                   {/* Photo Verification Active Banner */}
                   {uploadedImages.length > 0 && (
-                    <div className="p-3.5 rounded-2xl bg-emerald-50/90 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-900/60 flex items-start gap-2.5 text-xs text-emerald-900 dark:text-emerald-300 animate-in fade-in">
+                    <div className="p-3 rounded-xl bg-emerald-50/90 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-900/60 flex items-start gap-2.5 text-xs text-emerald-900 dark:text-emerald-300 animate-in fade-in">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                       <div>
                         <span className="font-bold block">Photo Verification Mode Active ({uploadedImages.length}/3 Photos Attached)</span>
-                        <span className="text-[11.5px] opacity-90 block mt-0.5">
+                        <span className="text-[11px] opacity-90 block mt-0.5">
                           Redemption code, PIN, and extra fields are optional. You can validate directly using your attached card photos!
                         </span>
                       </div>
@@ -991,7 +991,7 @@ export const ValidateCard: React.FC = () => {
                   {/* Custom Brand Name Input (if Can't find yours was clicked) */}
                   {isCustomBrand && (
                     <div>
-                      <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">
+                      <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
                         Brand / Merchant Name
                       </label>
                       <input
@@ -1002,7 +1002,7 @@ export const ValidateCard: React.FC = () => {
                           setCustomBrandName(e.target.value);
                           if (formErrors.brand) setFormErrors((prev) => ({ ...prev, brand: undefined }));
                         }}
-                        className={`w-full px-4 py-3 rounded-xl bg-slate-50/80 dark:bg-slate-800/80 border text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                        className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 dark:bg-slate-800/80 border text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                           formErrors.brand ? 'border-red-500' : 'border-slate-200 dark:border-slate-700'
                         }`}
                       />
@@ -1014,13 +1014,13 @@ export const ValidateCard: React.FC = () => {
 
                   {/* Currency Input */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">
+                    <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
                       Currency
                     </label>
                     <select
                       value={selectedCurrency}
                       onChange={(e) => setSelectedCurrency(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
                     >
                       <option value="USD">USD</option>
                       <option value="CAD">CAD</option>
@@ -1032,11 +1032,11 @@ export const ValidateCard: React.FC = () => {
 
                   {/* Card Amount Input */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">
+                    <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">
                       Card Amount {uploadedImages.length > 0 && <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500">(Optional)</span>}
                     </label>
                     <div className="relative">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-semibold text-sm">
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 font-semibold text-xs sm:text-sm">
                         $
                       </span>
                       <input
@@ -1054,14 +1054,14 @@ export const ValidateCard: React.FC = () => {
                           }
                         }}
                         onChange={(e) => setCardAmount(e.target.value)}
-                        className="w-full pl-8 pr-4 py-3 rounded-xl bg-slate-50/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full pl-7 pr-3.5 py-2.5 rounded-xl bg-slate-50/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
                   </div>
 
                   {/* Redemption Code / Card Number Input */}
                   <div>
-                    <div className="flex items-center justify-between mb-1.5">
+                    <div className="flex items-center justify-between mb-1">
                       <label className="block text-xs font-bold text-slate-600 dark:text-slate-400">
                         <span>{activeRequirement.codeLabel}</span>
                         {uploadedImages.length > 0 && (
