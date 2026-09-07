@@ -1,6 +1,6 @@
 {
   "name": "AllCardStatus",
-  "description": "Buy, send, and instantly validate digital gift cards from Apple, Steam, Amazon, Visa, PlayStation, and top global brands with instant delivery, 256-bit SSL encryption, and zero KYC or hidden fees.",
+  "description": "Instantly buy, send, and redeem digital gift cards for Apple, Steam, Amazon, PlayStation, Xbox, and top global brands with instant email delivery and secure checkout.",
   "requestFramePermissions": ["camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

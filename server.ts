@@ -44,7 +44,7 @@ async function startServer() {
 
   // HTTPS & Domain Canonical Enforcement Middleware (Redirect *.onrender.com -> allcardstatus.com, HTTP -> HTTPS)
   app.use((req, res, next) => {
-    if (req.path === '/api/health' || req.path === '/health') return next();
+    if (req.path === '/api/health' || req.path === '/health' || req.path.startsWith('/zohoverify')) return next();
     
     const host = (req.headers.host || '').toLowerCase();
     
@@ -208,7 +208,7 @@ async function startServer() {
   const resolvePageMeta = async (pathname: string, baseUrl: string): Promise<PageMeta> => {
     const defaultMeta: PageMeta = {
       title: 'AllCardStatus – Digital Gift Card Marketplace & Instant Validation',
-      description: 'Buy, send, and instantly validate digital gift cards from Apple, Steam, Amazon, Visa, PlayStation, and top global brands with instant delivery, 256-bit SSL encryption, and zero KYC or hidden fees.',
+      description: 'Instantly buy, send, and redeem digital gift cards for Apple, Steam, Amazon, PlayStation, Xbox, and top global brands with instant email delivery and secure checkout.',
       image: `${baseUrl}/og-image.png`,
       url: `${baseUrl}${pathname === '/' ? '' : pathname}`,
     };
@@ -224,7 +224,7 @@ async function startServer() {
           if (card) {
             return {
               title: `${card.name} – Instant Digital Delivery | AllCardStatus`,
-              description: `Buy ${card.name} gift cards starting at ${card.currency} ${card.startingPrice}. Instant email delivery, 256-bit SSL encryption & zero KYC. ${card.description}`,
+              description: `Buy ${card.name} digital gift cards starting at ${card.currency} ${card.startingPrice}. Instant email delivery and verified claim codes. ${card.description}`,
               image: card.image && card.image.startsWith('http') ? card.image : `${baseUrl}/og-image.png`,
               url: `${baseUrl}/gift-cards/${slug}`,
             };
@@ -236,14 +236,14 @@ async function startServer() {
     } else if (pathname === '/gift-cards') {
       return {
         title: 'Buy Digital Gift Cards Online – Instant Delivery | AllCardStatus',
-        description: 'Explore authentic digital gift cards for Apple, Steam, Amazon, PlayStation, Xbox, and 24+ global brands with instant code delivery & zero KYC.',
+        description: 'Explore authentic digital gift cards for Apple, Steam, Amazon, PlayStation, Xbox, and 24+ global brands with instant code delivery & secure payment.',
         image: `${baseUrl}/og-image.png`,
         url: `${baseUrl}/gift-cards`,
       };
     } else if (pathname === '/validate') {
       return {
         title: 'Check Gift Card Balance & Code Authenticity | AllCardStatus',
-        description: 'Securely check digital claim codes, verify balances, and validate gift cards instantly with bank-grade 256-bit SSL encryption.',
+        description: 'Securely check digital claim codes, verify balances, and validate gift cards instantly with official brand verification.',
         image: `${baseUrl}/og-image.png`,
         url: `${baseUrl}/validate`,
       };
