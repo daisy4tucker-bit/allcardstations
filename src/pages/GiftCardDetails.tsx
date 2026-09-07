@@ -152,36 +152,38 @@ export const GiftCardDetails: React.FC = () => {
       <SEO
         title={`Buy ${name} Gift Card Online – Instant Email Delivery`}
         description={`Purchase official digital ${name} gift cards with instant 256-bit encrypted delivery. ${description}`}
-        ogImage={card.image}
+        ogImage={card.image?.startsWith('http') ? card.image : `https://allcardstatus.com${card.image || '/favicon-512x512.png'}`}
         canonicalPath={`/gift-cards/${slug}`}
         ogType="product"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Product",
-          "name": `${name} Gift Card (Digital Delivery)`,
-          "image": card.image || "https://allcardstatus.com/logo.svg",
-          "description": description || `Buy ${name} digital gift card online with instant email delivery.`,
+          "name": `${name} Digital Gift Card`,
+          "image": [
+            card.image?.startsWith('http') ? card.image : `https://allcardstatus.com${card.image || '/favicon-512x512.png'}`
+          ],
+          "description": description || `Buy official ${name} digital gift card with instant delivery and secure checkout.`,
+          "sku": `ACS-${(card.id || slug || name).toUpperCase().replace(/[^A-Z0-9]/g, '')}`,
+          "category": category,
           "brand": {
             "@type": "Brand",
             "name": name
           },
           "offers": {
             "@type": "AggregateOffer",
+            "url": `https://allcardstatus.com/gift-cards/${slug}`,
             "priceCurrency": "USD",
-            "lowPrice": Math.min(...availableDenominations).toString(),
-            "highPrice": Math.max(...availableDenominations).toString(),
-            "offerCount": availableDenominations.length.toString(),
+            "lowPrice": (availableDenominations.length > 0 ? Math.min(...availableDenominations) : 10).toFixed(2),
+            "highPrice": (availableDenominations.length > 0 ? Math.max(...availableDenominations) : 500).toFixed(2),
+            "offerCount": (availableDenominations.length || 1).toString(),
             "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition",
+            "priceValidUntil": "2027-12-31",
             "seller": {
               "@type": "Organization",
-              "name": "AllCardStatus"
+              "name": "AllCardStatus",
+              "url": "https://allcardstatus.com"
             }
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": (card.rating || 4.9).toString(),
-            "reviewCount": (card.reviewCount || 420).toString(),
-            "bestRating": "5"
           }
         }}
       />

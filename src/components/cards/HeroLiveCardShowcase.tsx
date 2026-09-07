@@ -103,33 +103,33 @@ export const HeroLiveCardShowcase: React.FC = () => {
                 )}
 
                 {/* Bottom Overlay with Direct Buy and Validate Options with transparent backgrounds */}
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent p-4 sm:p-5 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-                  <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400 font-mono">
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-transparent p-3.5 sm:p-5 flex items-end justify-between gap-2.5 sm:gap-3">
+                  <div className="min-w-0 pr-1">
+                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-amber-400 font-mono block">
                       {card.category}
                     </span>
-                    <h3 className="text-base sm:text-xl font-black text-white leading-tight">
+                    <h3 className="text-sm sm:text-lg md:text-xl font-black text-white leading-tight truncate">
                       {card.name}
                     </h3>
                   </div>
 
                   {/* Direct Action Options: Buy & Check with high-contrast, easy-to-read styling */}
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                     <Link
                       to={`/gift-cards/${card.slug}`}
                       id={`hero-slide-buy-${card.slug}`}
-                      className="flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                      className="flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer min-h-[34px] sm:min-h-[38px]"
                     >
-                      <ShoppingBag className="w-3.5 h-3.5 text-[#2563EB]" />
+                      <ShoppingBag className="w-3.5 h-3.5 text-[#2563EB] shrink-0" />
                       <span>Buy</span>
                     </Link>
 
                     <Link
                       to={`/validate?card=${card.slug}`}
                       id={`hero-slide-validate-${card.slug}`}
-                      className="flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-slate-950/80 hover:bg-slate-900 text-white font-bold text-xs border border-white/25 backdrop-blur-md shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                      className="flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-slate-950/80 hover:bg-slate-900 text-white font-bold text-xs sm:text-sm border border-white/25 backdrop-blur-md shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer min-h-[34px] sm:min-h-[38px]"
                     >
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                       <span>Check</span>
                     </Link>
                   </div>

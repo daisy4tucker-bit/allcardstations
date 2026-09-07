@@ -147,22 +147,15 @@ export const Home: React.FC = () => {
             "@type": "Store",
             "name": "AllCardStatus Digital Marketplace",
             "url": "https://allcardstatus.com",
-            "description": "Buy, send, and instantly validate all digital gift cards status from Apple, Steam, Amazon, and Visa with zero KYC or personal data required.",
-            "paymentAccepted": "Cryptocurrency, Bitcoin, Ethereum, USDT, Solana, Credit Cards",
-            "currenciesAccepted": "USD, EUR, GBP, BTC, ETH, USDT",
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "reviewCount": "12840",
-              "bestRating": "5",
-              "worstRating": "1"
-            }
+            "description": "Buy, send, and check the balance and authenticity status of digital gift cards from top brands including Apple, Steam, and Amazon with instant electronic delivery and 256-bit encryption.",
+            "paymentAccepted": "Credit Card, Debit Card, Electronic Payment",
+            "currenciesAccepted": "USD, EUR, GBP"
           }
         ]}
       />
       {/* HERO SECTION */}
-      <section className="relative bg-[#F5F7FA] dark:bg-slate-950 text-[#1E293B] dark:text-white pt-3 pb-6 sm:pt-6 sm:pb-10 lg:pt-8 lg:pb-12 border-b border-slate-200 dark:border-slate-800 transition-colors">
-        <div className="relative max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-4 sm:space-y-6">
+      <section className="relative bg-[#F5F7FA] dark:bg-slate-950 text-[#1E293B] dark:text-white pt-4 pb-8 sm:pt-8 sm:pb-12 lg:pt-10 lg:pb-16 border-b border-slate-200/80 dark:border-slate-800 transition-colors">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 lg:space-y-10">
           
           {/* Top Live Ticker Ribbon */}
           <div>
@@ -174,19 +167,19 @@ export const Home: React.FC = () => {
             />
           </div>
 
-          {/* Carousel & Featured Display of Cards Showcase (Rendered directly after Live Stream container) */}
-          <div className="space-y-3 sm:space-y-4 max-w-4xl mx-auto pt-1">
+          {/* Carousel & Featured Display of Cards Showcase */}
+          <div className="space-y-3 sm:space-y-4 max-w-4xl mx-auto">
             {/* Micro Trust & Gold Review Button Header Row */}
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs text-slate-700 dark:text-slate-300 font-medium">
-              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200 text-[11px] sm:text-xs">
+            <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-slate-700 dark:text-slate-300 font-medium">
+              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200 text-xs sm:text-sm">
                 <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500 shrink-0" />
                 <span>Instant eDelivery</span>
               </div>
-              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200 text-[11px] sm:text-xs">
+              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200 text-xs sm:text-sm">
                 <Lock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#2563EB] shrink-0" />
                 <span>256-bit Encrypted</span>
               </div>
-              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200 text-[11px] sm:text-xs">
+              <div className="flex items-center gap-1.5 font-semibold text-slate-700 dark:text-slate-200 text-xs sm:text-sm">
                 <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 shrink-0" />
                 <span>Zero Inactivity Fees</span>
               </div>
@@ -196,9 +189,9 @@ export const Home: React.FC = () => {
                 onClick={() => {
                   document.getElementById('customer-reviews-section')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="inline-flex items-center gap-1.5 px-3 py-0.5 sm:py-1 rounded-full border border-amber-300 dark:border-amber-500/80 bg-amber-50/90 hover:bg-amber-100 dark:bg-amber-950/60 dark:hover:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-bold text-[11px] sm:text-xs transition-all shadow-2xs cursor-pointer hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-300 dark:border-amber-500/80 bg-amber-50/90 hover:bg-amber-100 dark:bg-amber-950/60 dark:hover:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-bold text-xs sm:text-sm transition-all shadow-2xs cursor-pointer hover:scale-105 active:scale-95"
               >
-                <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500 shrink-0" />
+                <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-500 text-amber-500 shrink-0" />
                 <span>Client Reviews (4.9/5)</span>
               </button>
             </div>
@@ -207,89 +200,93 @@ export const Home: React.FC = () => {
             <HeroLiveCardShowcase />
           </div>
 
-          {/* Clean Main Header */}
-          <div className="text-center max-w-3xl mx-auto space-y-1.5 sm:space-y-2">
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#1E293B] dark:text-white leading-tight">
+          {/* Main Hero Header with Distinct Visual Hierarchy */}
+          <div className="text-center max-w-3xl mx-auto space-y-2 sm:space-y-3">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 border border-blue-200/60 dark:border-blue-800/60">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+              <span>Instant Digital Marketplace & Verification</span>
+            </div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extrabold tracking-tight text-[#1E293B] dark:text-white leading-tight sm:leading-tight">
               AllCardStatus – Digital Gift Cards & Instant Card Validation
             </h1>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
-              Choose an action below to get started. You can buy new digital gift cards with instant delivery, or verify the status and balance of an existing card.
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              Choose an action below to get started. You can purchase authentic digital gift cards with instant electronic delivery, or verify the status and balance of an existing card.
             </p>
           </div>
 
           {/* TWO MAIN CLEAR CHOICE CARDS */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-5 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
             
             {/* OPTION 1: BUY A GIFT CARD */}
-            <div className="rounded-xl sm:rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 flex flex-col justify-between shadow-2xs hover:shadow-md transition-shadow">
-              <div className="space-y-2 sm:space-y-2.5">
-                <div className="flex items-center gap-2.5 sm:gap-3">
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center text-[#2563EB] dark:text-blue-400 shrink-0">
-                    <ShoppingBag className="w-5 h-5" />
+            <div className="rounded-2xl sm:rounded-3xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-6 lg:p-7 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all">
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-center gap-3 sm:gap-3.5">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center text-[#2563EB] dark:text-blue-400 shrink-0 shadow-2xs">
+                    <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <div>
-                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#2563EB] dark:text-blue-400 font-mono">Option 1</span>
-                    <h2 className="text-base sm:text-lg lg:text-xl font-extrabold text-[#1E293B] dark:text-white leading-tight">Buy a Gift Card</h2>
+                    <span className="inline-block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2563EB] dark:text-blue-400 font-mono">Option 1</span>
+                    <h2 className="text-lg sm:text-xl lg:text-2xl font-black text-[#1E293B] dark:text-white leading-snug">Buy a Gift Card</h2>
                   </div>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
                   Purchase authentic digital gift cards for Apple, Amazon, Steam, Xbox, PlayStation, and 50+ brands. Delivered to your email instantly.
                 </p>
-                <div className="flex flex-wrap gap-1.5 pt-0.5">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
                   {['Apple', 'Amazon', 'PlayStation', 'Xbox', 'Steam', 'Target'].map((brand) => (
-                    <span key={brand} className="text-[10px] sm:text-[11px] px-2 py-0.5 rounded-md sm:rounded-lg bg-[#F5F7FA] dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">
+                    <span key={brand} className="text-xs px-2.5 py-1 rounded-lg bg-[#F5F7FA] dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">
                       {brand}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-3.5 mt-3 border-t border-slate-100 dark:border-slate-800">
+              <div className="pt-4 sm:pt-5 mt-4 sm:mt-5 border-t border-slate-100 dark:border-slate-800">
                 <Link
                   to="/gift-cards"
                   id="hero-buy-gift-card-btn"
-                  className="w-full py-2.5 sm:py-3 px-4 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+                  className="w-full min-h-[44px] py-3 sm:py-3.5 px-5 rounded-xl sm:rounded-2xl bg-[#2563EB] hover:bg-[#1D4ED8] active:scale-[0.99] text-white font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xs hover:shadow-md"
                 >
-                  <ShoppingBag className="w-4 h-4" />
+                  <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span>Browse & Buy Cards</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Link>
               </div>
             </div>
 
             {/* OPTION 2: VALIDATE A CARD */}
-            <div className="rounded-xl sm:rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 flex flex-col justify-between shadow-2xs hover:shadow-md transition-shadow">
-              <div className="space-y-2 sm:space-y-2.5">
-                <div className="flex items-center gap-2.5 sm:gap-3">
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center text-[#2563EB] dark:text-blue-400 shrink-0">
-                    <ShieldCheck className="w-5 h-5" />
+            <div className="rounded-2xl sm:rounded-3xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-6 lg:p-7 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all">
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-center gap-3 sm:gap-3.5">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center text-[#2563EB] dark:text-blue-400 shrink-0 shadow-2xs">
+                    <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <div>
-                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#2563EB] dark:text-blue-400 font-mono">Option 2</span>
-                    <h2 className="text-base sm:text-lg lg:text-xl font-extrabold text-[#1E293B] dark:text-white leading-tight">Check Card Status</h2>
+                    <span className="inline-block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2563EB] dark:text-blue-400 font-mono">Option 2</span>
+                    <h2 className="text-lg sm:text-xl lg:text-2xl font-black text-[#1E293B] dark:text-white leading-snug">Check Card Status</h2>
                   </div>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
                   Check if your gift card is active, verify its available balance, or test your physical card code and receipt photos securely.
                 </p>
-                <div className="flex flex-wrap gap-1.5 pt-0.5">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
                   {['Balance Check', 'Code Authenticity', 'Photo Verification', 'Instant Results'].map((tag) => (
-                    <span key={tag} className="text-[10px] sm:text-[11px] px-2 py-0.5 rounded-md sm:rounded-lg bg-blue-50 dark:bg-blue-950/40 text-[#2563EB] dark:text-blue-300 font-medium">
+                    <span key={tag} className="text-xs px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950/40 text-[#2563EB] dark:text-blue-300 font-medium">
                       {tag}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-3.5 mt-3 border-t border-slate-100 dark:border-slate-800">
+              <div className="pt-4 sm:pt-5 mt-4 sm:mt-5 border-t border-slate-100 dark:border-slate-800">
                 <Link
                   to="/validate"
                   id="hero-validate-card-btn"
-                  className="w-full py-2.5 sm:py-3 px-4 rounded-xl border-2 border-[#2563EB] dark:border-blue-500 bg-white dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-950/40 text-[#2563EB] dark:text-blue-400 font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+                  className="w-full min-h-[44px] py-3 sm:py-3.5 px-5 rounded-xl sm:rounded-2xl border-2 border-[#2563EB] dark:border-blue-500 bg-white dark:bg-slate-900 hover:bg-blue-50 dark:hover:bg-blue-950/40 active:scale-[0.99] text-[#2563EB] dark:text-blue-400 font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xs hover:shadow-md"
                 >
-                  <ShieldCheck className="w-4 h-4 text-[#2563EB] dark:text-blue-400" />
+                  <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-[#2563EB] dark:text-blue-400" />
                   <span>Check Card Status</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Link>
               </div>
             </div>
@@ -297,15 +294,15 @@ export const Home: React.FC = () => {
           </div>
 
           {/* Quick Search & Showcase Row */}
-          <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-center pt-2">
+          <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-center pt-2 sm:pt-3">
             
             {/* Search Bar */}
             <div className="lg:col-span-7">
               <div className="relative">
                 <form onSubmit={handleHeroSearchSubmit} className="relative flex items-center">
                   <div className="relative w-full">
-                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                      <Search className="w-4 h-4" />
+                    <div className="absolute inset-y-0 left-0 pl-3.5 sm:pl-4 flex items-center pointer-events-none text-slate-400">
+                      <Search className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                     </div>
                     <input
                       type="text"
@@ -317,12 +314,12 @@ export const Home: React.FC = () => {
                       }}
                       onFocus={() => setShowHeroSuggestions(true)}
                       placeholder="Search card by brand (e.g. Apple, Amazon, Steam)..."
-                      className="w-full pl-10 pr-24 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm text-[#1E293B] dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-all"
+                      className="w-full pl-10 sm:pl-11 pr-24 sm:pr-28 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm md:text-base text-[#1E293B] dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-all shadow-2xs"
                     />
                     <button
                       type="submit"
                       id="hero-search-submit-btn"
-                      className="absolute right-1.5 top-1.5 bottom-1.5 px-4 rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+                      className="absolute right-1.5 top-1.5 bottom-1.5 px-3.5 sm:px-5 rounded-lg sm:rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs sm:text-sm flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs min-h-[36px]"
                     >
                       <span>Search</span>
                     </button>
@@ -332,10 +329,10 @@ export const Home: React.FC = () => {
                 {/* Suggestions Dropdown */}
                 {showHeroSuggestions && filteredSuggestions.length > 0 && (
                   <div 
-                    className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl overflow-hidden z-30 p-2 text-left"
+                    className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-xl overflow-hidden z-30 p-2 text-left"
                     onMouseLeave={() => setShowHeroSuggestions(false)}
                   >
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 py-1.5 border-b border-slate-100 dark:border-slate-800">
+                    <div className="text-[10px] sm:text-[11px] font-bold text-slate-400 uppercase tracking-wider px-3 py-1.5 border-b border-slate-100 dark:border-slate-800">
                       Matching Gift Cards
                     </div>
                     <div className="py-1">
@@ -344,15 +341,15 @@ export const Home: React.FC = () => {
                           key={item.id}
                           to={`/gift-cards/${item.slug}`}
                           onClick={() => setShowHeroSuggestions(false)}
-                          className="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                          className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                         >
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-[#1E293B] dark:text-white">{item.name}</span>
-                            <span className="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-0.5 rounded font-mono">
+                            <span className="text-xs sm:text-sm font-bold text-[#1E293B] dark:text-white">{item.name}</span>
+                            <span className="text-[10px] sm:text-xs bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-0.5 rounded-md font-mono">
                               {item.category}
                             </span>
                           </div>
-                          <span className="text-xs font-bold text-[#2563EB] dark:text-blue-400 font-mono">
+                          <span className="text-xs sm:text-sm font-bold text-[#2563EB] dark:text-blue-400 font-mono">
                             From ${item.startingPrice}
                           </span>
                         </Link>
@@ -364,7 +361,7 @@ export const Home: React.FC = () => {
             </div>
 
             {/* Micro Trust Indicators (with Sage Green Checkmarks) */}
-            <div className="lg:col-span-5 flex flex-wrap items-center justify-center lg:justify-end gap-4 text-xs text-slate-600 dark:text-slate-400 font-medium">
+            <div className="lg:col-span-5 flex flex-wrap items-center justify-center lg:justify-end gap-3 sm:gap-4 text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-[#86A98D] shrink-0" />
                 <span className="text-[#1E293B] dark:text-slate-300">Instant Delivery</span>
@@ -388,35 +385,35 @@ export const Home: React.FC = () => {
           </div>
 
           {/* 3 Ultra-Simple Visual Steps for Any User */}
-          <div className="max-w-4xl mx-auto pt-4 border-t border-slate-200 dark:border-slate-800">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-              <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-3 text-left">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 flex items-center justify-center font-black text-[#2563EB] dark:text-blue-400 text-sm shrink-0">
+          <div className="max-w-4xl mx-auto pt-4 sm:pt-6 border-t border-slate-200/80 dark:border-slate-800">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div className="p-4 sm:p-4.5 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 flex items-center gap-3 text-left shadow-2xs">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 flex items-center justify-center font-black text-[#2563EB] dark:text-blue-400 text-sm sm:text-base shrink-0">
                   1
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-[#1E293B] dark:text-white">Choose Brand</div>
-                  <div className="text-[11px] text-slate-500 dark:text-slate-400">Apple, Steam, Xbox & more</div>
+                  <div className="text-xs sm:text-sm font-bold text-[#1E293B] dark:text-white">Choose Brand</div>
+                  <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Apple, Steam, Xbox & more</div>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-3 text-left">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 flex items-center justify-center font-black text-[#2563EB] dark:text-blue-400 text-sm shrink-0">
+              <div className="p-4 sm:p-4.5 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 flex items-center gap-3 text-left shadow-2xs">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 flex items-center justify-center font-black text-[#2563EB] dark:text-blue-400 text-sm sm:text-base shrink-0">
                   2
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-[#1E293B] dark:text-white">Buy or Check Code</div>
-                  <div className="text-[11px] text-slate-500 dark:text-slate-400">Select amount or enter code</div>
+                  <div className="text-xs sm:text-sm font-bold text-[#1E293B] dark:text-white">Buy or Check Code</div>
+                  <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Select amount or enter code</div>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-3 text-left">
-                <div className="w-8 h-8 rounded-lg bg-[#86A98D]/15 dark:bg-[#86A98D]/25 flex items-center justify-center font-black text-[#86A98D] text-sm shrink-0">
+              <div className="p-4 sm:p-4.5 rounded-xl sm:rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 flex items-center gap-3 text-left shadow-2xs">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#86A98D]/15 dark:bg-[#86A98D]/25 flex items-center justify-center font-black text-[#86A98D] text-sm sm:text-base shrink-0">
                   3
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-[#1E293B] dark:text-white">Instant Result</div>
-                  <div className="text-[11px] text-slate-500 dark:text-slate-400">Get code or balance status</div>
+                  <div className="text-xs sm:text-sm font-bold text-[#1E293B] dark:text-white">Instant Result</div>
+                  <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Get code or balance status</div>
                 </div>
               </div>
             </div>

@@ -695,7 +695,7 @@ export const GIFT_CARDS: GiftCard[] = [
     featured: true,
     terms: [
       'Accepted anywhere Mastercard debit is supported globally.',
-      'Instant digital credentials and secure token generator.',
+      'Instant digital credentials and secure electronic token delivery.',
       'Funds do not expire.'
     ]
   },

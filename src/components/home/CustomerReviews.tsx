@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   Star, 
   ShieldCheck, 
@@ -7,29 +7,30 @@ import {
   CheckCircle2, 
   Sparkles, 
   MessageSquarePlus, 
-  Filter, 
   Check, 
-  TrendingUp, 
-  Lock,
-  Calendar,
+  X,
   History,
-  Clock,
-  X
+  TrendingUp,
+  Award,
+  Zap,
+  Filter
 } from 'lucide-react';
-import { SectionHeading } from '../ui/SectionHeading';
 import { Button } from '../ui/Button';
 import { CUSTOMER_REVIEWS, REVIEW_METRICS } from '../../data/reviews';
 import { CustomerReview } from '../../types/giftCard';
 import { GIFT_CARDS } from '../../data/brands';
 
-type FilterType = 'all' | 'bought' | 'validated' | '5stars' | 'last_year' | '2_years_ago' | '3_years_ago';
+type PeriodFilter = 'all' | 'recent' | 'last_year' | '2_years_ago' | '3_years_ago';
+type TypeFilter = 'all' | 'bought' | 'validated' | '5stars';
 
 export const CustomerReviews: React.FC = () => {
   const [reviews, setReviews] = useState<CustomerReview[]>(CUSTOMER_REVIEWS);
-  const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+  const [periodFilter, setPeriodFilter] = useState<PeriodFilter>('all');
+  const [typeFilter, setTypeFilter] = useState<TypeFilter>('all');
   const [helpfulVotes, setHelpfulVotes] = useState<Record<string, boolean>>({});
   const [showWriteModal, setShowWriteModal] = useState<boolean>(false);
-  const [visibleCount, setVisibleCount] = useState<number>(6);
+  const [visibleCount, setVisibleCount] = useState<number>(9);
+  const [selectedBrand, setSelectedBrand] = useState<string>('all');
 
   // New review form state
   const [newReview, setNewReview] = useState({
@@ -78,14 +79,14 @@ export const CustomerReviews: React.FC = () => {
       author: newReview.author.trim(),
       avatarBg: newReview.type === 'bought' ? 'bg-[#2563EB]' : 'bg-[#86A98D]',
       rating: newReview.rating,
-      date: 'Just now (2026)',
+      date: 'Just now',
       period: 'recent',
       yearLabel: '2026',
       type: newReview.type,
       cardName: newReview.cardName,
       denomination: newReview.denomination,
       comment: newReview.comment.trim(),
-      location: newReview.location.trim() || 'Verified User',
+      location: newReview.location.trim() || 'Verified Customer',
       verified: true,
       helpfulCount: 1,
     };
@@ -107,27 +108,37 @@ export const CustomerReviews: React.FC = () => {
     }, 1200);
   };
 
-  // Filtered reviews
-  const filteredReviews = reviews.filter((rev) => {
-    if (activeFilter === 'bought') return rev.type === 'bought';
-    if (activeFilter === 'validated') return rev.type === 'validated';
-    if (activeFilter === '5stars') return rev.rating === 5;
-    if (activeFilter === 'last_year') return rev.period === 'last_year';
-    if (activeFilter === '2_years_ago') return rev.period === '2_years_ago';
-    if (activeFilter === '3_years_ago') return rev.period === '3_years_ago';
-    return true;
-  });
+  // Filter logic
+  const filteredReviews = useMemo(() => {
+    return reviews.filter((rev) => {
+      // Period filter
+      if (periodFilter === 'recent' && rev.period !== 'recent') return false;
+      if (periodFilter === 'last_year' && rev.period !== 'last_year') return false;
+      if (periodFilter === '2_years_ago' && rev.period !== '2_years_ago') return false;
+      if (periodFilter === '3_years_ago' && rev.period !== '3_years_ago') return false;
+
+      // Type filter
+      if (typeFilter === 'bought' && rev.type !== 'bought') return false;
+      if (typeFilter === 'validated' && rev.type !== 'validated') return false;
+      if (typeFilter === '5stars' && rev.rating !== 5) return false;
+
+      // Brand filter
+      if (selectedBrand !== 'all' && rev.cardName !== selectedBrand) return false;
+
+      return true;
+    });
+  }, [reviews, periodFilter, typeFilter, selectedBrand]);
 
   const displayedReviews = filteredReviews.slice(0, visibleCount);
 
   // Helper to render stars
-  const renderStars = (rating: number) => {
+  const renderStars = (rating: number, size = 'w-4 h-4') => {
     return (
       <div className="flex items-center gap-0.5 text-amber-400">
         {[1, 2, 3, 4, 5].map((star) => (
           <Star
             key={star}
-            className={`w-4 h-4 ${
+            className={`${size} ${
               star <= rating ? 'fill-amber-400 text-amber-400' : 'text-slate-300 dark:text-slate-700'
             }`}
           />
@@ -145,22 +156,32 @@ export const CustomerReviews: React.FC = () => {
     return 'bg-[#2563EB]';
   };
 
+  const starPercentMap = useMemo(() => {
+    const map: Record<number, number> = { 5: 96, 4: 4, 3: 0, 2: 0, 1: 0 };
+    if (REVIEW_METRICS?.starsDistribution) {
+      REVIEW_METRICS.starsDistribution.forEach((s) => {
+        map[s.stars] = s.percentage;
+      });
+    }
+    return map;
+  }, []);
+
   return (
-    <section id="customer-reviews-section" className="py-16 sm:py-24 bg-[#F5F7FA] dark:bg-slate-950/70 border-b border-slate-200/80 dark:border-slate-800 relative">
+    <section id="customer-reviews-section" className="py-12 sm:py-16 bg-[#F5F7FA] dark:bg-slate-950/70 border-b border-slate-200/80 dark:border-slate-800 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Heading */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+        {/* Section Heading & Write Button */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-300 border border-blue-200/60 dark:border-blue-800/60 mb-2.5">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-300 border border-blue-200/60 dark:border-blue-800/60 mb-2">
               <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-              <span>Verified Customer Social Proof • 3+ Year Archive</span>
+              <span>Verified Customer Feedback</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E293B] dark:text-white tracking-tight">
-              Real Experiences From Real Users Over 3 Years
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1E293B] dark:text-white tracking-tight">
+              Customer Reviews & Feedback History
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
-              Transparent, authenticated reviews spanning our 3-year track record. Filter by recent purchases, last year (2025), 2 years ago (2024), or 3 years ago (2023).
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+              Transparent, authenticated reviews from customers who purchased or verified digital gift cards.
             </p>
           </div>
 
@@ -168,10 +189,10 @@ export const CustomerReviews: React.FC = () => {
             <Button
               type="button"
               id="btn-open-review-modal"
-              size="md"
+              size="sm"
               onClick={() => setShowWriteModal(true)}
-              className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold border border-amber-600/30 text-xs sm:text-sm shadow-xs transition-colors cursor-pointer"
-              leftIcon={<MessageSquarePlus className="w-4 h-4 text-slate-950" />}
+              className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs sm:text-sm shadow-xs transition-colors cursor-pointer"
+              leftIcon={<MessageSquarePlus className="w-4 h-4 text-white" />}
             >
               Write a Review
             </Button>
@@ -179,321 +200,360 @@ export const CustomerReviews: React.FC = () => {
         </div>
 
         {/* OVERALL RATING & SOCIAL PROOF SUMMARY BANNER */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 mb-8 shadow-xs">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="mb-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-xs">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             
-            {/* Main Score Box */}
+            {/* Score Box */}
             <div className="lg:col-span-4 flex flex-col items-center sm:items-start text-center sm:text-left border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-slate-800 pb-6 lg:pb-0 lg:pr-8">
-              <div className="flex items-baseline gap-3">
-                <span className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight font-mono">
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
                   {REVIEW_METRICS.averageRating}
                 </span>
-                <span className="text-slate-400 text-lg font-bold">/ 5.0</span>
+                <span className="text-slate-400 font-bold text-lg">/ 5.0</span>
               </div>
 
-              <div className="flex items-center gap-2 mt-2">
-                {renderStars(5)}
-                <span className="text-xs font-bold text-slate-700 dark:text-slate-300 ml-1">
-                  ({REVIEW_METRICS.totalReviewsCount.toLocaleString()} Verified Reviews)
-                </span>
+              <div className="my-2">
+                {renderStars(5, 'w-5 h-5')}
               </div>
 
-              <div className="flex items-center gap-2 mt-3 px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-mono font-semibold">
-                <History className="w-3.5 h-3.5 text-[#2563EB]" />
-                <span>3+ Years Continuous Operation (2023 - 2026)</span>
+              <div className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                Based on {REVIEW_METRICS.totalReviewsCount.toLocaleString()} Verified Customer Reviews
+              </div>
+
+              <div className="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#86A98D]/15 text-[#86A98D] text-[11px] font-bold">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>3+ Years Continuous Operation</span>
               </div>
             </div>
 
-            {/* Middle Trust Badges */}
-            <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-              <div className="p-3.5 rounded-2xl bg-blue-50/60 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/50">
-                <div className="flex items-center gap-2 text-[#2563EB] dark:text-blue-300 font-extrabold text-sm mb-1">
-                  <ShoppingBag className="w-4 h-4 text-[#2563EB] dark:text-blue-400" />
-                  <span>{REVIEW_METRICS.deliveryRate} Delivery</span>
+            {/* Ratings Breakdown Progress Bars */}
+            <div className="lg:col-span-5 space-y-2 border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-slate-800 pb-6 lg:pb-0 lg:pr-8">
+              <div className="flex items-center gap-3 text-xs">
+                <span className="w-12 font-bold text-slate-700 dark:text-slate-300">5 Stars</span>
+                <div className="flex-1 h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                  <div className="h-full bg-amber-400 rounded-full" style={{ width: `${starPercentMap[5]}%` }} />
                 </div>
-                <div className="text-xs text-slate-600 dark:text-slate-400">
-                  Instant electronic code delivery via email & screen.
-                </div>
+                <span className="w-10 text-right font-mono text-slate-500 text-[11px]">{starPercentMap[5]}%</span>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-[#86A98D]/15 border border-[#86A98D]/30">
-                <div className="flex items-center gap-2 text-[#86A98D] font-extrabold text-sm mb-1">
-                  <ShieldCheck className="w-4 h-4 text-[#86A98D]" />
-                  <span>{REVIEW_METRICS.satisfactionRate} Authentic</span>
+              <div className="flex items-center gap-3 text-xs">
+                <span className="w-12 font-bold text-slate-700 dark:text-slate-300">4 Stars</span>
+                <div className="flex-1 h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                  <div className="h-full bg-amber-400/80 rounded-full" style={{ width: `${starPercentMap[4]}%` }} />
                 </div>
-                <div className="text-xs text-slate-600 dark:text-slate-400">
-                  Verified code format & valid balance guarantee.
+                <span className="w-10 text-right font-mono text-slate-500 text-[11px]">{starPercentMap[4]}%</span>
+              </div>
+
+              <div className="flex items-center gap-3 text-xs">
+                <span className="w-12 font-bold text-slate-700 dark:text-slate-300">3 Stars</span>
+                <div className="flex-1 h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                  <div className="h-full bg-amber-400/50 rounded-full" style={{ width: `${starPercentMap[3]}%` }} />
                 </div>
+                <span className="w-10 text-right font-mono text-slate-500 text-[11px]">{starPercentMap[3]}%</span>
+              </div>
+
+              <div className="flex items-center gap-3 text-xs">
+                <span className="w-12 font-bold text-slate-700 dark:text-slate-300">2 Stars</span>
+                <div className="flex-1 h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                  <div className="h-full bg-slate-300 dark:bg-slate-700 rounded-full" style={{ width: `${starPercentMap[2]}%` }} />
+                </div>
+                <span className="w-10 text-right font-mono text-slate-500 text-[11px]">{starPercentMap[2]}%</span>
+              </div>
+
+              <div className="flex items-center gap-3 text-xs">
+                <span className="w-12 font-bold text-slate-700 dark:text-slate-300">1 Star</span>
+                <div className="flex-1 h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                  <div className="h-full bg-slate-300 dark:bg-slate-700 rounded-full" style={{ width: `${starPercentMap[1]}%` }} />
+                </div>
+                <span className="w-10 text-right font-mono text-slate-500 text-[11px]">{starPercentMap[1]}%</span>
               </div>
             </div>
 
-            {/* Right Quick Summary Pillars */}
-            <div className="lg:col-span-3 space-y-2 border-t lg:border-t-0 border-slate-100 dark:border-slate-800 pt-4 lg:pt-0">
-              <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#86A98D] shrink-0" />
-                <span>Zero hidden processing fees</span>
+            {/* Quick Pillars */}
+            <div className="lg:col-span-3 space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] flex items-center justify-center shrink-0">
+                  <Zap className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-slate-800 dark:text-slate-200">Instant Delivery SLA</div>
+                  <div className="text-[11px] text-slate-500">Average code dispatch &lt; 30s</div>
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
-                <Lock className="w-3.5 h-3.5 text-[#2563EB] shrink-0" />
-                <span>256-bit bank-grade encryption</span>
+
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-[#86A98D]/20 text-[#86A98D] flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-slate-800 dark:text-slate-200">99.98% Authentic Guarantee</div>
+                  <div className="text-[11px] text-slate-500">Official issuer authorized codes</div>
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300">
-                <TrendingUp className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                <span>Over 48,000+ cards fulfilled</span>
+
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 flex items-center justify-center shrink-0">
+                  <Award className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-slate-800 dark:text-slate-200">24/7 Dispute Support</div>
+                  <div className="text-[11px] text-slate-500">Instant live chat & ticket resolution</div>
+                </div>
               </div>
             </div>
 
           </div>
         </div>
 
-        {/* TIME-PERIOD & ATTRIBUTE FILTER BAR */}
-        <div className="space-y-3 mb-8">
-          
-          {/* Row 1: Time Period Filters */}
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 pb-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono mr-1 flex items-center gap-1 shrink-0">
-              <Calendar className="w-3.5 h-3.5 text-[#2563EB]" /> Timeline:
-            </span>
-
-            <button
-              type="button"
-              onClick={() => setActiveFilter('all')}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
-                activeFilter === 'all'
-                  ? 'bg-[#2563EB] text-white shadow-md shadow-blue-600/20'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
-              }`}
-            >
-              <span>All 3 Years</span>
-              <span className={`text-[11px] px-1.5 py-0.2 rounded-full ${activeFilter === 'all' ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
-                {reviews.length}
-              </span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveFilter('last_year')}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
-                activeFilter === 'last_year'
-                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/20'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
-              }`}
-            >
-              <Clock className="w-3 h-3 text-sky-400" />
-              <span>Last Year (2025)</span>
-              <span className={`text-[11px] px-1.5 py-0.2 rounded-full ${activeFilter === 'last_year' ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
-                {reviews.filter((r) => r.period === 'last_year').length}
-              </span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveFilter('2_years_ago')}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
-                activeFilter === '2_years_ago'
-                  ? 'bg-[#1D4ED8] text-white shadow-md shadow-blue-800/20'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
-              }`}
-            >
-              <History className="w-3 h-3 text-blue-300" />
-              <span>2 Years Ago (2024)</span>
-              <span className={`text-[11px] px-1.5 py-0.2 rounded-full ${activeFilter === '2_years_ago' ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
-                {reviews.filter((r) => r.period === '2_years_ago').length}
-              </span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveFilter('3_years_ago')}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
-                activeFilter === '3_years_ago'
-                  ? 'bg-amber-600 text-white shadow-md shadow-amber-600/20'
-                  : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
-              }`}
-            >
-              <History className="w-3 h-3 text-amber-400" />
-              <span>3 Years Ago (2023)</span>
-              <span className={`text-[11px] px-1.5 py-0.2 rounded-full ${activeFilter === '3_years_ago' ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
-                {reviews.filter((r) => r.period === '3_years_ago').length}
-              </span>
-            </button>
-          </div>
-
-          {/* Row 2: Category & Rating Filters */}
-          <div className="flex items-center justify-between flex-wrap gap-2 pt-1">
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 pb-1">
-              <button
-                type="button"
-                id="filter-review-bought"
-                onClick={() => setActiveFilter('bought')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
-                  activeFilter === 'bought'
-                    ? 'bg-[#2563EB] text-white shadow-md shadow-blue-600/20'
-                    : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
-                }`}
-              >
-                <ShoppingBag className="w-3.5 h-3.5 text-blue-200" />
-                <span>Gift Cards Bought</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${activeFilter === 'bought' ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
-                  {reviews.filter((r) => r.type === 'bought').length}
-                </span>
-              </button>
-
-              <button
-                type="button"
-                id="filter-review-validated"
-                onClick={() => setActiveFilter('validated')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
-                  activeFilter === 'validated'
-                    ? 'border-2 border-[#2563EB] bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-300 shadow-md shadow-blue-600/10'
-                    : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
-                }`}
-              >
-                <ShieldCheck className="w-3.5 h-3.5 text-[#2563EB] dark:text-blue-400" />
-                <span>Cards Validated</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${activeFilter === 'validated' ? 'bg-blue-100 dark:bg-blue-950 text-[#2563EB] dark:text-blue-300 font-bold' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
-                  {reviews.filter((r) => r.type === 'validated').length}
-                </span>
-              </button>
-
-              <button
-                type="button"
-                id="filter-review-5stars"
-                onClick={() => setActiveFilter('5stars')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 ${
-                  activeFilter === '5stars'
-                    ? 'bg-amber-600 text-white shadow-md shadow-amber-600/20'
-                    : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
-                }`}
-              >
-                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                <span>5 Stars Only</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${activeFilter === '5stars' ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
-                  {reviews.filter((r) => r.rating === 5).length}
-                </span>
-              </button>
+        {/* TIMELINE ARCHIVE TABS (3+ Years Archive) */}
+        <div className="space-y-3 mb-6">
+          <div className="flex items-center justify-between flex-wrap gap-2">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700 dark:text-slate-300">
+              <History className="w-4 h-4 text-[#2563EB]" />
+              <span>Timeline:</span>
             </div>
 
-            <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-              Showing {displayedReviews.length} of {filteredReviews.length} verified reviews
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0">
+              <button
+                type="button"
+                onClick={() => setPeriodFilter('all')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  periodFilter === 'all'
+                    ? 'bg-[#2563EB] text-white shadow-xs'
+                    : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
+                }`}
+              >
+                All 3 Years
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setPeriodFilter('recent')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  periodFilter === 'recent'
+                    ? 'bg-[#2563EB] text-white shadow-xs'
+                    : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
+                }`}
+              >
+                2026 (Live)
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setPeriodFilter('last_year')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  periodFilter === 'last_year'
+                    ? 'bg-[#2563EB] text-white shadow-xs'
+                    : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
+                }`}
+              >
+                2025 (Last Year)
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setPeriodFilter('2_years_ago')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  periodFilter === '2_years_ago'
+                    ? 'bg-[#2563EB] text-white shadow-xs'
+                    : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
+                }`}
+              >
+                2024 Archive
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setPeriodFilter('3_years_ago')}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  periodFilter === '3_years_ago'
+                    ? 'bg-[#2563EB] text-white shadow-xs'
+                    : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
+                }`}
+              >
+                2023 Archive
+              </button>
             </div>
           </div>
 
+          {/* Type Filters & Brand Selector */}
+          <div className="flex items-center justify-between flex-wrap gap-3 pt-2 border-t border-slate-200/60 dark:border-slate-800/80">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0">
+              <button
+                type="button"
+                onClick={() => setTypeFilter('all')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  typeFilter === 'all'
+                    ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900'
+                    : 'bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                }`}
+              >
+                All Actions
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setTypeFilter('bought')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                  typeFilter === 'bought'
+                    ? 'bg-[#2563EB] text-white'
+                    : 'bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                }`}
+              >
+                <ShoppingBag className="w-3 h-3" />
+                <span>Purchased Cards</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setTypeFilter('validated')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                  typeFilter === 'validated'
+                    ? 'bg-[#2563EB] text-white'
+                    : 'bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                }`}
+              >
+                <ShieldCheck className="w-3 h-3" />
+                <span>Balance Checks</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setTypeFilter('5stars')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                  typeFilter === '5stars'
+                    ? 'bg-amber-600 text-white'
+                    : 'bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                }`}
+              >
+                <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                <span>5 Stars</span>
+              </button>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-slate-500 font-medium">Brand:</span>
+              <select
+                value={selectedBrand}
+                onChange={(e) => setSelectedBrand(e.target.value)}
+                className="text-xs font-bold px-2.5 py-1 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none"
+              >
+                <option value="all">All Brands</option>
+                {GIFT_CARDS.slice(0, 12).map((b) => (
+                  <option key={b.id} value={b.name}>{b.name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
 
         {/* REVIEWS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedReviews.map((review) => {
-            const hasVoted = helpfulVotes[review.id];
-            const initials = review.author
-              .split(' ')
-              .map((n) => n[0])
-              .join('')
-              .toUpperCase()
-              .slice(0, 2);
+        {displayedReviews.length === 0 ? (
+          <div className="py-16 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800">
+            <Filter className="w-8 h-8 text-slate-400 mx-auto mb-2" />
+            <div className="text-sm font-bold text-slate-700 dark:text-slate-300">No reviews found for this selection</div>
+            <p className="text-xs text-slate-500 mt-1">Try resetting your filters or selecting All 3 Years.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {displayedReviews.map((review) => {
+              const hasVoted = helpfulVotes[review.id];
+              const initials = review.author
+                .split(' ')
+                .map((n) => n[0])
+                .join('')
+                .toUpperCase()
+                .slice(0, 2);
 
-            return (
-              <div
-                key={review.id}
-                id={`review-card-${review.id}`}
-                className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-7 shadow-xs hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200 flex flex-col justify-between"
-              >
-                <div>
-                  {/* Top Author Row & Badges */}
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className={`w-11 h-11 rounded-2xl ${getNormalizedAvatarBg(review.avatarBg)} text-white font-black text-sm flex items-center justify-center shadow-xs shrink-0`}>
-                        {initials}
-                      </div>
-                      <div>
-                        <div className="font-extrabold text-slate-900 dark:text-white text-sm">
-                          {review.author}
+              return (
+                <div
+                  key={review.id}
+                  id={`review-card-${review.id}`}
+                  className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-5 sm:p-6 shadow-2xs hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200 flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Top Author Row & Badges */}
+                    <div className="flex items-start justify-between gap-3 mb-3.5">
+                      <div className="flex items-center gap-3">
+                        <div className={`w-10 h-10 rounded-xl ${getNormalizedAvatarBg(review.avatarBg)} text-white font-black text-xs flex items-center justify-center shadow-xs shrink-0`}>
+                          {initials}
                         </div>
-                        <div className="text-xs text-slate-400 font-medium">
-                          {review.location} • {review.date}
+                        <div>
+                          <div className="font-extrabold text-slate-900 dark:text-white text-sm flex items-center gap-1.5">
+                            <span>{review.author}</span>
+                            {review.yearLabel && (
+                              <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500">
+                                {review.yearLabel}
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-xs text-slate-400 font-medium">
+                            {review.location} • {review.date}
+                          </div>
                         </div>
                       </div>
-                    </div>
-
-                    {/* Timeline & Type Badges */}
-                    <div className="flex flex-col items-end gap-1">
-                      {review.period === '3_years_ago' && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
-                          2023 Veteran
-                        </span>
-                      )}
-                      {review.period === '2_years_ago' && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30">
-                          2024 Customer
-                        </span>
-                      )}
-                      {review.period === 'last_year' && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/15 text-sky-600 dark:text-sky-400 border border-sky-500/30">
-                          2025 Buyer
-                        </span>
-                      )}
 
                       {review.type === 'bought' ? (
                         <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 dark:bg-blue-950/70 text-[#2563EB] dark:text-blue-300 border border-blue-200/70 dark:border-blue-800/70 shrink-0">
-                          <ShoppingBag className="w-3 h-3 text-[#2563EB]" />
-                          <span>Verified Buyer</span>
+                          <ShoppingBag className="w-3.5 h-3.5 text-[#2563EB]" />
+                          <span>Buyer</span>
                         </span>
                       ) : (
                         <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#86A98D]/15 text-[#86A98D] border border-[#86A98D]/30 shrink-0">
-                          <ShieldCheck className="w-3 h-3 text-[#86A98D]" />
-                          <span>Card Validated</span>
+                          <ShieldCheck className="w-3.5 h-3.5 text-[#86A98D]" />
+                          <span>Checked</span>
                         </span>
                       )}
                     </div>
-                  </div>
 
-                  {/* Card Brand Tag & Rating */}
-                  <div className="flex items-center justify-between gap-2 mb-3 pb-3 border-b border-slate-100 dark:border-slate-800/80">
-                    <div className="text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/70 px-2.5 py-1 rounded-lg truncate">
-                      {review.cardName} {review.denomination ? `• ${review.denomination}` : ''}
+                    {/* Card Brand Tag & Rating */}
+                    <div className="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-slate-100 dark:border-slate-800/80">
+                      <div className="text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/70 px-2.5 py-0.5 rounded-lg truncate">
+                        {review.cardName} {review.denomination ? `• ${review.denomination}` : ''}
+                      </div>
+                      {renderStars(review.rating)}
                     </div>
-                    {renderStars(review.rating)}
+
+                    {/* Comment */}
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
+                      "{review.comment}"
+                    </p>
                   </div>
 
-                  {/* Comment */}
-                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    "{review.comment}"
-                  </p>
-                </div>
+                  {/* Bottom Helpful Row */}
+                  <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                    <div className="flex items-center gap-1.5 text-[#86A98D] font-semibold text-[11px]">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      <span>Verified Transaction</span>
+                    </div>
 
-                {/* Bottom Helpful Row */}
-                <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-                  <div className="flex items-center gap-1.5 text-[#86A98D] font-semibold">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Verified Authenticity</span>
+                    <button
+                      type="button"
+                      onClick={() => handleHelpfulClick(review.id)}
+                      className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-xs font-semibold ${
+                        hasVoted
+                          ? 'bg-blue-50 dark:bg-blue-950/80 text-[#2563EB] dark:text-blue-400 font-bold'
+                          : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400'
+                      }`}
+                    >
+                      <ThumbsUp className={`w-3.5 h-3.5 ${hasVoted ? 'fill-[#2563EB] dark:fill-blue-400' : ''}`} />
+                      <span>Helpful ({review.helpfulCount || 0})</span>
+                    </button>
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={() => handleHelpfulClick(review.id)}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg transition-colors cursor-pointer text-xs font-semibold ${
-                      hasVoted
-                        ? 'bg-blue-50 dark:bg-blue-950/80 text-[#2563EB] dark:text-blue-400 font-bold'
-                        : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400'
-                    }`}
-                  >
-                    <ThumbsUp className={`w-3.5 h-3.5 ${hasVoted ? 'fill-[#2563EB] dark:fill-blue-400' : ''}`} />
-                    <span>Helpful ({review.helpfulCount || 0})</span>
-                  </button>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
 
         {/* Show More Button */}
         {filteredReviews.length > visibleCount && (
-          <div className="mt-10 text-center">
+          <div className="mt-8 text-center">
             <Button
               variant="outline"
-              size="md"
-              onClick={() => setVisibleCount((prev) => prev + 3)}
-              className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200"
+              size="sm"
+              onClick={() => setVisibleCount((prev) => prev + 6)}
+              className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 font-bold"
             >
               Show More Reviews ({filteredReviews.length - visibleCount} remaining)
             </Button>
@@ -510,7 +570,7 @@ export const CustomerReviews: React.FC = () => {
             <button
               type="button"
               onClick={() => setShowWriteModal(false)}
-              className="absolute top-5 right-5 text-slate-400 hover:text-slate-600 dark:hover:text-white p-1 rounded-lg"
+              className="absolute top-5 right-5 text-slate-400 hover:text-slate-600 dark:hover:text-white p-1 rounded-lg cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -603,30 +663,30 @@ export const CustomerReviews: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setNewReview({ ...newReview, type: 'validated' })}
-                      className={`p-2.5 rounded-xl border-2 text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
+                      className={`p-2.5 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
                         newReview.type === 'validated'
-                          ? 'border-[#2563EB] bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-300 shadow-xs'
-                          : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-slate-300'
+                          ? 'bg-blue-50 dark:bg-blue-950/70 border-[#2563EB] text-[#2563EB] dark:text-blue-300'
+                          : 'border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400'
                       }`}
                     >
-                      <ShieldCheck className={`w-3.5 h-3.5 ${newReview.type === 'validated' ? 'text-[#2563EB] dark:text-blue-400' : ''}`} />
-                      <span>I Validated a Code</span>
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      <span>I Checked a Card</span>
                     </button>
                   </div>
                 </div>
 
-                {/* Card Brand & Denomination */}
+                {/* Brand Selection & Denomination */}
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                      Brand Name
+                      Card Brand *
                     </label>
                     <select
                       value={newReview.cardName}
                       onChange={(e) => setNewReview({ ...newReview, cardName: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
+                      className="w-full px-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
                     >
-                      {GIFT_CARDS.slice(0, 15).map((card) => (
+                      {GIFT_CARDS.map((card) => (
                         <option key={card.id} value={card.name}>
                           {card.name}
                         </option>
@@ -636,11 +696,11 @@ export const CustomerReviews: React.FC = () => {
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                      Denomination
+                      Denomination / Amount
                     </label>
                     <input
                       type="text"
-                      placeholder="e.g. $50 USD"
+                      placeholder="e.g. $100 USD"
                       value={newReview.denomination}
                       onChange={(e) => setNewReview({ ...newReview, denomination: e.target.value })}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
@@ -648,68 +708,68 @@ export const CustomerReviews: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Rating Selector */}
+                {/* Star Rating Picker */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                    Rating
+                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                    Your Rating *
                   </label>
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-2 p-2 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
                         key={star}
                         type="button"
                         onClick={() => setNewReview({ ...newReview, rating: star })}
-                        className="p-1 text-amber-400 hover:scale-110 transition-transform cursor-pointer"
+                        className="p-1.5 hover:scale-125 transition-transform cursor-pointer"
                       >
                         <Star
                           className={`w-6 h-6 ${
                             star <= newReview.rating
                               ? 'fill-amber-400 text-amber-400'
-                              : 'text-slate-300 dark:text-slate-700'
+                              : 'text-slate-300 dark:text-slate-600'
                           }`}
                         />
                       </button>
                     ))}
-                    <span className="text-xs font-bold text-slate-600 dark:text-slate-400 ml-2">
-                      {newReview.rating} out of 5 Stars
+                    <span className="text-xs font-bold text-slate-700 dark:text-slate-300 ml-2 font-mono">
+                      {newReview.rating} / 5 Stars
                     </span>
                   </div>
                 </div>
 
-                {/* Comment textarea */}
+                {/* Comment Text Area */}
                 <div>
                   <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                    Review Comment *
+                    Your Review *
                   </label>
                   <textarea
-                    rows={3}
                     required
-                    placeholder="Describe your delivery speed, code validity, ease of checkout or validation experience..."
+                    rows={3}
+                    placeholder="Describe your purchase or validation experience..."
                     value={newReview.comment}
                     onChange={(e) => {
                       setNewReview({ ...newReview, comment: e.target.value });
                       if (formError) setFormError('');
                     }}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB] resize-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB] leading-relaxed"
                   />
                 </div>
 
                 <div className="pt-2 flex items-center justify-end gap-3">
                   <Button
                     type="button"
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
                     onClick={() => setShowWriteModal(false)}
+                    className="border-slate-300 dark:border-slate-700 cursor-pointer"
                   >
                     Cancel
                   </Button>
                   <Button
                     type="submit"
-                    variant="primary"
                     size="sm"
-                    className="bg-[#2563EB] hover:bg-[#1D4ED8]"
+                    className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold cursor-pointer"
                   >
-                    Post Verified Review
+                    Publish Review
                   </Button>
                 </div>
               </form>

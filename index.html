@@ -24,14 +24,16 @@
     <meta name="trustpilot-one-time-domain-verification-id" content="6b3efee7-125e-4057-be19-ae0c123211f2" />
     
     <!-- Favicon & Google Search Result Icons (Multiples of 48px PNG + ICO + SVG with cache-buster) -->
-    <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=3" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png?v=3" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png?v=3" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#4f46e5" />
+    <link rel="icon" href="/favicon.ico?v=5" sizes="any" />
+    <link rel="shortcut icon" href="/favicon.ico?v=5" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=5" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=5" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png?v=5" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png?v=5" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png?v=5" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=5" />
+    <link rel="manifest" href="/manifest.json?v=5" />
+    <meta name="theme-color" content="#2563EB" />
     
     <!-- Open Graph Protocol Meta Tags (Facebook, LinkedIn, iMessage, WhatsApp, Slack) -->
     <meta property="og:type" content="website" />
@@ -73,8 +75,18 @@
             "@type": "Organization",
             "@id": "https://allcardstatus.com/#organization",
             "name": "AllCardStatus",
+            "legalName": "AllCardStatus Global Digital Exchange Ltd.",
             "url": "https://allcardstatus.com",
-            "logo": "https://allcardstatus.com/logo.svg",
+            "logo": {
+              "@type": "ImageObject",
+              "@id": "https://allcardstatus.com/#logo",
+              "url": "https://allcardstatus.com/favicon-512x512.png",
+              "contentUrl": "https://allcardstatus.com/favicon-512x512.png",
+              "width": 512,
+              "height": 512,
+              "caption": "AllCardStatus Logo"
+            },
+            "image": "https://allcardstatus.com/favicon-512x512.png",
             "sameAs": [
               "https://twitter.com/allcardstatus",
               "https://facebook.com/allcardstatus"
@@ -83,7 +95,7 @@
               "@type": "ContactPoint",
               "contactType": "customer support",
               "email": "support@allcardstatus.com",
-              "availableLanguage": ["English"]
+              "availableLanguage": ["English", "Spanish", "French", "German"]
             }
           },
           {
