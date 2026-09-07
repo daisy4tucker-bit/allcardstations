@@ -93,6 +93,26 @@ export const About: React.FC = () => {
         </div>
       </div>
 
+      {/* Domain Scope & Consumer Protection Notice */}
+      <div className="bg-blue-50/70 dark:bg-slate-900/90 rounded-2xl border border-blue-200 dark:border-blue-900/60 p-6 sm:p-8 max-w-4xl mx-auto my-8">
+        <div className="flex items-start gap-4">
+          <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 dark:bg-blue-500/20 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shrink-0 mt-0.5">
+            <ShieldCheck className="w-5 h-5" />
+          </div>
+          <div className="space-y-2">
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+              Consumer Protection & Domain Scope Notice
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <strong>AllCardStatus</strong> is strictly an independent, private marketplace and validation utility for <strong>retail and gaming digital gift cards</strong> (such as Apple, Steam, Amazon, Xbox, and PlayStation). 
+            </p>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              AllCardStatus is <strong>NOT</strong> affiliated with any government department, electoral authority, or banking institution, and <strong>does not process government voter ID cards, national identification records, or credit/debit banking cards</strong>. For government card status services (such as voter registration or national identity verification), consumers should always consult their respective official government portals.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Core Values Grid */}
       <div className="my-16">
         <div className="text-center max-w-2xl mx-auto mb-10">

@@ -40,6 +40,7 @@ export interface SEOConfig {
     image?: string;
     description: string;
     foundingDate: string;
+    knowsAbout?: string[];
     sameAs: string[];
     contactPoint: {
       '@type': string;
@@ -77,7 +78,7 @@ export const SEO_CONFIG: SEOConfig = {
     'Global consumers, gamers, digital shoppers, and businesses seeking fast and secure electronic gift card purchases and authenticity validation.',
   marketLocation: 'Global / International (US, UK, EU, CA, AU, Worldwide)',
   businessDescription:
-    'AllCardStatus is an authorized digital gift card marketplace and multi-brand validation portal delivering authenticated electronic codes with bank-grade encryption, instant email fulfillment, and responsive customer support.',
+    'AllCardStatus is an independent digital gift card marketplace and multi-brand validation portal delivering authenticated retail and gaming electronic codes (such as Apple, Steam, PlayStation, Xbox, and Amazon) with bank-grade encryption and instant email fulfillment. AllCardStatus is not a government agency, voter registration portal, or banking entity.',
   contactEmail: 'support@allcardstatus.com',
   defaultOgImage: 'https://allcardstatus.com/og-image.png',
   twitterHandle: '@allcardstatus',
@@ -98,8 +99,18 @@ export const SEO_CONFIG: SEOConfig = {
     logo: 'https://allcardstatus.com/favicon-512x512.png',
     image: 'https://allcardstatus.com/favicon-512x512.png',
     description:
-      'Authorized digital gift card marketplace and card validation platform delivering authenticated electronic codes with bank-grade encryption.',
+      'Independent digital gift card marketplace and validation platform for retail and entertainment e-gift vouchers (Apple, Steam, Amazon, PlayStation, Xbox).',
     foundingDate: '2024',
+    knowsAbout: [
+      'Digital Gift Cards',
+      'Retail e-Gift Vouchers',
+      'Gaming Gift Cards',
+      'Steam Wallet Cards',
+      'Apple Gift Cards',
+      'PlayStation Network Cards',
+      'Xbox Live Cards',
+      'Amazon Gift Cards'
+    ],
     sameAs: ['https://twitter.com/allcardstatus'],
     contactPoint: {
       '@type': 'ContactPoint',
