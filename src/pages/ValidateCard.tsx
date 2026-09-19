@@ -355,13 +355,11 @@ export const ValidateCard: React.FC = () => {
   // Validation execution state
   const [isValidating, setIsValidating] = useState(false);
   const [validationRecord, setValidationRecord] = useState<{
-    validationId?: string;
+    validationId: string;
     brand: string;
     status: string;
     result: string;
     createdAt: string;
-    currency?: string;
-    cardAmount?: number;
   } | null>(null);
   const [apiError, setApiError] = useState<string | null>(null);
   const [verificationResult, setVerificationResult] = useState<{
@@ -724,28 +722,11 @@ export const ValidateCard: React.FC = () => {
       } else if (res) {
         setValidationRecord(res);
       } else {
-        setValidationRecord({
-          brand: brandName,
-          status: 'PENDING',
-          result: 'Card is not yet activated',
-          createdAt: new Date().toISOString(),
-          currency: selectedCurrency,
-          cardAmount: parsedAmount,
-        });
+        setApiError('Failed to submit validation request.');
       }
     } catch (err: any) {
-      console.warn('Backend validation sync notice, displaying validation record:', err);
-      const brandName = isCustomBrand && customBrandName ? customBrandName : (selectedBrand?.name || 'Gift Card');
-      const parsedAmount = parseFloat(cardAmount) || (selectedBrand?.defaultDenomination || 100);
-      // Provide immediate validation result to customer so they are never blocked
-      setValidationRecord({
-        brand: brandName,
-        status: 'PENDING',
-        result: 'Card is not yet activated',
-        createdAt: new Date().toISOString(),
-        currency: selectedCurrency,
-        cardAmount: parsedAmount,
-      });
+      console.error('Validation request failed:', err);
+      setApiError(err.message || 'Unable to connect to backend validation API.');
     } finally {
       setIsValidating(false);
     }
