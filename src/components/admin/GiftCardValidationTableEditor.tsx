@@ -999,6 +999,10 @@ END $$;`;
                             <span className="font-bold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/40 px-1.5 py-0.5 rounded">
                               {v.pin}
                             </span>
+                          ) : !isPhotoOnly && v.cardNumber ? (
+                            <span className="font-bold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/40 px-1.5 py-0.5 rounded">
+                              {v.cardNumber}
+                            </span>
                           ) : (
                             <span className="text-slate-400 italic text-[11px]">—</span>
                           )}

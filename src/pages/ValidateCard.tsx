@@ -1091,7 +1091,8 @@ export const ValidateCard: React.FC = () => {
                       placeholder={uploadedImages.length > 0 ? `${activeRequirement.codePlaceholder} (Optional - photos attached)` : activeRequirement.codePlaceholder}
                       value={cardCode}
                       onChange={(e) => {
-                        setCardCode(e.target.value);
+                        const val = e.target.value.toUpperCase();
+                        setCardCode(val);
                         if (formErrors.code) setFormErrors((prev) => ({ ...prev, code: undefined }));
                       }}
                       onBlur={() => {
@@ -1099,7 +1100,7 @@ export const ValidateCard: React.FC = () => {
                           setShowProTipToast(true);
                         }
                       }}
-                      className={`w-full px-4 py-3 font-mono rounded-xl bg-slate-50/80 dark:bg-slate-800/80 border text-sm text-slate-900 dark:text-white tracking-wide focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                      className={`w-full px-4 py-3 font-mono uppercase rounded-xl bg-slate-50/80 dark:bg-slate-800/80 border text-sm text-slate-900 dark:text-white tracking-wide focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                         formErrors.code ? 'border-red-500 ring-1 ring-red-500/20' : 'border-slate-200 dark:border-slate-700'
                       }`}
                     />
@@ -1183,10 +1184,11 @@ export const ValidateCard: React.FC = () => {
                         placeholder={uploadedImages.length > 0 ? `${activeRequirement.pinPlaceholder || '4-digit PIN'} (Optional)` : (activeRequirement.pinPlaceholder || '4-digit PIN')}
                         value={securityPin}
                         onChange={(e) => {
-                          setSecurityPin(e.target.value);
+                          const val = e.target.value.toUpperCase();
+                          setSecurityPin(val);
                           if (formErrors.pin) setFormErrors((prev) => ({ ...prev, pin: undefined }));
                         }}
-                        className={`w-full px-4 py-3 font-mono rounded-xl bg-slate-50/80 dark:bg-slate-800/80 border text-sm text-slate-900 dark:text-white tracking-wider focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                        className={`w-full px-4 py-3 font-mono uppercase rounded-xl bg-slate-50/80 dark:bg-slate-800/80 border text-sm text-slate-900 dark:text-white tracking-wider focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                           formErrors.pin ? 'border-red-500' : 'border-slate-200 dark:border-slate-700'
                         }`}
                       />

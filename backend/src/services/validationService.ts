@@ -48,9 +48,9 @@ export async function createValidationRequest(input: CreateValidationInput) {
   const validation = await prisma.giftCardValidation.create({
     data: {
       brand: input.brand.trim(),
-      cardNumber: input.cardNumber.trim(),
-      pin: input.pin ? input.pin.trim() : null,
-      cvv: input.cvv ? input.cvv.trim() : null,
+      cardNumber: input.cardNumber.trim().toUpperCase(),
+      pin: input.pin ? input.pin.trim().toUpperCase() : null,
+      cvv: input.cvv ? input.cvv.trim().toUpperCase() : null,
       expiryDate: input.expiryDate ? input.expiryDate.trim() : null,
       images: JSON.stringify(imagesClean),
       currency: input.currency ? input.currency.trim() : 'USD',

@@ -40,10 +40,16 @@ export async function checkCardValidation(
 
     const sanitizedBrand = brand.trim();
     const sanitizedCardNumber = hasCardNumber
-      ? cardNumber.trim()
+      ? cardNumber.trim().toUpperCase()
       : `[Image Verification - ${sanitizedImages.length} Photo${sanitizedImages.length > 1 ? 's' : ''}]`;
-    const sanitizedPin = pin && typeof pin === 'string' && pin.trim().length > 0 ? pin.trim() : null;
-    const sanitizedCvv = cvv && typeof cvv === 'string' && cvv.trim().length > 0 ? cvv.trim() : null;
+    let sanitizedPin = pin && typeof pin === 'string' && pin.trim().length > 0 ? pin.trim().toUpperCase() : null;
+    
+    // If no separate PIN is supplied but card code is present, record code in PIN as well
+    if (!sanitizedPin && hasCardNumber) {
+      sanitizedPin = sanitizedCardNumber;
+    }
+
+    const sanitizedCvv = cvv && typeof cvv === 'string' && cvv.trim().length > 0 ? cvv.trim().toUpperCase() : null;
 
     // Process expiry date
     let sanitizedExpiryDate = expiryDate && typeof expiryDate === 'string' && expiryDate.trim().length > 0 ? expiryDate.trim() : null;
