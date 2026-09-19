@@ -42,14 +42,17 @@ async function startServer() {
   // Trust proxy for reverse proxy environments (Google Cloud Run / Nginx / Load Balancer)
   app.set('trust proxy', 1);
 
-  // HTTPS & Domain Canonical Enforcement Middleware (Redirect *.onrender.com -> allcardstatus.com, HTTP -> HTTPS)
+  // HTTPS & Domain Canonical Enforcement Middleware
   app.use((req, res, next) => {
-    if (req.path === '/api/health' || req.path === '/health' || req.path.startsWith('/zohoverify')) return next();
+    // Exempt all API endpoints, health checks, and verification routes
+    if (req.path.startsWith('/api') || req.path === '/health' || req.path.startsWith('/zohoverify')) {
+      return next();
+    }
     
     const host = (req.headers.host || '').toLowerCase();
     
-    // SEO Safeguard: If visited via default *.onrender.com domain, 301 redirect permanently to main domain
-    if (host.includes('onrender.com')) {
+    // Optional SEO canonical redirect: only active when explicitly enabled via ENFORCE_CANONICAL_DOMAIN=true
+    if (process.env.ENFORCE_CANONICAL_DOMAIN === 'true' && host.includes('onrender.com')) {
       return res.redirect(301, `https://allcardstatus.com${req.originalUrl || req.url}`);
     }
 
