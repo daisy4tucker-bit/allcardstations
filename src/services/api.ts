@@ -4,17 +4,22 @@ export interface ApiResponse<T = any> {
   success: boolean;
   message?: string;
   data?: T;
-  error?: {
-    message: string;
-    statusCode: number;
-  };
+  error?:
+    | {
+        message: string;
+        statusCode?: number;
+      }
+    | string;
 }
 
 export async function apiRequest<T = any>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
-  const token = localStorage.getItem('allcardstatus_token') || localStorage.getItem('allcardvault_token') || localStorage.getItem('allcardstation_token');
+  const token =
+    localStorage.getItem('allcardstatus_token') ||
+    localStorage.getItem('allcardvault_token') ||
+    localStorage.getItem('allcardstation_token');
 
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
@@ -30,17 +35,24 @@ export async function apiRequest<T = any>(
     headers,
   });
 
-  const data: ApiResponse<T> = await response.json().catch(() => ({
-    success: false,
-    error: {
-      message: 'Failed to parse server response.',
-      statusCode: response.status,
-    },
-  }));
+  const responseText = await response.text();
+  let data: ApiResponse<T>;
+
+  try {
+    data = JSON.parse(responseText);
+  } catch {
+    if (!response.ok) {
+      throw new Error(`Server request failed with status ${response.status} (${response.statusText || 'Error'}).`);
+    }
+    // If received HTML or invalid JSON on 200 OK
+    throw new Error('Server returned an unexpected non-JSON response format.');
+  }
 
   if (!response.ok || data.success === false) {
     const errorMsg =
-      data.error?.message || data.message || `Request failed with status ${response.status}`;
+      (typeof data.error === 'string' ? data.error : data.error?.message) ||
+      data.message ||
+      `Request failed with status ${response.status}`;
     throw new Error(errorMsg);
   }
 
