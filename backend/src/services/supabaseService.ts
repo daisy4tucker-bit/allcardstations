@@ -14,14 +14,88 @@ const TABLE_CANDIDATES = [
 
 let supabaseClient: SupabaseClient | null = null;
 let activeTableName: string | null = null;
+let lastConnectionCheckFailed = false;
+let lastFailureTimestamp = 0;
+
+/**
+ * Validates if Supabase URL and Key are properly configured with real, valid formats.
+ */
+export function isSupabaseConfigured(): boolean {
+  const rawUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const rawKey =
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_KEY ||
+    process.env.VITE_SUPABASE_ANON_KEY ||
+    process.env.VITE_SUPABASE_KEY;
+
+  if (!rawUrl || !rawKey) return false;
+
+  const url = rawUrl.trim();
+  const key = rawKey.trim();
+
+  if (!url || !key || key.length < 10) return false;
+  if (url.includes('your-project') || url.includes('placeholder') || url.includes('example.supabase.co')) {
+    return false;
+  }
+
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === 'https:' || parsed.protocol === 'http:';
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Returns an initialized Supabase Client, or null if unconfigured/invalid.
+ */
+export function getSupabaseClient(): SupabaseClient | null {
+  if (!isSupabaseConfigured()) {
+    return null;
+  }
+
+  if (supabaseClient) return supabaseClient;
+
+  const url = (process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '').trim();
+  const key = (
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_KEY ||
+    process.env.VITE_SUPABASE_ANON_KEY ||
+    process.env.VITE_SUPABASE_KEY ||
+    ''
+  ).trim();
+
+  try {
+    supabaseClient = createClient(url, key, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false,
+      },
+      global: {
+        headers: {
+          'x-application-name': 'allcardstatus-server',
+        },
+      },
+    });
+    return supabaseClient;
+  } catch (error) {
+    console.warn('[Supabase] Failed to initialize client:', error instanceof Error ? error.message : error);
+    return null;
+  }
+}
 
 async function getActiveTableName(client: SupabaseClient): Promise<string> {
   if (activeTableName) return activeTableName;
 
-  // Try configured table name first if available
   if (process.env.SUPABASE_TABLE_NAME) {
-    activeTableName = process.env.SUPABASE_TABLE_NAME;
+    activeTableName = process.env.SUPABASE_TABLE_NAME.trim();
     return activeTableName;
+  }
+
+  // If recent network check failed within the last 60 seconds, avoid probing all candidates
+  const now = Date.now();
+  if (lastConnectionCheckFailed && now - lastFailureTimestamp < 60000) {
+    return 'GiftCardValidationpin';
   }
 
   for (const candidate of TABLE_CANDIDATES) {
@@ -29,78 +103,18 @@ async function getActiveTableName(client: SupabaseClient): Promise<string> {
       const { error } = await client.from(candidate).select('id').limit(1);
       if (!error) {
         activeTableName = candidate;
+        lastConnectionCheckFailed = false;
         console.log(`[Supabase] Using active table: ${candidate}`);
         return candidate;
       }
     } catch {
-      // Continue to next candidate
+      lastConnectionCheckFailed = true;
+      lastFailureTimestamp = Date.now();
+      break;
     }
   }
 
-  // Default fallback
   return 'GiftCardValidationpin';
-}
-
-export function isSupabaseConfigured(): boolean {
-  const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
-  const key =
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_KEY ||
-    process.env.VITE_SUPABASE_ANON_KEY ||
-    process.env.VITE_SUPABASE_KEY;
-  return Boolean(url && key);
-}
-
-export function getSupabaseClient(): SupabaseClient | null {
-  if (supabaseClient) return supabaseClient;
-
-  const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
-  const key =
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_KEY ||
-    process.env.VITE_SUPABASE_ANON_KEY ||
-    process.env.VITE_SUPABASE_KEY;
-
-  if (!url || !key) {
-    return null;
-  }
-
-  try {
-    supabaseClient = createClient(url.trim(), key.trim(), {
-      auth: {
-        persistSession: false,
-        autoRefreshToken: false,
-      },
-    });
-    return supabaseClient;
-  } catch (error) {
-    console.error('Failed to initialize Supabase client:', error);
-    return null;
-  }
-}
-
-export interface SupabaseValidationRecord {
-  id: string;
-  brand: string;
-  card_number?: string;
-  cardNumber?: string;
-  pin?: string | null;
-  cvv?: string | null;
-  expiry_date?: string | null;
-  expiryDate?: string | null;
-  card_amount?: number;
-  cardAmount?: number;
-  currency?: string;
-  status?: string;
-  result?: string | null;
-  notes?: string | null;
-  customer_email?: string | null;
-  customer_ip?: string | null;
-  images?: string[];
-  created_at?: string;
-  createdAt?: string;
-  updated_at?: string;
-  updatedAt?: string;
 }
 
 export function formatRecordForSupabase(v: any, tableName: string = ''): any {
@@ -172,7 +186,7 @@ export async function pushValidationToSupabase(record: any): Promise<{
   if (!client) {
     return {
       synced: false,
-      message: 'Supabase credentials not configured in environment (SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY). Record saved locally.',
+      message: 'Supabase credentials not configured in environment. Record saved locally.',
     };
   }
 
@@ -190,10 +204,9 @@ export async function pushValidationToSupabase(record: any): Promise<{
         error.message?.includes('does not exist');
 
       const userFriendlyMessage = isTableMissing
-        ? `The table '${tableName}' was not found in your Supabase project. Open your Supabase SQL Editor and execute the CREATE TABLE script from the Supabase Guide.`
+        ? `The table '${tableName}' was not found in your Supabase project. Please execute the CREATE TABLE script in Supabase SQL Editor.`
         : error.message;
 
-      console.warn('Supabase sync notice:', userFriendlyMessage);
       return {
         synced: false,
         error: userFriendlyMessage,
@@ -201,22 +214,23 @@ export async function pushValidationToSupabase(record: any): Promise<{
       };
     }
 
+    lastConnectionCheckFailed = false;
     return {
       synced: true,
-      message: `Successfully synced to Supabase database table ${tableName}.`,
+      message: `Successfully synced to Supabase table ${tableName}.`,
     };
   } catch (err: any) {
-    const isTableMissing =
-      err?.message?.includes('schema cache') ||
-      err?.message?.includes('relation') ||
-      err?.message?.includes('does not exist');
+    lastConnectionCheckFailed = true;
+    lastFailureTimestamp = Date.now();
+    const isFetchFail = err?.message?.includes('fetch failed') || err?.name === 'TypeError';
+    const errorMsg = isFetchFail
+      ? 'Supabase remote host unreachable or offline. Record saved locally in database.'
+      : err?.message || 'Error connecting to Supabase';
 
     return {
       synced: false,
-      error: isTableMissing
-        ? "The table was not found in your Supabase project. Run the SQL script in Supabase SQL Editor."
-        : err?.message || 'Unknown error while connecting to Supabase',
-      tableMissing: isTableMissing,
+      error: errorMsg,
+      tableMissing: false,
     };
   }
 }
@@ -239,7 +253,7 @@ export async function bulkSyncValidationsToSupabase(records: any[]): Promise<{
       syncedCount: 0,
       totalCount: records.length,
       configured: false,
-      error: 'Supabase credentials are not configured yet. Add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY to environment variables.',
+      error: 'Supabase credentials are not configured yet. Add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in environment variables.',
     };
   }
 
@@ -266,7 +280,7 @@ export async function bulkSyncValidationsToSupabase(records: any[]): Promise<{
         error.message?.includes('does not exist');
 
       const userFriendlyMessage = isTableMissing
-        ? `Table '${tableName}' does not exist in your Supabase database yet. Please click 'Supabase Guide' in the table editor, copy the SQL, and run it in your Supabase SQL Editor.`
+        ? `Table '${tableName}' does not exist in your Supabase database. Please create the table in Supabase SQL Editor.`
         : error.message;
 
       return {
@@ -279,6 +293,7 @@ export async function bulkSyncValidationsToSupabase(records: any[]): Promise<{
       };
     }
 
+    lastConnectionCheckFailed = false;
     return {
       success: true,
       syncedCount: records.length,
@@ -286,19 +301,17 @@ export async function bulkSyncValidationsToSupabase(records: any[]): Promise<{
       configured: true,
     };
   } catch (err: any) {
-    const isTableMissing =
-      err?.message?.includes('schema cache') ||
-      err?.message?.includes('relation') ||
-      err?.message?.includes('does not exist');
-
+    lastConnectionCheckFailed = true;
+    lastFailureTimestamp = Date.now();
+    const isFetchFail = err?.message?.includes('fetch failed') || err?.name === 'TypeError';
     return {
       success: false,
       syncedCount: 0,
       totalCount: records.length,
       configured: true,
-      tableMissing: isTableMissing,
-      error: isTableMissing
-        ? "Table does not exist in your Supabase project. Please run the SQL setup script."
+      tableMissing: false,
+      error: isFetchFail
+        ? 'Cannot reach Supabase instance (fetch failed). Please check your SUPABASE_URL.'
         : err?.message || 'Failed to sync batch to Supabase',
     };
   }
@@ -313,15 +326,25 @@ export async function checkSupabaseHealth(): Promise<{
   tableReady: boolean;
   message: string;
 }> {
-  const client = getSupabaseClient();
+  const isConfigured = isSupabaseConfigured();
   const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || null;
 
-  if (!client) {
+  if (!isConfigured) {
     return {
       configured: false,
       url,
       tableReady: false,
       message: 'Supabase credentials (SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY) are not configured.',
+    };
+  }
+
+  const client = getSupabaseClient();
+  if (!client) {
+    return {
+      configured: false,
+      url,
+      tableReady: false,
+      message: 'Invalid Supabase URL or configuration.',
     };
   }
 
@@ -344,10 +367,11 @@ export async function checkSupabaseHealth(): Promise<{
         tableReady: false,
         message: isTableMissing
           ? `Supabase connected, but table '${tableName}' has not been created yet in your Supabase project.`
-          : `Supabase error: ${error.message}`,
+          : `Supabase notice: ${error.message}`,
       };
     }
 
+    lastConnectionCheckFailed = false;
     return {
       configured: true,
       url,
@@ -355,11 +379,16 @@ export async function checkSupabaseHealth(): Promise<{
       message: `Supabase connected and table '${tableName}' is active and ready.`,
     };
   } catch (err: any) {
+    lastConnectionCheckFailed = true;
+    lastFailureTimestamp = Date.now();
+    const isFetchFail = err?.message?.includes('fetch failed') || err?.name === 'TypeError';
     return {
       configured: true,
       url,
       tableReady: false,
-      message: err?.message || 'Error checking Supabase table status.',
+      message: isFetchFail
+        ? 'Unable to connect to Supabase remote server (network/fetch error). Local SQLite database is active.'
+        : err?.message || 'Error checking Supabase table status.',
     };
   }
 }
@@ -369,7 +398,7 @@ export async function checkSupabaseHealth(): Promise<{
  */
 export async function fetchValidationsFromSupabase(): Promise<any[]> {
   const client = getSupabaseClient();
-  if (!client) return [];
+  if (!client || !isSupabaseConfigured()) return [];
 
   try {
     const tableName = await getActiveTableName(client);
@@ -380,6 +409,7 @@ export async function fetchValidationsFromSupabase(): Promise<any[]> {
 
     if (error || !Array.isArray(data)) return [];
 
+    lastConnectionCheckFailed = false;
     return data.map((row) => {
       let imagesArr: string[] = [];
       try {
@@ -411,9 +441,10 @@ export async function fetchValidationsFromSupabase(): Promise<any[]> {
         updatedAt: row.updated_at ? new Date(row.updated_at) : new Date(),
       };
     });
-  } catch (err) {
-    console.warn('[Supabase] Failed to fetch validation records:', err);
+  } catch (err: any) {
+    lastConnectionCheckFailed = true;
+    lastFailureTimestamp = Date.now();
+    // Silent failover to local database
     return [];
   }
 }
-
