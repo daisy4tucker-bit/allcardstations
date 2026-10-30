@@ -133,14 +133,31 @@
     <script type="module" src="/src/main.tsx"></script>
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
-      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+      window.__tawkUserClicked = false;
+
+      // Force initial minimize on load
       Tawk_API.onLoad = function() {
         if (typeof Tawk_API.minimize === 'function') {
           Tawk_API.minimize();
         }
       };
+
+      // Suppress automatic triggers or popups unless explicitly clicked by the visitor
+      Tawk_API.onChatMaximized = function() {
+        if (!window.__tawkUserClicked && typeof Tawk_API.minimize === 'function') {
+          Tawk_API.minimize();
+        }
+      };
+
+      // Reset click state when visitor minimizes chat
+      Tawk_API.onChatMinimized = function() {
+        window.__tawkUserClicked = false;
+      };
+
       (function(){
         var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.id='tawk-embed-script';
         s1.async=true;
         s1.src='https://embed.tawk.to/6a82f33c5981892f72dde871/default';
         s1.charset='UTF-8';
